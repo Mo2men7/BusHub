@@ -2,6 +2,21 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+// trip table
+use App\Models\Trip;
+use App\Http\Controllers\TripController;
+use App\http\Resources\TripResourse;
+// types table
+use App\Models\Type;
+use App\Http\Controllers\TypeController;
+use App\http\Resources\TypeResourse;
+// Destination table
+use App\Models\Destination;
+use App\Http\Controllers\DestinationController;
+use App\http\Resources\DestinationResourse;
+
+
+use function Laravel\Prompts\table;
 
 use App\Http\Controllers\admin\BusAdminController;
 use App\Http\Resources\admin\BusAdminResource;

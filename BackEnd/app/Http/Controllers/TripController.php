@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destintaion;
 use Illuminate\Http\Request;
 
-class DestinationController extends Controller
+use App\Models\Trip;
+
+class TripController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Destintaion::all();
+        return Trip ::all();
     }
 
     /**
@@ -20,7 +21,7 @@ class DestinationController extends Controller
      */
     public function store(Request $request)
     {
-        return Destintaion::create($request->all());
+        return  Trip ::create($request->all());
     }
 
     /**
@@ -28,7 +29,7 @@ class DestinationController extends Controller
      */
     public function show(string $id)
     {
-        return Destintaion::find($id);
+        return  Trip ::show($id);
     }
 
     /**
@@ -36,31 +37,36 @@ class DestinationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Destination::where('id', $id)->exists()) {
-            $destination = Destination::find($id);
-            $destination->name = $request->name;
-            $destination->save();
+        if (Trip::where('id', $id)->exists()) {
+            $trip = Trip::find($id);
+            $trip->bus_id = $request->bus_id;
+            $trip->from_location = $request->from_location;
+            $trip->to_location = $request->to_location;
+            $trip->price = $request->price;
+            $trip->date = $request->date;
+            $trip->save();
             return response()->json([
                 "message" => "record updated"
             ], 200);
         }
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        if(Destintaion::find($id)->exists()){
-            $destination = Destintaion::find($id);
-            $destination->delete();
+        if (Trip::where('id', $id)->exists()) {
+            $trip = Trip::find($id);
+            $trip->delete();
             return response()->json([
-                'message'=>'Destination has been deleted',
-            ], 202);
-        }
-        else{
+                "message" => "record deleted"
+            ], 200);
+        } 
+        else {
             return response()->json([
-                'message'=>'Destination not found',
+                "message" => "not found"
             ], 404);
         }
     }

@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destintaion;
 use Illuminate\Http\Request;
-
-class DestinationController extends Controller
+use App\Models\Type;
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Destintaion::all();
-    }
+        return Type ::all();    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        return Destintaion::create($request->all());
+        return  Type ::create($request->all());
     }
 
     /**
@@ -28,7 +26,7 @@ class DestinationController extends Controller
      */
     public function show(string $id)
     {
-        return Destintaion::find($id);
+        return  Type ::show($id);
     }
 
     /**
@@ -36,10 +34,11 @@ class DestinationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Destination::where('id', $id)->exists()) {
-            $destination = Destination::find($id);
-            $destination->name = $request->name;
-            $destination->save();
+        if (Type::where('id', $id)->exists()) {
+            $type = Type::find($id);
+            $type->type = $request->type;
+            $type->option_id = $request->option_id;
+            $type->save();
             return response()->json([
                 "message" => "record updated"
             ], 200);
@@ -51,16 +50,16 @@ class DestinationController extends Controller
      */
     public function destroy(string $id)
     {
-        if(Destintaion::find($id)->exists()){
-            $destination = Destintaion::find($id);
-            $destination->delete();
+        if (Type::where('id', $id)->exists()) {
+            $type = Type::find($id);
+            $type->delete();
             return response()->json([
-                'message'=>'Destination has been deleted',
-            ], 202);
-        }
-        else{
+                "message" => "record deleted"
+            ], 200);
+        } 
+        else {
             return response()->json([
-                'message'=>'Destination not found',
+                "message" => "not found"
             ], 404);
         }
     }
