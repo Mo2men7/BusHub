@@ -17,10 +17,10 @@ return new class extends Migration
             // $table->foreignId("bus_id")->constrained();
             $table->unsignedBigInteger('bus_id');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
-            $table->unsignedBigInteger('from');
-            $table->foreign('from')->references('id')->on('destinations')->onDelete('cascade');
-            $table->unsignedBigInteger('to');
-            $table->foreign('to')->references('id')->on('destinations')->onDelete('cascade');
+            $table->unsignedBigInteger('from_location');
+            $table->foreign('from_location')->references('id')->on('destinations')->onDelete('cascade');
+            $table->unsignedBigInteger('to_location');
+            $table->foreign('to_location')->references('id')->on('destinations')->onDelete('cascade');
             $table->unsignedBigInteger("price");
             $table->date("date");
             $table->timestamps();
