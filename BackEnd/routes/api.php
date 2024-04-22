@@ -34,6 +34,7 @@ Route::get('/trips', function () {return TripResourse ::collection(Trip::all());
 Route::put('/trip/{id}',[TripController::class,'update']);
 Route::delete('/trip/{id}',[TripController::class,'destroy']);
 Route::post('/trips',[TripController::class,'store']);
+Route::get('/tripsjoin',[TripController::class,'tripsjoin']);
 
 // types table
 Route::get('/type/{id}', function ($id) {return new TypeResourse(Type::findOrFail($id));});
