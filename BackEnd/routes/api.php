@@ -45,7 +45,13 @@ use App\Models\Destintaion;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-// !Bus
+// trip table
+Route::get('/trip/{id}', function ($id) {return new TripResourse(Trip::findOrFail($id));});
+Route::get('/trips', function () {return TripResourse ::collection(Trip::all());});
+Route::put('/trip/{id}',[TripController::class,'update']);
+Route::delete('/trip/{id}',[TripController::class,'destroy']);
+Route::post('/trips',[TripController::class,'store']);
+Route::get('/tripsjoin',[TripController::class,'tripsjoin']);
 
 Route::get('/admin/buses', function () {
     return  BusAdminResource::collection(Bus::all());

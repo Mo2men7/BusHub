@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Trip;
+use Illuminate\Support\Facades\DB;
+
 
 class TripController extends Controller
 {
@@ -70,4 +71,18 @@ class TripController extends Controller
             ], 404);
         }
     }
+
+    public function tripsjoin()
+    {
+        $trips = DB::table('trips')
+            ->join('destinations as from_dest', 'from_dest.id', '=', 'trips.from_location')
+            ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to_location')
+            ->join('buses','buses.id','=','trips.bus_id')
+            ->join('types','types.id','=','buses.type_id')
+            ->select('trips.*', 'from_dest.name as from', 'to_dest.name as to','buses.chairs','types.type')
+            ->get();
+    
+        return response()->json($trips);
+    }
+
 }
