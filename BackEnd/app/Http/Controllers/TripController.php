@@ -79,7 +79,7 @@ class TripController extends Controller
             ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to_location')
             ->join('buses','buses.id','=','trips.bus_id')
             ->join('types','types.id','=','buses.type_id')
-            ->select('trips.*', 'from_dest.name as from', 'to_dest.name as to','buses.chairs','types.type')
+            ->select('trips.*', 'from_dest.name as from', 'to_dest.name as to','buses.chairs','types.type','types.id as type_id')
             ->get();
     
         return response()->json($trips);
