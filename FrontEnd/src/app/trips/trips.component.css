@@ -1,0 +1,23 @@
+.search-component {
+    border: 1px solid #dbdde0;
+    background-color: #ffffff;
+    box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
+    position: relative;
+}
+.iconshape1{
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    /* padding-right: 100PX; */
+}
+.iconshape2{
+    border-radius: 10px 0 10px 0;
+}
+.text-format{
+    font-weight: 500;
+
+}
+
+.dark_blue{
+color: #152287;
+}
