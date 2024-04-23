@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('types', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
+            $table->unsignedBigInteger('id');
             $table->string('type');
-            $table->unsignedBigInteger('option_id')->nullable();
-            $table->foreign('option_id')->references('id')->on('options')->onDelete('set null');
+            $table->unsignedBigInteger('option_id');
+            $table->foreign('option_id')->references('id')->on('options');
+            $table->primary(['id', 'option_id']);
             $table->timestamps();
         });
     }
