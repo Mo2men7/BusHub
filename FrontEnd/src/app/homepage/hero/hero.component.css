@@ -1,0 +1,48 @@
+/* section.hero{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+} */
+section.hero{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+    /* overflow: hidden; */
+}
+section.hero::after{
+    content: '';
+    width: 100%;
+    height: 94%;
+    position: absolute;
+    /* background: rgba(15, 147, 255, 0.1); */
+    /* background: rgba(0, 0, 0, 0.1); */
+    /* background-image: url('../../assets/road-pic.jpg'); */
+    z-index: 10;
+}
+.hero-video{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    object-fit: cover;
+    transform: scale(1.1,1.1);
+    border-radius: 15px;
+}
+.hero-text{
+    width: 600px;
+    height: auto;
+    padding: 30px;
+    z-index: 20;
+}
+.hero-text h1{
+    font-weight: 800;
+}
+.hero-text p{
+    font-weight: 400;
+}
