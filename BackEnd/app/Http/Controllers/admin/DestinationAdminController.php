@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Trip;
+use App\Models\admin\Destination;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TripController extends Controller
+class DestinationAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return Trip::all();
+        return Destination::all();
     }
 
     /**
@@ -20,7 +18,7 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        return Trip::create($request->all());
+        return Destination::create($request->all());
     }
 
     /**
@@ -28,7 +26,7 @@ class TripController extends Controller
      */
     public function show(string $id)
     {
-        return Trip::find($id);
+        return Destination::find($id);
     }
 
     /**
@@ -36,14 +34,11 @@ class TripController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Trip::where('id', $id)->exists()) {
-            $trip = Trip::find($id);
-            $trip->bus_id = $request->bus_id;
-            $trip->from = $request->from;
-            $trip->to = $request->to;
-            $trip->price = $request->price;
-            $trip->date = $request->date;
-            $trip->save();
+        if (Destination::where('id', $id)->exists()) {
+            $dest = Destination::find($id);
+            $dest->name = $request->name;
+            // $dest->type_id = $request->type_id;
+            $dest->save();
             return response()->json([
                 "message" => "record updated successfully"
             ], 200);
@@ -57,11 +52,11 @@ class TripController extends Controller
      */
     public function destroy(string $id)
     {
-        if (Trip::where('id', $id)->exists()) {
-            $trip = Trip::find($id);
-            $trip->delete();
+        if (Destination::where('id', $id)->exists()) {
+            $dest = Destination::find($id);
+            $dest->delete();
             return response()->json([
-                "message" => "record deleted successfully"
+                "message" => "record deleted"
             ], 202);
         } else {
             return response()->json(["message" => "record not found"], 404);

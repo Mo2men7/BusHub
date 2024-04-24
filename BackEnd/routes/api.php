@@ -3,17 +3,17 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\BusController;
-use App\Http\Resources\BusResource;
-use App\Models\Bus;
+use App\Http\Controllers\admin\BusAdminController;
+use App\Http\Resources\admin\BusAdminResource;
+use App\Models\admin\Bus;
 
-use App\Http\Controllers\TripController;
-use App\Http\Resources\TripResource;
-use App\Models\Trip;
+use App\Http\Controllers\admin\TripAdminController;
+use App\Http\Resources\admin\TripAdminResource;
+use App\Models\admin\Trip;
 
-use App\Http\Controllers\DestinationController;
-use App\Http\Resources\DestinationResource;
-use App\Models\Destination;
+use App\Http\Controllers\admin\DestinationAdminController;
+use App\Http\Resources\admin\DestinationAdminResource;
+use App\Models\admin\Destination;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,46 +27,46 @@ use App\Models\Destination;
 */
 // !Bus
 
-Route::get('/buses', function () {
-    return  BusResource::collection(Bus::all());
+Route::get('/admin/buses', function () {
+    return  BusAdminResource::collection(Bus::all());
 });
-Route::get('/bus/{id}', function($id){
-    return new BusResource(Bus::findOrFail($id));
+Route::get('/admin/bus/{id}', function($id){
+    return new BusAdminResource(Bus::findOrFail($id));
 });
 
-Route::post('/buses',[BusController::class,'store']);
-Route::put('/bus/{id}',[BusController::class,'update']);
-Route::delete('/bus/{id}',[BusController::class,'destroy']);
+Route::post('/admin/buses',[BusAdminController::class,'store']);
+Route::put('/admin/bus/{id}',[BusAdminController::class,'update']);
+Route::delete('/admin/bus/{id}',[BusAdminController::class,'destroy']);
 // !end Bus
 // !Destination
 // ? to get all destinations in DB
-Route::get('/destinations', function () {
-    return  DestinationResource::collection(Destination::all());
+Route::get('/admin/destinations', function () {
+    return  DestinationAdminResource::collection(Destination::all());
 });
 // ? to get a single destination with $id in DB
-Route::get('/destination/{id}', function($id){
-    return new DestinationResource(Destination::findOrFail($id));
+Route::get('/admin/destination/{id}', function($id){
+    return new DestinationAdminResource(Destination::findOrFail($id));
 });
 // ? to add a single destination in DB
-Route::post('/destinations',[DestinationController::class,'store']);
+Route::post('/admin/destinations',[DestinationAdminController::class,'store']);
 // ? to update a single destination with $id in DB
-Route::put('/destination/{id}',[DestinationController::class,'update']);
+Route::put('/admin/destination/{id}',[DestinationAdminController::class,'update']);
 // ? to delete a single destination with $id in DB
-Route::delete('/destination/{id}',[DestinationController::class,'destroy']);
+Route::delete('/admin/destination/{id}',[DestinationAdminController::class,'destroy']);
 // !end Destination
 
 // !Trip
 
-Route::get('/trips', function () {
-    return  TripResource::collection(Trip::all());
+Route::get('/admin/trips', function () {
+    return  TripAdminResource::collection(Trip::all());
 });
-Route::get('/trip/{id}', function($id){
-    return new TripResource(Trip::findOrFail($id));
+Route::get('/admin/trip/{id}', function($id){
+    return new TripAdminResource(Trip::findOrFail($id));
 });
 
-Route::post('/trips',[TripController::class,'store']);
-Route::put('/trip/{id}',[TripController::class,'update']);
-Route::delete('/trip/{id}',[TripController::class,'destroy']);
+Route::post('/admin/trips',[TripAdminController::class,'store']);
+Route::put('/admin/trip/{id}',[TripAdminController::class,'update']);
+Route::delete('/admin/trip/{id}',[TripAdminController::class,'destroy']);
 // !end trip
 
 

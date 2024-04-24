@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Destination;
+use App\Models\admin\Trip;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DestinationController extends Controller
+class TripAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Destination::all();
+        return Trip::all();
     }
 
     /**
@@ -20,7 +21,7 @@ class DestinationController extends Controller
      */
     public function store(Request $request)
     {
-        return Destination::create($request->all());
+        return Trip::create($request->all());
     }
 
     /**
@@ -28,7 +29,7 @@ class DestinationController extends Controller
      */
     public function show(string $id)
     {
-        return Destination::find($id);
+        return Trip::find($id);
     }
 
     /**
@@ -36,11 +37,14 @@ class DestinationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Destination::where('id', $id)->exists()) {
-            $dest = Destination::find($id);
-            $dest->name = $request->name;
-            // $dest->type_id = $request->type_id;
-            $dest->save();
+        if (Trip::where('id', $id)->exists()) {
+            $trip = Trip::find($id);
+            $trip->bus_id = $request->bus_id;
+            $trip->from = $request->from;
+            $trip->to = $request->to;
+            $trip->price = $request->price;
+            $trip->date = $request->date;
+            $trip->save();
             return response()->json([
                 "message" => "record updated successfully"
             ], 200);
@@ -54,11 +58,11 @@ class DestinationController extends Controller
      */
     public function destroy(string $id)
     {
-        if (Destination::where('id', $id)->exists()) {
-            $dest = Destination::find($id);
-            $dest->delete();
+        if (Trip::where('id', $id)->exists()) {
+            $trip = Trip::find($id);
+            $trip->delete();
             return response()->json([
-                "message" => "record deleted"
+                "message" => "record deleted successfully"
             ], 202);
         } else {
             return response()->json(["message" => "record not found"], 404);
