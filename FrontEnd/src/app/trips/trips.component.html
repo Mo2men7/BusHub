@@ -2,13 +2,13 @@
 <div class="search-component container mt-3">
     <div class="row text-center">
         <div class="col-4">
-            <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> From</div>
+            <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> Departure From</div>
             <!-- <div class="dark_blue fw-medium text-capitalize">{{trips[0].from}}</div> -->
             <div class="dark_blue fw-medium text-capitalize">{{ trips && trips.length > 0 ? trips[0].from : '' }}</div>
 
         </div>
         <div class="col-4">
-            <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> To</div>
+            <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> Destination</div>
             <!-- <div class="dark_blue fw-medium text-capitalize">{{trips[0].to}}</div> -->
             <div class="dark_blue fw-medium text-capitalize">{{ trips && trips.length > 0 && trips[0].to ? trips[0].to : '' }}</div>
 
@@ -56,8 +56,8 @@
                 {{trip.type}}
             </div>
         </div>
-        <!-- line img div -->
-        <div class="col-4 text-center">
+        <!-- line img -->
+        <div class="col-4 text-center ">
             <img class="figure-img img-fluid rounded" src="assets/line.PNG" alt="">
         </div>
         <!-- book now -->
