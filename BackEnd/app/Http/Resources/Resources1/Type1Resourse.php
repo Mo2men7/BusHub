@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Resources1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TripResourse extends JsonResource
+class Type1Resourse extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,8 @@ class TripResourse extends JsonResource
     {
         return [
             'id' => $this->id,
-            'bus_id' => $this->bus_id,
-            'from_location' => $this->from_location,
-            'to_location' => $this->to_location,
-            'price' => $this->price,
-            'date' => $this->date,
+            'type' => $this->type,
+            'option_id' => $this->option_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

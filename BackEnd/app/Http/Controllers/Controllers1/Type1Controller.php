@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Controllers1;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Type;
-class TypeController extends Controller
+use App\Models\Models1\Type;
+
+class Type1Controller extends Controller
 {
     /**
      * Display a listing of the resource.

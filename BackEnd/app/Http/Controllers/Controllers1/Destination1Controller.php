@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Controllers1;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Destination;
-class DestinationController extends Controller
+use  App\Models\Models1\Destination;
+
+class Destination1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -64,3 +66,4 @@ class DestinationController extends Controller
         }
     }
 }
+
