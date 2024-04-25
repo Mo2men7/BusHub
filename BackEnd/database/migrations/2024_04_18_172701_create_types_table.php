@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->unsignedBigInteger('option_id')->nullable();
-            $table->foreign('option_id')->references('id')->on('options')->onDelete('set null');
+            $table->text('options');
             $table->timestamps();
         });
     }
