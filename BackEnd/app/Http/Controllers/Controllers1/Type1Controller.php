@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Controllers1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Models1\Type;
+use App\Models\Models1\Type1;
 
 class Type1Controller extends Controller
 {
@@ -13,14 +13,14 @@ class Type1Controller extends Controller
      */
     public function index()
     {
-        return Type ::all();    }
+        return Type1 ::all();    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        return  Type ::create($request->all());
+        return  Type1 ::create($request->all());
     }
 
     /**
@@ -28,7 +28,7 @@ class Type1Controller extends Controller
      */
     public function show(string $id)
     {
-        return  Type ::show($id);
+        return  Type1 ::show($id);
     }
 
     /**
@@ -36,8 +36,8 @@ class Type1Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Type::where('id', $id)->exists()) {
-            $type = Type::find($id);
+        if (Type1::where('id', $id)->exists()) {
+            $type = Type1::find($id);
             $type->type = $request->type;
             $type->option_id = $request->option_id;
             $type->save();
@@ -52,8 +52,8 @@ class Type1Controller extends Controller
      */
     public function destroy(string $id)
     {
-        if (Type::where('id', $id)->exists()) {
-            $type = Type::find($id);
+        if (Type1::where('id', $id)->exists()) {
+            $type = Type1::find($id);
             $type->delete();
             return response()->json([
                 "message" => "record deleted"

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Controllers1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Models1\Trip;
+use App\Models\Models1\Trip1;
 use Illuminate\Support\Facades\DB;
 
 class Trip1Controller extends Controller
@@ -15,7 +15,7 @@ class Trip1Controller extends Controller
      */
     public function index()
     {
-        return Trip ::all();
+        return Trip1 ::all();
     }
 
     /**
@@ -23,7 +23,7 @@ class Trip1Controller extends Controller
      */
     public function store(Request $request)
     {
-        return  Trip ::create($request->all());
+        return  Trip1 ::create($request->all());
     }
 
     /**
@@ -31,7 +31,7 @@ class Trip1Controller extends Controller
      */
     public function show(string $id)
     {
-        return  Trip ::show($id);
+        return  Trip1 ::show($id);
     }
 
     /**
@@ -39,8 +39,8 @@ class Trip1Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Trip::where('id', $id)->exists()) {
-            $trip = Trip::find($id);
+        if (Trip1::where('id', $id)->exists()) {
+            $trip = Trip1::find($id);
             $trip->bus_id = $request->bus_id;
             $trip->from_location = $request->from_location;
             $trip->to_location = $request->to_location;
@@ -59,8 +59,8 @@ class Trip1Controller extends Controller
      */
     public function destroy(string $id)
     {
-        if (Trip::where('id', $id)->exists()) {
-            $trip = Trip::find($id);
+        if (Trip1::where('id', $id)->exists()) {
+            $trip = Trip1::find($id);
             $trip->delete();
             return response()->json([
                 "message" => "record deleted"
