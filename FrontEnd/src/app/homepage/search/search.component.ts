@@ -12,6 +12,6 @@ export class SearchComponent {
   destinations:any;
   constructor(private destinationService:DestinationService){}
   ngOnInit(){
-    this.destinationService.getDestinations().subscribe((res:any)=>this.destinations=res.data)
+    this.destinationService.getDestinations().subscribe((res:any)=>this.destinations=res)
   }
 }
