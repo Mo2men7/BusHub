@@ -26,8 +26,8 @@ export class TripsComponent {
       });
     }
     filterTrips() {
-    this.trips = this.trips.filter((trip: any) => trip.from_location == '2' 
-    && trip.to_location == '1'
+    this.trips = this.trips.filter((trip: any) => trip.from_location == '1' 
+    && trip.to_location == '2'
     && trip.date.toLowerCase() == "2024-04-25");
     console.log(this.trips) //delete
   }
