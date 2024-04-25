@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Controllers1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use  App\Models\Models1\Destination;
+use  App\Models\Models1\Destination1;
 
 class Destination1Controller extends Controller
 {
@@ -13,7 +13,7 @@ class Destination1Controller extends Controller
      */
     public function index()
     {
-        return Destination ::all();
+        return Destination1 ::all();
     }
 
     /**
@@ -21,7 +21,7 @@ class Destination1Controller extends Controller
      */
     public function store(Request $request)
     {
-        return  Destination ::create($request->all());
+        return  Destination1 ::create($request->all());
     }
 
     /**
@@ -29,7 +29,7 @@ class Destination1Controller extends Controller
      */
     public function show(string $id)
     {
-        return  Destination ::show($id);
+        return  Destination1 ::show($id);
     }
 
     /**
@@ -37,8 +37,8 @@ class Destination1Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (Destination::where('id', $id)->exists()) {
-            $destination = Destination::find($id);
+        if (Destination1::where('id', $id)->exists()) {
+            $destination = Destination1::find($id);
             $destination->name = $request->name;
             $destination->save();
             return response()->json([
@@ -52,8 +52,8 @@ class Destination1Controller extends Controller
      */
     public function destroy(string $id)
     {
-        if (Destination::where('id', $id)->exists()) {
-            $destination = Destination::find($id);
+        if (Destination1::where('id', $id)->exists()) {
+            $destination = Destination1::find($id);
             $destination->delete();
             return response()->json([
                 "message" => "record deleted"
