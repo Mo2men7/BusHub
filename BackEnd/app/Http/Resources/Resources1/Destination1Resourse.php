@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Resources1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TypeResourse extends JsonResource
+class Destination1Resourse extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,7 @@ class TypeResourse extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => $this->type,
-            'option_id' => $this->option_id,
+            'name' => $this->name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

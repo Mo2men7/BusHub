@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Controllers1;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Trip;
+
+use App\Models\Models1\Trip;
 use Illuminate\Support\Facades\DB;
 
-
-class TripController extends Controller
+class Trip1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
