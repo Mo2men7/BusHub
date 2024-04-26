@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { TripsshowService } from '../../services1/tripsshow.service';
 import { CommonModule, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 
 @Component({
   selector: 'app-tripsshow',
   standalone: true,
-  imports: [CommonModule,NgClass,RouterLink],
+  imports: [CommonModule,NgClass,RouterLink,NavbarComponent,FooterComponent],
   templateUrl: './tripsshow.component.html',
   styleUrl: './tripsshow.component.css'
 })

@@ -36,6 +36,5 @@ export const routes: Routes = [
     path: 'trips',
     component:TripsshowComponent,
     title: 'trips',
-
   }
 ];
