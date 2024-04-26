@@ -49,9 +49,7 @@ Route::get('/tripsjoin',[Trip1Controller::class,'tripsjoin']);
 
 // !Bus
 
-Route::get('/admin/buses', function () {
-    return  BusAdminResource::collection(Bus::all());
-});
+Route::get('/admin/buses', [BusAdminController::class,'index']);
 Route::get('/admin/bus/{id}', function($id){
     return new BusAdminResource(Bus::findOrFail($id));
 });

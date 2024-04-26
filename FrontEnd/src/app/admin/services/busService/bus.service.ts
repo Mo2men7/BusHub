@@ -9,11 +9,12 @@ export class BusService {
   listBuses() {
     return this.http.get(this.url + '/api/admin/buses');
   }
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //   }),
-  // };
+  
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
   // addDestinations(dest: any) {
   //   return this.http.post(
   //     this.url + '/api/destinations',

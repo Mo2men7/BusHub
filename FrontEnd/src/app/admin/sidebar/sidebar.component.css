@@ -1,0 +1,179 @@
+* {
+    --text: #00070a;
+    --background: #ebf8ff;
+    --primary: #1496fa;
+    --secondary: #6e73fc;
+    --accent: #6f4ffc;
+    --base:white;
+}
+
+
+.sidebar {
+    /* border:solid wheat; */
+    /* position: relative; */
+    /* z-index: 500; */
+    /* color: var(--text); */
+    width: 20vw;
+    justify-content: space-between;
+    background-color: var(--base);
+    /* border-top-right-radius: 15px; */
+    /* border-bottom-right-radius: 15px; */
+    /* background: linear-gradient(135deg, var(--background), var(--secondary), var(--primary)); */
+    /* background-size: 300% 300%; */
+    /* animation: gradient 10s ease infinite; */
+    height: 100vh;
+
+}
+
+/* 
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+} */
+
+
+
+
+a {
+    /* border:solid wheat; */
+    margin-left: 2vw;
+    text-wrap: nowrap;
+    overflow-x: hidden;
+    /* opacity: 0.8; */
+    text-decoration: none;
+    color: var(--text);
+    /* padding-right: 100px; */
+    height: 10vh;
+    width: 70%;
+    padding-top: 18px;
+    padding-left: 2vw;
+    /* transition: width 0s linear; */
+}
+
+/* a:hover {
+    background-color: var(--background);
+
+} */
+
+::-webkit-scrollbar {
+    border: none;
+    /* width: 20px; */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    /* border:none; */
+    /* box-shadow: inset 0 0 5px grey;  */
+    /* border-radius: 500px; */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: none
+        /* border-radius: 10px; */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: none
+}
+
+.active {
+    /* border-top-left-radius: 20px; */
+    /* border-top-right-radius: -20px; */
+    /* border-top-right-radius: 20px; */
+    width: 18vw;
+    border-radius: 15px;
+    color: var(--base);
+    text-shadow: 0 0 5px var(--text);
+
+    /* color: var(--text); */
+    /* opacity: 1.0; */
+    background-color: var(--accent);
+    /* background:  var(--accent) ; */
+    /* box-shadow: 0 0 5px var(--text); */
+    /* text-shadow: 0 0 5px var(--text); */
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+
+
+}
+
+a::before {
+
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+    background: var(--accent);
+    transition: 20s;
+    transform: scale(.9);
+    /* z-index: -1; */
+}
+
+a:hover::before {
+    opacity: 1.0;
+    transform: scale(1.1);
+    /* box-shadow: 0 0 15px var(--text); */
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+}
+
+
+a:hover {
+    transition: 0.5s;
+    width: 18vw;
+    text-shadow: 0 0 5px var(--base);
+
+    color: var(--base);
+    opacity: 1.0;
+    background: var(--accent);
+    border-radius: 15px;
+    /* box-shadow: 0 0 5px var(--text); */
+    /* text-shadow: 0 0 5px var(--text); */
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+}
+
+#burg {
+    /* background-color: white; */
+    /* height: 100%; */
+    width: 35px;
+
+    /* margin-top: 30%; */
+    /* border-radius: 5px; */
+    align-self: auto;
+    /* margin-top: -10%; */
+    /* margin-left: 100px; */
+    position: relative;
+    /* z-index: 500; */
+    /* left:-6vw; */
+}
+
+#separator {
+    width: 2vw;
+    background-color: var(--base);
+    height: 100vh;
+    /* border-top-right-radius: 50px; */
+
+
+}
+
+#burg i {
+    background-color: var(--base);
+    width: 35px;
+    padding-top: 18px;
+    border-radius: 5px;
+    height: 10vh;
+    margin-left: -1vw;
+    /* margin-top: 50vh; */
+    color: var(--accent);
+
+}

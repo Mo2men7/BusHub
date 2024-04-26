@@ -8,11 +8,17 @@ import { TripsshowComponent } from './Components1/tripsshow/tripsshow.component'
 import { DestinationsPageComponent } from './destinations-page/destinations-page.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 
+import { AdminComponent } from './admin/admin.component';
 export const routes: Routes = [
   {
     path: 'admin',
-    component: DashboardComponent,
+    component: AdminComponent,
     children: [
+      
+      {
+        path: "",
+        component: DashboardComponent,
+      },
       {
         path: 'admin-destinations',
         component: DestinationsComponent,

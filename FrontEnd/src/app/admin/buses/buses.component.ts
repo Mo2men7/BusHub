@@ -12,12 +12,18 @@ import { FormsModule } from '@angular/forms';
 export class BusesComponent {
   buses: any;
   newBus:any;
+  countBuses:any;
+
   constructor(private busService: BusService) {}
   ngOnInit() {
     this.busService.listBuses().subscribe(
-      (res: any) => (this.buses = res),
+      (res: any) => {
+        this.buses = res;
+        // console.log(res.length);
+        this.countBuses=res.length;
+      },
       (error) => console.log(error)
     );
   }
-
+  
 }

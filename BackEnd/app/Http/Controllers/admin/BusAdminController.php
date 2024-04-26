@@ -5,12 +5,36 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Bus;
+use Illuminate\Support\Facades\DB;
 
 class BusAdminController extends Controller
 {
     public function index()
     {
-        return Bus::all();
+        //     DB::table('leagues')
+        // ->select('league_name')
+        // ->join('countries', 'countries.country_id', '=', 'leagues.country_id')
+        // ->where('countries.country_name', $country)
+        // ->get();
+        $allBuses = DB::table('buses')->select()->get();
+        // dd($allBuses);
+        foreach ($allBuses as $key => $value) {
+            $types = DB::table('types')->select()->where('id', $value->type_id)->get();
+            
+            $options = [];
+            foreach ($types as  $type) {
+                // dd($type);
+                array_push($options, DB::table('options')->find($type->option_id, ['*']));
+            }
+            // dd($options);
+            $allBuses[$key]->type = $types[0]->type;
+            $allBuses[$key]->options =$options;
+            
+            
+        }
+        // dd($allBuses);
+        // exit();
+        return $allBuses;
     }
 
     /**
@@ -38,6 +62,7 @@ class BusAdminController extends Controller
             $bus = Bus::find($id);
             $bus->chairs = $request->chairs;
             $bus->type_id = $request->type_id;
+
             $bus->save();
             return response()->json([
                 "message" => "record updated successfully"
