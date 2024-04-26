@@ -1,4 +1,10 @@
 <?php
+//**trips show**start
+use App\Models\Models1\Trip1;
+use App\Http\Controllers\Controllers1\Trip1Controller;
+use App\http\Resources\Resources1\Trip1Resourse;
+//**trips show**end
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +36,15 @@ use App\Models\Destintaion;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+//**trips show**start
+Route::get('/trip/{id}', function ($id) {return new Trip1Resourse(Trip1::findOrFail($id));});
+Route::get('/trips', function () {return Trip1Resourse ::collection(Trip1::all());});
+Route::put('/trip/{id}',[Trip1Controller::class,'update']);
+Route::delete('/trip/{id}',[Trip1Controller::class,'destroy']);
+Route::post('/trips',[Trip1Controller::class,'store']);
+Route::get('/tripsjoin',[Trip1Controller::class,'tripsjoin']);
+//**trips show**end
+
 // !Bus
 
 Route::get('/admin/buses', function () {

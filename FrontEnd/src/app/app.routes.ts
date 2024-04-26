@@ -4,6 +4,7 @@ import { BusesComponent } from './admin/buses/buses.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PrivateBusPageComponent } from './private-bus-page/private-bus-page.component';
+import { TripsshowComponent } from './Components1/tripsshow/tripsshow.component';
 
 export const routes: Routes = [
   {
@@ -31,4 +32,10 @@ export const routes: Routes = [
   component: PrivateBusPageComponent,
   title: 'PrivateBus',
   },
+  {
+    path: 'trips',
+    component:TripsshowComponent,
+    title: 'trips',
+
+  }
 ];

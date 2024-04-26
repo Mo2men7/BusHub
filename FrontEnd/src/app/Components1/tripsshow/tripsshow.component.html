@@ -1,0 +1,82 @@
+<!-- trips header -->
+<div class="search-component container mt-3">
+    <div class="row text-center py-2">
+        <div class="col-lg-4">
+            <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> Departure From</div>
+            <!-- <div class="dark_blue fw-medium text-capitalize">{{trips[0].from}}</div> -->
+            <div class=" fw-medium text-capitalize bg-dark mt-2 py-1 border_edit">{{ trips && trips.length > 0 ?
+                trips[0].from_location : '' }}</div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> Destination</div>
+            <!-- <div class="dark_blue fw-medium text-capitalize">{{trips[0].to}}</div> -->
+            <div class=" fw-medium text-capitalize bg-dark mt-2 py-1 border_edit ">{{ trips && trips.length > 0 ?
+                trips[0].to_location : '' }}</div>
+        </div>
+        <div class="col-lg-4">
+            <div class="fw-bolder"><i class="bi bi-calendar3"></i> Date</div>
+            <!-- <div class="dark_blue fw-medium "> {{trips[0].date}}</div> -->
+            <div class=" fw-medium bg-dark mt-2 py-1 border_edit">{{ trips && trips.length > 0 && trips[0].date ?
+                trips[0].date : '' }}</div>
+
+        </div>
+
+    </div>
+</div>
+<!-- trips list -->
+<div class="search-component container my-4  ">
+    @for (trip of trips; track $index) {
+    <!-- from and to container-->
+    <div class="row tripsContainer ">
+        <!-- from  container-->
+        <div class="col-lg-4 text-capitalize fw-bolder dark_blue grid_from">
+            Departure from {{trip.from_location}}
+        </div>
+        <!-- bus img-->
+        <div class="col-lg-4 text-center text-secondary  hide">
+            <i class="bi bi-bus-front-fill fs-4 ml-5"></i>
+        </div>
+        <!-- to container-->
+        <div class="col-lg-3 text-capitalize dark_blue fw-bolder grid_to">
+            Arrive to {{trip.to_location}}
+        </div>
+
+        <!-- time -->
+        <div class=" col-lg-2 fs-4  dark_blue grid_time">
+            <i class="bi bi-stopwatch"></i> {{ trip.time.split(':')[0] }}:{{ trip.time.split(':')[1] }}
+        </div>
+        <!--type -->
+        <div class="col-lg-2 iconshape1 pt-1 grid_type">
+            <div class="py-1 iconshape2 " [ngClass]="{
+                'bg-info': trip.type_id == '1',
+                'bg-danger': trip.type_id == '2',
+                'bg-primary': trip.type_id == '3',
+                'bg-secondary': trip.type_id == '4',
+                'bg-warning': trip.type_id == '5'}">
+                {{trip.type}}
+            </div>
+        </div>
+        <!-- line img -->
+        <div class="col-lg-4 text-center hide">
+            <img class="figure-img img-fluid rounded" src="assets/line.PNG" alt="">
+        </div>
+        <!-- book now -->
+        <div class="col-lg-2 grid_booknow">
+            <a href="#" class="col-lg-2">
+                <div class="btn  fw-bolder width_booknow btnhover">Book Now</div>
+            </a>
+        </div>
+        <!-- price -->
+        <div class="col-lg-2  fs-4 grid_price">
+            {{trip.price}} LE/<i class="bi bi-person-fill"></i>
+        </div>
+        <div [innerHTML]="trip.options" class="text-secondary fs-4 grid_options"></div>
+    </div>
+
+    <!-- option -->
+
+    <hr class="hredit">
+    }
+</div>
+<!-- end of trips -->
