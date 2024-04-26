@@ -14,9 +14,8 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-      
       {
-        path: "",
+        path: '',
         component: DashboardComponent,
       },
       {
@@ -32,21 +31,20 @@ export const routes: Routes = [
         component: OrdersComponent,
       },
     ],
-    
   },
   {
     path: '',
     component: HomepageComponent,
     title: 'BusHub',
- },
- {
-  path: 'privatebus',
-  component: PrivateBusPageComponent,
-  title: 'PrivateBus',
+  },
+  {
+    path: 'privatebus',
+    component: PrivateBusPageComponent,
+    title: 'PrivateBus',
   },
   {
     path: 'trips',
-    component:TripsshowComponent,
+    component: TripsshowComponent,
     title: 'trips',
   },
   {
