@@ -32,9 +32,7 @@ use App\Models\Destintaion;
 */
 // !Bus
 
-Route::get('/admin/buses', function () {
-    return  BusAdminResource::collection(Bus::all());
-});
+Route::get('/admin/buses', [BusAdminController::class,'index']);
 Route::get('/admin/bus/{id}', function($id){
     return new BusAdminResource(Bus::findOrFail($id));
 });

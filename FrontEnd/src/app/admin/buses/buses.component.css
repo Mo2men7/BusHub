@@ -1,0 +1,42 @@
+* {
+    --text: #00070a;
+    --background: #ebf8ff;
+    --primary: #1496fa;
+    --secondary: #6e73fc;
+    --accent: #6f4ffc;
+    --base:white;
+}
+
+.card::before {
+
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+    background: var(--accent);
+    transition: 20s;
+    transform: scale(.9);
+    /* z-index: -1; */
+}
+
+.card:hover::before {
+    opacity: 1.0;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--text);
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+}
+
+
+.card:hover {
+    transition: 0.5s;
+    width: 18vw;
+    text-shadow: 0 0 5px var(--base);
+
+    /* color: var(--base); */
+    opacity: 1.0;
+    /* background: var(--accent); */
+    /* border-radius: 15px; */
+    box-shadow: 0 0 15px var(--text);
+    /* text-shadow: 0 0 5px var(--text); */
+    /* border-top-right-radius: 20px; */
+    /* border-bottom-left-radius: 20px; */
+}

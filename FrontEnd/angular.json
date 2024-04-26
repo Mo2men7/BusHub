@@ -24,10 +24,12 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "./src/assets/admin/css/app.css"
+              
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",
-              "./src/assets/admin/js/app.js"
+              
+
             ]
           },
           "configurations": {

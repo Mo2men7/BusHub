@@ -1,101 +1,59 @@
-<nav id="sidebar" class="sidebar js-sidebar">
-  <div class="sidebar-content js-simplebar ">
-      <!-- <div class="d-flex justify-content-between"> -->
-    <a class="sidebar-brand" routerLink="" >
-      <span class="align-middle">BusHub</span>
-    </a>
+<div class="d-flex overflow-y-auto " style="height: 100%;width: 100%;">
+  <nav
+    id="navbarToggleExternalContent"
+    class="collapse-horizontal collapse "
     
-  <!-- </div> -->
-    <ul class="sidebar-nav">
-      <!-- <li class="sidebar-header">Pages</li> -->
+  >
+    <div class="sidebar">
+      <div
+        class="d-flex collapse collapse-horizontal flex-column justify-content-around"
+        style="height: 100%"
+      >
+        <!-- <div class="d-flex justify-content-between"> -->
 
-      <li class="sidebar-item " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="sidebar-link" routerLink="admin-destinations" >
-          <i class="align-middle" data-feather="sliders"></i>
-          <span class="align-middle">Dashboard</span>
+        <a class="fs-3" routerLink="">
+          <span>BusHub</span>
         </a>
-      </li>
 
-      <li class="sidebar-item"  routerLinkActive="active">
-        <a class="sidebar-link" routerLink="admin-buses">
-          <i class="align-middle" data-feather="user"></i>
-          <span class="align-middle">Buses</span>
+        <!-- </div> -->
+        <!-- <li class="sidebar-header">Pages</li> -->
+
+        <a
+          [routerLink]="['/admin']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="fa-solid fa-sliders me-2"></i> Dashboard
         </a>
-      </li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="pages-sign-in.html">
-          <i class="align-middle" data-feather="log-in"></i>
-          <span class="align-middle">Sign In</span>
+        <a routerLink="admin-destinations" routerLinkActive="active">
+          <i class="fa-solid fa-location-dot me-2"></i> Destinations
         </a>
-      </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="pages-sign-up.html">
-          <i class="align-middle" data-feather="user-plus"></i>
-          <span class="align-middle">Sign Up</span>
+        <a routerLink="admin-buses" routerLinkActive="active">
+          <i class="fa-solid fa-bus me-2"></i>Buses
         </a>
-      </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="pages-blank.html">
-          <i class="align-middle" data-feather="book"></i>
-          <span class="align-middle">Blank</span>
+        <a href="#"> <i class="fa-solid fa-map-location-dot me-2"></i>Trips </a>
+
+        <a href="#">
+          <i class="fa-solid fa-file-contract me-2"></i> PrivateBus
         </a>
-      </li>
 
-      <li class="sidebar-header">Tools & Components</li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="ui-buttons.html">
-          <i class="align-middle" data-feather="square"></i>
-          <span class="align-middle">Buttons</span>
-        </a>
-      </li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="ui-forms.html">
-          <i class="align-middle" data-feather="check-square"></i>
-          <span class="align-middle">Forms</span>
-        </a>
-      </li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="ui-cards.html">
-          <i class="align-middle" data-feather="grid"></i>
-          <span class="align-middle">Cards</span>
-        </a>
-      </li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="ui-typography.html">
-          <i class="align-middle" data-feather="align-left"></i>
-          <span class="align-middle">Typography</span>
-        </a>
-      </li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="icons-feather.html">
-          <i class="align-middle" data-feather="coffee"></i>
-          <span class="align-middle">Icons</span>
-        </a>
-      </li>
-
-      <li class="sidebar-header">Plugins & Addons</li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="charts-chartjs.html">
-          <i class="align-middle" data-feather="bar-chart-2"></i>
-          <span class="align-middle">Charts</span>
-        </a>
-      </li>
-
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="maps-google.html">
-          <i class="align-middle" data-feather="map"></i>
-          <span class="align-middle">Maps</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <a href="#"> <i class="fa-solid fa-headset me-2"></i>Contact Us </a>
+      </div>
+    </div>
+  </nav>
+  <div class="d-flex">
+  <div id="separator"></div>
+  <i
+    id="burg"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarToggleExternalContent"
+    aria-controls="navbarToggleExternalContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fa-solid fa-arrow-right fs-2"></i>
+  </i>
+</div>
+</div>
