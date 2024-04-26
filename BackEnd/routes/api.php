@@ -20,6 +20,8 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Resources\DestinationResource;
 use App\Models\Destintaion;
 
+use App\Http\Controllers\TypeController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -79,7 +81,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+///////////////////////////Destination Page and Section////////////////////////////////
 Route::get('/destination/{id}', function($id){
     return new DestinationResource(Destintaion::findOrFail($id));
 });
@@ -89,9 +91,11 @@ Route::get('/destinations', function(){
 Route::put('/destination/{id}', [DestinationController::class, 'update']);
 Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
 Route::post('/destinations', [DestinationController::class, 'store']);
-
-///////////////////////////////////////////////////////////
-
-Route::post('/private-bus', [ PrivateBusFromController::class, 'store']);
-
-///////////////////////////////////////////////////////////
+///////////////////////////PrivateBus Form Page and Admin Table////////////////////////////////
+Route::get("/private-bus-requests", [PrivateBusFromController::class, 'index']);
+Route::post('/private-bus', [PrivateBusFromController::class, 'store']);
+Route::get('private-bus-requests/{id}', [PrivateBusFromController::class, 'show']);
+Route::put('private-bus-requests/{id}', [PrivateBusFromController::class, 'update']);
+Route::delete('private-bus-requests/{id}', [PrivateBusFromController::class, 'destroy']);
+///////////////////////////BusTypes Inputs////////////////////////////////
+Route::get("/bus-types", [TypeController::class, "index"]);

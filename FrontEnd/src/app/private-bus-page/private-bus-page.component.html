@@ -49,11 +49,9 @@
                     <div class="form-floating">
                     <select name="bus_type_id" [(ngModel)]="formData.bus_type_id" class="form-select" id="floatingSelectGrid">
                         <option selected disabled>Select an BusType</option>
-                        <option value="1">VIP</option>
-                        <option value="1">Economy</option>
-                        <!-- @for(destination of destinations; track $index){
-                            <option value="{{destination.id}}">{{destination.name}}</option>
-                        } -->
+                        @for(type of busTypes; track $index){
+                            <option value="{{type.id}}">{{type.type}}</option>
+                        }
                         </select>
                     <label for="floatingInputGrid">Bus Type</label>
                     </div>
