@@ -1,0 +1,22 @@
+<div class="edit-account">
+  <h3>Edit Detail</h3>
+  <form (ngSubmit)="edit()">
+    <div class="input-field">
+      <label for="username">Full Name</label
+      ><input [(ngModel)]="userDetails.username" name="username" type="text" />
+    </div>
+    <div class="input-field">
+      <label for="phone-number">Phone Number</label
+      ><input [(ngModel)]="userDetails.phone" name="phone" type="tel" />
+    </div>
+    <div class="input-field">
+      <label for="email">Email</label
+      ><input [(ngModel)]="userDetails.email" name="email" type="email" />
+    </div>
+    <div class="input-field">
+      <button type="submit" class="btn btn-orange" (submit)="edit()">
+        <span>Edit</span>
+      </button>
+    </div>
+  </form>
+</div>
