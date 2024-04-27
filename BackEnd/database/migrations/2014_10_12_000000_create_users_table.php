@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->enum('role', ['user', 'admin'])->default('user');
-            $table->date('birth_date');
+            $table->date('birth_date')->nullable();
             $table->enum('gender', ['Female', 'Male']);
             $table->string('password');
             $table->string('city');
-            $table->string('phone',12);
+            $table->string('phone', 12);
             $table->rememberToken();
             $table->timestamps();
             // (#id,username,email, role, birth_date, gender,password, city, phone)

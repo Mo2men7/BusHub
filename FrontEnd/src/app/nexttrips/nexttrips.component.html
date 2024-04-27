@@ -1,0 +1,35 @@
+<!-- ..................................................//////////////////////////////// -->
+<!--
+                 "username": "mahmoudt",
+              "from_destination": "portsaid",
+              "to_destination": "cairo",
+              "trip_date": "2024-02-06",
+              "trip_price": 90,
+              "bus_type": "vip"
+             -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User Name</th>
+      <th scope="col">Travel From</th>
+      <th scope="col">Arriving To</th>
+      <th scope="col">Trip Date</th>
+      <th scope="col">Bus Type</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (trip of nextTrips ; track $index) {
+
+    <tr class="table-primary">
+      <th scope="row">{{ trip?.username }}</th>
+      <td>{{ trip?.from_destination }}</td>
+      <td>{{ trip?.to_destination }}</td>
+      <td>{{ trip?.trip_date }}</td>
+      <td>{{ trip?.bus_type }}</td>
+      <td>{{ trip?.trip_price }}</td>
+    </tr>
+
+    }
+  </tbody>
+</table>
