@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger("to");
             $table->date("departure_date");
             $table->boolean("return");
-            $table->date("date_of_request");
+            $table->dateTime("date_of_request");
             $table->date("date_of_response");
             $table->boolean("status")->default(0);
             $table->foreign('user_id')->references('id')->on('users');

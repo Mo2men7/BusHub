@@ -6,6 +6,7 @@ use App\http\Resources\Resources1\Trip1Resourse;
 //**trips show**end
 
 
+use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,24 +40,28 @@ use App\Http\Controllers\TypeController;
 |
 */
 //**trips show**start
-Route::get('/trip/{id}', function ($id) {return new Trip1Resourse(Trip1::findOrFail($id));});
-Route::get('/trips', function () {return Trip1Resourse ::collection(Trip1::all());});
-Route::put('/trip/{id}',[Trip1Controller::class,'update']);
-Route::delete('/trip/{id}',[Trip1Controller::class,'destroy']);
-Route::post('/trips',[Trip1Controller::class,'store']);
-Route::get('/tripsjoin',[Trip1Controller::class,'tripsjoin']);
+Route::get('/trip/{id}', function ($id) {
+    return new Trip1Resourse(Trip1::findOrFail($id));
+});
+Route::get('/trips', function () {
+    return Trip1Resourse::collection(Trip1::all());
+});
+Route::put('/trip/{id}', [Trip1Controller::class, 'update']);
+Route::delete('/trip/{id}', [Trip1Controller::class, 'destroy']);
+Route::post('/trips', [Trip1Controller::class, 'store']);
+Route::get('/tripsjoin', [Trip1Controller::class, 'tripsjoin']);
 //**trips show**end
 
 // !Bus
 
-Route::get('/admin/buses', [BusAdminController::class,'index']);
-Route::get('/admin/bus/{id}', function($id){
+Route::get('/admin/buses', [BusAdminController::class, 'index']);
+Route::get('/admin/bus/{id}', function ($id) {
     return new BusAdminResource(Bus::findOrFail($id));
 });
 
-Route::post('/admin/buses',[BusAdminController::class,'store']);
-Route::put('/admin/bus/{id}',[BusAdminController::class,'update']);
-Route::delete('/admin/bus/{id}',[BusAdminController::class,'destroy']);
+Route::post('/admin/buses', [BusAdminController::class, 'store']);
+Route::put('/admin/bus/{id}', [BusAdminController::class, 'update']);
+Route::delete('/admin/bus/{id}', [BusAdminController::class, 'destroy']);
 // !end Bus
 // !Destination
 // ? to get all destinations in DB
@@ -64,15 +69,15 @@ Route::get('/admin/destinations', function () {
     return  DestinationAdminResource::collection(Destination::all());
 });
 // ? to get a single destination with $id in DB
-Route::get('/admin/destination/{id}', function($id){
+Route::get('/admin/destination/{id}', function ($id) {
     return new DestinationAdminResource(Destination::findOrFail($id));
 });
 // ? to add a single destination in DB
-Route::post('/admin/destinations',[DestinationAdminController::class,'store']);
+Route::post('/admin/destinations', [DestinationAdminController::class, 'store']);
 // ? to update a single destination with $id in DB
-Route::put('/admin/destination/{id}',[DestinationAdminController::class,'update']);
+Route::put('/admin/destination/{id}', [DestinationAdminController::class, 'update']);
 // ? to delete a single destination with $id in DB
-Route::delete('/admin/destination/{id}',[DestinationAdminController::class,'destroy']);
+Route::delete('/admin/destination/{id}', [DestinationAdminController::class, 'destroy']);
 // !end Destination
 
 // !Trip
@@ -80,13 +85,13 @@ Route::delete('/admin/destination/{id}',[DestinationAdminController::class,'dest
 Route::get('/admin/trips', function () {
     return  TripAdminResource::collection(Trip::all());
 });
-Route::get('/admin/trip/{id}', function($id){
+Route::get('/admin/trip/{id}', function ($id) {
     return new TripAdminResource(Trip::findOrFail($id));
 });
 
-Route::post('/admin/trips',[TripAdminController::class,'store']);
-Route::put('/admin/trip/{id}',[TripAdminController::class,'update']);
-Route::delete('/admin/trip/{id}',[TripAdminController::class,'destroy']);
+Route::post('/admin/trips', [TripAdminController::class, 'store']);
+Route::put('/admin/trip/{id}', [TripAdminController::class, 'update']);
+Route::delete('/admin/trip/{id}', [TripAdminController::class, 'destroy']);
 // !end trip
 
 
@@ -94,11 +99,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("/register", [UserController::class, "register"]);
+Route::get("/trip", [UserController::class, "previous"])->middleware("auth:sanctum");
+Route::get("/nexttrips", [UserController::class, "next"])->middleware("auth:sanctum");
+
+
+Route::put("/edit", [UserController::class, "update"])->middleware("auth:sanctum");
+
+
+Route::post("/login", [UserController::class, "login"]);
+Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum");
+
+Route::post("/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
+Route::group(['middleware' => ['auth:sanctum']], function () {
+});
 ///////////////////////////Destination Page and Section////////////////////////////////
-Route::get('/destination/{id}', function($id){
+Route::get('/destination/{id}', function ($id) {
     return new DestinationResource(Destintaion::findOrFail($id));
 });
-Route::get('/destinations', function(){
+Route::get('/destinations', function () {
     return DestinationResource::collection(Destintaion::all());
 });
 Route::put('/destination/{id}', [DestinationController::class, 'update']);

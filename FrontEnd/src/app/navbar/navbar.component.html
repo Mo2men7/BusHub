@@ -1,53 +1,74 @@
 <nav class="navbar navbar-expand-lg p-1 mb-4">
   <div class="container-fluid py-auto">
     <a class="navbar-brand fw-bold fs-3" href="#">BusHub.</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav m-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link"
+          <a
+            class="nav-link"
             routerLink="/"
             routerLinkActive="text-black"
             [routerLinkActiveOptions]="{ exact: true }"
-          >Home</a>
+            >Home</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" 
-          routerLink="buses-types"
-          routerLinkActive="text-black"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Buses</a>
+          <a
+            class="nav-link"
+            routerLink="/buses-types"
+            routerLinkActive="text-black"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Buses</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" 
-          routerLink="destinations"
-          routerLinkActive="text-black"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Destinations</a>
+          <a
+            class="nav-link"
+            routerLink="/destinations"
+            routerLinkActive="text-black"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Destinations</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" 
-          routerLink="privatebus"
-          routerLinkActive="text-black"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >PrivateBus</a>
+          <a
+            class="nav-link"
+            routerLink="/privatebus"
+            routerLinkActive="text-black"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >PrivateBus</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" 
-          routerLink="about"
-          routerLinkActive="text-black"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >About</a>
+          <a
+            class="nav-link"
+            routerLink="/about"
+            routerLinkActive="text-black"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >About</a
+          >
         </li>
       </ul>
-      <button class="btn btn-dark rounded-pill px-4">Join</button>
+
+      <button routerLink="/signin" class="btn btn-dark rounded-pill px-4">
+        Join
+      </button>
     </div>
   </div>
 </nav>
 
-  <!-- <nav>
+<!-- <nav>
     <h4 class="m-0 fw-bold">BusHub.</h4>
     <ul class="d-flex align-items-center m-0" style="list-style: none;">
       <li><a href="#">Home</a></li>
@@ -59,5 +80,3 @@
     <a href="#" class="join m-0">Join</a>
     <i class="fa-solid fa-ellipsis fs-3"></i>
   </nav> -->
-
-  
