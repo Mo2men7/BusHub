@@ -2,27 +2,26 @@
 <app-navbar></app-navbar>
 <!-- trips header -->
 <div class="search-component container mt-3">
-    
+
     <div class="row text-center py-2">
+        <!-- Departure From -->
         <div class="col-lg-4">
             <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> Departure From</div>
-            <!-- <div class="dark_blue fw-medium text-capitalize">{{trips[0].from}}</div> -->
             <div class=" fw-medium text-capitalize bg-dark mt-2 py-1 border_edit">{{ trips && trips.length > 0 ?
                 trips[0].from_location : '' }}</div>
 
         </div>
+        <!-- Destination -->
         <div class="col-lg-4">
             <div class="fw-bolder"><i class="bi bi-geo-alt-fill"></i> Destination</div>
-            <!-- <div class="dark_blue fw-medium text-capitalize">{{trips[0].to}}</div> -->
             <div class=" fw-medium text-capitalize bg-dark mt-2 py-1 border_edit ">{{ trips && trips.length > 0 ?
                 trips[0].to_location : '' }}</div>
         </div>
+        <!-- Date -->
         <div class="col-lg-4">
             <div class="fw-bolder"><i class="bi bi-calendar3"></i> Date</div>
-            <!-- <div class="dark_blue fw-medium "> {{trips[0].date}}</div> -->
-          <!-- <div class=" fw-medium bg-dark mt-2 py-1 border_edit">{{ trips && trips.length > 0 && trips[0].date ?
-                trips[0].date : ''}}</div> -->
-                <div class="fw-medium bg-dark mt-2 py-1 border_edit">{{ (trips && trips.length > 0 && trips[0].date) ? (trips[0].date | customDate) : '' }}</div>
+            <div class="fw-medium bg-dark mt-2 py-1 border_edit">{{ (trips && trips.length > 0 && trips[0].date) ?
+                (trips[0].date | customDate) : '' }}</div>
 
         </div>
 
@@ -48,7 +47,7 @@
 
         <!-- time -->
         <div class=" col-lg-2 fs-4  dark_blue grid_time">
-            <i class="bi bi-stopwatch"></i> {{ trip.time.split(':')[0] }}:{{ trip.time.split(':')[1] }}
+            <i class="bi bi-stopwatch"></i> {{ trip.time |timeFormat }}
         </div>
         <!--type -->
         <div class="col-lg-2 iconshape1 pt-1 grid_type">

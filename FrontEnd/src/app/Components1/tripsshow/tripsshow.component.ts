@@ -5,12 +5,13 @@ import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { CustomDatePipe } from '../../custom-date.pipe';
+import { TimeFormatPipe } from '../../time-format.pipe';
 
 
 @Component({
   selector: 'app-tripsshow',
   standalone: true,
-  imports: [CommonModule,NgClass,RouterLink,NavbarComponent,FooterComponent,CustomDatePipe],
+  imports: [CommonModule,NgClass,RouterLink,NavbarComponent,FooterComponent,CustomDatePipe,TimeFormatPipe],
   templateUrl: './tripsshow.component.html',
   styleUrl: './tripsshow.component.css'
 })
