@@ -9,6 +9,7 @@ import { DestinationsPageComponent } from './destinations-page/destinations-page
 import { OrdersComponent } from './admin/orders/orders.component';
 
 import { AdminComponent } from './admin/admin.component';
+import { BusesTypesComponent } from './Components1/buses-types/buses-types.component';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -57,4 +58,10 @@ export const routes: Routes = [
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
+  {
+    path: 'buses-types',
+    component: BusesTypesComponent,
+    title: 'buses',
+
+  }
 ];
