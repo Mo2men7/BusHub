@@ -24,7 +24,7 @@ import { BusesTypesComponent } from './Components1/buses-types/buses-types.compo
 export const routes: Routes = [
 
   {
-    path: "",
+    path: "signin",
     component: SignComponent,
     title:"signin"
   }
@@ -89,11 +89,8 @@ export const routes: Routes = [
     component: TripsshowComponent,
     title: 'trips',
   },
-  {
-    path: 'destinations',
-    component: DestinationsPageComponent,
-    title: 'Our Destinations',
-  },
+
+
   {
     path: 'buses-types',
     component: BusesTypesComponent,
@@ -104,9 +101,5 @@ export const routes: Routes = [
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
-  {
-    path: 'destinations',
-    component: DestinationsPageComponent,
-    title: 'Our Destinations',
-  },
+
 ];
