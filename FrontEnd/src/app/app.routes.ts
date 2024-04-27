@@ -63,5 +63,14 @@ export const routes: Routes = [
     component: BusesTypesComponent,
     title: 'buses',
 
-  }
+  },{
+    path: 'destinations',
+    component: DestinationsPageComponent,
+    title: 'Our Destinations',
+  },
+  {
+    path: 'destinations',
+    component: DestinationsPageComponent,
+    title: 'Our Destinations',
+  },
 ];
