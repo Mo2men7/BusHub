@@ -26,7 +26,7 @@ export class UserService {
   sendData(formDataJson: any) {
     // console.log(formDataJson);
     // Replace 'http://your-api-url' with your actual API URL
-    return this.http.post('http://127.0.0.1:8000/api/register',formDataJson,this.httpOptions);
+    return this.http.post('http://127.0.0.1:8000/api/register',formDataJson);
   }
 
   login(formDataJson: any) {
