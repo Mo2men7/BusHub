@@ -1,26 +1,24 @@
 import { Component,Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { DestinationsComponent } from './admin/destinations/destinations.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { BusesComponent } from './admin/buses/buses.component';
+import { TripsshowComponent } from './Components1/tripsshow/tripsshow.component';
 import { CommonModule } from '@angular/common';
-
-
-
 import { FormsModule } from '@angular/forms';
-// import { SignComponent } from './sign/sign.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TokenInterceptorService } from './services/token-interceptor.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,ProfileComponent,HttpClientModule],
+  imports: [RouterOutlet,DestinationsComponent,SidebarComponent,BusesComponent,TripsshowComponent, CommonModule,FormsModule,ProfileComponent,HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'FrontEnd';
-  constructor(private tokeninceptors:TokenInterceptorService,private cookie:CookieService) { }
+  constructor() { }
 
   // togglePanel(isSignUpActive: boolean): void {
   //   const container = this.elRef.nativeElement.querySelector('.container');

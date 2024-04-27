@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get("/", "App\Http\Controllers\StripeController@index")->name('index');
+Route::post("/checkout", "App\Http\Controllers\StripeController@checkout")->name('checkout');
+Route::get("/success", "App\Http\Controllers\StripeController@success")->name('success');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });

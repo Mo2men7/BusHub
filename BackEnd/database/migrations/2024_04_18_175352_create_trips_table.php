@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('to')->references('id')->on('destinations')->onDelete('cascade');
             $table->unsignedBigInteger("price");
             $table->date("date");
+            $table->time("time");
             $table->timestamps();
         });
     }

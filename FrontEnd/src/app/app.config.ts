@@ -5,14 +5,17 @@ import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular
 import { importProvidersFrom } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { routes } from './app.routes';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-  providers: [importProvidersFrom(HttpClientModule), provideRouter(routes,withComponentInputBinding(), withViewTransitions()),provideHttpClient(),CookieService],
-};
+  providers: [importProvidersFrom(HttpClientModule), provideAnimationsAsync(), provideRouter(routes, withComponentInputBinding(), withViewTransitions()), provideHttpClient(), CookieService],
 
+
+
+}
 
 
 

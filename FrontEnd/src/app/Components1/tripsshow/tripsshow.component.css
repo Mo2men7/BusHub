@@ -1,0 +1,132 @@
+/* hover effect */
+.btnhover {
+transition: transform 0.3s ease;
+background-color: black;
+color: #ffffff;
+}
+
+.btnhover:hover {
+  background-color:dimgray;
+  /* color: #ffffff; */
+  font-size: large;
+  transform: scale(1.1); /* Scales the element to 110% of its original size */
+}
+
+
+/* hr tag edit */
+.hredit{
+    padding: 0;
+    margin: 0;
+    margin-left:25px ;
+    margin-right:25px ;
+  }
+  
+  /* i edit */
+  /* .options_img{
+   
+  } */
+  
+  /* container inside for loop */
+  .tripsContainer{
+  padding-left: 40px ;
+   padding-top: 10px;
+   padding-bottom: 10px;
+  }
+  
+  /* boarder of header content  */
+  .border_edit{
+  border-radius: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  color: #ffffff;
+  }
+ /* bg of header content  */
+.bg1{
+  background-color: darkgray;
+}
+.bg2{
+color: white;
+background-color:dimgrey
+}  
+
+
+  /* shade box design*/
+  .search-component {
+    border: 1px solid #dbdde0;
+    background-color: #ffffff;
+    box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
+    /* position: relative; */
+  }
+  
+  /* type outer div */
+  .iconshape1 {
+    text-align: center;
+    font-weight: 700;
+    color: white;
+  }
+  
+  /* type iner div */
+  .iconshape2 {
+    border-radius: 10px 0 10px 0;
+  }
+  
+  .text-format {
+    font-weight: 500;
+  }
+  
+  /* blue color degree */
+  /* .dark_blue {
+    color: #152287; 
+     color: dimgrey;
+  } */
+  
+  /* small screens */
+  @media only screen and (max-width: 992px) {
+    .hredit {
+      color: #ffffff;
+    }
+    .hide {
+      display: none;
+    }
+    .width_booknow {
+      width: 100%;
+    }
+    .tripsContainer {
+      border-style: solid;
+      border-color: gray;
+      border-radius: 20px;
+      margin: 10px 10px 10px 10px;
+      padding: 10px;
+      display: grid;
+      grid-template-areas:
+        " type options options  time"
+        "from from from ."
+        "to to to ."
+        "booknow booknow booknow price";
+      gap: 10px 10px;
+    }
+    .grid_from {
+      grid-area: from;
+    }
+    .grid_to {
+      grid-area: to;
+    }
+    .grid_time {
+      grid-area: time;
+      text-align: right;
+    }
+    .grid_type {
+      grid-area: type;
+    }
+    .grid_booknow {
+      grid-area: booknow;
+    }
+    .grid_price {
+      grid-area: price;
+      text-align: right;
+    }
+    .grid_options {
+      grid-area: options;
+    }
+  }
+  

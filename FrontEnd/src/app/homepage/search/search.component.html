@@ -1,0 +1,64 @@
+<div class="search">
+    <form class="search-box">
+        <div class="field">
+            <h4>From</h4>
+            <select name="to" class="form-select">
+                <option> </option>
+                @for(destination of destinations; track $index){
+                    <option value="{{destination.id}}">{{destination.name}}</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <h4>To</h4>
+            <select name="from" class="form-select">
+                <option> </option>
+                @for(destination of destinations; track $index){
+                    <option value="{{destination.id}}">{{destination.name}}</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <h4>Date</h4>
+            <input type="date" name="from">
+        </div>
+        <div class="field">
+            <h4>Passengers</h4>
+            <input type="number" name="from">
+        </div>
+        <input type="submit" class="btn btn-dark rounded-pill px-4 fs-6" value="Check">
+    </form>
+    <div class="top-trips text-black">
+        <h4 class="pt-5 ps-2">Some Cities</h4>
+        <div class="cities">
+            <div class="city">
+                <h5>Port Said</h5>
+                <img src="http://images.memphistours.com/large/64979546_port%20said%20night.jpg" alt="Port Said">
+                <div class="mt-1">
+                    <button class="trip-button w-100 rounded-0">Trip</button>
+                </div>
+            </div>
+            <div class="city">
+                <h5>Alexandria</h5>
+                <img src="https://cdn.thecollector.com/wp-content/uploads/2022/12/alexandria-aerial-view.jpg?width=1080&quality=55" alt="Alexandria">
+                <div class="mt-1">
+                    <button class="trip-button w-100 rounded-0">Trip</button>
+                </div>
+            </div>
+            <div class="city">
+                <h5>Cairo</h5>
+                <img src="https://alittlenomad.com/wp-content/uploads/2019/10/panorama-of-cairo.jpg" alt="Cairo">
+                <div class="mt-1">
+                    <button class="trip-button w-100 rounded-0">Trip</button>
+                </div>
+            </div>
+            <div class="city">
+                <h5>Hurgada</h5>
+                <img src="https://tse1.mm.bing.net/th?id=OIP.tPbkvtaJaWNrp4_9CpwYdQHaE0&pid=Api&P=0&h=220" alt="Hurgada">
+                <div class="mt-1">
+                    <button class="trip-button w-100 rounded-0">Trip</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

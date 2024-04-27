@@ -1,0 +1,21 @@
+/* navbar effect*/
+    .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+        --mdc-tab-indicator-active-indicator-color: #000D14;  /*underline1*/
+        --mat-tab-header-disabled-ripple-color: rgb(0, 255, 42);   /*notwork*/
+        --mat-tab-header-pagination-icon-color: rgb(192, 241, 255);  /*notwork*/
+        --mat-tab-header-inactive-label-text-color:black;  /*text*/
+        --mat-tab-header-active-label-text-color: black;  /*text*/
+        --mat-tab-header-active-ripple-color: #000D14;  /*selected shade*/
+        --mat-tab-header-inactive-ripple-color: #000D14;  /*shade when hover*/
+        --mat-tab-header-inactive-focus-label-text-color: black;  /*text long press*/
+        --mat-tab-header-inactive-hover-label-text-color: #030891;  /*text when hover*/
+        --mat-tab-header-active-focus-label-text-color: black;  /*text*/
+        --mat-tab-header-active-hover-label-text-color: black;  /*text*/
+        --mat-tab-header-active-focus-indicator-color: #000D14(97, 116, 164);  /*log press under line*/
+        --mat-tab-header-active-hover-indicator-color: black;  /*text log press*/
+    }
+
+    .container-width{
+        width: 101%;
+    }
+

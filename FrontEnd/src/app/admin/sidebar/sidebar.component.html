@@ -1,0 +1,59 @@
+<div class="d-flex overflow-y-auto " style="height: 100%;width: 100%;">
+  <nav
+    id="navbarToggleExternalContent"
+    class="collapse-horizontal collapse "
+    
+  >
+    <div class="sidebar">
+      <div
+        class="d-flex collapse collapse-horizontal flex-column justify-content-around"
+        style="height: 100%"
+      >
+        <!-- <div class="d-flex justify-content-between"> -->
+
+        <a class="fs-3" routerLink="">
+          <span>BusHub</span>
+        </a>
+
+        <!-- </div> -->
+        <!-- <li class="sidebar-header">Pages</li> -->
+
+        <a
+          [routerLink]="['/admin']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="fa-solid fa-sliders me-2"></i> Dashboard
+        </a>
+        <a routerLink="admin-destinations" routerLinkActive="active">
+          <i class="fa-solid fa-location-dot me-2"></i> Destinations
+        </a>
+
+        <a routerLink="admin-buses" routerLinkActive="active">
+          <i class="fa-solid fa-bus me-2"></i>Buses
+        </a>
+
+        <a href="#"> <i class="fa-solid fa-map-location-dot me-2"></i>Trips </a>
+
+        <a routerLink="admin-orders" routerLinkActive="active" >
+          <i class="fa-solid fa-file-contract me-2"></i> PrivateBus
+        </a>
+
+        <a href="#"> <i class="fa-solid fa-headset me-2"></i>Contact Us </a>
+      </div>
+    </div>
+  </nav>
+  <div class="d-flex">
+  <div id="separator"></div>
+  <i
+    id="burg"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarToggleExternalContent"
+    aria-controls="navbarToggleExternalContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fa-solid fa-arrow-right fs-2"></i>
+  </i>
+</div>
+</div>

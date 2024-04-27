@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->text("flag");
+            $table->text("pic");
+            $table->text("info");
+            $table->text("map");
             $table->timestamps();
         });
     }

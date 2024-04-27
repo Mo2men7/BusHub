@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<!-- <ul style="list-style: none;">
+    @for(destination of destinations; track $index){
+        <li class="d-flex gap-2">
+            <p>{{destination.name}}</p>
+            <img style="width: 25px; height:fit-content; margin-top: 5px;" src="{{destination.flag}}" alt="{{destination.name}}">
+        </li>
+    }
+</ul> -->
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for(destination of destinations; track $index){
+            <div class="col">
+                <div class="card h-100">
+                  <img src="{{destination.flag}}" class="card-img-top" alt="{{destination.name}}">
+                  <div class="card-body">
+                    <h5 class="card-title">{{destination.name}}</h5>
+                    <p class="card-text">{{destination.info}}</p>
+                  </div>
+              </div>
+            </div>
+        }
+    </div>
+</div>
+<app-footer></app-footer>
