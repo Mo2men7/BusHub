@@ -20,8 +20,9 @@
         <div class="col-lg-4">
             <div class="fw-bolder"><i class="bi bi-calendar3"></i> Date</div>
             <!-- <div class="dark_blue fw-medium "> {{trips[0].date}}</div> -->
-            <div class=" fw-medium bg-dark mt-2 py-1 border_edit">{{ trips && trips.length > 0 && trips[0].date ?
-                trips[0].date : '' }}</div>
+          <!-- <div class=" fw-medium bg-dark mt-2 py-1 border_edit">{{ trips && trips.length > 0 && trips[0].date ?
+                trips[0].date : ''}}</div> -->
+                <div class="fw-medium bg-dark mt-2 py-1 border_edit">{{ (trips && trips.length > 0 && trips[0].date) ? (trips[0].date | customDate) : '' }}</div>
 
         </div>
 

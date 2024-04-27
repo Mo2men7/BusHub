@@ -4,12 +4,13 @@ import { CommonModule, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { CustomDatePipe } from '../../custom-date.pipe';
 
 
 @Component({
   selector: 'app-tripsshow',
   standalone: true,
-  imports: [CommonModule,NgClass,RouterLink,NavbarComponent,FooterComponent],
+  imports: [CommonModule,NgClass,RouterLink,NavbarComponent,FooterComponent,CustomDatePipe],
   templateUrl: './tripsshow.component.html',
   styleUrl: './tripsshow.component.css'
 })
