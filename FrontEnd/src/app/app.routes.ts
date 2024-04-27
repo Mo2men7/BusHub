@@ -62,4 +62,9 @@ export const routes: Routes = [
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
+  {
+    path: 'destinations',
+    component: DestinationsPageComponent,
+    title: 'Our Destinations',
+  },
 ];
