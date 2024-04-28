@@ -20,15 +20,15 @@ class BusAdminController extends Controller
         // dd($allBuses);
         foreach ($allBuses as $key => $value) {
             $types = DB::table('types')->select()->where('id', $value->type_id)->get();
-            
-            $options = [];
-            foreach ($types as  $type) {
-                // dd($type);
-                array_push($options, DB::table('options')->find($type->option_id, ['*']));
-            }
-            // dd($options);
+            // $options= DB::table('options')->find($types->option_id, ['*']);
+            // $options = [];
+            // foreach ($types as  $type) {
+            //     // dd($type);
+            // $allBuses[$key]->options= 
+            // }
+            // // dd($options);
             $allBuses[$key]->type = $types[0]->type;
-            $allBuses[$key]->options =$options;
+            $allBuses[$key]->options =$types[0]->options;
             
             
         }

@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class DestinationsComponent {
   destinations: any;
-  newDist:any;
+  newDist: any;
   constructor(private destinationService: DestinationService) {}
 
   ngOnInit() {
@@ -21,21 +21,43 @@ export class DestinationsComponent {
     );
   }
   sendDestination(form: any) {
-    this.newDist={
-      'name':form.form.value.name,
-      'info':form.form.value.info,
-      'flag':form.form.value.flag,
-      'pic':form.form.value.pic,
-      'map':form.form.value.map,
-    }
-    
-    
-    this.destinationService.addDestinations(this.newDist).subscribe((res)=>this.ngOnInit(),
+    this.newDist = {
+      name: form.form.value.name,
+      info: form.form.value.info,
+      flag: form.form.value.flag,
+      pic: form.form.value.pic,
+      map: form.form.value.map,
+    };
+
+    this.destinationService.addDestinations(this.newDist).subscribe(
+      (res) => this.ngOnInit(),
       (error) => console.log(error)
     );
     // console.log(form);
   }
-  // display() {
-  //   this.
-  //   );
+  showMap(id: any) {
+    const map = this.destinations[id].map;
+    const getFrame = document.getElementsByTagName('iframe')[0];
+    const getDivFrame = document.getElementById('iframeDiv');
+    getDivFrame?.classList.remove('active');
+    getDivFrame?.classList.remove('show');
+    getFrame.src=map;
+    setTimeout(function () {
+
+      getDivFrame?.classList.add('active');
+      getDivFrame?.classList.add('show');
+    }, 500);
+    
+    // getFrame.classList.add('fade-in');
+    console.log(id);
+    console.log(this.destinations);
+  }
+  //   var div = document.querySelector(".fade");
+
+  // btn.addEventListener("click", function(){
+  //   div.classList.add("elementToFadeInAndOut");
+  //   // Wait until the animation is over and then remove the class, so that
+  //   // the next click can re-add it.
+  //   setTimeout(function(){div.classList.remove("elementToFadeInAndOut");}, 4000);
+  // });
 }
