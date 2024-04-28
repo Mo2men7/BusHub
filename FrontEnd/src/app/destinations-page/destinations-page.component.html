@@ -9,17 +9,22 @@
 </ul> -->
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        @for(destination of destinations; track $index){
-            <div class="col">
-                <div class="card h-100">
-                  <img src="{{destination.flag}}" class="card-img-top" alt="{{destination.name}}">
-                  <div class="card-body">
-                    <h5 class="card-title">{{destination.name}}</h5>
-                    <p class="card-text">{{destination.info}}</p>
-                  </div>
-              </div>
-            </div>
+        @if(destinations){
+            @for(destination of destinations; track $index){
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{destination.flag}}" class="card-img-top" alt="{{destination.name}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{destination.name}}</h5>
+                            <p class="card-text">{{destination.info}}</p>
+                        </div>
+                    </div>
+                </div>
+            }
         }
-    </div>
+        @else{
+            <h2 class="text-black-50 mx-auto mt-5 pt-5 mb-5 pb-5">Loading...</h2>
+        }
+        </div>
 </div>
 <app-footer></app-footer>
