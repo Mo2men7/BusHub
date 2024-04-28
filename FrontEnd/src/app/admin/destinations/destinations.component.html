@@ -10,9 +10,9 @@
       Add New Destination
     </button>
   </div>
-  <div class="d-flex"style="height: 100%">
+  <div class="d-flex" style="height: 100%">
     <div
-      class="accordion accordion-flush col-5 overflow-y-auto"
+      class="accordion accordion-flush col-4 overflow-y-auto"
       id="accordionFlushExample"
       style="height: 100%"
     >
@@ -27,7 +27,7 @@
             [attr.data-bs-target]="'#acc' + $index + 1"
             aria-expanded="false"
             aria-controls="flush-collapseOne"
-            [attr.data-bs-target]
+
           >
             {{ item.name }}
           </button>
@@ -38,41 +38,9 @@
           data-bs-parent="#accordionFlushExample"
         >
           <div class="accordion-body">
-            <div class="card text-bg-dark">
+            <div class="card text-bg-dark border border-0">
               <img src="{{ item.pic }}" class="card-img" alt="..." />
-              <div class="card-img-overlay">
-                <!-- <h5 class="card-title">Card title</h5> -->
-                <p class="card-text text-start">{{ item.info }}</p>
-                <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      } @for (item of destinations; track $index) {
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#acc' + $index + 1"
-            aria-expanded="false"
-            aria-controls="flush-collapseOne"
-            [attr.data-bs-target]
-          >
-            {{ item.name }}
-          </button>
-        </h2>
-        <div
-          id="{{ 'acc' + $index + 1 }}"
-          class="accordion-collapse collapse"
-          data-bs-parent="#accordionFlushExample"
-        >
-          <div class="accordion-body">
-            <div class="card text-bg-dark">
-              <img src="{{ item.pic }}" class="card-img" alt="..." />
-              <div class="card-img-overlay">
+              <div class="card-img-overlay bg-black cardBackground">
                 <!-- <h5 class="card-title">Card title</h5> -->
                 <p class="card-text text-start">{{ item.info }}</p>
                 <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
@@ -83,12 +51,12 @@
       </div>
       }
     </div>
-    <div id="iframeDiv" class="ratio ratio-16x9 fadein" >
-      <iframe
-        src=""
-        title="YouTube video"
-        allowfullscreen
-      ></iframe>
+    <div id="iframeDiv" class="ratio ratio-16x9 fade active show">
+      <iframe src="" title="YouTube video" allowfullscreen></iframe>
+      <!-- <div class=" showOnLoading" > -->
+      <!-- <i class="fa-solid fa-globe fa-fade" style="font-size: 20vw;"></i> -->
+      <!-- <i class="fa-solid fa-location-dot" ></i> -->
+      <!-- </div> -->
     </div>
   </div>
 
