@@ -15,6 +15,7 @@ import { OrdersComponent } from './admin/orders/orders.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { BusesTypesComponent } from './Components1/buses-types/buses-types.component';
+import { NotFoundComponent } from './Components1/not-found/not-found.component';
 
 
 
@@ -101,5 +102,9 @@ export const routes: Routes = [
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
-
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: 'Not Found',
+  },
 ];

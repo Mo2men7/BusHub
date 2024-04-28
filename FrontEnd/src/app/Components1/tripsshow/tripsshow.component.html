@@ -74,10 +74,11 @@
         <div class="col-lg-2  fs-4 grid_price">
             {{trip.price}} LE/<i class="bi bi-person-fill"></i>
         </div>
-        <div [innerHTML]="trip.options" class="text-secondary fs-4 grid_options"></div>
+        <!-- option -->
+        <div [innerHTML]="trip.options" class="text-secondary fs-4 hide"></div>
     </div>
 
-    <!-- option -->
+
 
     <hr class="hredit">
     }

@@ -99,7 +99,7 @@ background-color:dimgrey
       padding: 10px;
       display: grid;
       grid-template-areas:
-        " type options options  time"
+        " type type type  time"
         "from from from ."
         "to to to ."
         "booknow booknow booknow price";
@@ -125,8 +125,8 @@ background-color:dimgrey
       grid-area: price;
       text-align: right;
     }
-    .grid_options {
+    /* .grid_options {
       grid-area: options;
-    }
+    } */
   }
   
