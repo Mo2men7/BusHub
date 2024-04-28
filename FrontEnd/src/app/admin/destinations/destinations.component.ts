@@ -46,7 +46,7 @@ export class DestinationsComponent {
 
       getDivFrame?.classList.add('active');
       getDivFrame?.classList.add('show');
-    }, 1000);
+    }, 500);
     
     // getFrame.classList.add('fade-in');
     console.log(id);

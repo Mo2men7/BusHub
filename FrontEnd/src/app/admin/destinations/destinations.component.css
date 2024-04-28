@@ -107,3 +107,19 @@
         opacity: 1;
     }
 }
+.cardBackground
+{
+    opacity:0.5;
+}
+
+.cardBackground:hover {
+    transition: 0.5s;
+    opacity: 0;
+    /* text-shadow: 0 0 5px var(--text); */
+    /* background-color: var(--primary); */
+}
+
+.showOnLoading
+{
+    font-size: 100%;
+}
