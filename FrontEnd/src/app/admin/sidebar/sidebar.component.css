@@ -1,11 +1,11 @@
-* {
+/* * {
     --text: #00070a;
     --background: #ebf8ff;
-    --primary: #1496fa;
+    --secondary: #1496fa;
     --secondary: #6e73fc;
     --accent: #6f4ffc;
     --base:white;
-}
+} */
 
 
 .sidebar {
@@ -15,10 +15,10 @@
     /* color: var(--text); */
     width: 20vw;
     justify-content: space-between;
-    background-color: var(--base);
+    background-color: var(--secondary);
     /* border-top-right-radius: 15px; */
     /* border-bottom-right-radius: 15px; */
-    /* background: linear-gradient(135deg, var(--background), var(--secondary), var(--primary)); */
+    /* background: linear-gradient(135deg, var(--background), var(--secondary), var(--secondary)); */
     /* background-size: 300% 300%; */
     /* animation: gradient 10s ease infinite; */
     height: 100vh;
@@ -159,7 +159,7 @@ a:hover {
 
 #separator {
     width: 2vw;
-    background-color: var(--base);
+    background-color: var(--secondary);
     height: 100vh;
     /* border-top-right-radius: 50px; */
 
@@ -167,7 +167,7 @@ a:hover {
 }
 
 #burg i {
-    background-color: var(--base);
+    background-color: var(--secondary);
     width: 35px;
     padding-top: 18px;
     border-radius: 5px;
