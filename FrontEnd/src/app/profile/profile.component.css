@@ -9,6 +9,7 @@ box-sizing: border-box;
   margin:50px auto;
 }
 
+
 .AccPage .account-container .AccSideBar {
   position: static;
   flex:.35;

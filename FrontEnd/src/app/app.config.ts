@@ -15,6 +15,7 @@ import {
 } from '@abacritt/angularx-social-login';
 
 export const appConfig: ApplicationConfig = {
+
   providers: [importProvidersFrom(HttpClientModule), provideAnimationsAsync(), provideRouter(routes, withComponentInputBinding(), withViewTransitions()), provideHttpClient(), CookieService,   {
     provide: 'SocialAuthServiceConfig',
     useValue: {
