@@ -1,5 +1,10 @@
-/* nav{
-    z-index: 999;
-    width: 95%;
-    height: 7%;
-} */
+.navbar {
+    background: var(--background);
+  }
+  .navbar-brand {
+    color: var(--text);
+  }
+  .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
