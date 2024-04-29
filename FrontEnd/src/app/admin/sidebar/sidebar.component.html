@@ -1,5 +1,5 @@
 <div id="allofit" class="d-flex" style="height: 100%; width: 100%">
-  <nav id="navbarToggleExternalContent" class="collapse-horizontal collapse ">
+  <nav id="navbarToggleExternalContent" class="collapse-horizontal collapse">
     <div class="sidebar">
       <div
         class="d-flex collapse collapse-horizontal flex-column justify-content-around"
@@ -7,19 +7,19 @@
       >
         <!-- <div class="d-flex justify-content-between"> -->
 
-        <a class="fs-3 " routerLink=""> BusHub </a>
+        <a class="fs-3" routerLink=""> BusHub </a>
 
         <!-- </div> -->
         <!-- <li class="sidebar-header">Pages</li> -->
 
         <a
-        data-bs-toggle="collapse"
+          data-bs-toggle="collapse"
           data-bs-target="#navbarToggleExternalContent"
           aria-controls="navbarToggleExternalContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        (click)="showIcons()"
-        class="linkInBigbar "
+          (click)="showIcons()"
+          class="linkInBigbar"
           [routerLink]="['/admin']"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -27,73 +27,92 @@
           <i class="fa-solid fa-sliders me-2"></i> Dashboard
         </a>
         <a
-        data-bs-toggle="collapse"
-          data-bs-target="#navbarToggleExternalContent"
-          aria-controls="navbarToggleExternalContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        (click)="showIcons()"
-        class="linkInBigbar " 
-        routerLink="admin-destinations" routerLinkActive="active">
-          <i class="fa-solid fa-location-dot me-2"></i> Destinations
-        </a>
-
-        <a
-        data-bs-toggle="collapse"
-          data-bs-target="#navbarToggleExternalContent"
-          aria-controls="navbarToggleExternalContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        (click)="showIcons()" 
-        class="linkInBigbar "
-        routerLink="admin-buses" routerLinkActive="active">
-          <i class="fa-solid fa-bus me-2"></i>Buses
-        </a>
-
-        <a data-bs-toggle="collapse"
-        data-bs-target="#navbarToggleExternalContent"
-        aria-controls="navbarToggleExternalContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      (click)="showIcons()"
-        class="linkInBigbar " 
-        routerLink="admin-trips" routerLinkActive="active"
-        href="#"> <i class="fa-solid fa-map-location-dot me-2"></i>Trips </a>
-
-        <a  data-bs-toggle="collapse"
-        data-bs-target="#navbarToggleExternalContent"
-        aria-controls="navbarToggleExternalContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      (click)="showIcons()"
-        class="linkInBigbar "
-        routerLink="admin-orders" routerLinkActive="active">
-          <i class="fa-solid fa-file-contract me-2"></i> PrivateBus
-        </a>
-
-        <a data-bs-toggle="collapse"
-        data-bs-target="#navbarToggleExternalContent"
-        aria-controls="navbarToggleExternalContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      (click)="showIcons()"
-        class="linkInBigbar " 
-        href="#"> <i class="fa-solid fa-headset me-2"></i>Contact Us </a>
-      </div>
-    </div>
-  </nav>
-  <div style="width: 70px; height: 100%">
-    <div  id="smallSide">
-      <div class="d-flex flex-column justify-content-around" style="height: 100%;">
-        <a
-        id="burger"
           data-bs-toggle="collapse"
           data-bs-target="#navbarToggleExternalContent"
           aria-controls="navbarToggleExternalContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        (click)="showIcons()"
-          >
+          (click)="showIcons()"
+          class="linkInBigbar"
+          routerLink="admin-destinations"
+          routerLinkActive="active"
+        >
+          <i class="fa-solid fa-location-dot me-2"></i> Destinations
+        </a>
+
+        <a
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="showIcons()"
+          class="linkInBigbar"
+          routerLink="admin-buses"
+          routerLinkActive="active"
+        >
+          <i class="fa-solid fa-bus me-2"></i>Buses
+        </a>
+
+        <a
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="showIcons()"
+          class="linkInBigbar"
+          routerLink="admin-trips"
+          routerLinkActive="active"
+          href="#"
+        >
+          <i class="fa-solid fa-map-location-dot me-2"></i>Trips
+        </a>
+
+        <a
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="showIcons()"
+          class="linkInBigbar"
+          routerLink="admin-orders"
+          routerLinkActive="active"
+        >
+          <i class="fa-solid fa-file-contract me-2"></i> PrivateBus
+        </a>
+
+        <a
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="showIcons()"
+          class="linkInBigbar"
+          href="#"
+        >
+          <i class="fa-solid fa-headset me-2"></i>Contact Us
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div style="width: 70px; height: 100%">
+    <div id="smallSide">
+      <div
+        class="d-flex flex-column justify-content-around"
+        style="height: 100%"
+      >
+        <a
+          id="burger"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="showIcons()"
+        >
           <!-- <i class=""></i> -->
           <i class="fa-solid fa-bars"></i>
         </a>
@@ -105,21 +124,41 @@
         >
           <i class="fa-solid fa-sliders"></i>
         </a>
-        <a  class="linkInSmallbar" routerLink="admin-destinations" routerLinkActive="activeI">
+        <a
+          class="linkInSmallbar"
+          routerLink="admin-destinations"
+          routerLinkActive="activeI"
+        >
           <i class="fa-solid fa-location-dot"></i>
         </a>
 
-        <a  class="linkInSmallbar"routerLink="admin-buses" routerLinkActive="activeI">
+        <a
+          class="linkInSmallbar"
+          routerLink="admin-buses"
+          routerLinkActive="activeI"
+        >
           <i class="fa-solid fa-bus"></i>
         </a>
 
-        <a routerLink="admin-trips" routerLinkActive="activeI" class="linkInSmallbar"> <i class="fa-solid fa-map-location-dot"></i></a>
+        <a
+          routerLink="admin-trips"
+          routerLinkActive="activeI"
+          class="linkInSmallbar"
+        >
+          <i class="fa-solid fa-map-location-dot"></i
+        ></a>
 
-        <a class="linkInSmallbar" routerLink="admin-orders" routerLinkActive="activeI">
+        <a
+          class="linkInSmallbar"
+          routerLink="admin-orders"
+          routerLinkActive="activeI"
+        >
           <i class="fa-solid fa-file-contract"></i>
         </a>
 
-        <a  class="linkInSmallbar" href="#"> <i class="fa-solid fa-headset"></i></a>
+        <a class="linkInSmallbar" href="#">
+          <i class="fa-solid fa-headset"></i
+        ></a>
       </div>
     </div>
   </div>
