@@ -6,7 +6,7 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { CustomDatePipe } from '../../custom-date.pipe';
 import { TimeFormatPipe } from '../../time-format.pipe';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tripsshow',
@@ -16,10 +16,17 @@ import { TimeFormatPipe } from '../../time-format.pipe';
   styleUrl: './tripsshow.component.css'
 })
 export class TripsshowComponent {
-  constructor(private TripsshowService: TripsshowService) {}
+  constructor(private TripsshowService: TripsshowService, private activatedRoute:ActivatedRoute) {}
   trips:any;
+  formData:any={};
   ngOnInit(): void {
     this.showtrips()
+    const {from, to, travelDate, passengers} = this.formData;
+    this.formData.from = this.activatedRoute.snapshot.params['from'];
+    this.formData.to = this.activatedRoute.snapshot.params['to'];
+    this.formData.travelDate = this.activatedRoute.snapshot.params['travelDate'];
+    this.formData.passengers = this.activatedRoute.snapshot.params['passengers'];
+    console.log(this.formData.from, this.formData.to, this.formData.travelDate, this.formData.passengers)
   }
     showtrips() {
       this.TripsshowService.listtrips().subscribe({

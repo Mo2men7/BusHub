@@ -1,10 +1,10 @@
 <div class="search">
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col field">
         <div class="form-floating">
-          <select class="form-select" id="floatingSelectGrid">
-            <option selected>Select your origin</option>
+          <select class="form-select" id="floatingSelectGrid" name="origin" [(ngModel)]="formData.origin" required>
+            <!-- <option selected disabled>Select your origin</option> -->
             @for(destination of destinations; track $index){
             <option value="{{ destination.id }}">
               {{ destination.name }}
@@ -16,8 +16,8 @@
       </div>
       <div class="col field">
         <div class="form-floating">
-          <select class="form-select" id="floatingSelectGrid">
-            <option selected>Select your destination</option>
+          <select class="form-select" id="floatingSelectGrid" name="destination" [(ngModel)]="formData.destination" required>
+            <option selected disabled>Select your destination</option>
             @for(destination of destinations; track $index){
             <option value="{{ destination.id }}">
               {{ destination.name }}
@@ -29,20 +29,20 @@
       </div>
       <div class="col field">
         <div class="form-floating">
-          <input class="form-control" type="date" />
+          <input class="form-control" type="date" name="travelDate" [(ngModel)]="formData.travelDate" required/>
           <label for="floatingSelectGrid">Trip Date</label>
         </div>
       </div>
       <div class="col field">
         <div class="form-floating">
-          <input class="form-control" type="number" max="50" />
+          <input class="form-control" type="number" max="50" min="1" name="passengers" [(ngModel)]="formData.passengers" required/>
           <label for="floatingSelectGrid">Passengers</label>
         </div>
       </div>
     </div>
     <div class="search-btn-div">
       <button
-        routerLink="#"
+        type="submit"
         class="py-1 bh-btn-primary rounded-pill px-4 mt-2 w-50"
       >
         Search
