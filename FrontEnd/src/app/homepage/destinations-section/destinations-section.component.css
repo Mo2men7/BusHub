@@ -1,0 +1,23 @@
+.destinations-section{
+    position: relative;
+    background-color: var(--background);
+    color: var(--text);
+    z-index: 1;
+}
+.bh-btn{
+    background-color: aliceblue;
+    border: none;
+}
+.firstblur {
+    position: absolute;
+    width: 20vw;
+    height: 20vw;
+    min-width: 250px;
+    top: 60px;
+    left: 30vw;
+    border: 764px;
+    background: rgb(25, 55, 100, 0.7);
+    opacity: .5;
+    filter: blur(75px);
+    z-index: -2;
+  }

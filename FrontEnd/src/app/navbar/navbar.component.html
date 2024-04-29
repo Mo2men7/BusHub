@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg p-1 mb-4">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid py-auto">
     <a class="navbar-brand fw-bold fs-3" href="#">BusHub.</a>
     <button
@@ -18,7 +18,7 @@
           <a
             class="nav-link"
             routerLink="/"
-            routerLinkActive="text-black"
+            routerLinkActive="text-white"
             [routerLinkActiveOptions]="{ exact: true }"
             >Home</a
           >
@@ -27,7 +27,7 @@
           <a
             class="nav-link"
             routerLink="/buses-types"
-            routerLinkActive="text-black"
+            routerLinkActive="text-white"
             [routerLinkActiveOptions]="{ exact: true }"
             >Buses</a
           >
@@ -36,7 +36,7 @@
           <a
             class="nav-link"
             routerLink="/destinations"
-            routerLinkActive="text-black"
+            routerLinkActive="text-white"
             [routerLinkActiveOptions]="{ exact: true }"
             >Destinations</a
           >
@@ -45,7 +45,7 @@
           <a
             class="nav-link"
             routerLink="/privatebus"
-            routerLinkActive="text-black"
+            routerLinkActive="text-white"
             [routerLinkActiveOptions]="{ exact: true }"
             >PrivateBus</a
           >
@@ -54,29 +54,16 @@
           <a
             class="nav-link"
             routerLink="/about"
-            routerLinkActive="text-black"
+            routerLinkActive="text-white"
             [routerLinkActiveOptions]="{ exact: true }"
             >About</a
           >
         </li>
       </ul>
 
-      <button routerLink="/signin" class="btn btn-dark rounded-pill px-4">
+      <button routerLink="/signin" class="py-1 bh-btn rounded-pill px-4">
         Join
       </button>
     </div>
   </div>
 </nav>
-
-<!-- <nav>
-    <h4 class="m-0 fw-bold">BusHub.</h4>
-    <ul class="d-flex align-items-center m-0" style="list-style: none;">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Buses</a></li>
-      <li><a href="#">Destinations</a></li>
-      <li><a href="#">PrivateBus</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-    <a href="#" class="join m-0">Join</a>
-    <i class="fa-solid fa-ellipsis fs-3"></i>
-  </nav> -->

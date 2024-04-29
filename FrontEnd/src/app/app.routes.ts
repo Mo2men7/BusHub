@@ -90,6 +90,11 @@ export const routes: Routes = [
     component: TripsshowComponent,
     title: 'trips',
   },
+  {
+    path: 'trips/:from/:to/:travelDate/:passengers',
+    component: TripsshowComponent,
+    title: 'trips',
+  },
 
 
   {

@@ -1,22 +1,27 @@
-<div class="container mt-5 pt-5">
-    <section class="mt-5">
-        <h1 class="text-center">Destinations</h1>
-        <p class="text-black-50 text-center">BusHub has many destinations that you can browse in destination page and here are some of them</p>
-        <div class="row mt-5 pt-5 d-flex">
-            <div class="col-md-6">
-                <ul style="list-style: none;">
-                    @for (destination of destinations; track $index){
-                        @if($index < 8){
-                            <li class="fs-5 my-2">{{destination.name}}</li>
+<div class="destinations-section">
+    <div class="container pt-5 pb-5">
+        <section class="mt-5">
+            <h1 class="text-center">Destinations</h1>
+            <p class="text-white-50 text-center">BusHub has many destinations that you can browse in destination page and here are some of them</p>
+            <div class="row mt-5 pt-5 d-flex">
+                <div class="col-md-6">
+                    <ul style="list-style: none;">
+                        @for (destination of destinations; track $index){
+                            @if($index < 8){
+                                <li class="fs-5 my-2">{{destination.name}} <img src="{{destination.flag}}" style="width: 25px;"></li>
+                            }
                         }
-                    }
-                </ul>
+                    </ul>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <!-- <img src="../../assets/undraw_destination_re_sr74.svg" class="w-75 m-auto"> -->
+                    <img src="../../../assets/GPS navigator-amico.svg" class="w-50">
+                </div>
+                <p class="text-center mt-5">
+                    <a routerLink="/destinations" class="py-1 bh-btn rounded-0 btn px-4 w-50">All Destinations</a>
+                </p>
             </div>
-            <div class="col-md-6 d-flex justify-content-center align-items-center">
-                <!-- <img src="../../assets/undraw_destination_re_sr74.svg" class="w-75 m-auto"> -->
-                <img src="../../assets/egypt.svg" class="w-50">
-            </div>
-            <p class="text-center mt-5"><a href="#" class="btn btn-dark rounded-0 w-50">All Destinations</a></p>
-        </div>
-    </section>
+        </section>
+    </div>
+    <div class="firstblur"></div>
 </div>
