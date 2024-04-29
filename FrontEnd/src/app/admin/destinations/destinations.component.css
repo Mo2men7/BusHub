@@ -1,12 +1,14 @@
-* {
+/* * {
     --text: #00070a;
     --background: #ebf8ff;
     --primary: #1496fa;
     --secondary: #6e73fc;
     --accent: #6f4ffc;
     --base: white;
+} */
+body{
+    background:var(--ba);
 }
-
 .add-button {
     color: var(--base);
     opacity: 0.8;
