@@ -16,47 +16,41 @@ import { OrdersComponent } from './admin/orders/orders.component';
 import { AdminComponent } from './admin/admin.component';
 import { BusesTypesComponent } from './Components1/buses-types/buses-types.component';
 import { NotFoundComponent } from './Components1/not-found/not-found.component';
-
-
-
-
-
+import { SingleTripComponent } from './Components1/single-trip/single-trip.component';
 
 export const routes: Routes = [
-
   {
-    path: "signin",
+    path: 'signin',
     component: SignComponent,
-    title:"signin"
-  }
-,{
-  path: "profile",
-  component: ProfileComponent,
-  // title: "Profile"
-   children: [
-    {
-      path: "previoustrips",
-      component: PrevioustripsComponent,
-      // title:"Previous Trips"
-    },
-    {
-      path: "edituserdetails",
-      component: EdituserdetailsComponent
-      // ,title:"Edit User Details"
-     },
-     {
-      path: "nexttrips",
-      component: NexttripsComponent
-      // ,title:"Edit User Details"
-    }
-  ]
-},
+    title: 'signin',
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    // title: "Profile"
+    children: [
+      {
+        path: 'previoustrips',
+        component: PrevioustripsComponent,
+        // title:"Previous Trips"
+      },
+      {
+        path: 'edituserdetails',
+        component: EdituserdetailsComponent,
+        // ,title:"Edit User Details"
+      },
+      {
+        path: 'nexttrips',
+        component: NexttripsComponent,
+        // ,title:"Edit User Details"
+      },
+    ],
+  },
 
   {
     path: 'admin',
     component: AdminComponent,
     children: [
-
       {
         path: '',
         component: DashboardComponent,
@@ -91,19 +85,22 @@ export const routes: Routes = [
     title: 'trips',
   },
   {
-    // path: 'trips/:from/:to/:travelDate/:passengers',
     path: 'trips/:from/:to/:travelDate',
     component: TripsshowComponent,
     title: 'trips',
   },
-
+  {
+    path: 'book-trip/:id',
+    component: SingleTripComponent,
+    title: 'book trip',
+  },
 
   {
     path: 'buses-types',
     component: BusesTypesComponent,
     title: 'buses',
-
-  },{
+  },
+  {
     path: 'destinations',
     component: DestinationsPageComponent,
     title: 'Our Destinations',
@@ -114,3 +111,4 @@ export const routes: Routes = [
     title: 'Not Found',
   },
 ];
+
