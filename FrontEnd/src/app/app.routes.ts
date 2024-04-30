@@ -91,7 +91,8 @@ export const routes: Routes = [
     title: 'trips',
   },
   {
-    path: 'trips/:from/:to/:travelDate/:passengers',
+    // path: 'trips/:from/:to/:travelDate/:passengers',
+    path: 'trips/:from/:to/:travelDate',
     component: TripsshowComponent,
     title: 'trips',
   },
