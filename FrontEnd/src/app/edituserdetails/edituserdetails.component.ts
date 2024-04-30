@@ -64,8 +64,9 @@ export class EdituserdetailsComponent {
       this.incomeData = res;
     // const userid = this.incomeData["user"].id;
 
+    window.location.reload();
 
-     this.router.navigate(['/profile','edituserdetails']);
+    //  this.router.navigate(['/profile']);
     //  this.userDetails = {
     //   phone: "",
     //   email: "",

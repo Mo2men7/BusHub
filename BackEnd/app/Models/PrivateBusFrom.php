@@ -18,11 +18,10 @@ class PrivateBusFrom extends Model
         "to",
         "departure_date",
         "return",
-        // "date_of_request",
-        // "date_of_response",
-        // "status",
-        // "created_at",
-        // "updated_at",
+        "status"
     ];
     public $table = "private_bus_froms";
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

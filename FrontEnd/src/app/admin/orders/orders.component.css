@@ -1,0 +1,24 @@
+.opt-field{
+    /* background-color: black; */
+}
+.opt-btn{
+    border: none;
+    outline: none;
+    transition: .3s;
+    border-radius: 5px;
+    background: transparent;
+}
+.check{
+    color: lightgreen;
+}
+.check:hover{
+    background-color: lightgreen;
+    color: black;
+}
+.cancel{
+    color: lightcoral;
+}
+.cancel:hover{
+    background-color: lightcoral;
+    color: white;
+}

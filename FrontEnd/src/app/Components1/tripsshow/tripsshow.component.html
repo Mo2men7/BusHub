@@ -1,7 +1,11 @@
 <!-- navbar -->
 <app-navbar></app-navbar>
+<!-- container -->
+<div class="bg-1">
+
+
 <!-- trips header -->
-<div class="search-component container mt-3">
+<div class="search-component container ">
     <div class="row text-center py-2">
         <!-- Departure From -->
         <div class="col-lg-4">
@@ -27,7 +31,7 @@
     </div>
 </div>
 <!-- trips list -->
-<div class="search-component container my-4  ">
+<div class="search-component container mt-4  ">
     @for (trip of trips; track $index) {
     <!-- from and to container-->
     <div class="row tripsContainer ">
@@ -65,7 +69,10 @@
         </div>
         <!-- book now -->
         <div class="col-lg-2 grid_booknow">
-            <a href="#" class="col-lg-2">
+            <!-- <a  class="col-lg-2" (click)="redirectToTrips(trip.id)">
+                <div class="btn  fw-bolder width_booknow btnhover">Book Now</div>
+            </a> -->
+            <a  class="col-lg-2" [routerLink]="['/book-trip',trip.id]">
                 <div class="btn  fw-bolder width_booknow btnhover">Book Now</div>
             </a>
         </div>
@@ -73,15 +80,17 @@
         <div class="col-lg-2  fs-4 grid_price">
             {{trip.price}} LE/<i class="bi bi-person-fill"></i>
         </div>
-        <div [innerHTML]="trip.options" class="text-secondary fs-4 grid_options"></div>
+        <!-- option -->
+        <div [innerHTML]="trip.options" class="text-secondary fs-4 hide"></div>
     </div>
 
-    <!-- option -->
+
 
     <hr class="hredit">
     }
 </div>
 <!-- end of trips -->
-
+</div>
+<!-- end of container -->
 <!-- footer -->
 <app-footer></app-footer>

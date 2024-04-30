@@ -127,6 +127,14 @@
             <!-- Sign In Button -->
             <button type="submit">Sign In</button>
           </div>
+          <a class="nav-link" routerLink="/forgetpass">Forget Password</a>
+          <!-- <button (click)="onGoogleregister()">sign in with google</button> -->
+
+          <asl-google-signin-button
+            type="icon"
+            size="medium"
+            *ngIf="!user"
+          ></asl-google-signin-button>
         </form>
       </div>
 
@@ -155,13 +163,6 @@
         </div>
       </div>
     </div>
-    <a
-      class="nav-link"
-      routerLink="profile"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >profile</a
-    >
 
     <!-- <script>
       const signUpButton = document.getElementById("signUp");
