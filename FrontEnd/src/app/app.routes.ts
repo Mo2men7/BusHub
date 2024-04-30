@@ -149,18 +149,6 @@ export const routes: Routes = [
     component: TicketComponent
 
   },
-
-  {
-    path:"payment",
-    component: PaymentComponent,
-
-  }
-  ,
-  {
-    path:"ticket",
-    component: TicketComponent
-
-  },
   {
     path: '**',
     component: NotFoundComponent,
