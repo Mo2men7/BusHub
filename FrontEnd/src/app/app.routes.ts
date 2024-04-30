@@ -16,8 +16,8 @@ import { OrdersComponent } from './admin/orders/orders.component';
 import { AdminComponent } from './admin/admin.component';
 import { BusesTypesComponent } from './Components1/buses-types/buses-types.component';
 
-
-
+import { PaymentComponent } from './payment/payment.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 
 
@@ -106,5 +106,16 @@ export const routes: Routes = [
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
+  {
+    path:"payment",
+    component: PaymentComponent,
+
+  }
+  ,
+  {
+    path:"ticket",
+    component: TicketComponent
+
+  }
 
 ];
