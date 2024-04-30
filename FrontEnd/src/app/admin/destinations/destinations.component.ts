@@ -37,7 +37,10 @@ export class DestinationsComponent {
   }
   showMap(id: any) {
     const map = this.destinations[id].map;
-    const getFrame = document.getElementsByTagName('iframe')[0];
+    const img = document.getElementsByTagName('img')[document.getElementsByTagName('img').length-1];
+    img.style.display="none"
+    const getFrame = document.getElementsByTagName('iframe')[document.getElementsByTagName('iframe').length-1];
+    // console.log(getFrame)
     const getDivFrame = document.getElementById('iframeDiv');
     getDivFrame?.classList.remove('active');
     getDivFrame?.classList.remove('show');
