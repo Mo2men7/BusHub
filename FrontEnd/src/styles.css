@@ -16,20 +16,19 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    /* box-shadow: inset 0 0 5px grey;  */
-    background-color: beige;
-    border-radius: 10px;
+    background-color: var(--background);
+    border-radius: 0px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #424649; 
+    background: var(--primary); 
     border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #212529; 
+    background: var(--accent); 
 }
 /* ScrollBar */
 

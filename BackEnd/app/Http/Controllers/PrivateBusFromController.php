@@ -1,16 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\PrivateBusFrom;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PrivateBusFromController extends Controller
 {
-    public function index(){
-        return PrivateBusFrom::all();
+    public function index()
+    {
+        // return PrivateBusFrom::all();
+        return DB::table('private_bus_froms')
+            ->join('users', 'private_bus_froms.user_id', '=', 'users.id')
+            ->join('destinations as fromDestinations', 'private_bus_froms.from', '=', 'fromDestinations.id')
+            ->join('destinations as toDestinations', 'private_bus_froms.to', '=', 'toDestinations.id')
+            ->join('types', 'private_bus_froms.bus_type_id', '=', 'types.id')
+            ->select('private_bus_froms.*', 'users.username','fromDestinations.name as originName', 'toDestinations.name as destinationName', 'types.type as typeName')
+            ->get();
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $privateBus = new PrivateBusFrom();
         $privateBus->user_id = "1"; //virtual
         $privateBus->date_of_request = "2024-1-2"; //virtual
@@ -28,37 +39,39 @@ class PrivateBusFromController extends Controller
             "message" => "Form Data Saved Successfully",
         ], 201);
     }
-    
-    public function show($id){
+
+    public function show($id)
+    {
         return PrivateBusFrom::find($id);
     }
 
-    public function update(Request $request, $id){
-        if(PrivateBusFrom::find($id)->exists()){
+    public function update(Request $request, $id)
+    {
+        if (PrivateBusFrom::find($id)->exists()) {
             $req = PrivateBusFrom::find($id);
             $req->update($request->all());
             return response()->json([
-                'message'=>'Request updates successfully',
+                'message' => 'Request updates successfully',
             ], 202);
-        }
-        else{
+        } else {
             return response()->json([
-                'message'=>'Request not found',
+                'message' => 'Request not found',
             ], 404);
         }
     }
 
-    
-    public function destroy($id){
-        if(PrivateBusFrom::find($id)->exists()){
+
+    public function destroy($id)
+    {
+        if (PrivateBusFrom::find($id)->exists()) {
             $req = PrivateBusFrom::find($id);
             $req->delete();
             return response()->json([
-                'message'=>'Request has been deleted',
+                'message' => 'Request has been deleted',
             ], 202);
-        }else{
+        } else {
             return response()->json([
-                'message'=>'Request not found',
+                'message' => 'Request not found',
             ], 404);
         }
     }
