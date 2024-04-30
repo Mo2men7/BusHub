@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <link
@@ -12,86 +12,88 @@
     <title>Document</title>
   </head>
 
-  <body>
-    <div id="root">
-      <div>
-        <div>
-          <div class="page-content">
-            <div class="AccPage">
-              <div class="container">
-                <div class="page-title">
-                  <h5>My Account</h5>
-                  <h3>My Account Details</h3>
-                </div>
-                <div class="account-container">
-                  <div class="AccSideBar">
-                    <div class="user-data">
-                      <img
-                        src="../../assets/images/person.png"
-                        alt="user avatar"
-                        class="avatar"
-                        height="100"
-                        width="100"
-                      />
+  <body> -->
+<app-navbar></app-navbar>
 
-                      <p class="label">Full Name:</p>
-                      <p>{{ userData?.username }}</p>
-                      <p class="label">Email:</p>
-                      <p>{{ userData?.email }}</p>
-                      <p class="label">Phone Number:</p>
-                      <p>{{ userData?.phone }}</p>
-                    </div>
-                    <div class="profile-navigation-component">
-                      <ul>
-                        <li class="">
-                          <a
-                            class="active"
-                            aria-current="page"
-                            [routerLink]="['/profile']"
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                            >My Account Information</a
-                          >
-                        </li>
-                        <li class="">
-                          <a
-                            [routerLink]="['previoustrips']"
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                            >Old Trips</a
-                          >
-                        </li>
-                        <li class="">
-                          <a
-                            [routerLink]="['nexttrips']"
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                            >Next Trips</a
-                          >
-                        </li>
-                        <!-- <li class="">
+<div id="root">
+  <div>
+    <div>
+      <div class="page-content">
+        <div class="AccPage">
+          <div class="container">
+            <div class="page-title">
+              <h5>My Account</h5>
+              <h3>My Account Details</h3>
+            </div>
+            <div class="account-container">
+              <div class="AccSideBar">
+                <div class="user-data">
+                  <img
+                    src="../../assets/images/person.png"
+                    alt="user avatar"
+                    class="avatar"
+                    height="100"
+                    width="100"
+                  />
+
+                  <p class="label">Full Name:</p>
+                  <p>{{ userData?.username }}</p>
+                  <p class="label">Email:</p>
+                  <p>{{ userData?.email }}</p>
+                  <p class="label">Phone Number:</p>
+                  <p>{{ userData?.phone }}</p>
+                </div>
+                <div class="profile-navigation-component">
+                  <ul>
+                    <li class="">
+                      <a
+                        class="active"
+                        aria-current="page"
+                        [routerLink]="['/profile']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        >My Account Information</a
+                      >
+                    </li>
+                    <li class="">
+                      <a
+                        [routerLink]="['previoustrips']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        >Old Trips</a
+                      >
+                    </li>
+                    <li class="">
+                      <a
+                        [routerLink]="['nexttrips']"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        >Next Trips</a
+                      >
+                    </li>
+                    <!-- <li class="">
                       <a href="/profile/change-password">  </a>
                     </li> -->
-                        <li class="">
-                          <a
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                            >Log Out</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!-- ......................................................................... -->
-                  <div class="account-content active">
-                    <router-outlet></router-outlet>
-                  </div>
+                    <li class="">
+                      <a
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        >Log Out</a
+                      >
+                    </li>
+                  </ul>
                 </div>
+              </div>
+              <!-- ......................................................................... -->
+              <div class="account-content active">
+                <router-outlet></router-outlet>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+<!-- </body>
+</html> -->

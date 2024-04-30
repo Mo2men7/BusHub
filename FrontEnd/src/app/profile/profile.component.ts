@@ -9,11 +9,12 @@ import { EdituserdetailsComponent } from '../edituserdetails/edituserdetails.com
 import { PrevioustripsComponent } from '../previoustrips/previoustrips.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NexttripsComponent } from '../nexttrips/nexttrips.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent],
+  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
