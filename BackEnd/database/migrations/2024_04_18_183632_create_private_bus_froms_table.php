@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean("return");
             $table->dateTime("date_of_request");
             $table->date("date_of_response");
-            $table->boolean("status")->default(0);
+            $table->enum('status', ['Accepted', "Rejected", "Pending"])->default('Pending');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('bus_type_id')->references('id')->on('types');
             $table->foreign('from')->references('id')->on('destinations');
