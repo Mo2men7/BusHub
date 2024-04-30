@@ -92,6 +92,10 @@ export const routes: Routes = [
         component: TripsComponent,
       },
       {
+        path: 'admin-trips',
+        component: TripsComponent,
+      },
+      {
         path: 'admin-orders',
         component: OrdersComponent,
       },
@@ -145,11 +149,7 @@ export const routes: Routes = [
     component: TicketComponent
 
   },
-  {
-    path: '**',
-    component: NotFoundComponent,
-    title: 'Not Found',
-  },
+
   {
     path:"payment",
     component: PaymentComponent,
@@ -160,7 +160,11 @@ export const routes: Routes = [
     path:"ticket",
     component: TicketComponent
 
-  }
-
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: 'Not Found',
+  },
 ];
 
