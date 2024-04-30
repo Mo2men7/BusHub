@@ -3,7 +3,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">User</th>
+            <th scope="col">User Id</th>
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
             <th scope="col">Origin</th>
@@ -21,9 +21,9 @@
                     <td>{{PBR.user_id}}</td>
                     <td>{{PBR.name}}</td>
                     <td>{{PBR.phone}}</td>
-                    <td>{{PBR.from}}</td>
-                    <td>{{PBR.to}}</td>
-                    <td>{{PBR.bus_type_id}}</td>
+                    <td>{{PBR.originName}}</td>
+                    <td>{{PBR.destinationName}}</td>
+                    <td>{{PBR.typeName}}</td>
                     <td>{{PBR.passenger_number}}</td>
                     <td>{{PBR.departure_date}}</td>
                     <td>@if(PBR.return==1){Yes}@else {No}</td>

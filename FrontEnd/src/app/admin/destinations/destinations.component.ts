@@ -36,32 +36,28 @@ export class DestinationsComponent {
     // console.log(form);
   }
   showMap(id: any) {
+    const map = this.destinations[id].map;
     const getFrame = document.getElementsByTagName('iframe')[0];
     const getDivFrame = document.getElementById('iframeDiv');
-    getDivFrame?.classList.remove('fadein');
-    getDivFrame?.classList.add('elementToFadeout');
-    setTimeout(function(){getDivFrame?.classList.remove("elementToFadeout");}, 5000);
-    getDivFrame?.classList.add('fadeout');
-    const map = this.destinations[id].map;
-    getFrame.src = map;
-    getDivFrame?.classList.add('elementToFadeIn');
+    getDivFrame?.classList.remove('active');
+    getDivFrame?.classList.remove('show');
+    getFrame.src=map;
+    setTimeout(function () {
 
-    setTimeout(function(){getDivFrame?.classList.remove("elementToFadeIn");}, 5000);
-    getDivFrame?.classList.remove('fadeout');
-    getDivFrame?.classList.add('fadein');
+      getDivFrame?.classList.add('active');
+      getDivFrame?.classList.add('show');
+    }, 500);
     
-    
-
     // getFrame.classList.add('fade-in');
     console.log(id);
     console.log(this.destinations);
   }
-//   var div = document.querySelector(".fade");
+  //   var div = document.querySelector(".fade");
 
-// btn.addEventListener("click", function(){
-//   div.classList.add("elementToFadeInAndOut");
-//   // Wait until the animation is over and then remove the class, so that
-//   // the next click can re-add it.
-//   setTimeout(function(){div.classList.remove("elementToFadeInAndOut");}, 4000);
-// });
+  // btn.addEventListener("click", function(){
+  //   div.classList.add("elementToFadeInAndOut");
+  //   // Wait until the animation is over and then remove the class, so that
+  //   // the next click can re-add it.
+  //   setTimeout(function(){div.classList.remove("elementToFadeInAndOut");}, 4000);
+  // });
 }

@@ -1,21 +1,19 @@
-/* li{
-    background: #eee;
-    width: 40%;
-    padding-top: 5px;
-    margin: 15px 0;
+.destinations{
+    background-color: var(--background);
 }
-li:nth-of-type(even) {
-    justify-content: flex-start;
-    flex-direction: row-reverse;
-    margin-left: auto;
-    border-right: 5px solid blueviolet;
-    padding-right: 10px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+.destinations h1{
+    color: var(--text);
 }
-li:nth-of-type(odd){
-    border-left: 5px solid blueviolet;
-    padding-left: 10px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-} */
+.card-body{
+    background-color: var(--background);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+h5{
+    color: var(--text);
+}
+.card{
+    box-shadow: 3px 7px 10px rgba(131, 131, 131, 0.2);
+    border: none;
+    border-radius: 10px;
+}

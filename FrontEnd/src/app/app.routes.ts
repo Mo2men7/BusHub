@@ -18,6 +18,8 @@ import { BusesTypesComponent } from './Components1/buses-types/buses-types.compo
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { CodetoresetpassComponent } from './codetoresetpass/codetoresetpass.component';
 import { ResetnewpasswordComponent } from './resetnewpassword/resetnewpassword.component';
+import { NotFoundComponent } from './Components1/not-found/not-found.component';
+import { SingleTripComponent } from './Components1/single-trip/single-trip.component';
 
 
 
@@ -25,9 +27,8 @@ import { ResetnewpasswordComponent } from './resetnewpassword/resetnewpassword.c
 
 
 export const routes: Routes = [
-
   {
-    path: "signin",
+    path: 'signin',
     component: SignComponent,
     title:"signin"
   },
@@ -74,7 +75,6 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-
       {
         path: '',
         component: DashboardComponent,
@@ -108,17 +108,31 @@ export const routes: Routes = [
     component: TripsshowComponent,
     title: 'trips',
   },
-
+  {
+    path: 'trips/:from/:to/:travelDate',
+    component: TripsshowComponent,
+    title: 'trips',
+  },
+  {
+    path: 'book-trip/:id',
+    component: SingleTripComponent,
+    title: 'book trip',
+  },
 
   {
     path: 'buses-types',
     component: BusesTypesComponent,
     title: 'buses',
-
-  },{
+  },
+  {
     path: 'destinations',
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
-
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: 'Not Found',
+  },
 ];
+
