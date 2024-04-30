@@ -150,5 +150,17 @@ export const routes: Routes = [
     component: NotFoundComponent,
     title: 'Not Found',
   },
+  {
+    path:"payment",
+    component: PaymentComponent,
+
+  }
+  ,
+  {
+    path:"ticket",
+    component: TicketComponent
+
+  }
+
 ];
 
