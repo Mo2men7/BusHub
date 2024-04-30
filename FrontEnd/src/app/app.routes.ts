@@ -24,7 +24,7 @@ import { SingleTripComponent } from './Components1/single-trip/single-trip.compo
 import { PaymentComponent } from './payment/payment.component';
 import { TicketComponent } from './ticket/ticket.component';
 
-
+import { TripsComponent } from './admin/trips/trips.component';
 
 export const routes: Routes = [
   {
@@ -88,6 +88,10 @@ export const routes: Routes = [
         component: BusesComponent,
       },
       {
+        path: 'admin-trips',
+        component: TripsComponent,
+      },
+      {
         path: 'admin-orders',
         component: OrdersComponent,
       },
@@ -129,11 +133,7 @@ export const routes: Routes = [
     component: DestinationsPageComponent,
     title: 'Our Destinations',
   },
-  {
-    path: '**',
-    component: NotFoundComponent,
-    title: 'Not Found',
-  },
+
   {
     path:"payment",
     component: PaymentComponent,
@@ -144,7 +144,11 @@ export const routes: Routes = [
     path:"ticket",
     component: TicketComponent
 
-  }
-
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: 'Not Found',
+  },
 ];
 

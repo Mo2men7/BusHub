@@ -86,9 +86,7 @@ Route::delete('/admin/destination/{id}', [DestinationAdminController::class, 'de
 
 // !Trip
 
-Route::get('/admin/trips', function () {
-    return  TripAdminResource::collection(Trip::all());
-});
+Route::get('/admin/trips', [TripAdminController::class, 'index']);
 Route::get('/admin/trip/{id}', function ($id) {
     return new TripAdminResource(Trip::findOrFail($id));
 });

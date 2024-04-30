@@ -57,6 +57,7 @@
         aria-label="Toggle navigation"
       (click)="showIcons()"
         class="linkInBigbar " 
+        routerLink="admin-trips" routerLinkActive="active"
         href="#"> <i class="fa-solid fa-map-location-dot me-2"></i>Trips </a>
 
         <a  data-bs-toggle="collapse"
@@ -112,7 +113,7 @@
           <i class="fa-solid fa-bus"></i>
         </a>
 
-        <a href="#" class="linkInSmallbar"> <i class="fa-solid fa-map-location-dot"></i></a>
+        <a routerLink="admin-trips" routerLinkActive="activeI" class="linkInSmallbar"> <i class="fa-solid fa-map-location-dot"></i></a>
 
         <a class="linkInSmallbar" routerLink="admin-orders" routerLinkActive="activeI">
           <i class="fa-solid fa-file-contract"></i>
