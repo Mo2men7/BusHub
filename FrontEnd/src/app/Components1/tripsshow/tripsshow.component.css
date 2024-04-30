@@ -1,3 +1,8 @@
+/* background */
+.bg-1{
+  background-color: var(--background);
+  background-color: black;
+}
 /* hover effect */
 .btnhover {
 transition: transform 0.3s ease;
@@ -28,6 +33,7 @@ color: #ffffff;
   
   /* container inside for loop */
   .tripsContainer{
+    /* background-color:red; */
   padding-left: 40px ;
    padding-top: 10px;
    padding-bottom: 10px;
@@ -52,6 +58,7 @@ background-color:dimgrey
 
   /* shade box design*/
   .search-component {
+
     border: 1px solid #dbdde0;
     background-color: #ffffff;
     box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
@@ -92,6 +99,7 @@ background-color:dimgrey
       width: 100%;
     }
     .tripsContainer {
+    
       border-style: solid;
       border-color: gray;
       border-radius: 20px;
@@ -129,4 +137,5 @@ background-color:dimgrey
       grid-area: options;
     } */
   }
+  
   

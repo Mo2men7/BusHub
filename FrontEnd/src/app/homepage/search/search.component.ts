@@ -27,13 +27,14 @@ export class SearchComponent {
   tomorrow:any=new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
   formData: any = { travelDate: this.tomorrow, passengers: 1 }; // Object to hold form data
   onSubmit() {
-      const { origin, destination, travelDate, passengers } = this.formData;
+      // const { origin, destination, travelDate, passengers } = this.formData;
+      const { origin, destination, travelDate } = this.formData;
       this.router.navigate([
         '/trips',
         origin,
         destination,
         travelDate,
-        passengers,
+        // passengers,
       ]);
   }
   
