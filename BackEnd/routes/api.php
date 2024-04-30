@@ -128,6 +128,8 @@ Route::get("/private-bus-requests", [PrivateBusFromController::class, 'index']);
 Route::post('/private-bus', [PrivateBusFromController::class, 'store']);
 Route::get('private-bus-requests/{id}', [PrivateBusFromController::class, 'show']);
 Route::put('private-bus-requests/{id}', [PrivateBusFromController::class, 'update']);
+Route::put('private-bus-requests/{id}/accept', [PrivateBusFromController::class, 'acceptRequest']);
+Route::put('private-bus-requests/{id}/decline', [PrivateBusFromController::class, 'declineRequest']);
 Route::delete('private-bus-requests/{id}', [PrivateBusFromController::class, 'destroy']);
 ///////////////////////////BusTypes Inputs////////////////////////////////
 Route::get("/bus-types", [TypeController::class, "index"]);
