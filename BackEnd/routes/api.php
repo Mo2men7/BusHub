@@ -31,7 +31,8 @@ use App\Http\Resources\DestinationResource;
 use App\Models\Destintaion;
 
 use App\Http\Controllers\TypeController;
-
+// use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Arr;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -85,9 +86,7 @@ Route::delete('/admin/destination/{id}', [DestinationAdminController::class, 'de
 
 // !Trip
 
-Route::get('/admin/trips', function () {
-    return  TripAdminResource::collection(Trip::all());
-});
+Route::get('/admin/trips', [TripAdminController::class, 'index']);
 Route::get('/admin/trip/{id}', function ($id) {
     return new TripAdminResource(Trip::findOrFail($id));
 });
@@ -139,6 +138,24 @@ Route::get("/private-bus-requests", [PrivateBusFromController::class, 'index']);
 Route::post('/private-bus', [PrivateBusFromController::class, 'store']);
 Route::get('private-bus-requests/{id}', [PrivateBusFromController::class, 'show']);
 Route::put('private-bus-requests/{id}', [PrivateBusFromController::class, 'update']);
+Route::put('private-bus-requests/{id}/accept', [PrivateBusFromController::class, 'acceptRequest']);
+Route::put('private-bus-requests/{id}/decline', [PrivateBusFromController::class, 'declineRequest']);
 Route::delete('private-bus-requests/{id}', [PrivateBusFromController::class, 'destroy']);
 ///////////////////////////BusTypes Inputs////////////////////////////////
 Route::get("/bus-types", [TypeController::class, "index"]);
+
+
+Route::get("payment",function(Request $request){
+    $valuue=$request->all();
+    // $valuue=implode("=",$valuue);
+    // echo url("http://localhost:4200/ticket/{$valuue}");
+
+    $query=Arr::query($request->all());
+    // foreach($request->query as $key=>$value)
+    // {
+    //     dd($value);
+    // }
+    // return response($request->query, 200)
+                //   ->header('Content-Type', 'text/plain');
+    return redirect()->intended("http://localhost:4200/ticket/?". $query);
+});

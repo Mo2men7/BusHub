@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Models\admin\Trip;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class TripAdminController extends Controller
 {
@@ -13,7 +15,35 @@ class TripAdminController extends Controller
      */
     public function index()
     {
-        return Trip::all();
+        // DB::table('users')
+        //     ->join('contacts', 'users.id', '=', 'contacts.user_id')
+        //     ->join('orders', 'users.id', '=', 'orders.user_id')
+        //     ->select('users.*', 'contacts.phone', 'orders.price')
+        //     ->get();
+        $allTrips = DB::table('trips')->
+        join('destinations','destinations.id','=','trips.from')->
+        select("from","to")->distinct()->get();
+        foreach ($allTrips as $key => $trip) {
+            $from_name = DB::table('destinations')->
+            select("name")->where("id","=",$trip->from)->get();
+            // dd($from_name);
+            $to_name = DB::table('destinations')->
+            select("name")->where("id","=",$trip->to)->get();
+            // dd($to_name);
+            $allTrips[$key]->from_name=$from_name[0]->name;
+            $allTrips[$key]->to_name=$to_name[0]->name;
+            $details=DB::table('trips')->join('buses','trips.bus_id','=','buses.id')->
+            join('types','buses.type_id','=','types.id')->
+            select(['trips.*','buses.*','types.*'])
+            ->where('to','=',$trip->to)
+            ->where('from','=',$trip->from)->get()->toArray();
+            // dd($destTrips);
+            $allTrips[$key]->details=($details);
+            // dd($allTrips);
+
+        }
+       return $allTrips;
+
     }
 
     /**
