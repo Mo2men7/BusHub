@@ -50,7 +50,7 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users',
             'password' => 'required|string',
 
         ]);
@@ -91,6 +91,8 @@ class UserController extends Controller
         $userId = Auth::id();
 
         $user = User::find($userId);
+
+
         return $user;
     }
 
@@ -164,5 +166,65 @@ class UserController extends Controller
         ]);
         $user = User::find($id);
         return $user;
+    }
+
+
+
+
+    public function signin(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+
+            try {
+                $request->validate([
+                    "email" => ["required", "email"],
+                    "username" => ["required"]
+                ]);
+                $user = User::create([
+                    'email' => $request->email,
+                    'username' => $request->username,
+                    'password' => bcrypt('123456momo'),
+                ]);
+                $token = $user->createToken("usertoken")->plainTextToken;
+
+                return response()->json([
+                    "user" => $user,
+                    'token' => $token
+                ], 201);
+            } catch (\Exception $e) {
+                // If an error occurs during user creation, return an error response
+                return response()->json([
+                    'message' => 'User registration failed. Please try again later.'
+                ], 500);
+            }
+        } elseif ($user) {
+
+            try {
+                $request->validate([
+                    "email" => ["required", "email", "exists:users"],
+
+                ]);
+
+
+                $token = $user->createToken("usertoken")->plainTextToken;
+
+                $response = [
+                    "user" => $user,
+                    'token' => $token
+                ];
+
+                return response()->json([
+                    "user" => $user,
+                    'token' => $token
+                ], 201);
+            } catch (\Exception $e) {
+                // If an error occurs during user creation, return an error response
+                return response()->json([
+                    'message' => 'User registration failed. Please try again later.'
+                ], 500);
+            }
+        }
     }
 }

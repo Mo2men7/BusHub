@@ -26,7 +26,7 @@ export class ProfileComponent {
   ngOnInit(): void {
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
-    // console.log(this.userId)
+    console.log(this.token)
 
     this.userservice.userProfile(this.token).subscribe(
       res => {

@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SocialLoginModule } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,DestinationsComponent,SidebarComponent,BusesComponent,TripsshowComponent, CommonModule,FormsModule,ProfileComponent,HttpClientModule],
+  imports: [RouterOutlet,DestinationsComponent,SidebarComponent,BusesComponent,TripsshowComponent, CommonModule,FormsModule,ProfileComponent,HttpClientModule,SocialLoginModule ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

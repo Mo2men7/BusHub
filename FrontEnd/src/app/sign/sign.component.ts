@@ -7,21 +7,73 @@ import { FormsModule } from '@angular/forms';
 import { NgModel } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
+import { GoogleSigninButtonDirective, GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { from } from 'rxjs';
+
+
+
 @Component({
+
   selector: 'app-sign',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink],
+  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,GoogleSigninButtonModule],
   templateUrl: './sign.component.html',
   styleUrl: './sign.component.css'
 })
 export class SignComponent {
-  constructor(private elRef: ElementRef, private renderer: Renderer2, private userservice : UserService,private router: Router,private cookie:CookieService) { }
-
+  constructor(private elRef: ElementRef, private renderer: Renderer2, private userservice : UserService,private router: Router,private cookie:CookieService,private authService: SocialAuthService) { }
+  user: any;
+  loggedIn: any;
   ngOnInit(): void {
     // Simulate HTTP request
     // this.simulateHttpRequest(this.loginData);
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      if (user) {
+        this.onGoogleregister();
+      }
+    });
 
   }
+
+  onGoogleregister() {
+
+
+
+    // // if (this.user) {
+    let formData = {
+      // Initialize form data here
+
+      email: this.user.email,
+      username: this.user.name,
+
+    };
+    this.userservice.signByGoogle(formData).subscribe(
+      response => {
+        this.loginResponse = response;
+
+        console.log('Data sent successfully:', response);
+
+        this.cookie.set("token", this.loginResponse["token"]);
+        this.router.navigate(['/profile']);
+
+        // Optionally, reset the form after successful submission
+        formData = {
+          email: '',
+          username: "",
+
+        };
+      },
+      error => {
+        console.error('Error sending data:', error);
+      }
+    );
+
+
+
+}
+
 
   // simulateHttpRequest(data:any): void {
   //   // Simulate HTTP response
@@ -84,7 +136,7 @@ export class SignComponent {
         console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
-        this.router.navigate(['/profile','edituserdetails']);
+        this.router.navigate(['/profile']);
 
         // Optionally, reset the form after successful submission
         this.formData = {
@@ -118,22 +170,21 @@ export class SignComponent {
     this.userservice.login(formDataJson).subscribe(
       response => {
 
-          this.loginResponse = response;
-         const userid=this.loginResponse["user"].id
+        this.loginResponse = response;
+        const userid = this.loginResponse["user"].id
         this.cookie.set("token", this.loginResponse["token"]);
 
-        this.router.navigate(['/profile','edituserdetails']);
+        this.router.navigate(['/profile']);
         this.loginData = {
           email: '',
 
-          password:"",
+          password: "",
         };
       },
       error => {
         console.error('Error sending data:', error);
       }
     );
-
 
   }
 

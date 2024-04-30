@@ -194,6 +194,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
+        Ichtrojan\Otp\OtpServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class
 
     ],
 
@@ -209,6 +212,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Otp' => Ichtrojan\Otp\Otp::class,
+        "Socialite" => Laravel\Socialite\Facades\Socialite::class
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

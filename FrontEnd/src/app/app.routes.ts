@@ -15,6 +15,9 @@ import { OrdersComponent } from './admin/orders/orders.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { BusesTypesComponent } from './Components1/buses-types/buses-types.component';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { CodetoresetpassComponent } from './codetoresetpass/codetoresetpass.component';
+import { ResetnewpasswordComponent } from './resetnewpassword/resetnewpassword.component';
 
 
 
@@ -27,11 +30,27 @@ export const routes: Routes = [
     path: "signin",
     component: SignComponent,
     title:"signin"
+  },
+  {
+    path: "codetoresetpass",
+    component: CodetoresetpassComponent,
+    title:"CodeToresetpass"
+  },
+  {
+    path: "resetpassword",
+    component:ResetnewpasswordComponent,
+    title:"CodeToresetpass"
+  },
+  {
+    path: "forgetpass",
+    component: ForgetpassComponent,
+    title:"ForgetPassword"
   }
+
 ,{
   path: "profile",
   component: ProfileComponent,
-  // title: "Profile"
+  title: "Profile",
    children: [
     {
       path: "previoustrips",
@@ -39,7 +58,7 @@ export const routes: Routes = [
       // title:"Previous Trips"
     },
     {
-      path: "edituserdetails",
+      path: "",
       component: EdituserdetailsComponent
       // ,title:"Edit User Details"
      },

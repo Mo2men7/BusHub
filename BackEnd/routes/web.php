@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\GoogleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get("/", "App\Http\Controllers\StripeController@index")->name('index');
 Route::post("/checkout", "App\Http\Controllers\StripeController@checkout")->name('checkout');
 Route::get("/success", "App\Http\Controllers\StripeController@success")->name('success');
+
+// Route::get("auth/google", [GoogleController::class, "googlepage"])->name('google');
+// Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);
 
 // Route::get('/', function () {
 //     return view('welcome');

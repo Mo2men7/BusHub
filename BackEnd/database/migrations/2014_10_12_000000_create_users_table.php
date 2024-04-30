@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
+            $table->string('google_id')->nullable();
+
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->date('birth_date')->nullable();
-            $table->enum('gender', ['Female', 'Male']);
+            $table->enum('gender', ['Female', 'Male'])->nullable();
             $table->string('password');
-            $table->string('city');
-            $table->string('phone', 12);
+            $table->string('city')->nullable();
+            $table->string('phone', 12)->nullable();
             $table->rememberToken();
             $table->timestamps();
             // (#id,username,email, role, birth_date, gender,password, city, phone)

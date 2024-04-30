@@ -37,14 +37,14 @@ export class UserService {
 
   private dataSubject = new BehaviorSubject<object>({});
 
-  sendUserData(data: {}): void {
+  // sendUserData(data: {}): void {
 
-      this.dataSubject.next(data); // Emit the data if it's the first time
+  //     this.dataSubject.next(data); // Emit the data if it's the first time
 
-  }
-  getData() {
-    return this.dataSubject.asObservable();
-  }
+  // }
+  // getData() {
+  //   return this.dataSubject.asObservable();
+  // }
 
   userProfile(token:any) {
     let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
@@ -69,6 +69,62 @@ export class UserService {
 
     return this.http.put("http://127.0.0.1:8000/api/edit",userData,{headers:httpOptions}  );
   }
+
+  forgetPassword( emailToResetPass: any) {
+
+    return this.http.post("http://127.0.0.1:8000/api/forgot-password",emailToResetPass );
+  }
+
+
+  private email = new BehaviorSubject<any>("")
+  private otp=new BehaviorSubject<any>("")
+
+
+    getEmail(){
+      return this.email.asObservable();
+    }
+
+  setEmail(newValue:string) {
+    this.email.next(newValue);
+  }
+  getOtp(){
+    return this.otp.asObservable();
+  }
+
+setOtp(newValue:string) {
+  this.otp.next(newValue);
+}
+
+
+
+  verifycode( emailToResetPass: any) {
+
+    return this.http.post("http://127.0.0.1:8000/api/verify-reset-code",emailToResetPass );
+  }
+
+
+  resetPassword( dataToResetPass: any) {
+
+    return this.http.post("http://127.0.0.1:8000/api/reset-password",dataToResetPass );
+  }
+
+
+
+  signByGoogle(userData:any) {
+
+    // return this.http.post("http://127.0.0.1:8000/api/auth-google", userData);
+
+    return this.http.post("http://127.0.0.1:8000/api/sign-google",userData );
+
+
+  }
+
+
+
+
+
+
+
 
 }
 
