@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class PrivateBusPageComponent {
   destinations: any;
   busTypes: any;
+  alertmessage:any;
   constructor(
     private destinationService: DestinationService,
     private http: HttpClient,
@@ -51,6 +52,7 @@ export class PrivateBusPageComponent {
           this.formData.passenger_number = '';
           this.formData.departure_date = '';
           this.formData.return = '';
+          this.alertmessage = `Your request has been submit successfully, An admin will reply to you soon. Watch your notifications`;
         },
         (error) => {
           console.error('Error');
