@@ -21,8 +21,8 @@ import { ResetnewpasswordComponent } from './resetnewpassword/resetnewpassword.c
 import { NotFoundComponent } from './Components1/not-found/not-found.component';
 import { SingleTripComponent } from './Components1/single-trip/single-trip.component';
 
-
-
+import { PaymentComponent } from './payment/payment.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 
 
@@ -134,5 +134,17 @@ export const routes: Routes = [
     component: NotFoundComponent,
     title: 'Not Found',
   },
+  {
+    path:"payment",
+    component: PaymentComponent,
+
+  }
+  ,
+  {
+    path:"ticket",
+    component: TicketComponent
+
+  }
+
 ];
 
