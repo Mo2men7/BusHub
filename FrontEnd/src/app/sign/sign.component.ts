@@ -168,13 +168,17 @@ export class SignComponent {
   onLogin() {
     const formDataJson: any = JSON.stringify(this.loginData);
     this.userservice.login(formDataJson).subscribe(
-      response => {
+      (response:any) => {
 
         this.loginResponse = response;
         const userid = this.loginResponse["user"].id
         this.cookie.set("token", this.loginResponse["token"]);
-
+        console.log(response.user.role)
+        if (response.user.role=="user")
         this.router.navigate(['/profile']);
+      else if (response.user.role=="admin")
+        this.router.navigate(['/admin']);
+
         this.loginData = {
           email: '',
 
