@@ -1,4 +1,4 @@
-<div class="text-center my-4" style="height: 80vh">
+<div class="container text-center  mt-4 mb-4" style="height: 80%">
   <div class="text-center my-4">
     <button
       type="button"
@@ -10,18 +10,22 @@
       Add New Destination
     </button>
   </div>
-  <div class="d-flex" style="height: 100%">
+  <div class="d-flex  justify-content-between overflow-hidden"  style="height: 500px"
+  >
     <div
-      class="accordion accordion-flush col-4 overflow-y-auto"
+      class="accordion accordion-flush col-5  overflow-y-auto
+      
+      "
       id="accordionFlushExample"
-      style="height: 100%"
+      style="height: 80%"
+
     >
       @for (item of destinations; track $index) {
-      <div class="accordion-item">
-        <h2 class="accordion-header">
+      <div class="accordion-item bg-transparent">
+        <h2 class="accordion-header ">
           <button
             (click)="showMap($index)"
-            class="accordion-button collapsed"
+            class="accordion-button collapsed bg-transparent"
             type="button"
             data-bs-toggle="collapse"
             [attr.data-bs-target]="'#acc' + $index + 1"
@@ -33,23 +37,23 @@
         </h2>
         <div
           id="{{ 'acc' + $index + 1 }}"
-          class="accordion-collapse collapse"
+          class="accordion-collapse collapse "
           data-bs-parent="#accordionFlushExample"
         >
-          <div class="accordion-body">
-            <div class="card text-bg-dark border border-0">
+          <div class="accordion-body  " >
+            <div class="card text-bg-dark border border-0 ">
               <img src="{{ item.pic }}" class="card-img" alt="..." />
-              <div class="card-img-overlay bg-black cardBackground">
+              <div class="card-img-overlay bg-black cardBackground ">
                 <!-- <h5 class="card-title">Card title</h5> -->
-                <div class="card-text text-start">
-                  <p>{{ item.info }}</p>
-                  <a
+                <div class="card-text text-start" >
+                  <p class="fs-7">{{ item.info }} <a
                     href="#"
                     data-bs-toggle="modal"
                     [attr.data-bs-target]="'#map' + $index + 1"
                   >
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                  </a>
+                  </a></p>
+                  
                 </div>
 
                 <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
@@ -60,15 +64,20 @@
       </div>
       <div
         class="modal fade"
-        style="width: 100vw; height: 80vh"
+        
         id="{{ 'map' + $index + 1 }}"
         tabindex="-1"
         [attr.aria-labelledby]="$index + 1 + 'Label'"
         aria-hidden="true"
+        style="
+            
+              height: 90%;"
       >
         <div
           class="modal-dialog modal-dialog-centered"
-          style="width: 100vw; height: 70vh"
+          style="
+            
+              height: 50%;"
         >
           <iframe
             class="modal-content"
@@ -93,20 +102,33 @@
       </div>
       }
     </div>
-    <div id="iframeDiv" class="ratio ratio-16x9 fade active show">
+    <div id="iframeDiv" class="ratio ratio-16x9 fade active show"  style="height: 80%; width: 55%;">
       <iframe
         style="filter: grayscale(70%) contrast(100%)"
         src=""
         title="Google Maps"
         allowfullscreen
+        
       ></iframe>
-      <img
+      <!-- <img
         style="filter: grayscale(100%) contrast(100%)"
-        src="../../../assets/admin/pics/wired-flat-18-location-pin.gif"
+        src="../../../assets/admin/pics/wired-flat-18-location-pin (1).gif"
         alt=""
         srcset=""
         style="height: 200px; width: 200px; margin-left: 50%; margin-top: 20%"
-      />
+      /> -->
+      <div id="lord">
+        <lord-icon
+          src="https://cdn.lordicon.com/tdtlrbly.json"
+          trigger="loop"
+          delay="500"
+          stroke="light"
+
+          colors="primary:#ffffff,secondary:#0587eb"
+          style="height: 75%; width: 55%; margin-top: 10%"
+        >
+        </lord-icon>
+      </div>
       <!-- <div class=" showOnLoading" > -->
       <!-- <i class="fa-solid fa-globe fa-fade" style="font-size: 20vw;"></i> -->
       <!-- <i class="fa-solid fa-location-dot" ></i> -->
@@ -117,22 +139,23 @@
   <form
     #adddest="ngForm"
     (ngSubmit)="sendDestination(adddest)"
-    class="modal fade"
+    class="modal fade "
     id="exampleModal"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
     enctype="multipart/form-data"
+    
   >
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
+    <div class="modal-dialog modal-dialog-scrollable ">
+      <div class="modal-content ">
+        <div class="modal-header d-flex justify-content-between">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
             Add New Destination
           </h1>
           <button
             type="button"
-            class="btn-close"
+            class="btn fa-solid fa-xmark fs-2"
             data-bs-dismiss="modal"
             aria-label="Close"
           ></button>
@@ -208,7 +231,7 @@
         <div class="modal-footer">
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn "
             data-bs-dismiss="modal"
           >
             Cancel

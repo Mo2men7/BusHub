@@ -1,7 +1,49 @@
-<div class="d-flex ">
+<div class="d-flex overflow-y-auto" style="height: 100vh; width: 100vw">
   <app-sidebar></app-sidebar>
-
-  <div id="including" class="container overflow-y-auto">
+  <div class="d-flex flex-column flex-fill overflow-y-auto">
+    <div class="sticky-top">
+      <div
+        id="navbarAdmin"
+        class="d-flex justify-content-between  align-items-baseline pt-3"
+        style="height: 70px"
+      >
+        <div
+          style="height: 90%"
+          class="col-6 d-flex justify-content-center align-items-baseline bg-transparent"
+        >
+          <input
+            style="height: 80%; width: 60%"
+            class="me-2"
+            type="search"
+            placeholder="   Search"
+            aria-label="Search"
+          />
+          <button class="btn" type="submit">Search</button>
+          
+        </div>
+        <div style="height: 90%" class="d-flex align-items-baseline bg-transparent">
+          <i class="fa-regular fa-bell me-3 fs-5">
+            <small
+              class="position-absolute translate-middle badge rounded-pill bg-danger"
+              style="font-size: 10px"
+            >
+              0
+            </small>
+          </i>
+          <button
+            class="btn ms-2 me-4 "
+            
+          >
+          Log out 
+          <i class="fa-solid fa-arrow-right-from-bracket bg-transparent ms-2"></i>
+          </button>
+        
+        </div>
+      </div>
+      <div id="separator" class=""></div>
+    </div>
+    <!-- <div id="including" class="overflow-y-auto"> -->
     <router-outlet></router-outlet>
+    <!-- </div> -->
   </div>
 </div>

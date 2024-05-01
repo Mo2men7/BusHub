@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { DestinationService } from '../services/destinationService/destination.service';
 import { SafePipe } from '../pipes/safe.pipe';
 import { FormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @Component({
   selector: 'app-destinations',
   standalone: true,
   imports: [SafePipe, FormsModule],
   templateUrl: './destinations.component.html',
   styleUrl: './destinations.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
+
 export class DestinationsComponent {
   destinations: any;
   newDist: any;
@@ -37,8 +40,10 @@ export class DestinationsComponent {
   }
   showMap(id: any) {
     const map = this.destinations[id].map;
-    const img = document.getElementsByTagName('img')[document.getElementsByTagName('img').length-1];
-    img.style.display="none"
+    const icon = document.getElementById('lord');
+    console.log(icon)
+  
+    icon!.style.display="none"
     const getFrame = document.getElementsByTagName('iframe')[document.getElementsByTagName('iframe').length-1];
     // console.log(getFrame)
     const getDivFrame = document.getElementById('iframeDiv');
