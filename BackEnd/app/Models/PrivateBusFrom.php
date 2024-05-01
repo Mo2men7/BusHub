@@ -18,6 +18,7 @@ class PrivateBusFrom extends Model
         "to",
         "departure_date",
         "return",
+        "status"
     ];
     public $table = "private_bus_froms";
     public function user(){

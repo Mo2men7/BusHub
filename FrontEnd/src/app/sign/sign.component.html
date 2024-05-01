@@ -28,72 +28,115 @@
         <form (submit)="onSubmit()" enctype="multipart/form-data">
           <div class="form-content">
             <!-- Organization Name and Email -->
-            <div class="input-group">
+
+            <div class="form-floating mb-3">
               <input
                 [(ngModel)]="formData.username"
                 type="text"
                 name="username"
                 placeholder="User Name"
+                id="floatingInput"
+                class="form-control"
                 required
               />
+              <label for="floatingInput">User Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
               <input
                 type="email"
                 name="email"
                 [(ngModel)]="formData.email"
                 placeholder="Email"
+                id="floatingInput"
+                class="form-control"
                 required
               />
+              <label for="floatingInput">Email address</label>
             </div>
 
             <!-- Password -->
-            <input
-              [(ngModel)]="formData.password"
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-            <input
-              type="password"
-              [(ngModel)]="formData.password_confirmation"
-              name="password_confirmation"
-              placeholder="Password Confirmation"
-              required
-            />
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="formData.password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                id="floatingInput"
+                class="form-control"
+                required
+              />
+              <label for="floatingInput">Password</label>
+            </div>
 
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                [(ngModel)]="formData.password_confirmation"
+                name="password_confirmation"
+                placeholder="Password Confirmation"
+                id="floatingInput"
+                class="form-control"
+                required
+              />
+              <label for="floatingInput">Password Confirmation</label>
+            </div>
             <!-- Gender-->
-            <input
-              type="text"
-              [(ngModel)]="formData.gender"
-              name="gender"
-              placeholder="Gender"
-              required
-            />
+            <div class="d-flex gap-3">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  [(ngModel)]="formData.gender"
+                  name="gender"
+                  placeholder="Gender"
+                  id="floatingInput"
+                  class="form-control"
+                  required
+                />
+                <label for="floatingInput">Gender</label>
+              </div>
 
+              <div class="form-floating mb-3">
+                <input
+                  type="date"
+                  name="birth_date"
+                  [(ngModel)]="formData.birth_date"
+                  placeholder="Birth Of Date"
+                  id="floatingInput"
+                  class="form-control"
+                  required
+                />
+                <label for="floatingInput">Birth Of Date</label>
+              </div>
+            </div>
             <!--Birth Of Date -->
-            <input
-              type="date"
-              name="birth_date"
-              [(ngModel)]="formData.birth_date"
-              placeholder="Birth Of Date"
-              required
-            />
 
             <!-- Location -->
-            <input
-              type="text"
-              name="city"
-              [(ngModel)]="formData.city"
-              placeholder="City"
-              required
-            />
-            <input
-              type="text"
-              name="phone"
-              [(ngModel)]="formData.phone"
-              placeholder="Phone"
-              required
-            />
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                name="city"
+                [(ngModel)]="formData.city"
+                placeholder="City"
+                id="floatingInput"
+                class="form-control"
+                required
+              />
+              <label for="floatingInput">City</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                name="phone"
+                [(ngModel)]="formData.phone"
+                placeholder="Phone"
+                id="floatingInput"
+                class="form-control"
+                required
+              />
+              <label for="floatingInput">Phone</label>
+            </div>
 
             <!-- Sign Up Button -->
             <button type="submit" name="register">Sign Up</button>
@@ -105,36 +148,57 @@
         <!-- Sign In Form -->
         <form (ngSubmit)="onLogin()" method="post">
           <div class="form-content">
-            <h1>Sign in</h1>
-
             <!-- Email -->
-            <input
-              type="email"
-              [(ngModel)]="loginData.email"
-              placeholder="Type your email"
-              name="email"
-              value=""
-            />
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                [(ngModel)]="loginData.email"
+                placeholder="Type your email"
+                name="email"
+                id="floatingInput"
+                class="form-control"
+                required
+              />
+              <label for="floatingInput">Email</label>
+            </div>
 
             <!-- Password -->
-            <input
-              type="password"
-              [(ngModel)]="loginData.password"
-              placeholder="Type your password"
-              name="password"
-            />
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                [(ngModel)]="loginData.password"
+                placeholder="Type your password"
+                name="password"
+                id="floatingInput"
+                class="form-control"
+                required
+              />
+              <label for="floatingInput">Password</label>
+            </div>
 
             <!-- Sign In Button -->
-            <button type="submit">Sign In</button>
+            <button class="signin" type="submit">Sign In</button>
           </div>
-          <a class="nav-link" routerLink="/forgetpass">Forget Password</a>
-          <!-- <button (click)="onGoogleregister()">sign in with google</button> -->
-
-          <asl-google-signin-button
-            type="icon"
-            size="medium"
-            *ngIf="!user"
-          ></asl-google-signin-button>
+          <a routerLink="/forgetpass">forget password</a>
+          <b
+            style="
+              display: flex;
+              gap: 5px;
+              text-align: center;
+              font-weight: 300;
+              padding-left: 0 20px;
+              margin-left: 10px;
+              border-right: 1px solid rgb(2, 2, 46);
+              border-radius: 4px;
+            "
+          >
+            <asl-google-signin-button
+              type="icon"
+              id="google"
+              style="display: inline"
+              size="medium"
+            ></asl-google-signin-button
+          ></b>
         </form>
       </div>
 
@@ -163,19 +227,5 @@
         </div>
       </div>
     </div>
-
-    <!-- <script>
-      const signUpButton = document.getElementById("signUp");
-      const signInButton = document.getElementById("signIn");
-      const container = document.getElementById("container");
-
-      signUpButton.addEventListener("click", () => {
-        container.classList.add("right-panel-active");
-      });
-
-      signInButton.addEventListener("click", () => {
-        container.classList.remove("right-panel-active");
-      });
-    </script> -->
   </body>
 </html>

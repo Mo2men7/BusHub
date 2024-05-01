@@ -2,11 +2,26 @@
 box-sizing: border-box;
 }
 
+
+.navbar {
+  background: var(--background);
+}
+.navbar-brand {
+  color: var(--text);
+}
+.nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
 .AccPage .account-container {
   display: flex;
   /* font-size: 0; */
   gap: 50px;
-  margin:50px auto;
+  margin:0 auto;
+}
+#root{
+  background-color: var(--background);
 }
 
 .AccPage .account-container .AccSideBar {

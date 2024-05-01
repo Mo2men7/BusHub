@@ -50,6 +50,7 @@ class PrivateBusFromController extends Controller
         if (PrivateBusFrom::find($id)->exists()) {
             $req = PrivateBusFrom::find($id);
             $req->update($request->all());
+            // $req->update(['status'=>$request]);
             return response()->json([
                 'message' => 'Request updates successfully',
             ], 202);
@@ -60,6 +61,19 @@ class PrivateBusFromController extends Controller
         }
     }
 
+    public function acceptRequest($id){
+        $reqest = PrivateBusFrom::findOrFail($id);
+        $reqest->update(["status"=>"Accepted"]);
+        $reqest->save();
+        return response()->json(['message' => 'Request has been accepted successfully',200]);
+    }
+
+    public function declineRequest($id){
+        $reqest = PrivateBusFrom::findOrFail($id);
+        $reqest->update(["status"=>"Rejected"]);
+        $reqest->save();
+        return response()->json(['message' => 'Request has been declined successfully',200]);
+    }
 
     public function destroy($id)
     {

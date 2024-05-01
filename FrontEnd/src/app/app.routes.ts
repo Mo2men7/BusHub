@@ -21,10 +21,10 @@ import { ResetnewpasswordComponent } from './resetnewpassword/resetnewpassword.c
 import { NotFoundComponent } from './Components1/not-found/not-found.component';
 import { SingleTripComponent } from './Components1/single-trip/single-trip.component';
 
+import { PaymentComponent } from './payment/payment.component';
+import { TicketComponent } from './ticket/ticket.component';
 
-
-
-
+import { TripsComponent } from './admin/trips/trips.component';
 
 export const routes: Routes = [
   {
@@ -88,6 +88,14 @@ export const routes: Routes = [
         component: BusesComponent,
       },
       {
+        path: 'admin-trips',
+        component: TripsComponent,
+      },
+      {
+        path: 'admin-trips',
+        component: TripsComponent,
+      },
+      {
         path: 'admin-orders',
         component: OrdersComponent,
       },
@@ -128,6 +136,18 @@ export const routes: Routes = [
     path: 'destinations',
     component: DestinationsPageComponent,
     title: 'Our Destinations',
+  },
+
+  {
+    path:"payment",
+    component: PaymentComponent,
+
+  }
+  ,
+  {
+    path:"ticket",
+    component: TicketComponent
+
   },
   {
     path: '**',

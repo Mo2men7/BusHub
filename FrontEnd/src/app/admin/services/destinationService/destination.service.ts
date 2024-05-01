@@ -6,8 +6,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DestinationService {
   url: string = 'http://127.0.0.1:8000';
   constructor(private http: HttpClient) {}
-  listDestinations() {
-    return this.http.get(this.url+'/api/admin/destinations');
+  listDestinations(token:any) {
+    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+
+    return this.http.get(this.url+'/api/admin/destinations',{headers:httpOptions});
   }
   httpOptions={
     headers :new HttpHeaders({
