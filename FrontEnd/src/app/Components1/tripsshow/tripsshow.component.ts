@@ -28,18 +28,17 @@ import { ActivatedRoute } from '@angular/router';
 export class TripsshowComponent {
   constructor(private TripsshowService: TripsshowService,
      private activatedRoute:ActivatedRoute
-    //  private router:Router
     ) {}
   trips:any;
   formData:any={};
   ngOnInit(): void {
+    //git api tripsshow
     this.showtrips()
-    // const {from, to, travelDate, passengers} = this.formData;
+    //send data to url "book-trip"
     const {from, to, travelDate} = this.formData
     this.formData.from = this.activatedRoute.snapshot.params['from'];
     this.formData.to = this.activatedRoute.snapshot.params['to'];
     this.formData.travelDate = this.activatedRoute.snapshot.params['travelDate'];
-    // this.formData.passengers = this.activatedRoute.snapshot.params['passengers'];
     console.log(this.formData.from, this.formData.to, this.formData.travelDate) //delete
   }
     showtrips() {
@@ -49,7 +48,6 @@ export class TripsshowComponent {
           console.log(trips); //delete
           this.filterTrips()
         },
-
       });
     }
     filterTrips() {

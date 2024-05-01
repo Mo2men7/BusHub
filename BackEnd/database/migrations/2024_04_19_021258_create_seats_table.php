@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('trip_id')->constrained();
-            $table->foreignId('bus_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            // $table->foreignId('bus_id')->constrained();
+            // $table->foreignId('user_id')->nullable()->constrained();
+            $table->integer('seat_num');
+            $table->integer('reserved');
             $table->timestamps();
-            $table->unique(['id','trip_id', 'bus_id']);
+            $table->unique(['trip_id','seat_num']);
         });
     }
 

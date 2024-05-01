@@ -1,10 +1,14 @@
 <?php
-//**trips show**start
+//**********trips start************
 use App\Models\Models1\Trip1;
 use App\Http\Controllers\Controllers1\Trip1Controller;
 use App\http\Resources\Resources1\Trip1Resourse;
-//**trips show**end
-
+//******trips end******
+//*****seats start*****
+use App\Models\Models1\Seat;
+use App\Http\Controllers\Controllers1\Seat1Controller;
+use App\Http\Resources\Resources1\SeatResourse;
+//*****seats end*****
 
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
@@ -22,6 +26,7 @@ use App\Http\Controllers\admin\DestinationAdminController;
 use App\Http\Controllers\api\GoogleController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Controllers1\SeatController;
 use App\Http\Resources\admin\DestinationAdminResource;
 use App\Models\admin\Destination;
 
@@ -31,6 +36,7 @@ use App\Http\Resources\DestinationResource;
 use App\Models\Destintaion;
 
 use App\Http\Controllers\TypeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +48,7 @@ use App\Http\Controllers\TypeController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-//**trips show**start
+//**********trips start************
 Route::get('/trip/{id}', function ($id) {
     return new Trip1Resourse(Trip1::findOrFail($id));
 });
@@ -53,7 +59,19 @@ Route::put('/trip/{id}', [Trip1Controller::class, 'update']);
 Route::delete('/trip/{id}', [Trip1Controller::class, 'destroy']);
 Route::post('/trips', [Trip1Controller::class, 'store']);
 Route::get('/tripsjoin', [Trip1Controller::class, 'tripsjoin']);
-//**trips show**end
+//**********trips end************
+//**********seats start************
+Route::get('/seat/{id}', function ($id) {
+    return new SeatResourse(Seat::findOrFail($id));
+});
+Route::get('/seats', function () {
+    return SeatResourse ::collection(Seat::all());
+});
+Route::put('/seat/{id}',[Seat1Controller::class,'update']);
+Route::delete('/seat/{id}',[Seat1Controller::class,'destroy']);
+Route::post('/seats',[Seat1Controller::class,'store']);
+
+//**********seats start************
 
 // !Bus
 
