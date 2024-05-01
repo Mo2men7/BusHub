@@ -3,6 +3,7 @@ import { DestinationService } from '../../services/destination.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-search',
@@ -17,11 +18,13 @@ export class SearchComponent {
   constructor(
     private destinationService: DestinationService,
     private router: Router,
+    private cookie:CookieService
     ) {
   }
   ngOnInit() {
+    let token = this.cookie.get("token");
     this.destinationService
-      .getDestinations()
+      .getDestinations(token)
       .subscribe((res: any) => (this.destinations = res));
   }
   tomorrow:any=new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
@@ -37,5 +40,5 @@ export class SearchComponent {
         // passengers,
       ]);
   }
-  
+
 }

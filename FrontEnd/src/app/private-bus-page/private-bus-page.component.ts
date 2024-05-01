@@ -5,6 +5,7 @@ import { DestinationService } from '../services/destination.service';
 import { TypeService } from '../services/typeService/type.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-private-bus-page',
@@ -21,10 +22,13 @@ export class PrivateBusPageComponent {
     private destinationService: DestinationService,
     private http: HttpClient,
     private TypeService: TypeService
+    ,   private cookie:CookieService
   ) {}
   ngOnInit() {
+
+    let token=this.cookie.get("token")
     this.destinationService
-      .getDestinations()
+      .getDestinations(token)
       .subscribe((res: any) => (this.destinations = res));
     this.TypeService.getBusTypes().subscribe((res) => (this.busTypes = res));
   }

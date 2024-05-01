@@ -46,35 +46,54 @@ class UserController extends Controller
 
 
 
+    // public function login(Request $request)
+    // {
+
+    //     $request->validate([
+    //         'email' => 'required|email|exists:users',
+    //         'password' => 'required|string',
+
+    //     ]);
+
+    //     $user = User::where('email', $request->email)->first();
+    //     session(["user" => "mahmoud"]);
+
+
+    //     if (!$user || !Hash::check($request->password, $user->password)) {
+    //         return response([
+    //             'message' => 'Bad Creds'
+    //         ], 401);
+    //     }
+
+    //     $token = $user->createToken("usertoken")->plainTextToken;
+
+    //     $response = [
+    //         "user" => $user,
+    //         'token' => $token
+    //     ];
+    //     return response($response, 201);
+    // }
+
     public function login(Request $request)
     {
+        $credentials = $request->only('email', 'password');
 
-        $request->validate([
-            'email' => 'required|email|exists:users',
-            'password' => 'required|string',
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $user = User::where('email', $request->email)->first();
+            $token = $user->createToken("usertoken")->plainTextToken;
 
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-        session(["user" => "mahmoud"]);
-
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
+            $response = [
+                "user" => $user,
+                'token' => $token
+            ];
+            return response($response, 201);
+        } else {
             return response([
                 'message' => 'Bad Creds'
             ], 401);
         }
-
-        $token = $user->createToken("usertoken")->plainTextToken;
-
-        $response = [
-            "user" => $user,
-            'token' => $token
-        ];
-        return response($response, 201);
     }
-
-
 
 
 
@@ -88,6 +107,7 @@ class UserController extends Controller
 
     public function profile()
     {
+
         $userId = Auth::id();
 
         $user = User::find($userId);

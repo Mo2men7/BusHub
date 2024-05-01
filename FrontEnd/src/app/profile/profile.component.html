@@ -15,6 +15,61 @@
   <body> -->
 <app-navbar></app-navbar>
 
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid py-auto">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/profile']"
+            routerLinkActive="text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >My Account Information</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['previoustrips']"
+            routerLinkActive="text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Old Trips</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['nexttrips']"
+            routerLinkActive="text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Next Trips</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Log Out</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div id="root">
   <div>
     <div>
@@ -43,46 +98,7 @@
                   <p class="label">Phone Number:</p>
                   <p>{{ userData?.phone }}</p>
                 </div>
-                <div class="profile-navigation-component">
-                  <ul>
-                    <li class="">
-                      <a
-                        class="active"
-                        aria-current="page"
-                        [routerLink]="['/profile']"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >My Account Information</a
-                      >
-                    </li>
-                    <li class="">
-                      <a
-                        [routerLink]="['previoustrips']"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >Old Trips</a
-                      >
-                    </li>
-                    <li class="">
-                      <a
-                        [routerLink]="['nexttrips']"
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >Next Trips</a
-                      >
-                    </li>
-                    <!-- <li class="">
-                      <a href="/profile/change-password">  </a>
-                    </li> -->
-                    <li class="">
-                      <a
-                        routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >Log Out</a
-                      >
-                    </li>
-                  </ul>
-                </div>
+                <div class="profile-navigation-component"></div>
               </div>
               <!-- ......................................................................... -->
               <div class="account-content active">
@@ -95,5 +111,4 @@
     </div>
   </div>
 </div>
-<!-- </body>
-</html> -->
+<app-footer></app-footer>

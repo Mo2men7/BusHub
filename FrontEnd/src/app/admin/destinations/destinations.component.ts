@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { DestinationService } from '../services/destinationService/destination.service';
 import { SafePipe } from '../pipes/safe.pipe';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { Token } from '@angular/compiler';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-destinations',
   standalone: true,
@@ -12,12 +15,17 @@ import { FormsModule } from '@angular/forms';
 export class DestinationsComponent {
   destinations: any;
   newDist: any;
-  constructor(private destinationService: DestinationService) {}
-
+  constructor(private destinationService: DestinationService,private cookie:CookieService,private router: Router) {}
+   token:any = this.cookie.get("token");
   ngOnInit() {
-    this.destinationService.listDestinations().subscribe(
+
+
+
+
+    this.destinationService.listDestinations(this.token).subscribe(
       (res: any) => (this.destinations = res),
-      (error) => console.log(error)
+      (error) =>  this.router.navigate(['/signin'])
+
     );
   }
   sendDestination(form: any) {
@@ -50,7 +58,7 @@ export class DestinationsComponent {
       getDivFrame?.classList.add('active');
       getDivFrame?.classList.add('show');
     }, 500);
-    
+
     // getFrame.classList.add('fade-in');
     console.log(id);
     console.log(this.destinations);

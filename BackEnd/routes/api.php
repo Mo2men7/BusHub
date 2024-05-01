@@ -71,7 +71,7 @@ Route::delete('/admin/bus/{id}', [BusAdminController::class, 'destroy']);
 // ? to get all destinations in DB
 Route::get('/admin/destinations', function () {
     return  DestinationAdminResource::collection(Destination::all());
-});
+})->middleware("auth:sanctum")->middleware("isAdmin");
 // ? to get a single destination with $id in DB
 Route::get('/admin/destination/{id}', function ($id) {
     return new DestinationAdminResource(Destination::findOrFail($id));
@@ -118,7 +118,7 @@ Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);
 
 Route::post("/login", [UserController::class, "login"]);
-Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum");
+Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum")->middleware("isAdmin");
 
 Route::post("/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -145,17 +145,17 @@ Route::delete('private-bus-requests/{id}', [PrivateBusFromController::class, 'de
 Route::get("/bus-types", [TypeController::class, "index"]);
 
 
-Route::get("payment",function(Request $request){
-    $valuue=$request->all();
+Route::get("payment", function (Request $request) {
+    $valuue = $request->all();
     // $valuue=implode("=",$valuue);
     // echo url("http://localhost:4200/ticket/{$valuue}");
 
-    $query=Arr::query($request->all());
+    $query = Arr::query($request->all());
     // foreach($request->query as $key=>$value)
     // {
     //     dd($value);
     // }
     // return response($request->query, 200)
-                //   ->header('Content-Type', 'text/plain');
-    return redirect()->intended("http://localhost:4200/ticket/?". $query);
+    //   ->header('Content-Type', 'text/plain');
+    return redirect()->intended("http://localhost:4200/ticket/?" . $query);
 });
