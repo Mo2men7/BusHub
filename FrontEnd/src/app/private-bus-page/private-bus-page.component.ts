@@ -3,9 +3,10 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { DestinationService } from '../services/destination.service';
 import { TypeService } from '../services/typeService/type.service';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-private-bus-page',
@@ -21,14 +22,13 @@ export class PrivateBusPageComponent {
   constructor(
     private destinationService: DestinationService,
     private http: HttpClient,
-    private TypeService: TypeService
-    ,   private cookie:CookieService
+    private TypeService: TypeService,private cookie:CookieService,
+
   ) {}
   ngOnInit() {
 
-    let token=this.cookie.get("token")
     this.destinationService
-      .getDestinations(token)
+      .getDestinations()
       .subscribe((res: any) => (this.destinations = res));
     this.TypeService.getBusTypes().subscribe((res) => (this.busTypes = res));
   }
@@ -43,8 +43,12 @@ export class PrivateBusPageComponent {
     return: '',
   };
   submitPrivateBusForm() {
+    let token=this.cookie.get("token")
+
+    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+
     this.http
-      .post('http://127.0.0.1:8000/api/private-bus', this.formData)
+      .post('http://127.0.0.1:8000/api/private-bus', this.formData,{headers:httpOptions})
       .subscribe(
         (res) => {
           console.log('Done');

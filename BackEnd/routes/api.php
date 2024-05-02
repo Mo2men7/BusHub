@@ -43,6 +43,14 @@ use Illuminate\Support\Arr;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
+
+// Route::get('/signin', function () {
+//     return redirect('https://www.youtube.com/watch?v=XjNxi74EcbM');
+// })->name('frontend.signin');
+// Route::post('/signin', [GoogleController::class, 'signin'])->name('frontend.signin');
+
 //**trips show**start
 Route::get('/trip/{id}', function ($id) {
     return new Trip1Resourse(Trip1::findOrFail($id));
@@ -135,7 +143,7 @@ Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
 Route::post('/destinations', [DestinationController::class, 'store']);
 ///////////////////////////PrivateBus Form Page and Admin Table////////////////////////////////
 Route::get("/private-bus-requests", [PrivateBusFromController::class, 'index']);
-Route::post('/private-bus', [PrivateBusFromController::class, 'store']);
+Route::post('/private-bus', [PrivateBusFromController::class, 'store'])->middleware("auth:sanctum");
 Route::get('private-bus-requests/{id}', [PrivateBusFromController::class, 'show']);
 Route::put('private-bus-requests/{id}', [PrivateBusFromController::class, 'update']);
 Route::put('private-bus-requests/{id}/accept', [PrivateBusFromController::class, 'acceptRequest']);

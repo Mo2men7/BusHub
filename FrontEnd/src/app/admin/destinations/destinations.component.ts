@@ -16,15 +16,17 @@ export class DestinationsComponent {
   destinations: any;
   newDist: any;
   constructor(private destinationService: DestinationService,private cookie:CookieService,private router: Router) {}
-   token:any = this.cookie.get("token");
+
   ngOnInit() {
 
+    let token = this.cookie.get("token");
 
-
-
-    this.destinationService.listDestinations(this.token).subscribe(
+    console.log(token);
+    this.destinationService.listDestinations(token).subscribe(
       (res: any) => (this.destinations = res),
-      (error) =>  this.router.navigate(['/signin'])
+      // (error) =>  this.router.navigate(['/signin'])
+      (error) => console.log(error)
+
 
     );
   }
