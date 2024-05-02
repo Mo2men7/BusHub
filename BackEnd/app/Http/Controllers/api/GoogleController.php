@@ -12,11 +12,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Closure;
 use Laravel\Sanctum\PersonalAccessToken;
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\RedirectResponse;
 
 class GoogleController extends Controller
 {
+
+
+
 
     public function signin(Request $request)
     {

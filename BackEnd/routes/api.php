@@ -48,7 +48,8 @@ use Illuminate\Support\Arr;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-//**********trips start************
+// **********trips start************
+
 Route::get('/trip/{id}', function ($id) {
     return new Trip1Resourse(Trip1::findOrFail($id));
 });
@@ -65,11 +66,11 @@ Route::get('/seat/{id}', function ($id) {
     return new SeatResourse(Seat::findOrFail($id));
 });
 Route::get('/seats', function () {
-    return SeatResourse ::collection(Seat::all());
+    return SeatResourse::collection(Seat::all());
 });
-Route::put('/seat/{id}',[Seat1Controller::class,'update']);
-Route::delete('/seat/{id}',[Seat1Controller::class,'destroy']);
-Route::post('/seats',[Seat1Controller::class,'store']);
+Route::put('/seat/{id}', [Seat1Controller::class, 'update']);
+Route::delete('/seat/{id}', [Seat1Controller::class, 'destroy']);
+Route::post('/seats', [Seat1Controller::class, 'store']);
 
 //**********seats start************
 
@@ -152,7 +153,7 @@ Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
 Route::post('/destinations', [DestinationController::class, 'store']);
 ///////////////////////////PrivateBus Form Page and Admin Table////////////////////////////////
 Route::get("/private-bus-requests", [PrivateBusFromController::class, 'index']);
-Route::post('/private-bus', [PrivateBusFromController::class, 'store']);
+Route::post('/private-bus', [PrivateBusFromController::class, 'store'])->middleware("auth:sanctum");
 Route::get('private-bus-requests/{id}', [PrivateBusFromController::class, 'show']);
 Route::put('private-bus-requests/{id}', [PrivateBusFromController::class, 'update']);
 Route::put('private-bus-requests/{id}/accept', [PrivateBusFromController::class, 'acceptRequest']);
