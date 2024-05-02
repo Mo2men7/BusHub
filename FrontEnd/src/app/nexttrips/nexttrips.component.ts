@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { TripsService } from '../services/trips.service';
 import { CookieService } from 'ngx-cookie-service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-nexttrips',
   standalone: true,
-  imports: [],
+  imports: [MatTabsModule],
   templateUrl: './nexttrips.component.html',
   styleUrl: './nexttrips.component.css'
 })

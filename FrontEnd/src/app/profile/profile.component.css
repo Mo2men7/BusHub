@@ -13,71 +13,94 @@ box-sizing: border-box;
   color: rgba(255, 255, 255, 0.5);
 }
 
-
-.AccPage .account-container {
-  display: flex;
+ .account-container {
+  background-color: var(--background);
+  /* display: flex;
   /* font-size: 0; */
-  gap: 50px;
+  /* gap: 50px;  */
   margin:0 auto;
+  margin-bottom: 10px;
+  width: 60%;
+  /* border-bottom: 1px solid rgb(160, 148, 148) ;
+  border-right: 1px solid rgb(160, 148, 148) ;
+  border-left:1px solid rgb(160, 148, 148) ; */
+  color: white;
+  box-shadow: 0 7px 28px rgba(179, 165, 165, 0.355),
+  0 10px 10px rgba(62, 70, 70, 0.2);
+  border-radius: 4px;
+
+
 }
 #root{
   background-color: var(--background);
 }
+/* body{
+  background-color: var(--background);
+} */
 
-.AccPage .account-container .AccSideBar {
-  position: static;
-  flex:.35;
+
+ .AccSideBar {
   height: fit-content;
-  top: 108px;
+
   /* width:fit-content; */
-  display: inline-block;
-  vertical-align: top;
-  background: #ffffff;
-  border: 1px solid #dbdde0;
-  box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
-  border-radius: 4px;
+
+
+}
+.userimage{
+margin: 0 auto;
+text-align: center;
 }
 
 
-.AccPage .account-container .AccSideBar .user-data p {
-  color: #101010;
+
+.AccSideBar .user-data p {
+  color: white;
   font-size: 15px;
   font-weight: 600;
   overflow-wrap: break-word;
   margin: 0;
   padding-bottom: 20px;
 }
-
-
-.AccPage .account-container .AccSideBar .user-data {
-  padding: 18px 15px 22px;
-  border-bottom: 1px solid #e5ebf1;
-  margin-bottom: 20px;
+.user-data{
+  display: flex;
+  justify-content: space-around;
 }
- .account-container .AccSideBar .user-data .avatar {
+
+.box{
+padding:0px 30px;
+
+
+}
+.box div{
+  flex: 1;
+}
+
+.AccSideBar .user-data {
+  padding: 18px 15px 22px;
+}
+  .AccSideBar .user-data .avatar {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   margin-bottom: 12px;
 }
-.AccPage .account-container .AccSideBar .user-data .label {
-  color: #212121;
+ .AccSideBar .user-data .label {
+  color: white;
   font-size: 12px;
   font-weight: 300;
   padding-bottom: 0;
 }
 
-  .AccPage .account-container .AccSideBar .profile-navigation-component {
-    padding-bottom: 20px;
-    max-height: 0;
-    position: static;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    max-height: none !important;
+.edit{
+  /* margin: 10px 0; */
+  text-align: center;
+  padding-bottom:20px ;
 }
 
-.account-container .AccSideBar .profile-navigation-component li a.active, .AccPage .account-container .AccSideBar .profile-navigation-component li a:hover {
+
+
+
+.AccSideBar .profile-navigation-component li a.active,  .account-container .AccSideBar .profile-navigation-component li a:hover {
   color: #FC9900;
   border-right-color: #FC9900;
 }
@@ -91,9 +114,7 @@ a{
   color: #101010;
 }
 .account-container .account-content {
-  position: static;
-  flex:1;
-  top: 108px;
+
   background: #ffffff;
   border: 1px solid #dbdde0;
   box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
@@ -102,3 +123,23 @@ a{
 }
 
 /* ////////////////////////////// */
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+  --mdc-tab-indicator-active-indicator-color: #000D14;  /*underline1*/
+  --mat-tab-header-disabled-ripple-color: rgb(0, 255, 42);   /*notwork*/
+  --mat-tab-header-pagination-icon-color: rgb(192, 241, 255);  /*notwork*/
+  --mat-tab-header-inactive-label-text-color:rgb(242, 235, 235);  /*text*/
+  --mat-tab-header-active-label-text-color:#0d6efd;  /*text*/
+  --mat-tab-header-active-ripple-color: #000D14;  /*selected shade*/
+  --mat-tab-header-inactive-ripple-color: #000D14;  /*shade when hover*/
+  --mat-tab-header-inactive-focus-label-text-color: rgb(242, 235, 235);  /*text long press*/
+  --mat-tab-header-inactive-hover-label-text-color: #0d6efd;  /*text when hover*/
+  --mat-tab-header-active-focus-label-text-color: #0d6efd;  /*text*/
+  --mat-tab-header-active-hover-label-text-color: rgb(129, 126, 126);  /*text*/
+  --mat-tab-header-active-focus-indicator-color: #000D14(97, 116, 164);  /*log press under line*/
+  --mat-tab-header-active-hover-indicator-color: black;  /*text log press*/
+}
+
+.container-width{
+  width: 101%;
+}

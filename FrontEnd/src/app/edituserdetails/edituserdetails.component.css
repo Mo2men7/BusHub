@@ -1,4 +1,4 @@
-
+/*
  .account-content {
   position: static;
   flex:1;
@@ -69,4 +69,38 @@ button {
 a{
   text-decoration: none;
   color: #101010;
+} */
+
+
+input {
+
+  background-color: #e6e8ef;
+  border: none;
+/* width: 100px; */
+
+
+  outline: none;
+  border-radius: 10px;
+}
+
+/* input:focus{
+  border: none;
+  border-bottom: 2px solid rgb(21, 21, 170)  ;
+  outline: none;
+  background-color: white;
+} */
+
+
+
+
+.form-control:focus{
+  border: none;
+  border-bottom: 2px solid #0d6efd  ;
+  outline: none;
+  background-color: white;
+}
+
+.form-control:focus {
+  border-color:#0d6efd;
+  box-shadow: inset 0 1px 1px rgba(156, 172, 255, 0.075), 0 0 8px transparent;
 }

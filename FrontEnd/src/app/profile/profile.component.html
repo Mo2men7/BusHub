@@ -13,102 +13,121 @@
   </head>
 
   <body> -->
-<app-navbar></app-navbar>
-
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid py-auto">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/profile']"
-            routerLinkActive="text-white"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >My Account Information</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['previoustrips']"
-            routerLinkActive="text-white"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Old Trips</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['nexttrips']"
-            routerLinkActive="text-white"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Next Trips</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Log Out</a
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <div id="root">
-  <div>
-    <div>
-      <div class="page-content">
-        <div class="AccPage">
-          <div class="container">
-            <div class="page-title">
+  <app-navbar></app-navbar>
+
+  <!-- <div class="page-title">
               <h5>My Account</h5>
               <h3>My Account Details</h3>
-            </div>
-            <div class="account-container">
-              <div class="AccSideBar">
-                <div class="user-data">
-                  <img
-                    src="../../assets/images/person.png"
-                    alt="user avatar"
-                    class="avatar"
-                    height="100"
-                    width="100"
-                  />
+            </div> -->
+  <div class="account-container">
+    <div class="AccSideBar">
+      <div class="userimage">
+        <img
+          src="../../assets/images/person.png"
+          alt="user avatar"
+          class="avatar"
+          height="100"
+          width="100"
+        />
 
-                  <p class="label">Full Name:</p>
-                  <p>{{ userData?.username }}</p>
-                  <p class="label">Email:</p>
-                  <p>{{ userData?.email }}</p>
-                  <p class="label">Phone Number:</p>
-                  <p>{{ userData?.phone }}</p>
-                </div>
-                <div class="profile-navigation-component"></div>
-              </div>
-              <!-- ......................................................................... -->
-              <div class="account-content active">
-                <router-outlet></router-outlet>
-              </div>
-            </div>
+        <p>{{ userData?.username }}</p>
+      </div>
+      <div class="user-data">
+        <!-- <p class="label">Full Name:</p> -->
+        <div class="box">
+          <div class="email">
+            <p class="label">Email:</p>
+            <p>{{ userData?.email }}</p>
+          </div>
+          <div class="phone">
+            <p class="label">Phone Number:</p>
+            <p>{{ userData?.phone }}</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="city">
+            <p class="label">City:</p>
+            <p>{{ userData?.city }}</p>
+          </div>
+          <div class="gender">
+            <p class="label">gender:</p>
+            <p>{{ userData?.gender }}</p>
           </div>
         </div>
       </div>
     </div>
+    <div class="edit">
+      <app-edituserdetails></app-edituserdetails>
+    </div>
   </div>
+  <!-- ////////////////////////////////////////////// -->
+  <div class="container">
+    <mat-tab-group>
+      <mat-tab label="Future Trips">
+        <app-previoustrips></app-previoustrips>
+      </mat-tab>
+      <mat-tab label="previousTripsTrips">
+        <app-nexttrips></app-nexttrips>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <!-- .................................................... -->
+  <!-- <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid py-auto">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/profile']"
+              routerLinkActive="text-white"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >My Account Information</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['previoustrips']"
+              routerLinkActive="text-white"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Old Trips</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['nexttrips']"
+              routerLinkActive="text-white"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Next Trips</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Log Out</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>

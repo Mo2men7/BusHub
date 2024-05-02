@@ -5,7 +5,7 @@
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
 >
-  Launch demo modal
+  Edit Details
 </button>
 
 <!-- Modal -->
@@ -29,44 +29,65 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
-        <div class="edit-account">
-          <h3>Edit Detail</h3>
-          <form (ngSubmit)="edit()">
-            <div class="input-field">
-              <label for="username">Full Name</label
-              ><input
+      <form (ngSubmit)="edit()">
+        <div class="modal-body">
+          <div class="edit-account">
+            <h3>Edit Detail</h3>
+
+            <div class="form-floating mb-3">
+              <input
                 [(ngModel)]="userDetails.username"
-                name="username"
                 type="text"
+                name="username"
+                id="floatingInput"
+                class="form-control"
+                placeholder="Name"
               />
+              <label for="floatingInput">Name</label>
             </div>
-            <div class="input-field">
-              <label for="phone-number">Phone Number</label
-              ><input [(ngModel)]="userDetails.phone" name="phone" type="tel" />
+
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="userDetails.phone"
+                type="text"
+                name="phone"
+                id="floatingInput"
+                class="form-control"
+                placeholder="Phone"
+              />
+              <label for="floatingInput">Phone</label>
             </div>
-            <div class="input-field">
-              <label for="email">Email</label
-              ><input
+
+            <div class="form-floating mb-3">
+              <input
                 [(ngModel)]="userDetails.email"
                 name="email"
                 type="email"
+                placeholder="Email"
+                id="floatingInput"
+                class="form-control"
               />
+              <label for="floatingInput">Email</label>
             </div>
-            <div class="input-field">
-              <button type="submit" class="btn btn-orange" (submit)="edit()">
+
+            <!-- <div class="input-field">
                 <span>Edit</span>
-              </button>
-            </div>
-          </form>
+            </div> -->
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" (submit)="edit()" class="btn btn-primary">
+            Save changes
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

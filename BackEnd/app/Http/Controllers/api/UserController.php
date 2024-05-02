@@ -111,6 +111,12 @@ class UserController extends Controller
         $userId = Auth::id();
 
         $user = User::find($userId);
+        if (!$user->gender | $user->gender == "") {
+            $user->gener = "_";
+        }
+        if (!$user->city | $user->city == "") {
+            $user->city = "_";
+        }
 
 
         return $user;

@@ -136,7 +136,7 @@ Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);
 
 Route::post("/login", [UserController::class, "login"]);
-Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum")->middleware("isAdmin");
+Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum");
 
 Route::post("/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
 Route::group(['middleware' => ['auth:sanctum']], function () {

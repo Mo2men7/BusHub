@@ -7,10 +7,11 @@ import { ElementRef, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TripsService } from '../services/trips.service';
 import { CookieService } from 'ngx-cookie-service';
+import { MatTabsModule } from '@angular/material/tabs';
 @Component({
   selector: 'app-previoustrips',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink],
+  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,MatTabsModule],
   templateUrl: './previoustrips.component.html',
   styleUrl: './previoustrips.component.css'
 })

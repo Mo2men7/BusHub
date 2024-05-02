@@ -11,11 +11,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { NexttripsComponent } from '../nexttrips/nexttrips.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent],
+  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
