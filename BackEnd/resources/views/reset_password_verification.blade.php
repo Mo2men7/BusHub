@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <h1 style="background-color: rgb(4, 4, 36); color:antiquewhite; text-align:center ;width:30%;margin:auto">
+    <h1
+        style="background-color: rgb(4, 4, 36); color:antiquewhite; text-align:center ;width:30%;margin:auto; padding:30px">
         BusHub.</h1>
 
     <h3>{{ $subject }}</h3>
