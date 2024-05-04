@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PaymentService } from '../services/payment.service';
 import { SafePipe } from '../admin/pipes/safe.pipe';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-payment',
   standalone: true,
@@ -10,6 +12,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './payment.component.css',
 })
 export class PaymentComponent {
+  // receive data
+  @Input() totalPrice!: any;
+  userDetails: any;
+
   integration_id: any = 4564810;
   request1: any = {
     api_key:
@@ -18,7 +24,7 @@ export class PaymentComponent {
   request2: any = {
     auth_token: '',
     delivery_needed: 'false',
-    amount_cents: '100',
+    amount_cents: '500',
     currency: 'EGP',
     items: [
       {
@@ -31,22 +37,22 @@ export class PaymentComponent {
   };
   request3: any = {
     auth_token: '',
-    amount_cents: '100',
+    amount_cents: '', //req
     expiration: 3600,
     order_id: '',
     billing_data: {
       apartment: '7',
-      email: 'amira@exa.com',
+      email: 'test@yahoo.com', //req
       floor: '42',
-      first_name: 'Amira',
+      first_name: 'Amira', //req
       street: 'Ethan Land',
       building: '8028',
-      phone_number: '+86(8)9135210487',
+      phone_number: '+86(8)9135210487', //req
       shipping_method: 'PKG',
       postal_code: '01898',
       city: 'Jaskolskiburgh',
       country: 'CR',
-      last_name: 'Nicolas',
+      last_name: 'Nicolas', //req
       state: 'Utah',
     },
     currency: 'EGP',
@@ -55,10 +61,15 @@ export class PaymentComponent {
   iframe: any;
   constructor(
     private paymentService: PaymentService,
-    private finaldata: HttpClient
+    private finaldata: HttpClient,
+    private UserService: UserService, //user service
+    private cookie: CookieService
   ) {}
 
   ngOnInit() {
+    console.log(this.totalPrice);
+    console.log(this.request3.amount_cents);
+
     this.paymentService.getToken(this.request1).subscribe(
       (res1: any) => {
         this.request2.auth_token = res1.token;
@@ -66,15 +77,23 @@ export class PaymentComponent {
         this.paymentService.getOrder(this.request2).subscribe(
           (res2: any) => {
             this.request3.order_id = res2.id;
-            this.paymentService.getAcceptance(this.request3).subscribe(
-              (res3: any) => {
-                this.iframe =
-                  'https://accept.paymob.com/api/acceptance/iframes/841613?payment_token=' +
-                  res3.token;
-                console.log(this.iframe);
-              },
-              (error) => console.log(error)
-            );
+            //payment start
+            this.request3.amount_cents = this.totalPrice * 100; //amount
+            const token = this.cookie.get('token');
+            this.UserService.userProfile(token).subscribe((res) => {
+              this.userDetails = res;
+              this.request3.email = this.userDetails.email; //email
+              console.log('user details', this.userDetails.email);
+              this.paymentService.getAcceptance(this.request3).subscribe(
+                (res3: any) => {
+                  this.iframe =
+                    'https://accept.paymob.com/api/acceptance/iframes/841613?payment_token=' +
+                    res3.token;
+                  console.log(this.iframe);
+                },
+                (error) => console.log(error)
+              );
+            });
           },
           (error) => console.log(error)
         );
@@ -86,5 +105,4 @@ export class PaymentComponent {
     //   (error) => console.log("erroe"+error)
     // );
   }
-
 }

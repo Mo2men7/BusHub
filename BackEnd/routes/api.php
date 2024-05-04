@@ -71,7 +71,7 @@ Route::put('/seat/{id}',[Seat1Controller::class,'update']);
 Route::delete('/seat/{id}',[Seat1Controller::class,'destroy']);
 Route::post('/seats',[Seat1Controller::class,'store']);
 
-//**********seats start************
+//**********seats end************
 
 // !Bus
 
@@ -135,7 +135,7 @@ Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);
 
 Route::post("/login", [UserController::class, "login"]);
-Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum")->middleware("isAdmin");
+Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum");
 
 Route::post("/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
 Route::group(['middleware' => ['auth:sanctum']], function () {

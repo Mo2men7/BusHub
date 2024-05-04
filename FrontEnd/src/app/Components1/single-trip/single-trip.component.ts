@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 //navbar and footer
 import { NavbarComponent } from '../../navbar/navbar.component';
@@ -25,6 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PaymentComponent } from '../../payment/payment.component';
+import { UserService } from '../../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-single-trip',
@@ -43,6 +46,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule,
     CustomDatePipe,
     TimeFormatPipe,
+    PaymentComponent,
   ],
   templateUrl: './single-trip.component.html',
   styleUrl: './single-trip.component.css',
@@ -51,11 +55,15 @@ export class SingleTripComponent {
   //constractor
   constructor(
     private activatedRoute: ActivatedRoute,
-    private TripsshowService: TripsshowService,   //api tripsshow
-    private SeatsService: SeatsService,  // api seats
+    private TripsshowService: TripsshowService, //api tripsshow
+    private SeatsService: SeatsService, // api seats
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer //icons
-  ) {
+
+    private domSanitizer: DomSanitizer, //icons
+    private UserService: UserService, //user service
+    private  cookie:CookieService,
+
+  ) { 
     this.matIconRegistry.addSvgIcon(
       'seat-icon',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -66,22 +74,25 @@ export class SingleTripComponent {
   //variables
   trips: any; //api tripsshow
   details?: any; //api tripsshow
-  seats: any; //api seats
-
+  allseats: any; //api seats
+  seats: any;
+  selected: any[] = [];
   tripId: any; //from url
-  isReserved: boolean = false; //test
-  isLinear = true; //test
-  toggle: boolean = false; //test
-  isBlue: boolean = false; //test
-
+  typeId: any; //from url
+  totalPrice: any = 0;
+  userDetails:any;
   ngOnInit(): void {
-
-    this.tripId = this.activatedRoute.snapshot.params['id'];    //from url
+    this.tripId = this.activatedRoute.snapshot.params['id']; //from url
+    this.typeId = this.activatedRoute.snapshot.params['typeid']; //from url
     console.log(this.tripId); //delete
-
-    
-    this.showtrips();//run api tripsshow
-    this.seatsshow()//run api seats
+    console.log(this.typeId);
+    this.showtrips(); //run api tripsshow
+    this.seatsshow(); //run api seats
+    const token=this.cookie.get('token');
+    this.UserService.userProfile(token).subscribe(res=>{this.userDetails=res;
+      console.log('user details',this.userDetails);
+    }) //user service
+    // console.log('user details',this.userDetails);
     
   }
   //run api tripsshow start
@@ -99,42 +110,41 @@ export class SingleTripComponent {
   //run api seats start
   seatsshow() {
     this.SeatsService.listseats().subscribe({
-      next: (seats: any) => {
-        this.seats = seats;
-        console.log(seats); //delete
-        // this.details = this.seats.find((seat: any) => seat.id == this.tripId);
+      next: (allseats: any) => {
+        this.allseats = allseats;
+        console.log(allseats); //delete
+        this.seats = this.allseats.filter(
+          (seat: any) => seat.trip_id == this.tripId
+        );
         console.log(this.seats); //delete
       },
     });
   }
   //run api tripsshow end
 
+  reserve(seat: any) {
+    const seatId = document.getElementById(seat.id);
 
+    console.log(seat);
 
+    if (this.selected.some((s) => s.id === seat.id)) {
+      console.log('Seat already selected');
+      this.selected = this.selected.filter((s) => s.id !== seat.id);
+      seatId?.classList.toggle('seat-blue');
+    } else {
+      this.selected.push(seat);
+      seatId?.classList.toggle('seat-blue');
+    }
 
-
-  changeColor() {
-    this.isReserved = !this.isReserved; // Toggle the value of isRed
+    console.log(this.selected); //delete
   }
-  //   reserve(bus:any){
+  calculateTotalPrice() {
+    this.totalPrice = this.selected.reduce(
+      (total) => total + this.details?.price,
+      0
+    );
+    console.log(this.totalPrice);
+  }
 
-  //     this.isBlue = bus.available;
-  //     this.isBlue = !this.isBlue;
-  //   this.trips.find((trip:any) => trip.id==bus.id)
-  // console.log(this.isBlue)
-  //     console.log(bus.id)
-  //   }
-
-  // buses: any[] = [
-  //   { "id": 1, "available": "true" },
-  //   { "id": 2, "available": "false" },
-  //   { "id": 3, "available": "true" },
-  //   { "id": 4, "available": "true" },
-  //   { "id": 5, "available": "false" },
-  //   { "id": 6, "available": "true" },
-  //   { "id": 7, "available": "false" },
-  //   { "id": 8, "available": "true" },
-  //   { "id": 9, "available": "true" }
-
-  // ];
+  btn1 = document.getElementById('submitButton');
 }
