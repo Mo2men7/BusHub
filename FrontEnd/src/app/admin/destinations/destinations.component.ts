@@ -14,21 +14,19 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   styleUrl: './destinations.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
 export class DestinationsComponent {
   destinations: any;
   newDist: any;
-  constructor(private destinationService: DestinationService,private cookie:CookieService,private router: Router) {}
-   token:any = this.cookie.get("token");
+  constructor(
+    private destinationService: DestinationService,
+    private cookie: CookieService,
+    private router: Router
+  ) {}
+  token: any = this.cookie.get('token');
   ngOnInit() {
-
-
-
-
     this.destinationService.listDestinations(this.token).subscribe(
       (res: any) => (this.destinations = res),
-      (error) =>  this.router.navigate(['/signin'])
-
+      (error) => console.log(error)
     );
   }
   sendDestination(form: any) {
@@ -49,17 +47,19 @@ export class DestinationsComponent {
   showMap(id: any) {
     const map = this.destinations[id].map;
     const icon = document.getElementById('lord');
-    console.log(icon)
-  
-    icon!.style.display="none"
-    const getFrame = document.getElementsByTagName('iframe')[document.getElementsByTagName('iframe').length-1];
+    console.log(icon);
+
+    icon!.style.display = 'none';
+    const getFrame =
+      document.getElementsByTagName('iframe')[
+        document.getElementsByTagName('iframe').length - 1
+      ];
     // console.log(getFrame)
     const getDivFrame = document.getElementById('iframeDiv');
     getDivFrame?.classList.remove('active');
     getDivFrame?.classList.remove('show');
-    getFrame.src=map;
+    getFrame.src = map;
     setTimeout(function () {
-
       getDivFrame?.classList.add('active');
       getDivFrame?.classList.add('show');
     }, 500);

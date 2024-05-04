@@ -12,6 +12,12 @@
 {
     background: var(--background);
 }
+#spinnerInAdmin
+{
+    width:100vw;
+    height:100vh;
+
+}
 #including {
     flex-grow: 1;
     position: relative;

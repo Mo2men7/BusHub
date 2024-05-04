@@ -12,12 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './destinations-page.component.css'
 })
 export class DestinationsPageComponent {
-  constructor(private destinationService:DestinationService,private cookie:CookieService){}
+  constructor(private destinationService:DestinationService){}
   destinations:any;
   ngOnInit() {
-    let token = this.cookie.get("token");
 
-    this.destinationService.getDestinations(token).subscribe(
+
+    this.destinationService.getDestinations().subscribe(
       (res)=>{this.destinations=res;
         console.log(res);
       }

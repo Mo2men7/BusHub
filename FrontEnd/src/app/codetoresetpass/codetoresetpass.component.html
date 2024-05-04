@@ -23,8 +23,8 @@
   </head>
   <body>
     <form (ngSubmit)="verifyCode()" method="post">
-      <div class="form-content">
-        <h1></h1>
+      <div class="form-content text-center">
+        <h1 class="text-center">Enter Your Recieved code</h1>
 
         <!-- Email -->
         <input
@@ -38,7 +38,9 @@
 
         <!-- Sign In Button -->
 
-        <button type="submit">Verify Code</button>
+        <button type="submit" class="btn btn-primary text-center mx-auto">
+          Verify Code
+        </button>
       </div>
     </form>
   </body>

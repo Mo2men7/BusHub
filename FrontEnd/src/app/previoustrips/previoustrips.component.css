@@ -1,10 +1,10 @@
-*{
+/* {
   box-sizing: border-box;
   }
 
   .AccPage .account-container {
     display: flex;
-    /* font-size: 0; */
+    /* font-size: 0;
     gap: 50px;
     margin:50px 10% ;
   }
@@ -68,7 +68,7 @@
   }
 
 
-  /* ////////////////////////////// */
+
   .AccPage .account-container .account-content {
     position: static;
     flex:1;
@@ -140,4 +140,25 @@
   a{
     text-decoration: none;
     color: #101010;
+  }
+
+   */
+   .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: #000D14;  /*underline1*/
+    --mat-tab-header-disabled-ripple-color: rgb(0, 255, 42);   /*notwork*/
+    --mat-tab-header-pagination-icon-color: rgb(192, 241, 255);  /*notwork*/
+    --mat-tab-header-inactive-label-text-color:rgb(242, 235, 235);  /*text*/
+    --mat-tab-header-active-label-text-color:#0d6efd;  /*text*/
+    --mat-tab-header-active-ripple-color: #000D14;  /*selected shade*/
+    --mat-tab-header-inactive-ripple-color: #000D14;  /*shade when hover*/
+    --mat-tab-header-inactive-focus-label-text-color: rgb(242, 235, 235);  /*text long press*/
+    --mat-tab-header-inactive-hover-label-text-color: #0d6efd;  /*text when hover*/
+    --mat-tab-header-active-focus-label-text-color: #0d6efd;  /*text*/
+    --mat-tab-header-active-hover-label-text-color: rgb(129, 126, 126);  /*text*/
+    --mat-tab-header-active-focus-indicator-color: #000D14(97, 116, 164);  /*log press under line*/
+    --mat-tab-header-active-hover-indicator-color: black;  /*text log press*/
+  }
+
+  .container-width{
+    width: 101%;
   }
