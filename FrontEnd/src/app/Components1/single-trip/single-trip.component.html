@@ -341,7 +341,7 @@
 
                 <!-- <button  class="btn btn-dark" matStepperNext>Show Selected seats</button> -->
                 <div class="btn-edit">
-                    <button mat-button matStepperNext (click)="calculateTotalPrice()">Next</button>
+                    <button matStepperNext class="btn btn-dark" (click)="calculateTotalPrice()  ">Next</button>
                 </div>
             </ng-template>
         </mat-step>
@@ -397,22 +397,22 @@
 
 
                 </div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+
+                <button class="btn btn-dark" matStepperNext>Next</button>
             </ng-template>
         </mat-step>
         <!-- ================================================= -->
         <mat-step>
-            
+
             <ng-template matStepLabel>Payment methods</ng-template>
             <div>
-               @if (totalPrice>0) {
+                @if (totalPrice>0) {
                 <app-payment [totalPrice]="totalPrice"> </app-payment>
-            }
+                }
             </div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button>Pay</button>
-       
+            <button class="btn btn-danger" (click)="cancle()">Cancle</button>
+
+
         </mat-step>
     </mat-stepper>
 
