@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 //navbar and footer
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FooterComponent } from '../../footer/footer.component';
@@ -28,7 +28,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PaymentComponent } from '../../payment/payment.component';
 import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
-
+import Swal from 'sweetalert2'; //sweet alert
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-single-trip',
   standalone: true,
@@ -47,6 +48,7 @@ import { CookieService } from 'ngx-cookie-service';
     CustomDatePipe,
     TimeFormatPipe,
     PaymentComponent,
+    MatProgressSpinnerModule
   ],
   templateUrl: './single-trip.component.html',
   styleUrl: './single-trip.component.css',
@@ -58,12 +60,11 @@ export class SingleTripComponent {
     private TripsshowService: TripsshowService, //api tripsshow
     private SeatsService: SeatsService, // api seats
     private matIconRegistry: MatIconRegistry,
-
+    private _Router: Router,
     private domSanitizer: DomSanitizer, //icons
     private UserService: UserService, //user service
-    private  cookie:CookieService,
-
-  ) { 
+    private cookie: CookieService
+  ) {
     this.matIconRegistry.addSvgIcon(
       'seat-icon',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -80,7 +81,7 @@ export class SingleTripComponent {
   tripId: any; //from url
   typeId: any; //from url
   totalPrice: any = 0;
-  userDetails:any;
+  userDetails?: any;
   ngOnInit(): void {
     this.tripId = this.activatedRoute.snapshot.params['id']; //from url
     this.typeId = this.activatedRoute.snapshot.params['typeid']; //from url
@@ -88,12 +89,14 @@ export class SingleTripComponent {
     console.log(this.typeId);
     this.showtrips(); //run api tripsshow
     this.seatsshow(); //run api seats
-    const token=this.cookie.get('token');
-    this.UserService.userProfile(token).subscribe(res=>{this.userDetails=res;
-      console.log('user details',this.userDetails);
-    }) //user service
+    // const token = this.cookie.get('token');
+    // this.UserService.userProfile(token).subscribe((res) => {
+    //   this.userDetails = res;
+    //   console.log('user details', this.userDetails);
+    // }); 
+    //user service
     // console.log('user details',this.userDetails);
-    
+    // console.log(this.btn1);
   }
   //run api tripsshow start
   showtrips() {
@@ -146,5 +149,25 @@ export class SingleTripComponent {
     console.log(this.totalPrice);
   }
 
-  btn1 = document.getElementById('submitButton');
+  cancle() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't to cancle your trip!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Cancle it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Cancled!',
+          text: 'Your trip has been cancled.',
+          icon: 'success',
+        }).then(() => {
+          this._Router.navigate(['/']);
+        });
+      }
+    });
+  }
 }

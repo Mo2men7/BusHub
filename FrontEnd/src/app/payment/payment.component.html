@@ -1,4 +1,10 @@
-<iframe [src]="iframe | safe" frameborder="0" style="height: 100vh;width:100%; "></iframe>
+@if(iframe){
+   <iframe [src]="iframe | safe" frameborder="0" style="height: 130vh;width:100%; "></iframe>
+}@else{
+<div class="m-auto p-auto" style="height: 200px; width: 200px; text-align: center;"><mat-spinner></mat-spinner></div>
+}
+
+
 <!-- <button (click)="showlast()">click</button> -->
 
 
