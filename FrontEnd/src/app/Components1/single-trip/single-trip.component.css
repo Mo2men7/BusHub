@@ -1,12 +1,24 @@
-@media only screen and (max-width: 780px) {
-
+@media only screen and (max-width: 700px) {
   .details-container {
-    width: 100%!important;
-    margin-top: 0px;
- 
+    width: 100% !important;
+    margin-top: 0px !important;
   }
   .details-container1 {
     padding-top: 0px;
+  }
+  .seats_3 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .seats-1 {
+    width: 100% !important;
+padding-left: 10px;
+padding-right: 10px;
+margin-bottom: 20px!important;
+  }
+  .btn-edit{
+
+    padding-left: 0px!important;
   }
 }
 
@@ -14,21 +26,10 @@ i {
   padding: 0;
   margin: 0;
 }
-.seat-blue {
-  color: blue;
-}
-.seat-red {
-  color: red;
-}
 
-.seat-gray {
-  /* color: gray; */
+.seat-gray1 {
   color: gray;
 }
-.seat-gray1 {
-    /* color: gray; */
-    color: gray;
-  }
 .mat-stepper-horizontal {
   margin-top: 8px;
 }
@@ -49,11 +50,11 @@ i {
   border-style: solid;
   width: 700px;
   background: var(--linearPrimaryAccent);
-  margin-top: 30px!important;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
-/* .details-container1{
-      padding-top: 30px;
-} */
+
 .text-bg1 {
   background: var(--secondary);
 }
@@ -61,16 +62,80 @@ i {
   height: 25px !important;
   width: 25px !important;
 }
-.clickable {
-  pointer-events: auto;
-  /* Add other styles as needed */
-  text-decoration: none;
-}
-:visited {
+
+/* seats css srart*/
+a {
   text-decoration: none !important;
-  /* color:orange; */
+  color: gray;
 }
+
 .not-clickable {
   pointer-events: none;
-  /* Add other styles as needed */
 }
+
+.seat-blue {
+  color: blue;
+}
+.seat-red {
+  color: red;
+}
+
+.seat-gray {
+  color: gray;
+}
+.seats-1 {
+  width: 55%;
+  border-style: solid;
+  border-radius: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* seats css end*/
+.img-size {
+  width: 20px;
+}
+.second-container {
+  width: 100%;
+}
+.font-edit {
+  font-size: 20px;
+  font-weight: bolder;
+}
+/* 3 seats */
+.seats_3 {
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+.container1 {
+  margin-top: 20px;
+}
+
+.img_location{
+margin: 0;
+  padding: 0;
+}
+
+.btn-edit{
+
+  padding-left: 270px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
