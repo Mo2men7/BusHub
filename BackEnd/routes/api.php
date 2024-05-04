@@ -72,7 +72,7 @@ Route::put('/seat/{id}', [Seat1Controller::class, 'update']);
 Route::delete('/seat/{id}', [Seat1Controller::class, 'destroy']);
 Route::post('/seats', [Seat1Controller::class, 'store']);
 
-//**********seats start************
+//**********seats end************
 
 // !Bus
 

@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <!--header-->
 <div>
-    <div class=" fs-5 m-auto details-container text-white text-center">
+    <div class=" fs-5  details-container text-white text-center">
 
         <div class="details-container1">
             <div class="badge text-bg1 text-capitalize fw-bold ">{{details?.type}}</div>
@@ -26,18 +26,11 @@
     </div>
 </div>
 
-<p>{{tripId}}</p>
-<a routerLink="/book-trip/{{tripId}}" (click)="changeColor()">
-    <mat-icon svgIcon="seat-icon" [ngClass]="{
-'seat-blue': isReserved
-,'seat-gray': !isReserved
-
-}"></mat-icon>
-</a>
+<!-- ======================================================================= -->
 <!-- =============================================================================== -->
 <!-- first -->
-<div>
-    <mat-stepper>
+<!-- <div>
+    <mat-stepper [linear]="true" #stepper>
         <mat-step label="Choose your seat">
             <h1 class="text-center">Choose Your Seat</h1>
             <div class=" text-center">
@@ -53,59 +46,158 @@
                     <span class="mx-2"><mat-icon svgIcon="seat-icon" class="seat-blue size"></mat-icon></span>
                     <span>Selected </span>
                 </div>
-            </div>
-            <!-- ======================================================================= -->
-            <!-- <div class="row">
-                @for(bus of buses ;track $index ){
-              
-                    <div class="col-2 ">
-                        <p>{{bus.id}}</p> <span>{{isBlue}}</span> -->
-                        <!-- <a (click)="reserve(bus)" routerLink="/book-trip/{{tripId}}" [ngClass]="{
-    'seat-gray': bus.available == 'true',
-    'clickable': bus.available == 'true',
-    'seat-blue': bus.available == 'true',
-    'seat-red': bus.available == 'false',
-    'not-clickable': bus.available == 'false'}"> -->
-                        <!-- <a (click)="reserve(bus)" routerLink="/book-trip/{{ tripId }}"
-                         [class.seat-red]="bus.available === 'false'"
-                            [class.not-clickable]="bus.available === 'false'" [ngClass]="{
-                                'seat-blue': isBlue ,
-                                'seat-gray': !isBlue && bus.available == 'true',
-                                'not-clickable': bus.available == 'false'
-                            }">
+            </div> -->
+<!-- ======================================================================= -->
+<!-- @if (typeId=='1' || typeId=='2') {
+            <div class="row m-auto seats-1">
+                @for(seat of seats ;track $index ){
+
+                @if(($index+1)% 4== 1 ){
+                <div class="col-2">
+
+                    <div class="">
+                        <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                            [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
                             <mat-icon svgIcon="seat-icon"></mat-icon>
                         </a>
-
-                    </div> -->
-<!-- 
-                    @if($index %2==1)
-                    {
-                    @if($index ==5){
-                    <div class="col-2"></div>
-                    <div class="col-2"><i class="bi bi-badge-wc-fill fs-1 "></i></div>
-                    <div class="col-2"><i class="bi bi-badge-wc-fill fs-1"></i></div>
-                    <div class="col-2"></div>
-                    }@else {<div class="col-2"></div>}
-
-                    }
-               
+                    </div>
+                    <div>
+                        {{ seat.seat_num }}
+                    </div>
+                </div>
                 }
-            </div> -->
+                @if(($index+1)% 4== 2 ){
+                <div class="col-2">
+                    <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                        [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                        <mat-icon svgIcon="seat-icon"></mat-icon>
+                    </a>
+                    <div> {{ seat.seat_num }}</div>
+
+                </div>
+                <div class="col-4"></div>
+                }
+
+                @if(($index+2)% 4== 0 ){
+                <div class="col-2">
+                    <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                        [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                        <mat-icon svgIcon="seat-icon"></mat-icon>
+                    </a>
+                    <div> {{ seat.seat_num }}</div>
+                </div>
+                }
+                @if(($index+1)% 4== 0 ){
+                <div class="col-2">
+                    <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                        [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                        <mat-icon svgIcon="seat-icon"></mat-icon>
+                    </a>
+                    <div> {{ seat.seat_num }}</div>
+                </div>
+                }
+
+                }
+            </div>
+
+            }@else{
+            <div class="row">
+                @for(seat of seats ;track $index ){
+                @if(($index+1)% 2== 0 ){
+                <div class="col-2">
+                    <div class="">
+                        <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                            [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                            <mat-icon svgIcon="seat-icon"></mat-icon>
+                        </a>
+                    </div>
+                    <div>
+                        {{ seat.seat_num }}
+                    </div>
+                </div>
+                }
+                @if(($index+1)% 2 != 0 ){
+                <div class="col-2">
+                    <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                        [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                        <mat-icon svgIcon="seat-icon"></mat-icon>
+                    </a>
+                    <div> {{ seat.seat_num }}</div>
+
+                </div>
+                <div class="col-8"></div>
+                }
 
 
 
 
-            <!-- <div>
-                <button class="btn btn-dark" matStepperNext>Next</button>
-            </div>-->
-        
-        
-        
-<!-- ================================================================================== -->
+                }
+            </div>
+            }
 
-<!-- class="row row-cols-4" -->
+            <button (click)="calculateTotalPrice()" class="btn btn-dark" matStepperNext>Show Selected seats</button>
 
 
+        </mat-step> -->
+
+
+<!-- ======================================================================= -->
+<!-- =============================================================================== -->
+<!-- second -->
+<!-- <mat-step label="My trip">
+            <div class=" row second-container">
+
+                <div class="col-7">
+                    <i class="bi bi-circle text-primary "></i>
+                    <span class="text-capitalize">
+                        {{ details?.from_location}}
+                    </span>
+                </div>
+                <div class="col-5 text-end">
+                    {{details?.time|timeFormat}}
+                </div>
+
+                <div class="col-12">
+                    <i class="bi bi-stopwatch text-success"></i>
+                    <span>
+                        Seats are reserved for a minute
+                    </span>
+                </div>
+
+
+                <div class="col-12">
+                    <i class="bi bi-geo-alt text-primary"></i>
+                    <span>
+                        {{details?.to_location}}
+                    </span>
+                </div>
+
+
+                <div class="col-9">
+                    Departure date:
+
+                </div>
+                <div class="col-3 text-end">
+                    {{details?.date|customDate}}
+                </div>
+
+
+                @for(select of selected ;track $index){
+                <div class="col-9">seat number {{select.seat_num}}</div>
+                <div class="col-3 text-end">{{details?.type}}</div>
+                }
+
+                <div class="col-9 font-edit">Price</div>
+                <div class="col-3 text-end font-edit">{{totalPrice}} LE</div>
+
+
+
+
+
+                <div>
+                    <button  class="btn btn-dark me-2" matStepperPrevious>Edit selected seats</button>
+                    <button class="btn btn-dark" matStepperNext>Pay</button>
+                </div>
 
 
 
@@ -117,29 +209,214 @@
 
 
 
-        </mat-step> 
+
+            </div>
+        </mat-step> -->
+<!-- ======================================================================= -->
+<!-- =============================================================================== -->
+<!-- third -->
+<!-- <mat-step label="Payment methods">
 
 
-        <!-- =================================================================================== -->
-        <mat-step label="Payment methods">
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+
+
             <div>
                 <button class="btn btn-dark me-2" matStepperPrevious>Back</button>
-                <button class="btn btn-dark" matStepperNext>Pay</button>
+                <button class="btn btn-dark">Pay</button>
             </div>
-        </mat-step>
-        <mat-step label="Reservation completed">
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
         </mat-step>
 
     </mat-stepper>
+
+
+</div> -->
+<!-- ========================================================================= -->
+<!-- steps to book trip -->
+<div class="container1">
+    <mat-stepper orientation="vertical">
+        <mat-step class="abc">
+            <ng-template matStepLabel>Choose Your Seat</ng-template>
+            <ng-template matStepContent>
+                <!-- Booked  Available Selected -->
+                <div class=" text-center row seats_3">
+                    <div class="col-4">
+                        <span class="mx-2"><mat-icon svgIcon="seat-icon" class="seat-red size "></mat-icon></span>
+                        <span>Booked</span>
+                    </div>
+                    <div class="col-4">
+                        <span class="mx-2"><mat-icon svgIcon="seat-icon" class="seat-gray size"></mat-icon></span>
+                        <span>Available</span>
+                    </div>
+                    <div class="col-4">
+                        <span class="mx-2"><mat-icon svgIcon="seat-icon" class="seat-blue size"></mat-icon></span>
+                        <span>Selected </span>
+                    </div>
+                </div>
+                <!-- ======================================================================= -->
+                @if (typeId=='1' || typeId=='2') {
+                <div class="row  seats-1 text-center ">
+                    @for(seat of seats ;track $index ){
+
+                    @if(($index+1)% 4== 1 ){
+                    <div class="col-2 img_location">
+
+                        <div class="">
+                            <a routerLink="/book-trip/{{tripId}}/{{typeId}}"
+                                [class.not-clickable]="seat.reserved != '0'" [class.seat-red]="seat.reserved != '0'"
+                                (click)="reserve(seat)" id="{{seat.id}}">
+                                <mat-icon svgIcon="seat-icon"></mat-icon>
+                            </a>
+                        </div>
+                        <div>
+                            {{ seat.seat_num }}
+                        </div>
+                    </div>
+                    }
+                    @if(($index+1)% 4== 2 ){
+                    <div class="col-2 img_location">
+                        <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                            [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                            <mat-icon svgIcon="seat-icon"></mat-icon>
+                        </a>
+                        <div> {{ seat.seat_num }}</div>
+
+                    </div>
+                    <div class="col-4"></div>
+                    }
+
+                    @if(($index+2)% 4== 0 ){
+                    <div class="col-2 img_location">
+                        <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                            [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                            <mat-icon svgIcon="seat-icon"></mat-icon>
+                        </a>
+                        <div> {{ seat.seat_num }}</div>
+                    </div>
+                    }
+                    @if(($index+1)% 4== 0 ){
+                    <div class="col-2 img_location">
+                        <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                            [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                            <mat-icon svgIcon="seat-icon"></mat-icon>
+                        </a>
+                        <div> {{ seat.seat_num }}</div>
+                    </div>
+                    }
+
+                    }
+                </div>
+
+                }@else{
+                <div class="row">
+                    @for(seat of seats ;track $index ){
+                    @if(($index+1)% 2== 0 ){
+                    <div class="col-2 img_location">
+                        <div class="">
+                            <a routerLink="/book-trip/{{tripId}}/{{typeId}}"
+                                [class.not-clickable]="seat.reserved != '0'" [class.seat-red]="seat.reserved != '0'"
+                                (click)="reserve(seat)" id="{{seat.id}}">
+                                <mat-icon svgIcon="seat-icon"></mat-icon>
+                            </a>
+                        </div>
+                        <div>
+                            {{ seat.seat_num }}
+                        </div>
+                    </div>
+                    }
+                    @if(($index+1)% 2 != 0 ){
+                    <div class="col-2 img_location">
+                        <a routerLink="/book-trip/{{tripId}}/{{typeId}}" [class.not-clickable]="seat.reserved != '0'"
+                            [class.seat-red]="seat.reserved != '0'" (click)="reserve(seat)" id="{{seat.id}}">
+                            <mat-icon svgIcon="seat-icon"></mat-icon>
+                        </a>
+                        <div> {{ seat.seat_num }}</div>
+
+                    </div>
+                    <div class="col-8"></div>
+                    }
+
+                    }
+                </div>
+                }
+
+                <!-- <button  class="btn btn-dark" matStepperNext>Show Selected seats</button> -->
+                <div class="btn-edit">
+                    <button mat-button matStepperNext (click)="calculateTotalPrice()">Next</button>
+                </div>
+            </ng-template>
+        </mat-step>
+        <!-- ============================================================ -->
+        <mat-step>
+            <ng-template matStepLabel>My trip</ng-template>
+            <ng-template matStepContent>
+                <div class=" row second-container">
+
+                    <div class="col-7">
+                        <i class="bi bi-circle text-primary "></i>
+                        <span class="text-capitalize">
+                            {{ details?.from_location}}
+                        </span>
+                    </div>
+                    <div class="col-5 text-end">
+                        {{details?.time|timeFormat}}
+                    </div>
+
+                    <div class="col-12">
+                        <i class="bi bi-stopwatch text-success"></i>
+                        <span>
+                            Seats are reserved for a minute
+                        </span>
+                    </div>
+
+
+                    <div class="col-12">
+                        <i class="bi bi-geo-alt text-primary"></i>
+                        <span>
+                            {{details?.to_location}}
+                        </span>
+                    </div>
+
+
+                    <div class="col-7">
+                        Departure date:
+
+                    </div>
+                    <div class="col-5 text-end">
+                        {{details?.date|customDate}}
+                    </div>
+
+
+                    @for(select of selected ;track $index){
+                    <div class="col-9">seat number {{select.seat_num}}</div>
+                    <div class="col-3 text-end">{{details?.type}}</div>
+                    }
+
+                    <div class="col-9 font-edit">Price</div>
+                    <div class="col-3 text-end font-edit">{{totalPrice}} LE</div>
+
+
+
+                </div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </ng-template>
+        </mat-step>
+        <!-- ================================================= -->
+        <mat-step>
+            
+            <ng-template matStepLabel>Payment methods</ng-template>
+            <div>
+               @if (totalPrice>0) {
+                <app-payment [totalPrice]="totalPrice"> </app-payment>
+            }
+            </div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button>Pay</button>
+       
+        </mat-step>
+    </mat-stepper>
+
 </div>
-
-
-
-
-
-
 
 
 
@@ -160,4 +437,3 @@
 
 <!-- footer -->
 <app-footer></app-footer>
-

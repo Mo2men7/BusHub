@@ -122,7 +122,7 @@ export const routes: Routes = [
     title: 'trips',
   },
   {
-    path: 'book-trip/:id',
+    path: 'book-trip/:id/:typeid',
     component: SingleTripComponent,
     title: 'book trip',
   },
