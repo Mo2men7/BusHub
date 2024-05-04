@@ -127,9 +127,19 @@ margin: 0;
 }
 
 
+.spinner_edit{
+  height: 300px; 
+  width: 200px;
+   text-align: center;
+    padding-top: 100px;
+    /* margin-bottom: 100px; */
 
+}
 
-
+.cancle_btn{
+  margin-top: -150px;
+  text-align: center; 
+}
 
 
 
