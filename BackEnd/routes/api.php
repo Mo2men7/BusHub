@@ -87,15 +87,26 @@ Route::delete('/admin/bus/{id}', [BusAdminController::class, 'destroy']);
 // !end Bus
 // !Destination
 // ? to get all destinations in DB
-Route::get('/admin/destinations', function () {
-    return  DestinationAdminResource::collection(Destination::all());
-})->middleware("auth:sanctum")->middleware("isAdmin");
+Route::get('/admin/destinations', [DestinationAdminController::class, 'index'])->middleware("auth:sanctum")->middleware("isAdmin");
 // ? to get a single destination with $id in DB
 Route::get('/admin/destination/{id}', function ($id) {
     return new DestinationAdminResource(Destination::findOrFail($id));
 });
 // ? to add a single destination in DB
 Route::post('/admin/destinations', [DestinationAdminController::class, 'store']);
+
+Route::get('/admin/images/pic/{filename}', function ($filename)
+{
+    $file = \Illuminate\Support\Facades\Storage::get("/pic/".$filename);
+
+    return response($file, 200)->header('Content-Type', 'image/jpeg');
+});
+Route::get('/admin/images/flag/{filename}', function ($filename)
+{
+    $file = \Illuminate\Support\Facades\Storage::get("/flag/".$filename);
+
+    return response($file, 200)->header('Content-Type', 'image/jpeg');
+});
 // ? to update a single destination with $id in DB
 Route::put('/admin/destination/{id}', [DestinationAdminController::class, 'update']);
 // ? to delete a single destination with $id in DB
