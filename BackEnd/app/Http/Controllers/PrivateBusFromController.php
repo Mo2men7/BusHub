@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrivateBusFrom;
+use App\Notifications\PBRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Notification;
+use Illuminate\Support\Facades\Auth;
 
 class PrivateBusFromController extends Controller
 {
@@ -23,7 +26,7 @@ class PrivateBusFromController extends Controller
     public function store(Request $request)
     {
         $privateBus = new PrivateBusFrom();
-        $privateBus->user_id = "1"; //virtual
+        $privateBus->user_id = Auth::user()->id; //virtual
         $privateBus->date_of_request = "2024-1-2"; //virtual
         $privateBus->date_of_response = "2024-1-2"; //virtual
         $privateBus->name = $request->input('name');
@@ -35,6 +38,11 @@ class PrivateBusFromController extends Controller
         $privateBus->departure_date = $request->input('departure_date');
         $privateBus->return = $request->input('return');
         $privateBus->save();
+        //////////////
+        $user = \App\Models\User::get();
+        $PrivateBusFrom = PrivateBusFrom::latest()->first();
+        Notification::send($user, new PBRequest($PrivateBusFrom));
+        //////////////
         return response()->json([
             "message" => "Form Data Saved Successfully",
         ], 201);

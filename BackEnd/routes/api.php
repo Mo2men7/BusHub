@@ -177,3 +177,9 @@ Route::get("payment", function (Request $request) {
     //   ->header('Content-Type', 'text/plain');
     return redirect()->intended("http://localhost:4200/ticket/?" . $query);
 });
+
+
+///////////////////////////Notifications Admin////////////////////////////////
+use App\Http\Controllers\NotificationController;
+Route::get('/notifications', [NotificationController::class, 'index']);
+Route::put('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead']);
