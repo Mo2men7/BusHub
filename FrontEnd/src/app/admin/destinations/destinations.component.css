@@ -149,6 +149,9 @@ body {
         background-position: 0% 50%;
     }
 }
+.mapAnchor{
+    display : none;
+}
 @media only screen and (max-width: 600px) {
     
     
@@ -175,5 +178,8 @@ body {
         opacity: 0.5;
         /* text-shadow: 0 0 5px var(--text); */
         /* background-color: var(--primary); */
+    }
+    .mapAnchor{
+        display : block;
     }
   }
