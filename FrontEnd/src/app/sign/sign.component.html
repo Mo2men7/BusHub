@@ -25,88 +25,147 @@
     <div class="container">
       <div class="form-container sign-up-container">
         <!-- Sign Up Form -->
-        <form (submit)="onSubmit()" enctype="multipart/form-data">
+        <form
+          (submit)="onSubmit()"
+          [formGroup]="registerForm"
+          enctype="multipart/form-data"
+        >
           <div class="form-content">
             <!-- Organization Name and Email -->
 
             <div class="form-floating mb-3">
               <input
-                [(ngModel)]="formData.username"
                 type="text"
                 name="username"
-                placeholder="User Name"
-                id="floatingInput"
+                placeholder="UserName"
+                id="username"
                 class="form-control"
                 required
+                formControlName="username"
               />
-              <label for="floatingInput">User Name</label>
+              <label for="username">User Name</label>
             </div>
+            @if (registerForm.controls["username"].touched &&
+            registerForm.controls["username"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["username"].errors?.["required"]) {
+              <small>Name is required</small>
+              } @if (registerForm.controls["username"].errors?.["minlength"]) {
+              <small>Name must be at least 4 digits</small>
+              }
+            </div>
+            }
 
             <div class="form-floating mb-3">
               <input
                 type="email"
-                name="email"
-                [(ngModel)]="formData.email"
                 placeholder="Email"
-                id="floatingInput"
+                id="email"
                 class="form-control"
+                formControlName="email"
                 required
               />
-              <label for="floatingInput">Email address</label>
+              <label for="email">Email address</label>
             </div>
+            @if (registerForm.controls["email"].touched &&
+            registerForm.controls["email"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["email"].errors?.["required"]) {
+              <small>Email is required</small>
+              } @if (registerForm.controls["email"].errors?.["email"]) {
+              <small>field must be email</small>
+              }
+            </div>
+            }
 
             <!-- Password -->
             <div class="form-floating mb-3">
               <input
-                [(ngModel)]="formData.password"
                 type="password"
-                name="password"
                 placeholder="Password"
-                id="floatingInput"
+                id="password"
                 class="form-control"
+                formControlName="password"
                 required
               />
-              <label for="floatingInput">Password</label>
+              <label for="password">Password</label>
             </div>
+            @if (registerForm.controls["password"].touched &&
+            registerForm.controls["password"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["password"].errors?.["required"]) {
+              <small>Password is required</small>
+              } @if (registerForm.controls["password"].errors?.["minlength"]) {
+              <small>Password must be at least 8 digits</small>
+              }
+            </div>
+            }
 
             <div class="form-floating mb-3">
               <input
                 type="password"
-                [(ngModel)]="formData.password_confirmation"
-                name="password_confirmation"
                 placeholder="Password Confirmation"
-                id="floatingInput"
+                id="password_confirmation"
                 class="form-control"
+                formControlName="password_confirmation"
                 required
               />
-              <label for="floatingInput">Password Confirmation</label>
+              <label for="password_confirmation">Password Confirmation</label>
             </div>
-            <!-- Gender-->
-            <div class="d-flex gap-3">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  [(ngModel)]="formData.gender"
-                  name="gender"
-                  placeholder="Gender"
-                  id="floatingInput"
-                  class="form-control"
-                  required
-                />
-                <label for="floatingInput">Gender</label>
-              </div>
+            @if(
+            registerForm.errors?.['mismatch']&&registerForm.controls["password_confirmation"].touched)
+            {
+            <div class="form-text text-danger error">
+              <small>Password Confirmation is not match</small>
+            </div>
+            }
 
-              <div class="form-floating mb-3">
-                <input
-                  type="date"
-                  name="birth_date"
-                  [(ngModel)]="formData.birth_date"
-                  placeholder="Birth Of Date"
-                  id="floatingInput"
-                  class="form-control"
-                  required
-                />
-                <label for="floatingInput">Birth Of Date</label>
+            <!-- registerForm.errors?.mismatch && (registerForm.controls['password'].dirty || registerForm.controls['confirmPassword'].dirty -->
+            <!-- Gender-->
+            <div class="d-flex gap-1">
+              <div class="gender flex-1 w-50 m-0">
+                <div class="form-floating mb-3 m-0">
+                  <input
+                    type="text"
+                    placeholder="Gender"
+                    id="gender"
+                    class="form-control"
+                    formControlName="gender"
+                    required
+                  />
+                  <label for="gender">Gender</label>
+                </div>
+                @if (registerForm.controls["gender"].touched &&
+                registerForm.controls["gender"].invalid) {
+                <div class="form-text text-danger error">
+                  @if (registerForm.controls["gender"].errors?.["required"]) {
+                  <small>Gender is required</small>
+                  }
+                </div>
+                }
+              </div>
+              <div class="date flex-1 w-50 m-0">
+                <div class="form-floating mb-3 m-0">
+                  <input
+                    type="date"
+                    name="birth_date"
+                    placeholder="Birth Of Date"
+                    id="birth_date"
+                    class="form-control"
+                    required
+                    formControlName="birth_date"
+                  />
+                  <label for="birth_date">Birth Of Date</label>
+                </div>
+                @if (registerForm.controls["birth_date"].touched &&
+                registerForm.controls["birth_date"].invalid) {
+                <div class="form-text text-danger error">
+                  @if (registerForm.controls["birth_date"].errors?.["required"])
+                  {
+                  <small>Birth Of Date is required</small>
+                  }
+                </div>
+                }
               </div>
             </div>
             <!--Birth Of Date -->
@@ -116,65 +175,106 @@
               <input
                 type="text"
                 name="city"
-                [(ngModel)]="formData.city"
                 placeholder="City"
-                id="floatingInput"
+                id="city"
                 class="form-control"
+                formControlName="city"
                 required
               />
-              <label for="floatingInput">City</label>
+              <label for="city">City</label>
             </div>
+            @if (registerForm.controls["city"].touched &&
+            registerForm.controls["city"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["city"].errors?.["required"]) {
+              <small>City is required</small>
+              }
+            </div>
+            }
 
             <div class="form-floating mb-3">
               <input
                 type="text"
                 name="phone"
-                [(ngModel)]="formData.phone"
                 placeholder="Phone"
-                id="floatingInput"
+                id="phone"
                 class="form-control"
+                formControlName="phone"
                 required
               />
-              <label for="floatingInput">Phone</label>
+              <label for="phone">Phone</label>
             </div>
+            @if (registerForm.controls["phone"].touched &&
+            registerForm.controls["phone"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["phone"].errors?.["required"]) {
+              <small>Phone is required</small>
+              }
+            </div>
+            }
 
             <!-- Sign Up Button -->
-            <button type="submit" name="register">Sign Up</button>
+            <button
+              type="submit"
+              name="register"
+              [disabled]="registerForm.invalid"
+            >
+              Sign Up
+            </button>
           </div>
         </form>
       </div>
 
       <div class="form-container sign-in-container">
         <!-- Sign In Form -->
-        <form (ngSubmit)="onLogin()" method="post">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" method="post">
           <div class="form-content">
             <!-- Email -->
             <div class="form-floating mb-3">
               <input
                 type="email"
-                [(ngModel)]="loginData.email"
                 placeholder="Type your email"
                 name="email"
-                id="floatingInput"
+                id="loginemail"
                 class="form-control"
+                formControlName="email"
                 required
               />
-              <label for="floatingInput">Email</label>
+              <label for="loginemail">Email</label>
             </div>
+            @if (loginForm.controls["email"].touched &&
+            loginForm.controls["email"].invalid) {
+            <div class="form-text text-danger error">
+              @if (loginForm.controls["email"].errors?.["required"]) {
+              <small>this field is required</small>
+              } @if (loginForm.controls["email"].errors?.["email"]) {
+              <small>this field is email</small>
+              }
+            </div>
+            }
 
             <!-- Password -->
             <div class="form-floating mb-3">
               <input
                 type="password"
-                [(ngModel)]="loginData.password"
                 placeholder="Type your password"
-                name="password"
-                id="floatingInput"
+                id="loginpassword"
                 class="form-control"
+                formControlName="password"
                 required
               />
-              <label for="floatingInput">Password</label>
+              <label for="loginpassword">Password</label>
             </div>
+            @if (loginForm.controls["password"].touched &&
+            loginForm.controls["password"].invalid) {
+            <div class="form-text text-danger error">
+              @if (loginForm.controls["password"].errors?.["required"]) {
+              <small>Password is required</small>
+              } @if (loginForm.controls["password"].errors?.["minlength"]) {
+              <small>Password must be at least 8 digits</small>
+              }
+            </div>
+            }
 
             <!-- Sign In Button -->
             <button class="signin" type="submit">Sign In</button>

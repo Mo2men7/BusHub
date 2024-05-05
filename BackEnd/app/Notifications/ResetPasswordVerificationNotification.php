@@ -22,11 +22,11 @@ class ResetPasswordVerificationNotification extends Notification
      */
     public function __construct()
     {
-        $this->message = 'use the below code for resetting your password';
-        $this->subject = 'Verification Needed';
-        $this->fromEmail = 'momohoho2224@gmail.com';
-        $this->mailer = "smtp";
-        $this->otp = new Otp;
+        //     $this->message = 'use the below code for resetting your password';
+        //     $this->subject = 'Verification Needed';
+        //     $this->fromEmail = 'momohoho2224@gmail.com';
+        //     $this->mailer = "smtp";
+        //     $this->otp = new Otp;
     }
 
     /**
@@ -44,13 +44,18 @@ class ResetPasswordVerificationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $otp = $this->otp->generate($notifiable->email, "numeric", 6, 30);
+        // $otp = $this->otp->generate($notifiable->email, "numeric", 6, 30);
+        $otp = (new Otp)->generate($notifiable->email, 'numeric', 6, 30);
+
         return (new MailMessage)
             ->mailer('smtp')
             ->subject($this->subject)
-            ->greeting('hello sir')
-            ->line($this->message)
-            ->line('code:' . $otp->token);
+
+            ->markdown('reset_password_verification', [
+                'subject' => 'Verification Needed',
+                'message' => 'Use the below code for resetting your password',
+                'otp' => $otp->token,
+            ]);
     }
 
     /**

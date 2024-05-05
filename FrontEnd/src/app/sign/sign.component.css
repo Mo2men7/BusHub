@@ -146,6 +146,11 @@ form {
   width: 100%;
 }
 
+.form-content .error{
+  margin-top: -15px;
+
+  margin-bottom: 11px;
+}
 
 input {
 
@@ -175,7 +180,7 @@ input:focus{
   width: 70%;
   max-width: 100%;
   margin: auto;
-  min-height: 80%;
+  min-height: 90%;
 
 }
 
