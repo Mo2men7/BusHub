@@ -1,4 +1,14 @@
 /* background */
+.spinner_edit{
+  height: 300px; 
+  width: 200px;
+   text-align: center;
+    padding-top: 100px;
+    /* margin-bottom: 100px; */
+
+}
+
+
 .bg-1{
   background-color: var(--background);
   background-color: black;

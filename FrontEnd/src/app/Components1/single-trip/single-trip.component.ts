@@ -152,7 +152,7 @@ export class SingleTripComponent {
   cancle() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't to cancle your trip!",
+      text: "Do you really want to cancel your trip ?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
