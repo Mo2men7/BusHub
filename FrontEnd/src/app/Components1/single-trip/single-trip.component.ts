@@ -93,7 +93,7 @@ export class SingleTripComponent {
     // this.UserService.userProfile(token).subscribe((res) => {
     //   this.userDetails = res;
     //   console.log('user details', this.userDetails);
-    // }); 
+    // });
     //user service
     // console.log('user details',this.userDetails);
     // console.log(this.btn1);

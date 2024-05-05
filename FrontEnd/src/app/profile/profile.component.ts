@@ -21,12 +21,19 @@ import { MatTabsModule } from '@angular/material/tabs';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  constructor(private userservice:UserService ,private activatedRoute:ActivatedRoute,private cookie:CookieService) { }
+  constructor(private userservice: UserService, private router: Router, private activatedRoute: ActivatedRoute, private cookie: CookieService) {
+
+    if(!this.token) {
+      this.router.navigate(["/signin"]);
+    }
+  }
   userId: any;
   userData: any;
   token = this.cookie.get("token");
 
   ngOnInit(): void {
+
+
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
     console.log(this.token)
