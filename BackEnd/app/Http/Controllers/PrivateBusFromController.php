@@ -38,11 +38,12 @@ class PrivateBusFromController extends Controller
         $privateBus->departure_date = $request->input('departure_date');
         $privateBus->return = $request->input('return');
         $privateBus->save();
-        //////////////
-        $user = \App\Models\User::get();
+        /////////////// Start notification storing ///////////////
+        // $user = \App\Models\User::get(); //to send to all users, (sending users number times where)
+        $user = \App\Models\User::where('role', 'admin')->first(); //to send to user with role admin
         $PrivateBusFrom = PrivateBusFrom::latest()->first();
         Notification::send($user, new PBRequest($PrivateBusFrom));
-        //////////////
+        /////////////// End notification storing ///////////////
         return response()->json([
             "message" => "Form Data Saved Successfully",
         ], 201);
