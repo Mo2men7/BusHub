@@ -18,6 +18,7 @@ export class NexttripsComponent {
   userData: any;
   nextTrips: any;
   token = this.cookie.get("token");
+  isarray: any;
   ngOnInit(): void {
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
@@ -34,8 +35,15 @@ export class NexttripsComponent {
       res => {
         this.nextTrips = res;
         console.log(this.nextTrips);
+        // this.isarray = this.isArrayEmpty(this.nextTrips);
+        // console.log(this.isarray)
+
       }
     )
   }
+
+  // isArrayEmpty(arr: any[]): boolean {
+  //   return arr.length === 0;
+  // }
 
 }

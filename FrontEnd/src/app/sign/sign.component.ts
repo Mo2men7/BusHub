@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ElementRef, Renderer2 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { NgModel } from '@angular/forms';
 import { UserService } from '../services/user.service';
@@ -16,12 +19,37 @@ import { from } from 'rxjs';
 
   selector: 'app-sign',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,GoogleSigninButtonModule],
+  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink,GoogleSigninButtonModule,ReactiveFormsModule],
   templateUrl: './sign.component.html',
   styleUrl: './sign.component.css'
 })
 export class SignComponent {
-  constructor(private elRef: ElementRef, private renderer: Renderer2, private userservice : UserService,private router: Router,private cookie:CookieService,private authService: SocialAuthService) { }
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+  constructor(private fb:FormBuilder,private elRef: ElementRef, private renderer: Renderer2, private userservice: UserService, private router: Router, private cookie: CookieService, private authService: SocialAuthService) {
+
+    this.loginForm = this.fb.group({
+      email: ["", [Validators.email,Validators.required]],
+      password:["",[Validators.minLength(8)]]
+    })
+    this.registerForm = this.fb.group({
+      email: ["", [Validators.email,Validators.required]],
+      password: ["", [Validators.minLength(8),Validators.required]],
+      username: ["", [Validators.required, Validators.minLength(4)]],
+      gender: ["", [Validators.required]],
+      city: ["", [Validators.required]],
+      phone:["",[Validators.required]],
+      birth_date: ["", [Validators.required]],
+      password_confirmation:["",[Validators.required]],
+    }, {
+      validators: this.passwordMatchValidator
+
+    })
+
+  }
+  passwordMatchValidator(control: AbstractControl) {
+    return control.get('password')?.value === control.get('password_confirmation')?.value? null : { 'mismatch': true };
+  }
   user: any;
   loggedIn: any;
   ngOnInit(): void {
@@ -108,28 +136,33 @@ export class SignComponent {
   // }
 
 
-  formData = {
-    // Initialize form data here
+  // formData = {
+  //   // Initialize form data here
 
-    email: '',
-    username: "",
-    gender: "",
-    city: "",
-    phone: "",
-    birth_date:"",
-    password:"",
-    password_confirmation:""
-  };
+  //   email: '',
+  //   username: "",
+  //   gender: "",
+  //   city: "",
+  //   phone: "",
+  //   birth_date:"",
+  //   password:"",
+  //   password_confirmation:""
+  // };
 
 
   loginResponse: any;
+  gender: any;
   onSubmit() {
+    console.log(this.registerForm.value)
+    // console.log(this.formData)
+
     // Call the sendData method of DataService to send the form data
-    const formDataJson: any = JSON.stringify(this.formData);
+    const formDataJson: any = JSON.stringify(this.registerForm.value);
 
     // console.log(formDataJson);
 
-    this.userservice.sendData(this.formData).subscribe(
+    this.userservice.sendData(this.registerForm.value)
+    .subscribe(
       response => {
         this.loginResponse = response;
 
@@ -139,21 +172,22 @@ export class SignComponent {
         this.router.navigate(['/profile']);
 
         // Optionally, reset the form after successful submission
-        this.formData = {
-          email: '',
-          username: "",
-          gender: "",
-          city: "",
-          phone: "",
-          birth_date:"",
-          password:"",
-          password_confirmation:""
-        };
-      },
-      error => {
-        console.error('Error sending data:', error);
+        // this.formData = {
+        //   email: '',
+        //   username: "",
+        //   gender: "",
+        //   city: "",
+        //   phone: "",
+        //   birth_date: "",
+        //   password: "",
+        //   password_confirmation: ""
+        // };
       }
-    );
+      ,
+      error => {
+        console.error('Error sending data:', error.error.errors);
+      }
+    )
 
   }
 
@@ -167,11 +201,11 @@ export class SignComponent {
 
   onLogin() {
     const formDataJson: any = JSON.stringify(this.loginData);
-    this.userservice.login(formDataJson).subscribe(
+    this.userservice.login(this.loginForm.value).subscribe(
       (response:any) => {
 
         this.loginResponse = response;
-        const userid = this.loginResponse["user"].id
+        console.log(this.loginForm.value);
         this.cookie.set("token", this.loginResponse["token"]);
         console.log(response.user.role)
         if (response.user.role=="user")
@@ -186,7 +220,7 @@ export class SignComponent {
         };
       },
       error => {
-        console.error('Error sending data:', error);
+        console.error('Error sending data:', error.message);
       }
     );
 

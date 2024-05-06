@@ -7,7 +7,7 @@ import { FooterComponent } from '../../footer/footer.component';
 import { CustomDatePipe } from '../../custom-date.pipe';
 import { TimeFormatPipe } from '../../time-format.pipe';
 import { ActivatedRoute } from '@angular/router';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -21,6 +21,7 @@ import { ActivatedRoute } from '@angular/router';
     FooterComponent,
     CustomDatePipe,
     TimeFormatPipe,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './tripsshow.component.html',
   styleUrl: './tripsshow.component.css'

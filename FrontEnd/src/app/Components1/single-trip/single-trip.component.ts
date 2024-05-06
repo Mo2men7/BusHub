@@ -93,7 +93,7 @@ export class SingleTripComponent {
     // this.UserService.userProfile(token).subscribe((res) => {
     //   this.userDetails = res;
     //   console.log('user details', this.userDetails);
-    // }); 
+    // });
     //user service
     // console.log('user details',this.userDetails);
     // console.log(this.btn1);
@@ -152,7 +152,7 @@ export class SingleTripComponent {
   cancle() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't to cancle your trip!",
+      text: "Do you really want to cancel your trip ?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

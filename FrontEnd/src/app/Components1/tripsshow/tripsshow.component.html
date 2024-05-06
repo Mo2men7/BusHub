@@ -1,6 +1,7 @@
 <!-- navbar -->
 <app-navbar></app-navbar>
 <!-- container -->
+@if(trips){
 <div class="bg-1">
 
 
@@ -92,5 +93,12 @@
 <!-- end of trips -->
 </div>
 <!-- end of container -->
+}@else {
+
+    <div class="m-auto spinner_edit">
+        <mat-spinner></mat-spinner>
+    </div>
+
+}
 <!-- footer -->
 <app-footer></app-footer>
