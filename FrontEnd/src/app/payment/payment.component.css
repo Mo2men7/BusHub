@@ -1,0 +1,9 @@
+.iframe_edit{
+    height: 130vh ;
+     width: 100%;
+}
+@media only screen and (max-width: 700px) {
+    .iframe_edit{
+        height: 140vh !important;
+    }
+}

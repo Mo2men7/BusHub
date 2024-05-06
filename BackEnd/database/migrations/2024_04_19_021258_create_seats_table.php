@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('seat_num');
             $table->integer('reserved');
             $table->timestamps();
-            $table->unique(['trip_id','seat_num']);
+            // $table->unique(['trip_id','seat_num']);
         });
     }
 

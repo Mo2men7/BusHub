@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+//service start
+import { CookieService } from 'ngx-cookie-service'; //cookie
+import { UserService } from '../services/user.service'; //user service
+import { SeatsService } from '../services1/seats.service'; // api seats
+//service end
+
 @Component({
   selector: 'app-ticket',
   standalone: true,
@@ -8,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './ticket.component.css',
 })
 export class TicketComponent {
+  // variables
   lastResult: any = {
     id: '',
     amount_cents: '',
@@ -17,11 +24,24 @@ export class TicketComponent {
     updated_at: '',
     source_data_type: '',
     source_data_sub_type: '',
-  };
-  constructor(private route: ActivatedRoute) {}
+  }; //paymob
+  userDetails?: any; //user service
+  userId: any;
+  selected: any; //session selected key
+  tripDeatils: any; //session tripDeatils key
+  allseats: any; //api seats
+  // seats: any;//api seats
+  // constructor
+  constructor(
+    private route: ActivatedRoute,
+    private UserService: UserService, //user service
+    private cookie: CookieService, //cookie
+    private SeatsService: SeatsService // api seats
+  ) {}
 
   ngOnInit() {
-    // id=180900606&pending=false&amount_cents=100&success=false&is_auth=false&is_capture=false&is_standalone_payment=true&is_voided=false&is_refunded=false&is_3d_secure=false&integration_id=4564810&profile_id=973666&has_parent_transaction=false&order=205370537&created_at=2024-04-30T05:17:12.836310&currency=EGP&merchant_commission=0&discount_details=%5B%5D&is_void=false&is_refund=false&error_occured=true&refunded_amount_cents=0&captured_amount=0&updated_at=2024-04-30T05:17:12.876098&is_settled=false&bill_balanced=false&is_bill=false&owner=1784016&source_data_type=card&source_data_pan=2346&source_data_sub_type=MasterCard&hmac=40e7df6accab229b8780d43fedae0bef12aeaaffdd60c5ee35cf07638acb8cb66d4b739d8f828f1e23db369196074cb990bd4833c7c813b21348b7d380fc0a60
+    this.seatsshow(); //run api seats start
+    //paymob start
     this.route.queryParamMap.subscribe((params) => {
       this.lastResult.id = params.get('id');
       this.lastResult.amount_cents = params.get('amount_cents');
@@ -32,7 +52,57 @@ export class TicketComponent {
       this.lastResult.source_data_type = params.get('source_data_type');
       this.lastResult.source_data_sub_type = params.get('source_data_sub_type');
     });
-console.log(this.lastResult)
-    // }
+    console.log(this.lastResult);
+    //paymob start
+    // user service start
+    const token = this.cookie.get('token');
+    this.UserService.userProfile(token).subscribe((res) => {
+      this.userDetails = res;
+      this.userId = this.userDetails?.id;
+      console.log('user details', this.userDetails);
+      console.log('user id2', this.userId); //delete
+      this.updateSeat(this.userId, this.selected);//update seat function
+    });
+    // user service end
+    //session start
+    const storedDataString1 = sessionStorage.getItem('selected');
+    if (storedDataString1 !== null) {
+      console.log('selected json', storedDataString1); //delete
+      this.selected = JSON.parse(storedDataString1);
+      console.log('selected parse', this.selected); //delete
+    }
+    const storedDataString2 = sessionStorage.getItem('tripDeatils');
+    console.log('tripdetails json', storedDataString2); //delete
+    if (storedDataString2 !== null) {
+      this.tripDeatils = JSON.parse(storedDataString2);
+      console.log('tripdetails parse', this.tripDeatils); //delete
+    }
+    //session end
+    // console.log('user id1', this.selected.id);
+
+  }
+
+  //run api seats start
+  seatsshow() {
+    this.SeatsService.listseats().subscribe({
+      next: (allseats: any) => {
+        this.allseats = allseats;
+        console.log('seatsshow fn all trip', allseats); //delete
+      },
+    });
+  }
+  //run api tripsshow end
+
+  updateSeat(userId: any, selectedSeats: any[]): void {
+    console.log('uu', userId);
+    console.log('uu', selectedSeats);
+    this.SeatsService.update(userId, selectedSeats).subscribe({
+      next: (response) => {
+        console.log('Update successful:', response);
+      },
+      error: (error) => {
+        console.error('Update failed:', error);
+      },
+    });
   }
 }

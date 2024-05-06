@@ -7,6 +7,7 @@ import { FooterComponent } from '../../footer/footer.component';
 //SERVICE
 import { TripsshowService } from '../../services1/tripsshow.service';
 import { SeatsService } from '../../services1/seats.service';
+
 //SERVICE
 //seat icon
 import { MatIconModule } from '@angular/material/icon';
@@ -29,7 +30,8 @@ import { PaymentComponent } from '../../payment/payment.component';
 import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import Swal from 'sweetalert2'; //sweet alert
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @Component({
   selector: 'app-single-trip',
   standalone: true,
@@ -48,7 +50,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     CustomDatePipe,
     TimeFormatPipe,
     PaymentComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   templateUrl: './single-trip.component.html',
   styleUrl: './single-trip.component.css',
@@ -63,7 +65,7 @@ export class SingleTripComponent {
     private _Router: Router,
     private domSanitizer: DomSanitizer, //icons
     private UserService: UserService, //user service
-    private cookie: CookieService
+    private cookie: CookieService //cookie
   ) {
     this.matIconRegistry.addSvgIcon(
       'seat-icon',
@@ -82,32 +84,35 @@ export class SingleTripComponent {
   typeId: any; //from url
   totalPrice: any = 0;
   userDetails?: any;
+  ticket: any[] = [];
+
   ngOnInit(): void {
     this.tripId = this.activatedRoute.snapshot.params['id']; //from url
     this.typeId = this.activatedRoute.snapshot.params['typeid']; //from url
     console.log(this.tripId); //delete
-    console.log(this.typeId);
+    console.log(this.typeId); //delete
     this.showtrips(); //run api tripsshow
     this.seatsshow(); //run api seats
-    // const token = this.cookie.get('token');
-    // this.UserService.userProfile(token).subscribe((res) => {
-    //   this.userDetails = res;
-    //   console.log('user details', this.userDetails);
-    // });
-    //user service
-    // console.log('user details',this.userDetails);
-    // console.log(this.btn1);
+    // user service start
+    const token = this.cookie.get('token');
+    this.UserService.userProfile(token).subscribe((res) => {
+      this.userDetails = res;
+      console.log('user1 details', this.userDetails);
+    });
+    // user service end
   }
   //run api tripsshow start
   showtrips() {
     this.TripsshowService.listtrips().subscribe({
       next: (trips: any) => {
         this.trips = trips;
-        console.log(trips); //delete
+        console.log('showtrips fn all',trips); //delete
         this.details = this.trips.find((trip: any) => trip.id == this.tripId);
-        console.log(this.details); //delete
+        console.log('showtrips fn selected',this.details); //delete
       },
     });
+
+
   }
   //run api tripsshow end
   //run api seats start
@@ -115,11 +120,11 @@ export class SingleTripComponent {
     this.SeatsService.listseats().subscribe({
       next: (allseats: any) => {
         this.allseats = allseats;
-        console.log(allseats); //delete
+        console.log('seatsshow fn all trip',allseats); //delete
         this.seats = this.allseats.filter(
           (seat: any) => seat.trip_id == this.tripId
         );
-        console.log(this.seats); //delete
+        console.log('seatsshow fn this trip',this.seats); //delete
       },
     });
   }
@@ -128,7 +133,7 @@ export class SingleTripComponent {
   reserve(seat: any) {
     const seatId = document.getElementById(seat.id);
 
-    console.log(seat);
+    console.log('reserve fn clicked',seat);
 
     if (this.selected.some((s) => s.id === seat.id)) {
       console.log('Seat already selected');
@@ -138,21 +143,26 @@ export class SingleTripComponent {
       this.selected.push(seat);
       seatId?.classList.toggle('seat-blue');
     }
+    console.log('reserve fn array',this.selected); //delete
 
-    console.log(this.selected); //delete
   }
   calculateTotalPrice() {
     this.totalPrice = this.selected.reduce(
       (total) => total + this.details?.price,
       0
     );
-    console.log(this.totalPrice);
+    console.log('calculateTotalPrice', this.totalPrice);
+
+//  session start
+ sessionStorage.setItem('selected', JSON.stringify(this.selected));
+ sessionStorage.setItem('tripDeatils', JSON.stringify(this.details));
+ //  session end
   }
 
   cancle() {
     Swal.fire({
       title: 'Are you sure?',
-      text: "Do you really want to cancel your trip ?",
+      text: 'Do you really want to cancel your trip ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

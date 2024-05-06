@@ -1,1 +1,65 @@
-<p>ticket works!</p>
+@for(select of selected ;track $index){
+<p>{{userDetails?.username}}</p>
+<p>seat number:{{select.seat_num}}</p>
+<p>{{tripDeatils.from_location}}</p>
+
+<div class="big_container m-auto row">
+    <div class="left col-9">
+        <div class="header1_container">
+            <div class="d-flex align-items-center"> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span>
+                <span class="serial"> B1 {{select.id}}-A</span>
+            </div>
+        </div>
+        <div class="left-container">
+            <div class="passenger">
+                <div>NAME OF PASSENGAER</div>
+                <div class="text-uppercase"> {{userDetails?.username}}</div>
+            </div>
+            <div class="info">
+                <div>INFORMATION</div>
+                <div class="text-uppercase"> {{tripDeatils?.type}} class</div>
+            </div>
+
+            <hr class="hr1">
+            <div class="from-to">
+                <div class="from">
+                    <div>FROM:</div>
+                    <div class="text-uppercase">{{tripDeatils.from_location}}</div>
+                </div>
+                <div class="to">
+                    <div>TO:</div>
+                    <div class="text-uppercase">{{tripDeatils.to_location}}</div>
+                </div>
+            </div>
+            <div class="seat-side">
+                <div>
+                    <div>BUS</div>
+                    <div>{{tripDeatils.bus_id}}</div>
+                </div>
+                <div>
+                    <div>SEAT</div>
+                    <div>{{select.seat_num}}</div>
+                </div>
+            </div>
+            <hr class="hr2">
+        </div>
+    </div>
+    <div class="right col-3">
+        <div class="header2_container ">
+            <div> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span></div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+}

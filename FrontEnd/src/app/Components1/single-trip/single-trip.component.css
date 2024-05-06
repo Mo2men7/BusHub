@@ -20,6 +20,14 @@ margin-bottom: 20px!important;
 
     padding-left: 0px!important;
   }
+  .cancle_btn{
+    margin-top: -188px !important;
+    margin-bottom: 125px;
+  }
+}
+.cancle_btn{
+  margin-top: -150px;
+  text-align: center;
 }
 
 i {
@@ -136,10 +144,7 @@ margin: 0;
 
 }
 
-.cancle_btn{
-  margin-top: -150px;
-  text-align: center;
-}
+
 
 
 
