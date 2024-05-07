@@ -1,117 +1,137 @@
-<div class="container text-center  mt-4 mb-4" style="height: 80%">
-  <div class="text-center my-4">
-    <button
-      type="button"
-      class="btn add-button"
-      class="btn add-button"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Add New Destination
-    </button>
-  </div>
-  <div class="d-flex  justify-content-between overflow-hidden"  style="height: 500px"
+<div class="container text-center mt-4 mb-4" style="height: 80%">
+  <div
+    class="d-flex justify-content-between overflow-hidden"
+    style="height: 500px"
   >
-    <div
-      class="accordion accordion-flush col-5  overflow-y-auto
-      
-      "
-      id="accordionFlushExample"
-      style="height: 80%"
-
-    >
-      @for (item of destinations; track $index) {
-      <div class="accordion-item bg-transparent">
-        <h2 class="accordion-header ">
-          <button
-            (click)="showMap($index)"
-            class="accordion-button collapsed bg-transparent"
-            type="button"
-            data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#acc' + $index + 1"
-            aria-expanded="false"
-            aria-controls="flush-collapseOne"
-          >
-            {{ item.name }}
-          </button>
-        </h2>
-        <div
-          id="{{ 'acc' + $index + 1 }}"
-          class="accordion-collapse collapse "
-          data-bs-parent="#accordionFlushExample"
+    <div class="d-flex flex-column  flex-fill me-3">
+      <div
+        class="text-center"
+        style="
+          height: 10%;
+          width: 100%;
+          top: 0;
+          position: sticky;
+          background-color: var(--background);
+        "
+      >
+        <button
+          type="button"
+          class="btn add-button"
+          class="btn add-button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
         >
-          <div class="accordion-body  " >
-            <div class="card text-bg-dark border border-0 ">
-              <img src="{{ 'http://127.0.0.1:8000/api/admin/images' + item.pic }}" class="card-img" alt="..." />
-              <div class="card-img-overlay bg-black cardBackground ">
-                <!-- <h5 class="card-title">Card title</h5> -->
-                <div class="card-text text-start">
-                  <p class="fs-7">
-                    {{ item.info }}
-                    <a
-                    class="mapAnchor"
-                      href="#"
-                      data-bs-toggle="modal"
-                      [attr.data-bs-target]="'#map' + $index + 1"
-                    >
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                  </p>
-                </div>
+          Add New Destination
+        </button>
+      </div>
 
-                <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
+      <div
+        class="accordion accordion-flush col-5 overflow-y-auto"
+        id="accordionFlushExample"
+        style="height: 80%; width: 100%;"
+      >
+        @for (item of destinations; track $index) {
+        <div class="accordion-item bg-transparent">
+          <h2 class="accordion-header">
+            <button
+              (click)="showMap($index)"
+              class="accordion-button collapsed bg-transparent"
+              type="button"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#acc' + $index + 1"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              {{ item.name }}
+            </button>
+            
+          </h2>
+          <div
+            id="{{ 'acc' + $index + 1 }}"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <div class="card text-bg-dark border border-0">
+                <img
+                  src="{{
+                    'http://127.0.0.1:8000/api/admin/images' + item.pic
+                  }}"
+                  class="card-img"
+                  alt="..."
+                />
+                <div class="card-img-overlay bg-transparent cardBackground">
+                  <!-- <h5 class="card-title">Card title</h5> -->
+                  <div class="card-text text-start ">
+                    <p class="fs-7">
+                      {{ item.info }}
+                      <a
+                        class="mapAnchor"
+                        href="#"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#map' + $index + 1"
+                      >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                      <button
+              
+              class="btn btn-outline-danger"
+              (click) = "deleteDist(item.id)"
+            >
+              Delete
+            </button>
+                    </p>
+                  </div>
+
+                  <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="modal fade"
-        
-        id="{{ 'map' + $index + 1 }}"
-        tabindex="-1"
-        [attr.aria-labelledby]="$index + 1 + 'Label'"
-        aria-hidden="true"
-        style="
-            
-              height: 90%;"
-      >
         <div
-          class="modal-dialog modal-dialog-centered"
-          style="
-            
-              height: 50%;"
+          class="modal fade"
+          id="{{ 'map' + $index + 1 }}"
+          tabindex="-1"
+          [attr.aria-labelledby]="$index + 1 + 'Label'"
+          aria-hidden="true"
+          style="height: 90%"
         >
-          <iframe
-            class="modal-content"
-            [src]="item.map | safe"
-            style="
-              border: 0;
-              height: 100%;
-              width: 100%;
-              filter: grayscale(70%) contrast(100%);
-            "
-            style="
-              border: 0;
-              height: 100%;
-              width: 100%;
-              filter: grayscale(70%) contrast(100%);
-            "
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <div class="modal-dialog modal-dialog-centered" style="height: 50%">
+            <iframe
+              class="modal-content"
+              [src]="item.map | safe"
+              style="
+                border: 0;
+                height: 100%;
+                width: 100%;
+                filter: grayscale(70%) contrast(100%);
+              "
+              style="
+                border: 0;
+                height: 100%;
+                width: 100%;
+                filter: grayscale(70%) contrast(100%);
+              "
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
+        }
       </div>
-      }
     </div>
-    <div id="iframeDiv" class="ratio ratio-16x9 fade active show"  style="height: 80%; width: 55%;">
+    <div
+      id="iframeDiv"
+      class="ratio ratio-16x9 fade active show"
+      style="height: 90%; width: 55%"
+    >
       <iframe
         style="filter: grayscale(70%) contrast(100%)"
         src=""
         title="Google Maps"
         allowfullscreen
-        
       ></iframe>
       <!-- <img
         style="filter: grayscale(100%) contrast(100%)"
@@ -126,7 +146,6 @@
           trigger="loop"
           delay="500"
           stroke="light"
-
           colors="primary:#ffffff,secondary:#0587eb"
           style="height: 75%; width: 55%; margin-top: 10%"
         >
@@ -140,187 +159,187 @@
   </div>
 
   <form
-  [formGroup]="newDistForm"
-  (ngSubmit)="sendDestination()"
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
-  enctype="multipart/form-data"
->
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header d-flex justify-content-between">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">
-          Add New Destination
-        </h1>
-        <button
-          type="button"
-          class="btn fa-solid fa-xmark fs-2"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-floating mb-4">
-          <input
-            formControlName="name"
-            type="text"
-            class="form-control"
-            [ngClass]="
-              newDistForm.controls['name'].invalid &&
-              newDistForm.controls['name'].touched
-                ? 'is-invalid'
-                : ''
-            "
-            id="name"
-            placeholder="Name"
-            name="name"
-          />
-          <label for="name">Name</label>
+    [formGroup]="newDistForm"
+    (ngSubmit)="sendDestination()"
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    enctype="multipart/form-data"
+  >
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Add New Destination
+          </h1>
+          <button
+            type="button"
+            class="btn fa-solid fa-xmark fs-2"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
-        @if(newDistForm.controls['name'].invalid &&
-        newDistForm.controls['name'].touched) {
-        <div class="text-danger">
-          @if(newDistForm.controls['name'].errors?.["required"]) {This Field
-          is required! }
-          @if(newDistForm.controls['name'].errors?.["minlength"]) {This Field
-          is Minmum length is 4 }
-        </div>
-        }
-        <div class="form-floating mb-4">
-          <textarea
-            formControlName="info"
-            class="form-control"
-            [ngClass]="
-              newDistForm.controls['info'].invalid &&
-              newDistForm.controls['info'].touched
-                ? 'is-invalid'
-                : ''
-            "
-            id="info"
-            placeholder="Info."
-            name="info"
-          ></textarea>
-          <label for="info">Info.</label>
-        </div>
-        @if(newDistForm.controls['info'].invalid &&
-        newDistForm.controls['info'].touched) {
-        <div class="text-danger">
-          @if(newDistForm.controls['name'].errors?.["required"]) {This Field
-          is required! }
-        </div>
-        }
-        <div class="input-group mb-4 d-flex align-items-baseline">
-          <label for="flag" class="col-2">Flag</label>
-          <input
-            formControlName="flag"
-            type="file"
-            class="form-control"
-            id="flag"
-            name="flag"
-            [ngClass]="
-              newDistForm.controls['flag'].invalid &&
-              newDistForm.controls['flag'].touched
-                ? 'is-invalid'
-                : ''
-            "
-            (change)="onFileSelectedFlag($event)"
-          />
-        </div>
-        @if(newDistForm.controls['flag'].invalid &&
-        newDistForm.controls['flag'].touched) {
-        <div class="text-danger">
-          @if(newDistForm.controls['flag'].errors?.["required"]) {This Field
-          is required! }
-        </div>
-        }
-        <div class="input-group mb-4 d-flex align-items-baseline">
-          <label for="pic" class="col-2">Picture</label>
-          <input
-            [ngClass]="
-              newDistForm.controls['pic'].invalid &&
-              newDistForm.controls['pic'].touched
-                ? 'is-invalid'
-                : ''
-            "
-            formControlName="pic"
-            type="file"
-            class="form-control"
-            id="pic"
-            name="pic"
-            (change)="onFileSelectedPic($event)"
-          />
-        </div>
-        @if(newDistForm.controls['pic'].invalid &&
-        newDistForm.controls['pic'].touched) {
-        <div class="text-danger">
-          @if(newDistForm.controls['pic'].errors?.["required"]) {This Field is
-          required! }
-        </div>
-        }
-        <!-- <div class="input-group mb-3">
+        <div class="modal-body">
+          <div class="form-floating mb-4">
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control"
+              [ngClass]="
+                newDistForm.controls['name'].invalid &&
+                newDistForm.controls['name'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              id="name"
+              placeholder="Name"
+              name="name"
+            />
+            <label for="name">Name</label>
+          </div>
+          @if(newDistForm.controls['name'].invalid &&
+          newDistForm.controls['name'].touched) {
+          <div class="text-danger">
+            @if(newDistForm.controls['name'].errors?.["required"]) {This Field
+            is required! }
+            @if(newDistForm.controls['name'].errors?.["minlength"]) {This Field
+            is Minmum length is 4 }
+          </div>
+          }
+          <div class="form-floating mb-4">
+            <textarea
+              formControlName="info"
+              class="form-control"
+              [ngClass]="
+                newDistForm.controls['info'].invalid &&
+                newDistForm.controls['info'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              id="info"
+              placeholder="Info."
+              name="info"
+            ></textarea>
+            <label for="info">Info.</label>
+          </div>
+          @if(newDistForm.controls['info'].invalid &&
+          newDistForm.controls['info'].touched) {
+          <div class="text-danger">
+            @if(newDistForm.controls['name'].errors?.["required"]) {This Field
+            is required! }
+          </div>
+          }
+          <div class="input-group mb-4 d-flex align-items-baseline">
+            <label for="flag" class="col-2">Flag</label>
+            <input
+              formControlName="flag"
+              type="file"
+              class="form-control"
+              id="flag"
+              name="flag"
+              [ngClass]="
+                newDistForm.controls['flag'].invalid &&
+                newDistForm.controls['flag'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              (change)="onFileSelectedFlag($event)"
+            />
+          </div>
+          @if(newDistForm.controls['flag'].invalid &&
+          newDistForm.controls['flag'].touched) {
+          <div class="text-danger">
+            @if(newDistForm.controls['flag'].errors?.["required"]) {This Field
+            is required! }
+          </div>
+          }
+          <div class="input-group mb-4 d-flex align-items-baseline">
+            <label for="pic" class="col-2">Picture</label>
+            <input
+              [ngClass]="
+                newDistForm.controls['pic'].invalid &&
+                newDistForm.controls['pic'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              formControlName="pic"
+              type="file"
+              class="form-control"
+              id="pic"
+              name="pic"
+              (change)="onFileSelectedPic($event)"
+            />
+          </div>
+          @if(newDistForm.controls['pic'].invalid &&
+          newDistForm.controls['pic'].touched) {
+          <div class="text-danger">
+            @if(newDistForm.controls['pic'].errors?.["required"]) {This Field is
+            required! }
+          </div>
+          }
+          <!-- <div class="input-group mb-3">
           <input type="file" class="form-control" id="inputGroupFile02">
           <label class="input-group-text" for="inputGroupFile02">Upload</label>
         </div> -->
-        <div class="form-floating mb-4 d-flex align-items-baseline">
-          <input
-            [ngClass]="
-              newDistForm.controls['map'].invalid &&
-              newDistForm.controls['map'].touched
-                ? 'is-invalid'
+          <div class="form-floating mb-4 d-flex align-items-baseline">
+            <input
+              [ngClass]="
+                newDistForm.controls['map'].invalid &&
+                newDistForm.controls['map'].touched
+                  ? 'is-invalid'
+                  : ''
+              "
+              formControlName="map"
+              type="text"
+              class="form-control"
+              id="map"
+              placeholder="Location in Google Maps"
+              name="map"
+            />
+            <label for="map">Location in Google Maps</label>
+            <a
+              href="https://www.google.com/maps"
+              target="_blank"
+              class="btn add-button ms-2"
+              class="btn add-button ms-2"
+              ><i class="fa-solid fa-arrow-up-right-from-square"></i
+            ></a>
+          </div>
+          @if(newDistForm.controls['map'].invalid &&
+          newDistForm.controls['map'].touched) {
+          <div class="text-danger">
+            @if(newDistForm.controls['map'].errors?.["required"]) {This Field is
+            required! }
+          </div>
+          }
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">
+            Cancel
+          </button>
+
+          <button
+            id="submitter"
+            type="submit"
+            class="btn add-button"
+            data-bs-dismiss="modal"
+            [disabled]="
+              newDistForm.controls['name'].invalid ||
+              newDistForm.controls['info'].invalid ||
+              newDistForm.controls['pic'].invalid ||
+              newDistForm.controls['flag'].invalid ||
+              newDistForm.controls['map'].invalid
+                ? 'modal '
                 : ''
             "
-            formControlName="map"
-            type="text"
-            class="form-control"
-            id="map"
-            placeholder="Location in Google Maps"
-            name="map"
-          />
-          <label for="map">Location in Google Maps</label>
-          <a
-            href="https://www.google.com/maps"
-            target="_blank"
-            class="btn add-button ms-2"
-            class="btn add-button ms-2"
-            ><i class="fa-solid fa-arrow-up-right-from-square"></i
-          ></a>
+          >
+            Add
+          </button>
         </div>
-        @if(newDistForm.controls['map'].invalid &&
-        newDistForm.controls['map'].touched) {
-        <div class="text-danger">
-          @if(newDistForm.controls['map'].errors?.["required"]) {This Field is
-          required! }
-        </div>
-        }
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn" data-bs-dismiss="modal">
-          Cancel
-        </button>
-
-        <button
-          id="submitter"
-          type="submit"
-          class="btn add-button"
-          data-bs-dismiss="modal"
-          [disabled]="
-            newDistForm.controls['name'].invalid ||
-            newDistForm.controls['info'].invalid ||
-            newDistForm.controls['pic'].invalid ||
-            newDistForm.controls['flag'].invalid ||
-            newDistForm.controls['map'].invalid
-              ? 'modal '
-              : ''
-          "
-        >
-          Add
-        </button>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 </div>
