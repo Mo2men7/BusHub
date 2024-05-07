@@ -97,7 +97,9 @@ main{
   padding-top: 6px;
 }
 .right-side .button{
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
   margin-top: 12px;
 }
 .right-side .button input[type="button"]{
