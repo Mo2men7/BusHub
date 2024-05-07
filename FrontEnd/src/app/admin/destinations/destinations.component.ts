@@ -98,12 +98,8 @@ export class DestinationsComponent {
     console.log(id);
     console.log(this.destinations);
   }
-  //   var div = document.querySelector(".fade");
-
-  // btn.addEventListener("click", function(){
-  //   div.classList.add("elementToFadeInAndOut");
-  //   // Wait until the animation is over and then remove the class, so that
-  //   // the next click can re-add it.
-  //   setTimeout(function(){div.classList.remove("elementToFadeInAndOut");}, 4000);
-  // });
+  deleteDist(id:any)
+  {
+    
+  }
 }

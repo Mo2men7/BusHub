@@ -20,4 +20,9 @@ export class DestinationService {
   addDestinations(dest:any) {
     return this.http.post(this.url+'/api/admin/destinations',dest,this.httpOptions);
   }
+  deleteDestinations(dest:any)
+  {
+    return this.http.post(this.url+'/api/admin/destinations',dest,this.httpOptions);
+
+  }
 }
