@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-contactus',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule, RouterLinkActive, RouterLink],
+  imports: [RouterOutlet, CommonModule, FormsModule, RouterLinkActive, RouterLink,NavbarComponent,FooterComponent],
   templateUrl: './contactus.component.html',
   styleUrl: './contactus.component.css'
 })
