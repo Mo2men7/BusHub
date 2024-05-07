@@ -25,6 +25,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { TicketComponent } from './ticket/ticket.component';
 
 import { TripsComponent } from './admin/trips/trips.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 export const routes: Routes = [
   {
@@ -150,9 +151,15 @@ export const routes: Routes = [
 
   },
   {
+    path: "contactus",
+    component: ContactusComponent,
+    title:"contact"
+  },
+  {
     path: '**',
     component: NotFoundComponent,
     title: 'Not Found',
   },
+
 ];
 

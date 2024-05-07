@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
+            $table->string("username", 20);
             $table->unsignedBigInteger('id_user');
-            $table->string('title',55);
+            $table->string('email', 55);
             $table->text('message');
-            $table->date("date_of_response");
-            $table->date("date_of_request");
             $table->boolean("status")->default(0);
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
-                        // contact_us (#id, id_user ,title, message,date_of_response, date_of_request, status)
+            // contact_us (#id, id_user ,title, message,date_of_response, date_of_request, status)
 
         });
     }

@@ -20,7 +20,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title text-primary fs-5" id="exampleModalLabel">
-          Modal title
+          Edit Details
         </h1>
         <button
           type="button"
@@ -39,11 +39,11 @@
                 [(ngModel)]="userDetails.username"
                 type="text"
                 name="username"
-                id="floatingInput"
+                id="username"
                 class="form-control"
                 placeholder="Name"
               />
-              <label for="floatingInput">Name</label>
+              <label for="username">Name</label>
             </div>
 
             <div class="form-floating mb-3">
@@ -51,11 +51,11 @@
                 [(ngModel)]="userDetails.phone"
                 type="text"
                 name="phone"
-                id="floatingInput"
+                id="phone"
                 class="form-control"
                 placeholder="Phone"
               />
-              <label for="floatingInput">Phone</label>
+              <label for="phone">Phone</label>
             </div>
 
             <div class="form-floating mb-3">
@@ -64,10 +64,21 @@
                 name="email"
                 type="email"
                 placeholder="Email"
-                id="floatingInput"
+                id="email"
                 class="form-control"
               />
-              <label for="floatingInput">Email</label>
+              <label for="email">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="userDetails.city"
+                name="city"
+                type="text"
+                placeholder="city"
+                id="city"
+                class="form-control"
+              />
+              <label for="city">City</label>
             </div>
 
             <!-- <div class="input-field">

@@ -3,15 +3,7 @@ box-sizing: border-box;
 }
 
 
-.navbar {
-  background: var(--background);
-}
-.navbar-brand {
-  color: var(--text);
-}
-.nav-link {
-  color: rgba(255, 255, 255, 0.5);
-}
+
 
  .account-container {
   background-color: var(--background);
@@ -20,6 +12,8 @@ box-sizing: border-box;
   /* gap: 50px;  */
   margin:0 auto;
   margin-bottom: 10px;
+  margin-top: 10px;
+  padding-top: 20px;
   width: 60%;
   /* border-bottom: 1px solid rgb(160, 148, 148) ;
   border-right: 1px solid rgb(160, 148, 148) ;
@@ -65,19 +59,45 @@ text-align: center;
   display: flex;
   justify-content: space-around;
 }
-
 .box{
-padding:0px 30px;
+  padding:0px 30px;
+  }
+  .box div{
+    flex: 1;
+  }
+
+  .AccSideBar .user-data {
+    padding: 18px 15px 22px;
+  }
+@media(max-width:768px){
+  .AccSideBar div.user-data{
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    align-content: center;
+    padding:0 10px  ;
+
+
+  }
+  .box{
+    padding: 0 5px;
+  }
+  .AccSideBar .user-data p {
+    font-size: 11px;
+    padding-bottom: 5px;
+    padding:0 5px 10px ;
+  }
+  .box div{
+    display: flex;
+  }
+  .account-container {
+    width: 70%;
+  }
 
 
 }
-.box div{
-  flex: 1;
-}
 
-.AccSideBar .user-data {
-  padding: 18px 15px 22px;
-}
+
   .AccSideBar .user-data .avatar {
   width: 60px;
   height: 60px;
@@ -100,27 +120,13 @@ padding:0px 30px;
 
 
 
-.AccSideBar .profile-navigation-component li a.active,  .account-container .AccSideBar .profile-navigation-component li a:hover {
-  color: #FC9900;
-  border-right-color: #FC9900;
-}
-.active{
-  color: #FC9900;
-  border-right-color: #FC9900;
-  text-decoration: none;
-}
+
 a{
   text-decoration: none;
   color: #101010;
 }
-.account-container .account-content {
 
-  background: #ffffff;
-  border: 1px solid #dbdde0;
-  box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
-  border-radius: 4px;
-  padding: 18px 44px 42px;
-}
+
 
 /* ////////////////////////////// */
 
