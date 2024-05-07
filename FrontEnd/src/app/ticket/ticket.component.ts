@@ -4,12 +4,17 @@ import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service'; //cookie
 import { UserService } from '../services/user.service'; //user service
 import { SeatsService } from '../services1/seats.service'; // api seats
+import { CustomDatePipe } from '../custom-date.pipe';
+import { TimeFormatPipe } from '../time-format.pipe';
 //service end
 
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [],
+  imports: [
+    CustomDatePipe,
+    TimeFormatPipe
+  ],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css',
 })
