@@ -23,12 +23,14 @@ export class EdituserdetailsComponent {
   username: any;
   email: any;
   phone: any;
+  city: any;
   token = this.cookie.get("token");
 
   userDetails:any = {
     phone: ``,
     email: "",
-    username: ""
+    username: "",
+    city:"",
    };
   ngOnInit(): void {
 
@@ -42,10 +44,14 @@ export class EdituserdetailsComponent {
         this.email = this.userData.email
         this.username = this.userData.username
         this.phone = this.userData.phone
+        this.city=this.userData.city
+
         this.userDetails = {
           phone: `${this.phone}`,
           email: `${this.email}`,
-          username:`${this.username}`
+          username: `${this.username}`,
+          city: `${this.city}`,
+
          };
       }
     )

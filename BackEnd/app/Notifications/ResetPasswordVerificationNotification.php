@@ -52,7 +52,7 @@ class ResetPasswordVerificationNotification extends Notification
             ->subject($this->subject)
 
             ->markdown('reset_password_verification', [
-                'subject' => 'Verification Needed',
+                'subject' => 'Reset Your Password',
                 'message' => 'Use the below code for resetting your password',
                 'otp' => $otp->token,
             ]);
