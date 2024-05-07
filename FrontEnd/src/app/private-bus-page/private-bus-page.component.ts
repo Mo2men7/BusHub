@@ -6,7 +6,7 @@ import { TypeService } from '../services/typeService/type.service';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-private-bus-page',
@@ -18,15 +18,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PrivateBusPageComponent {
   destinations: any;
   busTypes: any;
-  alertmessage:any;
+  alertmessage: any;
   constructor(
     private destinationService: DestinationService,
     private http: HttpClient,
-    private TypeService: TypeService,private cookie:CookieService,
-
+    private TypeService: TypeService,
+    private cookie: CookieService
   ) {}
   ngOnInit() {
-
     this.destinationService
       .getDestinations()
       .subscribe((res: any) => (this.destinations = res));
@@ -43,12 +42,12 @@ export class PrivateBusPageComponent {
     return: '',
   };
   submitPrivateBusForm() {
-    let token=this.cookie.get("token")
-
-    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
-
+    let token = this.cookie.get('token');
+    let httpOptions = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     this.http
-      .post('http://127.0.0.1:8000/api/private-bus', this.formData,{headers:httpOptions})
+      .post('http://127.0.0.1:8000/api/private-bus', this.formData, {
+        headers: httpOptions,
+      })
       .subscribe(
         (res) => {
           console.log('Done');
@@ -60,7 +59,10 @@ export class PrivateBusPageComponent {
           this.formData.passenger_number = '';
           this.formData.departure_date = '';
           this.formData.return = '';
-          this.alertmessage = `Your request has been submit successfully, An admin will reply to you soon. Watch your notifications`;
+          Swal.fire({
+            icon: 'success',
+            title: 'Your request has been submit successfully',
+          });
         },
         (error) => {
           console.error('Error');
