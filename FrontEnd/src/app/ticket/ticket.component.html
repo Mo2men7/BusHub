@@ -1,1 +1,110 @@
-<p>ticket works!</p>
+@for(select of selected ;track $index){
+<p>{{userDetails?.username}}</p>
+<p>seat number:{{select.seat_num}}</p>
+<p>{{tripDeatils.from_location}}</p>
+
+<div class="big_container m-auto row">
+    <div class="left col-8">
+        <div class="header1_container">
+            <div class="d-flex align-items-center"> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span>
+                <span class="serial"> B1 {{select.id}}-A</span>
+            </div>
+        </div>
+        <div class="left-container">
+            <div class="passenger">
+                <div class="title-text">NAME OF PASSENGAER</div>
+                <div class="text-uppercase content-text"> {{userDetails?.username}}</div>
+            </div>
+            <div class="info">
+                <div class="title-text">INFORMATION</div>
+                <div class="text-uppercase content-text"> {{tripDeatils?.type}} class</div>
+            </div>
+
+            <hr class="hr1">
+            <div class="from-to">
+                <div class="from">
+                    <div class="title-text">FROM:</div>
+                    <div class="text-uppercase content-text">{{tripDeatils.from_location}}</div>
+                </div>
+                <div class="to">
+                    <div class="title-text">TO:</div>
+                    <div class="text-uppercase content-text">{{tripDeatils.to_location}}</div>
+                </div>
+            </div>
+            <div class="seat-side">
+                <div>
+                    <div class="title-text">BUS</div>
+                    <div class="content-text">{{tripDeatils.bus_id}}</div>
+                </div>
+                <div>
+                    <div class="title-text">SEAT</div>
+                    <div class="content-text">{{select.seat_num}}</div>
+                </div>
+            </div>
+            <div class="qr-code">
+                <img class="img-fluid" src="../../assets/img/qr-code.png" alt="">
+            </div>
+            <hr class="hr2">
+            <div class="l-date">
+                <div>DATE:</div>
+                <div class="text-uppercase">{{tripDeatils.date | customDate}}</div>
+            </div>
+            <div class="l-depature">
+                <div>DEPARTURE:</div>
+                <div class="text-uppercase">{{tripDeatils.time | timeFormat}}</div>
+            </div>
+
+            <div class="l-price">
+                <div>PRICE:</div>
+                <div class="">{{tripDeatils.price }} LE</div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <!-- ====================================================== -->
+    <div class="right col-4">
+        <div class="header2_container ">
+            <div> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span></div>
+        </div>
+        <div class="right-container">
+
+            <div class="passenger-r">
+                <div class="title-text">NAME OF PASSENGAER</div>
+                <div class="text-uppercase content-text"> {{userDetails?.username}}</div>
+            </div>
+            <div class="from-r">
+                <div class="title-text">FROM:</div>
+                <div class="text-uppercase content-text">{{tripDeatils.from_location}}</div>
+            </div>
+            <div class="to-r">
+                <div class="title-text">TO:</div>
+                <div class="text-uppercase content-text">{{tripDeatils.to_location}}</div>
+            </div>
+
+
+            <div class="bus-r">
+                <div>BUS</div>
+                <div>{{tripDeatils.bus_id}}</div>
+            </div>
+            <div class="seat-r">
+                <div>SEAT</div>
+                <div>{{select.seat_num}}</div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+}
