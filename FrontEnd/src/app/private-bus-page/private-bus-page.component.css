@@ -28,3 +28,8 @@ select {
   color: rgb(109, 235, 109);
   transition: .5s ease;
 }
+button:disabled{
+  cursor:not-allowed !important;
+  background: var(--accent);
+  color: var(--text);
+}
