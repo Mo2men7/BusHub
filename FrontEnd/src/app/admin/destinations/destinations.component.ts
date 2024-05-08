@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-destinations',
   standalone: true,
-  imports: [SafePipe, ReactiveFormsModule,NgClass],
+  imports: [SafePipe, ReactiveFormsModule, NgClass],
   templateUrl: './destinations.component.html',
   styleUrl: './destinations.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,7 +20,10 @@ import { NgClass } from '@angular/common';
 export class DestinationsComponent {
   destinations: any;
   newDistForm: FormGroup;
+  editDistForm: FormGroup;
   file!: File;
+  deleteSuc: any = 0;
+  editSuc: any = 0;
   constructor(
     private destinationService: DestinationService,
     private cookie: CookieService,
@@ -28,11 +31,18 @@ export class DestinationsComponent {
     private http: HttpClient
   ) {
     this.newDistForm = new FormGroup({
-      name: new FormControl("",[Validators.required,Validators.minLength(4)]),
-      info: new FormControl("",[Validators.required]),
-      flag: new FormControl("",[Validators.required]),
-      pic: new FormControl("",[Validators.required]),
-      map: new FormControl("",[Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      info: new FormControl('', [Validators.required]),
+      flag: new FormControl('', [Validators.required]),
+      pic: new FormControl('', [Validators.required]),
+      map: new FormControl('', [Validators.required]),
+    });
+    this.editDistForm = new FormGroup({
+      name: new FormControl(),
+      info: new FormControl(),
+      flag: new FormControl(""),
+      pic: new FormControl(""),
+      map: new FormControl(),
     });
   }
   token: any = this.cookie.get('token');
@@ -41,14 +51,15 @@ export class DestinationsComponent {
       (res: any) => (this.destinations = res),
       (error) => console.log(error)
     );
-    console.log(this.newDistForm.controls['name'].errors)
+    console.log(this.newDistForm.controls['name'].errors);
   }
   onFileSelectedFlag(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
-    console.log("flag"+file);
+    console.log('flag' + file);
     this.newDistForm.patchValue({
       flag: file,
     });
+
   }
   onFileSelectedPic(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
@@ -57,6 +68,24 @@ export class DestinationsComponent {
     this.newDistForm.patchValue({
       pic: file,
     });
+ 
+  }
+  onFileSelectedFlagEdit(event: Event) {
+    const file = (event.target as HTMLInputElement)?.files?.[0];
+    console.log('flag' + file);
+    this.editDistForm.patchValue({
+      flag: file,
+    });
+
+  }
+  onFileSelectedPicEdit(event: Event) {
+    const file = (event.target as HTMLInputElement)?.files?.[0];
+    console.log(file);
+
+    this.editDistForm.patchValue({
+      pic: file,
+    });
+ 
   }
   sendDestination() {
     const formData = new FormData();
@@ -98,8 +127,58 @@ export class DestinationsComponent {
     console.log(id);
     console.log(this.destinations);
   }
-  deleteDist(id:any)
-  {
-    
+  deleteDist(id: any) {
+    this.deleteSuc = 0;
+    this.destinationService.deleteDestination(id).subscribe(
+      (res: any) => {
+        this.deleteSuc = 1;
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+        this.deleteSuc = -1;
+      }
+    );
+  }
+  setValueForm(id: any) {
+    this.editDistForm = new FormGroup({
+      name: new FormControl(this.destinations[id].name, [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      info: new FormControl(this.destinations[id].info, [Validators.required]),
+      flag: new FormControl(""),
+      pic: new FormControl(""),
+      map: new FormControl(this.destinations[id].map, [Validators.required]),
+      // name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      // info: new FormControl('', [Validators.required]),
+      // flag: new FormControl('', [Validators.required]),
+      // pic: new FormControl('', [Validators.required]),
+      // map: new FormControl('', [Validators.required]),
+    });
+  }
+  editDist(id: any) {
+    const formData = new FormData();
+    formData.append('pic', this.editDistForm.controls['pic'].value);
+    formData.append('info', this.editDistForm.controls['info'].value);
+    formData.append('flag', this.editDistForm.controls['flag'].value);
+    formData.append('map', this.editDistForm.controls['map'].value);
+    formData.append('name', this.editDistForm.controls['name'].value);
+    // formData.append('_method', "PUT");
+    const test={
+      "name": "here it is"
+    }
+    // console.log(formData.get("name"));
+    // console.log(this.editDistForm);
+    this.editSuc = 0;
+    this.destinationService.editDestination(formData, id).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+        this.editSuc = -1;
+      }
+    );
   }
 }

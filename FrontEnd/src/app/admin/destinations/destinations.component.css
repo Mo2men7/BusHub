@@ -91,12 +91,12 @@ body {
 .accordion-button {
     color: var(--text) !important;
 }
-
+/*
 #accordionFlushExample {
-    /* width: 50% !important; */
+     width: 50% !important; 
 
 }
-
+*/
 .modal-content,
 .modal-content label ,.btn-close{
 

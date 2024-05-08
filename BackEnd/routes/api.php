@@ -107,7 +107,7 @@ Route::get('/admin/images/flag/{filename}', function ($filename) {
     return response($file, 200)->header('Content-Type', 'image/jpeg');
 });
 // ? to update a single destination with $id in DB
-Route::put('/admin/destination/{id}', [DestinationAdminController::class, 'update']);
+Route::post('/admin/destination-update/{id}', [DestinationAdminController::class, 'update']);
 // ? to delete a single destination with $id in DB
 Route::delete('/admin/destination/{id}', [DestinationAdminController::class, 'destroy']);
 // !end Destination

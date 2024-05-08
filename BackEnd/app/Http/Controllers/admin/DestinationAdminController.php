@@ -28,7 +28,7 @@ class DestinationAdminController extends Controller
         $destinationPath = config('app.picDestinationPath') . "/pic/" . $fileName;
         Storage::disk('local')->put($destinationPath, file_get_contents($request->file('pic')->getRealPath()));
         $req["pic"] = $destinationPath;
-        
+
         //!  
         $flagName = $request->file('flag')->hashName();
         $flagEx = $request->file('flag')->getClientOriginalExtension();
@@ -37,7 +37,7 @@ class DestinationAdminController extends Controller
         Storage::disk('local')->put($destinationPath, file_get_contents($request->file('flag')->getRealPath()));
         $req["flag"] = $destinationPath;
 
-        return   Destination::create($req);
+        return Destination::create($req);
     }
 
     /**
@@ -55,12 +55,34 @@ class DestinationAdminController extends Controller
     {
         if (Destination::where('id', $id)->exists()) {
             $dest = Destination::find($id);
+
             $dest->name = $request->name;
+            $dest->info = $request->info;
+            if ($request->flag != null) {
+                $flagName = $request->file('flag')->hashName();
+                $flagEx = $request->file('flag')->getClientOriginalExtension();
+                $fileName = $flagName;
+                $destinationPath = config('app.flagDestinationPath') . "/flag/" . $fileName;
+                Storage::disk('local')->put($destinationPath, file_get_contents($request->file('flag')->getRealPath()));
+                // $req["flag"] = $destinationPath;
+                $dest->flag = $destinationPath;
+            }
+
+            if ($request->pic != null) {
+                $imageName = $request->file('pic')->hashName();
+                $imageEx = $request->file('pic')->getClientOriginalExtension();
+                $fileName = $imageName;
+                $destinationPath = config('app.picDestinationPath') . "/pic/" . $fileName;
+                Storage::disk('local')->put($destinationPath, file_get_contents($request->file('pic')->getRealPath()));
+                $dest->pic = $destinationPath;
+            }
+            $dest->map = $request->map;
             // $dest->type_id = $request->type_id;
             $dest->save();
             return response()->json([
                 "message" => "record updated successfully"
             ], 200);
+            // return $request->all();
         } else {
             return response()->json(["message" => "record not found"], 404);
         }
