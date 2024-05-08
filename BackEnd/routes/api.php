@@ -195,5 +195,6 @@ Route::get("payment", function (Request $request) {
 ///////////////////////////Notifications Admin////////////////////////////////
 use App\Http\Controllers\NotificationController;
 
-Route::get('/notifications', [NotificationController::class, 'index']);
+Route::get('/adminNotifications', [NotificationController::class, 'adminNotifications']);
+Route::get('/userNotifications', [NotificationController::class, 'userNotifications']);
 Route::put('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead']);

@@ -6,12 +6,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class NotificationController extends Controller
 {
-    public function index()
+    public function adminNotifications()
     {
-        return Notification::whereNull('read_at')->get();
+        $adminUserId = User::where('role', 'admin')->value('id');
+        return Notification::where('type', 'App\Notifications\PBRequest')
+            ->where('notifiable_id', $adminUserId)
+            ->whereNull('read_at')
+            ->get();
+    }
+    public function userNotifications()
+    {
+        return Notification::where('type', 'App\Notifications\PBAccept')
+            ->whereNull('read_at')
+            ->get();
     }
     public function markAllAsRead()
     {

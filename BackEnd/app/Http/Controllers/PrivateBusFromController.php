@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrivateBusFrom;
+use App\Notifications\PBAccept;
 use App\Notifications\PBRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -76,6 +77,11 @@ class PrivateBusFromController extends Controller
         $reqest = PrivateBusFrom::findOrFail($id);
         $reqest->update(["status" => "Accepted"]);
         $reqest->save();
+        /////////////// Start notification storing ///////////////
+        $user = \App\Models\User::find($reqest->user_id);
+        $PrivateBusFrom = $reqest;
+        Notification::send($user, new PBAccept($PrivateBusFrom));
+        /////////////// End notification storing ///////////////
         return response()->json(['message' => 'Request has been accepted successfully', 200]);
     }
 
