@@ -3,7 +3,7 @@
     class="d-flex justify-content-between overflow-hidden"
     style="height: 500px"
   >
-    <div class="d-flex flex-column  flex-fill me-3">
+    <div class="d-flex flex-column col-5 flex-fill me-3">
       <div
         class="text-center"
         style="
@@ -26,9 +26,9 @@
       </div>
 
       <div
-        class="accordion accordion-flush col-5 overflow-y-auto"
+        class="accordion accordion-flush overflow-y-auto"
         id="accordionFlushExample"
-        style="height: 80%; width: 100%;"
+        style="height: 80%"
       >
         @for (item of destinations; track $index) {
         <div class="accordion-item bg-transparent">
@@ -44,7 +44,6 @@
             >
               {{ item.name }}
             </button>
-            
           </h2>
           <div
             id="{{ 'acc' + $index + 1 }}"
@@ -62,7 +61,7 @@
                 />
                 <div class="card-img-overlay bg-transparent cardBackground">
                   <!-- <h5 class="card-title">Card title</h5> -->
-                  <div class="card-text text-start ">
+                  <div class="card-text text-start">
                     <p class="fs-7">
                       {{ item.info }}
                       <a
@@ -74,12 +73,20 @@
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                       </a>
                       <button
-              
-              class="btn btn-outline-danger"
-              (click) = "deleteDist(item.id)"
-            >
-              Delete
-            </button>
+                        class="btn btn-outline-danger"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#del' + item.id"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn add-button"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#edit' + item.id"
+                        (click) = "setValueForm($index)"
+                      >
+                        Edit
+                      </button>
                     </p>
                   </div>
 
@@ -119,7 +126,251 @@
             ></iframe>
           </div>
         </div>
-        }
+        <!-- delete modal -->
+        <div
+          class="modal fade"
+          id="del{{ item.id }}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              @if (deleteSuc==0) {
+              <div class="modal-body">
+                If You Deleted This Destination ,It Will Delete all Trips that
+                contains it Are You Sure?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="deleteDist(item.id)"
+                >
+                  Delete
+                </button>
+              </div>
+              } @else if (deleteSuc==1) {
+              <div class="modal-body">Deleted Successfully</div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                  Close
+                </button>
+              </div>
+              } @else if (deleteSuc==-1) {
+              <div class="modal-body">Can't Be Deleted</div>
+              <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                  Close
+                </button>
+              </div>
+              <!-- modal edit -->
+              
+              }
+            </div>
+          </div>
+        </div>
+        
+        <form
+        [formGroup]="editDistForm"
+        (ngSubmit)="editDist(item.id)"
+        class="modal fade"
+        id="edit{{item.id}}"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        enctype="multipart/form-data"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Edit Destination
+              </h1>
+              <button
+                type="button"
+                class="btn fa-solid fa-xmark fs-2"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-floating mb-4">
+                <input
+                  formControlName="name"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="
+                    editDistForm.controls['name'].invalid &&
+                    editDistForm.controls['name'].touched
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  id="name"
+                  placeholder="Name"
+                  name="name"
+                  value="item.name"
+                />
+                <label for="name">Name</label>
+              </div>
+              @if(editDistForm.controls['name'].invalid &&
+              editDistForm.controls['name'].touched) {
+              <div class="text-danger">
+                @if(editDistForm.controls['name'].errors?.["required"]) {This Field
+                is required! }
+                @if(editDistForm.controls['name'].errors?.["minlength"]) {This Field
+                is Minmum length is 4 }
+              </div>
+              }
+              <div class="form-floating mb-4">
+                <textarea
+                  formControlName="info"
+                  class="form-control"
+                  [ngClass]="
+                    editDistForm.controls['info'].invalid &&
+                    editDistForm.controls['info'].touched
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  id="info"
+                  placeholder="Info."
+                  name="info"
+                  value="item.info"
+                ></textarea>
+                <label for="info">Info.</label>
+              </div>
+              @if(editDistForm.controls['info'].invalid &&
+              editDistForm.controls['info'].touched) {
+              <div class="text-danger">
+                @if(editDistForm.controls['name'].errors?.["required"]) {This Field
+                is required! }
+              </div>
+              }
+              <div class="input-group mb-4 d-flex align-items-baseline">
+                <label for="flag" class="col-2">Flag</label>
+                <input
+                  formControlName="flag"
+                  type="file"
+                  class="form-control"
+                  id="flag"
+                  name="flag"
+                  [ngClass]="
+                    editDistForm.controls['flag'].invalid &&
+                    editDistForm.controls['flag'].touched
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  (change)="onFileSelectedFlagEdit($event)"
+                />
+              </div>
+              @if(editDistForm.controls['flag'].invalid &&
+              editDistForm.controls['flag'].touched) {
+              <div class="text-danger">
+                @if(editDistForm.controls['flag'].errors?.["required"]) {This Field
+                is required! }
+              </div>
+              }
+              <div class="input-group mb-4 d-flex align-items-baseline">
+                <label for="pic" class="col-2">Picture</label>
+                <input
+                  [ngClass]="
+                    editDistForm.controls['pic'].invalid &&
+                    editDistForm.controls['pic'].touched
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  formControlName="pic"
+                  type="file"
+                  class="form-control"
+                  id="pic"
+                  name="pic"
+                  (change)="onFileSelectedPicEdit($event)"
+                />
+              </div>
+              @if(editDistForm.controls['pic'].invalid &&
+              editDistForm.controls['pic'].touched) {
+              <div class="text-danger">
+                @if(editDistForm.controls['pic'].errors?.["required"]) {This Field is
+                required! }
+              </div>
+              }
+              <!-- <div class="input-group mb-3">
+              <input type="file" class="form-control" id="inputGroupFile02">
+              <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            </div> -->
+              <div class="form-floating mb-4 d-flex align-items-baseline">
+                <input
+                  [ngClass]="
+                    editDistForm.controls['map'].invalid &&
+                    editDistForm.controls['map'].touched
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  formControlName="map"
+                  type="text"
+                  class="form-control"
+                  id="map"
+                  placeholder="Location in Google Maps"
+                  name="map"
+                  value="item.map"
+                />
+                <label for="map">Location in Google Maps</label>
+                <a
+                  href="https://www.google.com/maps"
+                  target="_blank"
+                  class="btn add-button ms-2"
+                  class="btn add-button ms-2"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
+                ></a>
+              </div>
+              @if(editDistForm.controls['map'].invalid &&
+              editDistForm.controls['map'].touched) {
+              <div class="text-danger">
+                @if(editDistForm.controls['map'].errors?.["required"]) {This Field is
+                required! }
+              </div>
+              }
+            </div>
+    
+            <div class="modal-footer">
+              <button type="button" class="btn" data-bs-dismiss="modal">
+                Cancel
+              </button>
+    
+              <button
+                id="submitter"
+                type="submit"
+                class="btn add-button"
+                data-bs-dismiss="modal"
+                [disabled]="
+                  editDistForm.controls['name'].invalid ||
+                  editDistForm.controls['info'].invalid ||
+                  editDistForm.controls['pic'].invalid ||
+                  editDistForm.controls['flag'].invalid ||
+                  editDistForm.controls['map'].invalid
+                    ? 'modal '
+                    : ''
+                "
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      }
       </div>
     </div>
     <div
