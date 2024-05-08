@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { DestinationService } from '../../services/destination.service';
+import { DestinationService } from '../../services/destination.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -11,11 +11,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class DestinationsSectionComponent {
   destinations: any;
-  constructor (   private cookie:CookieService){}
+  constructor (   private cookie:CookieService, private destinationService:DestinationService){}
   ngOnInit() {
     let token = this.cookie.get("token");
     console.log(token);
 
-    // this.destinationService.getDestinations(token).subscribe((res:any)=>this.destinations=res);
+    this.destinationService.getDestinations().subscribe((res:any)=>this.destinations=res);
   }
 }

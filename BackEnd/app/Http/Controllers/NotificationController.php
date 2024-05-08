@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -20,7 +21,9 @@ class NotificationController extends Controller
     }
     public function userNotifications()
     {
+        $userID = Auth::id();
         return Notification::where('type', 'App\Notifications\PBAccept')
+            ->where('notifiable_id', $userID)
             ->whereNull('read_at')
             ->get();
     }

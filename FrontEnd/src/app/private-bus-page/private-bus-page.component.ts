@@ -41,7 +41,7 @@ export class PrivateBusPageComponent {
     departure_date: '',
     return: '',
   };
-  submitPrivateBusForm() {
+  submitPrivateBusForm(privateBusForm:any) {
     let token = this.cookie.get('token');
     let httpOptions = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     this.http
@@ -68,5 +68,9 @@ export class PrivateBusPageComponent {
           console.error('Error');
         }
       );
+      Object.keys(privateBusForm.controls).forEach(controlName => {
+        // Mark each control as untouched
+        privateBusForm.controls[controlName].markAsUntouched();
+      });
   }
 }

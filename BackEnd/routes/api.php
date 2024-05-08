@@ -196,5 +196,5 @@ Route::get("payment", function (Request $request) {
 use App\Http\Controllers\NotificationController;
 
 Route::get('/adminNotifications', [NotificationController::class, 'adminNotifications']);
-Route::get('/userNotifications', [NotificationController::class, 'userNotifications']);
+Route::get('/userNotifications', [NotificationController::class, 'userNotifications'])->middleware("auth:sanctum");
 Route::put('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead']);
