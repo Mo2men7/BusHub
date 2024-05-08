@@ -8,11 +8,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PBAccept extends Notification
+class PBCancel extends Notification
 {
     use Queueable;
     private $PrivateBusFrom;
-
 
     /**
      * Create a new notification instance.
@@ -41,11 +40,11 @@ class PBAccept extends Notification
      *
      * @return array<string, mixed>
      */
-    public function toDatabase($notifiable)
+    public function toDatabase()
     {
         return [
             'id' => $this->PrivateBusFrom->id,
-            'title' => 'Your request has been accepted by admin',
+            'title' => "Sorry, We can't accept your private bus request at the current time",
         ];
     }
 }

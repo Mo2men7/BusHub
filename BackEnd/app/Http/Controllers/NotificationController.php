@@ -23,9 +23,15 @@ class NotificationController extends Controller
     {
         $userID = Auth::id();
         return Notification::where('type', 'App\Notifications\PBAccept')
-            ->where('notifiable_id', $userID)
-            ->whereNull('read_at')
-            ->get();
+        ->where('notifiable_id', $userID)
+        ->whereNull('read_at')
+        ->orWhere(function($query) {
+            $userID = Auth::id(); //App\Notifications\PBCancel
+            $query->where('type', 'App\Notifications\PBCancel')
+                  ->where('notifiable_id', $userID)
+                  ->whereNull('read_at');
+        })
+        ->get();
     }
     public function markAllAsRead()
     {
