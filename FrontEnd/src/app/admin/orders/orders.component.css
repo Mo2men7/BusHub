@@ -10,7 +10,6 @@
 }
 .check{
     color: lightgreen;
-    background-color: black;
 }
 .check:hover{
     background-color: lightgreen;
