@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   styleUrl: './nexttrips.component.css'
 })
 export class NexttripsComponent {
+  loading:boolean=true
   constructor(private userservice: UserService, private activatedRoute: ActivatedRoute,private nexttrips:TripsService,private cookie:CookieService) { }
   userId: any;
   userData: any;
@@ -35,9 +36,12 @@ export class NexttripsComponent {
       res => {
         this.nextTrips = res;
         console.log(this.nextTrips);
+        this.loading=false
         // this.isarray = this.isArrayEmpty(this.nextTrips);
         // console.log(this.isarray)
 
+      }, error => {
+        this.loading=true
       }
     )
   }

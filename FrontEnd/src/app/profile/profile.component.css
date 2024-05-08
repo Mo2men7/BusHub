@@ -1,9 +1,18 @@
 *{
 box-sizing: border-box;
+
 }
 
 
+#spinnerInAdmin
+{
+    width:100vw;
+    height:100vh;
+    background-color: var(--background);
+    margin: auto;
 
+
+}
 
  .account-container {
   background-color: var(--background);

@@ -26,7 +26,14 @@ import { from } from 'rxjs';
 export class SignComponent {
   loginForm: FormGroup;
   registerForm: FormGroup;
+  token: any;
+
   constructor(private fb:FormBuilder,private elRef: ElementRef, private renderer: Renderer2, private userservice: UserService, private router: Router, private cookie: CookieService, private authService: SocialAuthService) {
+
+this.token=this.cookie.get("token");
+    if (this.token) {
+      this.router.navigate(["/"])
+    }
 
     this.loginForm = this.fb.group({
       email: ["", [Validators.email,Validators.required]],
