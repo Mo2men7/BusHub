@@ -16,6 +16,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   styleUrl: './previoustrips.component.css'
 })
 export class PrevioustripsComponent {
+  loading:boolean=true;
+
   constructor(private userservice: UserService, private activatedRoute: ActivatedRoute,private prtrips:TripsService,private cookie:CookieService) { }
   userId: any;
   userData: any;
@@ -35,8 +37,13 @@ export class PrevioustripsComponent {
 
     this.prtrips.userPreviousTrips(this.token).subscribe(
       res => {
+        this.loading = false;
         this.previousTrips = res;
         console.log(this.previousTrips);
+
+      }, error => {
+        this.loading = true;
+
       }
     )
   }

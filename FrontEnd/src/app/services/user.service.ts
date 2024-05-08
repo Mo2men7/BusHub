@@ -130,7 +130,14 @@ setOtp(newValue:string) {
 
 
 
+ logout(token:any) {
 
+    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+
+    return this.http.get("http://127.0.0.1:8000/api/logout",{headers:httpOptions});
+
+
+  }
 
 
 

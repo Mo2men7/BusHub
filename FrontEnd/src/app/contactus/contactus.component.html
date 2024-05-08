@@ -108,10 +108,13 @@
           }
           <div class="button">
             <button
+              [disabled]="contactusForm.invalid"
               type="submit"
               class="py-1 bh-btn rounded-pill px-4 border border-primary"
               value="Contact Us"
-            >Contact Us</button>
+            >
+              Contact Us
+            </button>
           </div>
         </form>
       </div>
