@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-private-bus-page',
@@ -23,7 +24,8 @@ export class PrivateBusPageComponent {
     private destinationService: DestinationService,
     private http: HttpClient,
     private TypeService: TypeService,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private router:Router
   ) {}
   ngOnInit() {
     this.destinationService
@@ -43,30 +45,63 @@ export class PrivateBusPageComponent {
   };
   submitPrivateBusForm() {
     let token = this.cookie.get('token');
-    let httpOptions = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    this.http
-      .post('http://127.0.0.1:8000/api/private-bus', this.formData, {
-        headers: httpOptions,
-      })
-      .subscribe(
-        (res) => {
-          console.log('Done');
-          this.formData.name = '';
-          this.formData.phone = '';
-          this.formData.from = '';
-          this.formData.to = '';
-          this.formData.bus_type_id = '';
-          this.formData.passenger_number = '';
-          this.formData.departure_date = '';
-          this.formData.return = '';
-          Swal.fire({
-            icon: 'success',
-            title: 'Your request has been submit successfully',
-          });
+    if (token) {
+      let httpOptions = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      this.http
+        .post('http://127.0.0.1:8000/api/private-bus', this.formData, {
+          headers: httpOptions,
+        })
+        .subscribe(
+          (res) => {
+            console.log('Done');
+            this.formData.name = '';
+            this.formData.phone = '';
+            this.formData.from = '';
+            this.formData.to = '';
+            this.formData.bus_type_id = '';
+            this.formData.passenger_number = '';
+            this.formData.departure_date = '';
+            this.formData.return = '';
+            Swal.fire({
+              icon: 'success',
+              title: 'Your request has been submit successfully',
+            });
+          },
+          (error) => {
+            console.error('Error');
+          }
+        );
+    } else {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
         },
-        (error) => {
-          console.error('Error');
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to book, you must sign up !",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "sign up",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(["/signin"]);
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            // text: "We are here to assist you anytime  :)",
+            icon: "error"
+          });
         }
-      );
-  }
+      });
+    }
+    }
 }
+

@@ -14,11 +14,13 @@ export class NavbarComponent {
   constructor(private userservice: UserService, private cookie: CookieService){}
   userData: any;
   token = this.cookie.get("token");
-  ngOnInit(){
-    this.userservice.userProfile(this.token).subscribe(
-      res => {
-        this.userData = res;
-      }
-    )
+  ngOnInit() {
+    if (this.token) {
+      this.userservice.userProfile(this.token).subscribe(
+        res => {
+          this.userData = res;
+        }
+      )
+    }
   }
 }

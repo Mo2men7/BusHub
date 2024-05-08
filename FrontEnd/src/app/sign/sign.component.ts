@@ -91,7 +91,7 @@ this.token=this.cookie.get("token");
         console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
 
         // Optionally, reset the form after successful submission
         formData = {
@@ -176,7 +176,7 @@ this.token=this.cookie.get("token");
         console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
 
         // Optionally, reset the form after successful submission
         // this.formData = {
@@ -216,7 +216,7 @@ this.token=this.cookie.get("token");
         this.cookie.set("token", this.loginResponse["token"]);
         console.log(response.user.role)
         if (response.user.role=="user")
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
       else if (response.user.role=="admin")
         this.router.navigate(['/admin']);
 
