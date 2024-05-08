@@ -19,8 +19,23 @@ export class NavbarComponent {
     private http: HttpClient
   ) {}
   userData: any;
+  notifications: any;
   token = this.cookie.get("token");
   ngOnInit() {
+    this.userservice.userProfile(this.token).subscribe((res:any) => {
+      this.userData = res;
+    });
+    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+this.token);
+    this.http
+      .get(`http://127.0.0.1:8000/api/userNotifications`, {headers:httpOptions})
+      .subscribe((res: any) => {
+        console.log(res);
+        this.notifications = res;
+      });
+  }
+  getNotificationTitle(dataString: string): string {
+    const dataObject = JSON.parse(dataString);
+    return dataObject.title || 'No title available';
     if (this.token) {
       this.userservice.userProfile(this.token).subscribe(
         res => {
