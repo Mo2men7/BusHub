@@ -17,30 +17,45 @@ export class SearchComponent {
 
   constructor(
     private destinationService: DestinationService,
-    private router: Router,
-    ) {
-  }
-  today = new Date().toISOString().split('T')[0];
+    private router: Router
+  ) {}
+   //locked previous days variable
+  // today = new Date().toISOString().split('T')[0];
+  today =
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[2] +
+    '-' +
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[0]
+      .padStart(2, '0') +
+    '-' +
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[1]
+      .padStart(2, '0');
+
+      
   ngOnInit() {
     this.destinationService
       .getDestinations()
       .subscribe((res: any) => (this.destinations = res));
-      //locked previous days
-      console.log(this.today)
-      document.getElementsByName('travelDate')[0].setAttribute('min', this.today);
+    //locked previous days
+    console.log(this.today); //delete
+    document.getElementsByName('travelDate')[0].setAttribute('min', this.today);
   }
   // tomorrow:any=new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
   formData: any = { travelDate: this.today, passengers: 1 }; // Object to hold form data
   onSubmit() {
-      // const { origin, destination, travelDate, passengers } = this.formData;
-      const { origin, destination, travelDate } = this.formData;
-      this.router.navigate([
-        '/trips',
-        origin,
-        destination,
-        travelDate,
-        // passengers,
-      ]);
+    // const { origin, destination, travelDate, passengers } = this.formData;
+    const { origin, destination, travelDate } = this.formData;
+    this.router.navigate([
+      '/trips',
+      origin,
+      destination,
+      travelDate,
+      // passengers,
+    ]);
   }
-
 }
