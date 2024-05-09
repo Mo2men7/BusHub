@@ -20,13 +20,17 @@ export class SearchComponent {
     private router: Router,
     ) {
   }
+  today = new Date().toISOString().split('T')[0];
   ngOnInit() {
     this.destinationService
       .getDestinations()
       .subscribe((res: any) => (this.destinations = res));
+      //locked previous days
+      console.log(this.today)
+      document.getElementsByName('travelDate')[0].setAttribute('min', this.today);
   }
-  tomorrow:any=new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
-  formData: any = { travelDate: this.tomorrow, passengers: 1 }; // Object to hold form data
+  // tomorrow:any=new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).toISOString().substring(0, 10);
+  formData: any = { travelDate: this.today, passengers: 1 }; // Object to hold form data
   onSubmit() {
       // const { origin, destination, travelDate, passengers } = this.formData;
       const { origin, destination, travelDate } = this.formData;

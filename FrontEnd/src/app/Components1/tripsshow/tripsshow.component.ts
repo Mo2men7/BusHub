@@ -98,12 +98,12 @@ export class TripsshowComponent {
     if (trip.date == formattedDate && trip_time < current_time) {
       // console.log('1st if');
       Swal.fire({
-        icon: 'warning',
+        icon: 'error',
         title: `The bus has already left.`,
         showConfirmButton: false,
         timer: 2000,
       });
-    } else if (trip.date == formattedDate && current_time - trip_time <= 7200) {
+    } else if (trip.date == formattedDate && trip_time - current_time <= 7200) {
       // console.log('2nd if');
       Swal.fire({
         icon: 'warning',

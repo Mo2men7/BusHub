@@ -1,12 +1,17 @@
-@for(select of selected ;track $index){
-<p>{{userDetails?.username}}</p>
-<p>seat number:{{select.seat_num}}</p>
-<p>{{tripDeatils.from_location}}</p>
+@if(userDetails&&selected&&tripDeatils&&allseats){
+    <!-- navbar start -->
+<app-navbar></app-navbar>
 
-<div class="big_container m-auto row">
+    <!-- navbar end -->
+@for(select of selected ;track $index){
+<!-- <p>{{userDetails?.username}}</p>
+<p>seat number:{{select.seat_num}}</p>
+<p>{{tripDeatils.from_location}}</p> -->
+
+<div class="big_container  row">
     <div class="left col-8">
         <div class="header1_container">
-            <div class="d-flex align-items-center"> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span>
+            <div class="d-flex align-items-center cont-serial"> <span class="BUS-text">Bus</span> <span class="HUB-text">Hub.</span>
                 <span class="serial"> B1 {{select.id}}-A</span>
             </div>
         </div>
@@ -70,7 +75,7 @@
     <!-- ====================================================== -->
     <div class="right col-4">
         <div class="header2_container ">
-            <div> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span></div>
+            <div> <span class="BUS-text">Bus</span> <span class="HUB-text">Hub.</span></div>
         </div>
         <div class="right-container">
 
@@ -107,4 +112,15 @@
 
 
 
+}
+    <!-- footer start -->
+
+<app-footer></app-footer>
+    <!-- footer end -->
+
+
+}@else{
+    <div class="m-auto spinner_edit">
+        <mat-spinner></mat-spinner>
+      </div>
 }
