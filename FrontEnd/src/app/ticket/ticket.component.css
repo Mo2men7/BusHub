@@ -30,7 +30,7 @@ hr {
   margin: 0%;
 }
 .big_container {
-  background-color: gray;
+  /* background-color: gray; */
   width: 70%;
   border-top-left-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -54,7 +54,7 @@ hr {
   padding-left: 20px;
   margin-left: 0%;
 }
-.right-container {
+/* .right-container {
   border-bottom-right-radius: 50px;
   border-left-style: dashed;
   border-left-color: white;
@@ -63,10 +63,7 @@ hr {
 .right-container {
   border-left-style: dashed;
   border-left-color: white;
-  /* border-left-style: dashed;
-  border-left-width: 3px;
-  border-left-color: white; */
-}
+} */
 .BUS-text {
   color: var(--text);
 }
