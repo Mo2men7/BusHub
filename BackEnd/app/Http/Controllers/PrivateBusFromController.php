@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrivateBusFrom;
+use App\Notifications\PBAccept;
+use App\Notifications\PBCancel;
 use App\Notifications\PBRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Notification;
+// use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class PrivateBusFromController extends Controller
@@ -19,7 +22,7 @@ class PrivateBusFromController extends Controller
             ->join('destinations as fromDestinations', 'private_bus_froms.from', '=', 'fromDestinations.id')
             ->join('destinations as toDestinations', 'private_bus_froms.to', '=', 'toDestinations.id')
             ->join('types', 'private_bus_froms.bus_type_id', '=', 'types.id')
-            ->select('private_bus_froms.*', 'users.username','fromDestinations.name as originName', 'toDestinations.name as destinationName', 'types.type as typeName')
+            ->select('private_bus_froms.*', 'users.username', 'fromDestinations.name as originName', 'toDestinations.name as destinationName', 'types.type as typeName')
             ->get();
     }
 
@@ -70,18 +73,30 @@ class PrivateBusFromController extends Controller
         }
     }
 
-    public function acceptRequest($id){
+    public function acceptRequest($id)
+    {
         $reqest = PrivateBusFrom::findOrFail($id);
-        $reqest->update(["status"=>"Accepted"]);
+        $reqest->update(["status" => "Accepted"]);
         $reqest->save();
-        return response()->json(['message' => 'Request has been accepted successfully',200]);
+        /////////////// Start notification storing ///////////////
+        $user = \App\Models\User::find($reqest->user_id);
+        $PrivateBusFrom = $reqest;
+        Notification::send($user, new PBAccept($PrivateBusFrom));
+        /////////////// End notification storing ///////////////
+        return response()->json(['message' => 'Request has been accepted successfully', 200]);
     }
 
-    public function declineRequest($id){
+    public function declineRequest($id)
+    {
         $reqest = PrivateBusFrom::findOrFail($id);
-        $reqest->update(["status"=>"Rejected"]);
+        $reqest->update(["status" => "Rejected"]);
         $reqest->save();
-        return response()->json(['message' => 'Request has been declined successfully',200]);
+        /////////////// Start notification storing ///////////////
+        $user = \App\Models\User::find($reqest->user_id);
+        $PrivateBusFrom = $reqest;
+        Notification::send($user, new PBCancel($PrivateBusFrom));
+        /////////////// End notification storing ///////////////
+        return response()->json(['message' => 'Request has been declined successfully', 200]);
     }
 
     public function destroy($id)

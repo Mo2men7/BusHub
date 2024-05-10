@@ -26,6 +26,7 @@ use App\Http\Controllers\admin\DestinationAdminController;
 use App\Http\Controllers\api\GoogleController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\Controllers1\SeatController;
 use App\Http\Resources\admin\DestinationAdminResource;
 use App\Models\admin\Destination;
@@ -95,20 +96,18 @@ Route::get('/admin/destination/{id}', function ($id) {
 // ? to add a single destination in DB
 Route::post('/admin/destinations', [DestinationAdminController::class, 'store']);
 
-Route::get('/admin/images/pic/{filename}', function ($filename)
-{
-    $file = \Illuminate\Support\Facades\Storage::get("/pic/".$filename);
+Route::get('/admin/images/pic/{filename}', function ($filename) {
+    $file = \Illuminate\Support\Facades\Storage::get("/pic/" . $filename);
 
     return response($file, 200)->header('Content-Type', 'image/jpeg');
 });
-Route::get('/admin/images/flag/{filename}', function ($filename)
-{
-    $file = \Illuminate\Support\Facades\Storage::get("/flag/".$filename);
+Route::get('/admin/images/flag/{filename}', function ($filename) {
+    $file = \Illuminate\Support\Facades\Storage::get("/flag/" . $filename);
 
     return response($file, 200)->header('Content-Type', 'image/jpeg');
 });
 // ? to update a single destination with $id in DB
-Route::put('/admin/destination/{id}', [DestinationAdminController::class, 'update']);
+Route::post('/admin/destination-update/{id}', [DestinationAdminController::class, 'update']);
 // ? to delete a single destination with $id in DB
 Route::delete('/admin/destination/{id}', [DestinationAdminController::class, 'destroy']);
 // !end Destination
@@ -141,6 +140,7 @@ Route::put("/edit", [UserController::class, "update"])->middleware("auth:sanctum
 Route::post("/forgot-password", [ForgetPasswordController::class, "forgotPassword"]);
 Route::post("/reset-password", [ResetPasswordController::class, "passwordReset"]);
 Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]);
+Route::post("/contactus", [ContactusController::class, "contactus"])->middleware("auth:sanctum");
 
 
 
@@ -149,7 +149,7 @@ Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]
 Route::post("/login", [UserController::class, "login"]);
 Route::get("/profile", [UserController::class, "profile"])->middleware("auth:sanctum");
 
-Route::post("/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
+Route::get("/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
 Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 ///////////////////////////Destination Page and Section////////////////////////////////
@@ -192,5 +192,7 @@ Route::get("payment", function (Request $request) {
 
 ///////////////////////////Notifications Admin////////////////////////////////
 use App\Http\Controllers\NotificationController;
-Route::get('/notifications', [NotificationController::class, 'index']);
+
+Route::get('/adminNotifications', [NotificationController::class, 'adminNotifications']);
+Route::get('/userNotifications', [NotificationController::class, 'userNotifications'])->middleware("auth:sanctum");
 Route::put('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead']);

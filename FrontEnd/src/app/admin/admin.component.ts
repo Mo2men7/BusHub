@@ -51,7 +51,7 @@ export class AdminComponent {
       }
     );
     this.http
-      .get('http://127.0.0.1:8000/api/notifications')
+      .get('http://127.0.0.1:8000/api/adminNotifications')
       .subscribe((res: any) => {
         console.log(res);
         this.notifications = res;
@@ -85,7 +85,7 @@ export class AdminComponent {
         );
     }
     this.http
-      .get('http://127.0.0.1:8000/api/notifications')
+      .get('http://127.0.0.1:8000/api/adminNotifications')
       .subscribe((res: any) => {
         console.log(res);
         this.notifications = res;

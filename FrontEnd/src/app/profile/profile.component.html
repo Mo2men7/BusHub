@@ -13,6 +13,16 @@
   </head>
 
   <body> -->
+@if(loading) {
+<div
+  id="spinnerInAdmin"
+  class="d-flex justify-content-center align-content-center"
+>
+  <div class="spinner-border text-light" style="margin-top: 20%" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+} @else {
 
 <div id="root">
   <app-navbar></app-navbar>
@@ -73,6 +83,9 @@
       </mat-tab>
     </mat-tab-group>
   </div>
+  <div>
+    <button (click)="logout()">logout</button>
+  </div>
   <!-- .................................................... -->
   <!-- <nav class="navbar navbar-expand-lg">
     <div class="container-fluid py-auto">
@@ -131,3 +144,4 @@
 
   <app-footer></app-footer>
 </div>
+}

@@ -2,53 +2,62 @@
 <div class="privatebusForm">
   <div class="container py-4">
     <div class="text-center">
-      <h2 style="color: var(--text);">Private Bus Booking Request Form</h2>
+      <h2 style="color: var(--text)">Private Bus Booking Request Form</h2>
       <p class="text-white-50">
         Please fill out the form below to request to book a full bus for your
         journey
       </p>
     </div>
-    @if(alertmessage){
-      <div class="alert alert-success mx-3" role="alert">
-        {{alertmessage}}
-      </div>
-      }
     <div class="">
-      <form (submit)="submitPrivateBusForm()">
+      <form #privateBusForm="ngForm" (submit)="submitPrivateBusForm(privateBusForm)">
         <div class="row g-2 m-3">
           <div class="col-md">
             <div class="form-floating">
               <input
+                #name="ngModel"
+                ngModel
+                name="name"
                 type="name"
                 [(ngModel)]="formData.name"
-                name="name"
                 class="form-control"
                 id="floatingInputGrid"
-                placeholder="Ex: Momen Helmy"
                 required
               />
               <label for="floatingInputGrid">Name</label>
             </div>
+            @if (name.invalid && name.touched) {<span class="text-danger">This field is required</span>}
           </div>
           <div class="col-md">
             <div class="form-floating">
               <input
                 type="tel"
                 [(ngModel)]="formData.phone"
+                #phone="ngModel"
+                ngModel
+                maxlength="11"
                 name="phone"
                 class="form-control"
                 id="floatingInputGrid"
-                placeholder="01234567891"
                 required
               />
               <label for="floatingInputGrid">Phone Number</label>
             </div>
+            @if (phone.invalid && phone.touched) {
+              @if(phone.errors?.['required']){
+                <span class="text-danger">This field is required</span>
+              }
+              @else if(phone.value && phone.value.length > 11){
+                <span class="text-danger">Phone can't be more than 11 digits start with 01</span>
+              }
+            }
           </div>
         </div>
         <div class="row g-2 m-3">
           <div class="col-md">
             <div class="form-floating">
               <select
+              #from="ngModel"
+                ngModel
                 name="from"
                 [(ngModel)]="formData.from"
                 class="form-select"
@@ -64,10 +73,15 @@
               </select>
               <label for="floatingInputGrid">Origin</label>
             </div>
+            @if (from.invalid && from.touched) {
+              <span class="text-danger">This field is required</span>
+            }
           </div>
           <div class="col-md">
             <div class="form-floating">
               <select
+              #to="ngModel"
+                ngModel
                 name="to"
                 [(ngModel)]="formData.to"
                 class="form-select"
@@ -83,12 +97,17 @@
               </select>
               <label for="floatingSelectGrid">Destinaiton</label>
             </div>
+            @if (to.invalid && to.touched) {
+              <span class="text-danger">This field is required</span>
+            }
           </div>
         </div>
         <div class="row g-2 m-3">
           <div class="col-md">
             <div class="form-floating">
               <select
+              #bus_type_id="ngModel"
+                ngModel
                 name="bus_type_id"
                 [(ngModel)]="formData.bus_type_id"
                 class="form-select"
@@ -102,28 +121,42 @@
               </select>
               <label for="floatingInputGrid">Bus Type</label>
             </div>
+            @if (bus_type_id.invalid && bus_type_id.touched) {
+              <span class="text-danger">This field is required</span>
+            }
           </div>
           <div class="col-md">
             <div class="form-floating">
               <input
+              #passenger_number="ngModel"
+                ngModel
                 type="number"
                 [(ngModel)]="formData.passenger_number"
                 name="passenger_number"
                 class="form-control"
                 id="floatingInputGrid"
-                placeholder="How many passengers"
                 required
                 min="1"
                 max="60"
               />
               <label for="floatingSelectGrid">Passengers</label>
             </div>
+            @if (passenger_number.invalid && passenger_number.touched) {
+              @if(passenger_number.errors?.['required']){
+                <span class="text-danger">This field is required</span>
+              }
+              @else if(passenger_number.value && passenger_number.value > 60){
+                <span class="text-danger">passengers number can't be more than 60</span>
+              }
+            }
           </div>
         </div>
         <div class="row g-2 m-3">
           <div class="col-md">
             <div class="form-floating">
               <input
+              #date="ngModel"
+                ngModel
                 type="date"
                 [(ngModel)]="formData.departure_date"
                 name="departure_date"
@@ -133,10 +166,13 @@
               />
               <label for="floatingInputGrid">Date</label>
             </div>
+            <!-- @if (date.) {} -->
           </div>
           <div class="col-md">
             <div class="form-floating">
               <select
+              #return="ngModel"
+                ngModel
                 name="return"
                 [(ngModel)]="formData.return"
                 class="form-select"
@@ -149,10 +185,22 @@
               </select>
               <label for="floatingInputGrid">Return</label>
             </div>
+            @if (return.invalid && return.touched) {
+              <span class="text-danger">This field is required</span>
+            }
           </div>
         </div>
-        <div class="text-center">
-          <button type="submit" class="py-1 bh-btn-primary w-25 rounded-pill px-4">Submit</button>
+        <div class="text-center d-flex flex-column justify-content-center align-items-center gap-2">
+          <button
+            type="submit"
+            class="py-1 bh-btn-primary w-25 rounded-pill px-4"
+            [disabled]="privateBusForm.invalid"
+          >
+            Submit
+          </button>
+          @if (privateBusForm.invalid) {
+            <span class="text-danger w-25">All field are required</span>
+          }
         </div>
       </form>
     </div>

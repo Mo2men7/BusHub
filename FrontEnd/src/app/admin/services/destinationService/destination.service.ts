@@ -17,7 +17,24 @@ export class DestinationService {
       'Accept':'application/json'
     })
   };
+  httpOptions2={
+    headers :new HttpHeaders({
+      'Content-Type':'application/json',
+      // 'Accept':'application/json'
+    })
+  };
   addDestinations(dest:any) {
     return this.http.post(this.url+'/api/admin/destinations',dest,this.httpOptions);
+  }
+  deleteDestination(id:any)
+  {
+    return this.http.delete(this.url+'/api/admin/destination/'+id,this.httpOptions);
+  }
+  editDestination(updateDes:any,id:any)
+  {
+    
+    console.log("serve")
+    console.log(updateDes.get("name"))
+    return this.http.post(this.url+'/api/admin/destination-update/'+id,updateDes,this.httpOptions);
   }
 }

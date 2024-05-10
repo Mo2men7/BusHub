@@ -162,3 +162,12 @@
   .container-width{
     width: 101%;
   }
+
+  #spinnerInAdmin
+{
+    width:1vw;
+    height:5vh;
+    margin: auto;
+
+
+}

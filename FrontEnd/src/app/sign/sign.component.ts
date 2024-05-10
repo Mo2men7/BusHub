@@ -26,7 +26,14 @@ import { from } from 'rxjs';
 export class SignComponent {
   loginForm: FormGroup;
   registerForm: FormGroup;
+  token: any;
+
   constructor(private fb:FormBuilder,private elRef: ElementRef, private renderer: Renderer2, private userservice: UserService, private router: Router, private cookie: CookieService, private authService: SocialAuthService) {
+
+this.token=this.cookie.get("token");
+    if (this.token) {
+      this.router.navigate(["/"])
+    }
 
     this.loginForm = this.fb.group({
       email: ["", [Validators.email,Validators.required]],
@@ -84,7 +91,7 @@ export class SignComponent {
         console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
 
         // Optionally, reset the form after successful submission
         formData = {
@@ -169,7 +176,7 @@ export class SignComponent {
         console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
 
         // Optionally, reset the form after successful submission
         // this.formData = {
@@ -209,7 +216,7 @@ export class SignComponent {
         this.cookie.set("token", this.loginResponse["token"]);
         console.log(response.user.role)
         if (response.user.role=="user")
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
       else if (response.user.role=="admin")
         this.router.navigate(['/admin']);
 

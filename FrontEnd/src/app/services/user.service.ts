@@ -119,9 +119,25 @@ setOtp(newValue:string) {
 
   }
 
+  contactus(details:any,token:any) {
+
+    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+
+    return this.http.post("http://127.0.0.1:8000/api/contactus",details ,{headers:httpOptions});
+
+
+  }
 
 
 
+ logout(token:any) {
+
+    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+
+    return this.http.get("http://127.0.0.1:8000/api/logout",{headers:httpOptions});
+
+
+  }
 
 
 

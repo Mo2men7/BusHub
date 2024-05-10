@@ -1,0 +1,125 @@
+<app-navbar></app-navbar>
+<head>
+  <meta charset="UTF-8" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<main>
+  <div class="container">
+    <div class="content">
+      <div class="left-side">
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">Port Said, Egypt</div>
+          <!-- <div class="text-two">Port Said, Egypt</div> -->
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-two">+201280968784</div>
+          <div class="text-one">+201003391697</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">support&#64;bushub.com</div>
+          <!-- <div class="text-two">info.codinglabgmail.com</div> -->
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="topic-text">Send us a message</div>
+        <p class="text-black-50 my-2">
+          We're here to help! Whether you have a question, feedback, or just
+          want to say hello, don't hesitate to reach out to us. Our team is
+          committed to providing prompt and personalized assistance to address
+          your needs. Feel free to fill out the form below or use the contact
+          information provided to connect with us. We look forward to hearing
+          from you!
+        </p>
+        <form
+          #contactusForm="ngForm"
+          (ngSubmit)="onsubmit(contactusForm)"
+          action="#"
+        >
+          <div class="input-box">
+            <input
+              type="text"
+              name="username"
+              [(ngModel)]="contactForm.username"
+              placeholder="Enter your name"
+              required
+              minlength="4"
+              #username="ngModel"
+            />
+          </div>
+          @if(username.touched&&username.invalid){
+          <div class="form-text text-danger">
+            @if(username.errors?.["required"]){
+            <small>Name is required</small>
+            } @if(username.errors?.["minlength"]){
+            <small>Name must be at least 4 digits</small>
+            }
+          </div>
+
+          }
+
+          <div class="input-box">
+            <input
+              type="text"
+              name="email"
+              [(ngModel)]="contactForm.email"
+              placeholder="Enter your email"
+              required
+              #email="ngModel"
+            />
+          </div>
+          @if(email.touched&&email.invalid){
+          <div class="form-text text-danger">
+            @if(email.errors?.["required"]){
+            <small>Email is required</small>
+            }
+          </div>
+
+          }
+          <div class="input-box message-box">
+            <textarea
+              name="message"
+              id=""
+              [(ngModel)]="contactForm.message"
+              cols="30"
+              placeholder="Enter your message"
+              rows="10"
+              required
+              #message="ngModel"
+            ></textarea>
+          </div>
+          @if(message.touched&&message.invalid){
+          <div class="form-text text-danger">
+            @if(message.errors?.["required"]){
+            <small>Mesaage is required</small>
+            }
+          </div>
+
+          }
+          <div class="button">
+            <button
+              [disabled]="contactusForm.invalid"
+              type="submit"
+              class="py-1 bh-btn rounded-pill px-4 border border-primary"
+              value="Contact Us"
+            >
+              Contact Us
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>
