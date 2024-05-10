@@ -73,7 +73,7 @@
             <!-- <a  class="col-lg-2" (click)="redirectToTrips(trip.id)">
                 <div class="btn  fw-bolder width_booknow btnhover">Book Now</div>
             </a> -->
-            <a  class="col-lg-2" [routerLink]="['/book-trip',trip.id,trip.type_id]">
+            <a  class="col-lg-2" (click)="booknow(trip)" >
                 <div class="btn  fw-bolder width_booknow btnhover">Book Now</div>
             </a>
         </div>

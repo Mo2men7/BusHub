@@ -7,12 +7,19 @@ import { SeatsService } from '../services1/seats.service'; // api seats
 import { CustomDatePipe } from '../custom-date.pipe';
 import { TimeFormatPipe } from '../time-format.pipe';
 //service end
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [CustomDatePipe,
-    TimeFormatPipe
+  imports: [
+    CustomDatePipe,
+    TimeFormatPipe,
+    MatProgressSpinnerModule,
+    NavbarComponent,
+    FooterComponent
   ],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css',
@@ -83,7 +90,17 @@ export class TicketComponent {
     }
     //session end
     // console.log('user id1', this.selected.id);
+//payment accepted start
 
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your payment is confirmed! Thank you for booking with us.",
+  showConfirmButton: false,
+  timer: 2500
+});
+
+//payment accepted end
   }
 
   //run api seats start

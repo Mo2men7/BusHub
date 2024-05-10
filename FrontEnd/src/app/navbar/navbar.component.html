@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid py-auto">
-    <a class="navbar-brand fw-bold fs-3" href="#">BusHub.</a>
+    <a class="navbar-brand fw-bold fs-3" href="#">Bus<span style="color: var(--primary);">Hub.</span></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -60,10 +60,20 @@
           >
         </li>
       </ul>
-
+      @if (token) {
+      <div class="d-flex gap-4 align-items-center">
+        <i class="fa-solid fa-bell text-light"></i>
+        <a
+          routerLink="/profile"
+          class="text-decoration-none text-light text-uppercase"
+          >{{ userData?.username }}</a
+        >
+      </div>
+      }@else {
       <button routerLink="/signin" class="py-1 bh-btn rounded-pill px-4">
         Join
       </button>
+      }
     </div>
   </div>
 </nav>
