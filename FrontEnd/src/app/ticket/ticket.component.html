@@ -4,7 +4,7 @@
 <p>{{tripDeatils.from_location}}</p>
 
 <div class="big_container m-auto row">
-    <div class="left col-9">
+    <div class="left col-8">
         <div class="header1_container">
             <div class="d-flex align-items-center"> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span>
                 <span class="serial"> B1 {{select.id}}-A</span>
@@ -41,12 +41,55 @@
                     <div>{{select.seat_num}}</div>
                 </div>
             </div>
+            <div class="QR-code">
+                <!-- <img src="../../assets/img/"> -->
+            </div>
             <hr class="hr2">
+<!-- <div class="d-flex align-items-center"> -->
+            <div class="l-date">
+                <div>DATE</div>
+                <div>{{tripDeatils.date|customDate}}</div>
+            </div>
+            <div class="l-departure">
+                <div>DEPARTURE</div>
+                <div>{{tripDeatils.time|timeFormat}}</div>
+            </div>
+            <div class="l-price">
+                <div>PRICE</div>
+                <div>{{tripDeatils.price}} LE</div>
+            </div>
+        <!-- </div> -->
+
         </div>
     </div>
-    <div class="right col-3">
+    <!-- ================================ -->
+    <div class="right col-4">
         <div class="header2_container ">
             <div> <span class="BUS-text">BUS</span> <span class="HUB-text">HUB</span></div>
+        </div>
+        <div class="right-container">
+            <div class="passenger">
+                <div>NAME OF PASSENGAER</div>
+                <div class="text-uppercase"> {{userDetails?.username}}</div>
+            </div>
+            <div class="from">
+                <div>FROM:</div>
+                <div class="text-uppercase">{{tripDeatils.from_location}}</div>
+            </div>
+            <div class="to">
+                <div>TO:</div>
+                <div class="text-uppercase">{{tripDeatils.to_location}}</div>
+            </div>
+            <hr class="">
+            <div>
+                <div>BUS</div>
+                <div>{{tripDeatils.bus_id}}</div>
+            </div>
+            <div>
+                <div>SEAT</div>
+                <div>{{select.seat_num}}</div>
+            </div>
+
         </div>
     </div>
 
