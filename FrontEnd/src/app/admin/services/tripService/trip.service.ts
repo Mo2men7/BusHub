@@ -15,5 +15,7 @@ export class TripService {
   listTrips() {
     return this.http.get(this.url+'/api/admin/trips',this.httpOptions2);
   }
-
+  addTrips(trip:any) {
+    return this.http.post(this.url+'/api/admin/trips',trip,this.httpOptions2);
+  }
 }
