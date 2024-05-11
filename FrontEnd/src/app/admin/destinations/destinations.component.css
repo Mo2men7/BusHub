@@ -140,6 +140,10 @@ body {
 .mapAnchor{
     display : none;
 }
+.card-img-overlay
+{
+    background-color: rgba(0, 0, 0, 0.4);
+}
 @media only screen and (max-width: 900px) {
     
     
@@ -159,14 +163,9 @@ body {
     }
     .card-text p {
         overflow-y: auto !important; 
-        height:100px !important;
+        height:70% !important;
     }
-    .cardBackground:hover {
-        /* transition: 0.5s; */
-        opacity: 0.5;
-        /* text-shadow: 0 0 5px var(--text); */
-        /* background-color: var(--primary); */
-    }
+  
     .mapAnchor{
         display : block;
     }
