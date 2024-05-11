@@ -66,6 +66,10 @@ export class PrivateBusPageComponent {
               icon: 'success',
               title: 'Your request has been submit successfully',
             });
+            Object.keys(privateBusForm.controls).forEach(controlName => {
+              // Mark each control as untouched
+              privateBusForm.controls[controlName].markAsUntouched();
+            });
           },
           (error) => {
             console.error('Error');
@@ -101,10 +105,10 @@ export class PrivateBusPageComponent {
           });
         }
     });
-      Object.keys(privateBusForm.controls).forEach(controlName => {
-        // Mark each control as untouched
-        privateBusForm.controls[controlName].markAsUntouched();
-      });
+      // Object.keys(privateBusForm.controls).forEach(controlName => {
+      //   // Mark each control as untouched
+      //   privateBusForm.controls[controlName].markAsUntouched();
+      // });
   }
 }
 }

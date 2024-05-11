@@ -22,19 +22,21 @@ import Swal from 'sweetalert2';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  loading:boolean=true;
+  loading: boolean = true;
+  userId: any;
+  userData: any;
+  token: any;
   constructor(private userservice: UserService, private router: Router, private activatedRoute: ActivatedRoute, private cookie: CookieService) {
+   this.token = this.cookie.get("token");
 
     if(!this.token) {
       this.router.navigate(["/signin"]);
     }
   }
-  userId: any;
-  userData: any;
-  token = this.cookie.get("token");
+
 
   ngOnInit(): void {
-
+    this.token = this.cookie.get("token");
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
     console.log(this.token)
@@ -54,6 +56,16 @@ export class ProfileComponent {
 
 
   }
+
+  // onFileSelectedPicEdit(event: Event) {
+  //   const file = (event.target as HTMLInputElement)?.files?.[0];
+  //   console.log(file);
+
+  //   // this.editDistForm.patchValue({
+  //   //   pic: file,
+  //   // });
+
+  // }
 
   logout() {
 

@@ -71,13 +71,13 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-          <i class="fa-solid fa-bell text-light">
-              @if (notifications.length>0) {
+            <i class="fa-solid fa-bell text-light">
+              @if (notifications?.length>0) {
               <small
                 class="position-absolute translate-middle badge rounded-pill bg-danger"
                 style="font-size: 10px"
               >
-                {{ notifications.length > 10 ? "10+" : notifications.length }}
+                {{ notifications?.length > 10 ? "10+" : notifications?.length }}
               </small>
               }
             </i>
@@ -89,21 +89,21 @@
                 style="background-color: var(--primary)"
               >
                 <span style="background: transparent">
-                  <span style="background: transparent" class="fw-bold"
-                    >{{ userData?.username }}</span
+                  <span style="background: transparent" class="fw-bold">{{
+                    userData?.username
+                  }}</span
                   ><br />
                   <small style="background: transparent" class="text-white-50"
-                    >{{ notifications.length }} unread
-                    notificationsspan</small
+                    >{{ notifications?.length }} unread notificationsspan</small
                   >
                 </span>
               </div>
             </li>
-            @if(notifications.length){ @for (notification of notifications;
+            @if(notifications?.length){ @for (notification of notifications;
             track $index) {
             <li>
               <div class="dropdown-item">
-                {{ getNotificationTitle(notification.data) }}
+                {{ getNotificationTitle(notification?.data) }}
                 <br />
                 <span
                   class="text-white-50"
