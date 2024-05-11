@@ -228,11 +228,13 @@
             <button
               type="submit"
               name="register"
+              class="py-2 bh-btn rounded-pill signup"
               [disabled]="registerForm.invalid"
             >
               Sign Up
             </button>
           </div>
+          <button class="alternativeBtn border-0 bg-transparent text-primary" id="signUp" (click)="togglePanel(false)">Already have an account ? Login</button>
         </form>
       </div>
 
@@ -288,9 +290,12 @@
             }
 
             <!-- Sign In Button -->
-            <button class="signin" type="submit">Sign In</button>
+            <div >
+              <button class="signin py-2 bh-btn rounded-pill w-100" type="submit">Sign In</button>
+            </div>
           </div>
-          <a routerLink="/forgetpass">forget password</a>
+          
+          <div>
           <b
             style="
               display: flex;
@@ -310,6 +315,9 @@
               size="medium"
             ></asl-google-signin-button
           ></b>
+        </div>
+          <a routerLink="/forgetpass">Forget password ?</a>
+          <button class="alternativeBtn border-0 bg-transparent text-primary" id="signUp" (click)="togglePanel(true)">New To BusHub ? Sign Up</button>
         </form>
       </div>
 
@@ -322,7 +330,7 @@
             <p>
               To keep connected with us, please login with your personal info
             </p>
-            <button class="ghost" id="signIn" (click)="togglePanel(false)">
+            <button class="py-2 bh-btn rounded-pill" id="signIn" (click)="togglePanel(false)">
               Sign In
             </button>
           </div>
@@ -331,7 +339,7 @@
           <div class="overlay-panel overlay-right">
             <h1>Welcome Back!</h1>
             <p>Enter your personal details and start your journey with us</p>
-            <button class="ghost" id="signUp" (click)="togglePanel(true)">
+            <button class="py-2 bh-btn rounded-pill" id="signUp" (click)="togglePanel(true)">
               Sign Up
             </button>
           </div>

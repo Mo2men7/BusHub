@@ -1,122 +1,219 @@
-<div class="d-flex flex-column">
-    <div class="text-center my-4">
-        <button
-          type="button"
-          class="btn btn-primary"
-  
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+<div class="container d-flex flex-wrap mt-5 ps-5" style="height: 80%">
+  @for(trip of trips ; track $index) {
+  <div class="card text-bg-dark" style="height: 200px; width: 200px">
+    <img
+      src="http://127.0.0.1:8000/api/admin/images{{ trip.pic }}"
+      class="card-img"
+      alt="..."
+      style="height: 100%"
+    />
+    <div class="card-img-overlay d-flex flex-column justify-content-between">
+      <h5 class="card-title">{{ trip.name }}</h5>
+
+      <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+      <p class="card-text">
+        <small
+          ><a
+            href="#"
+            type="button"
+            data-bs-toggle="modal"
+            [attr.data-bs-target]="'#modal' + $index"
+            class="text-light"
+          >
+            See Trips >></a
+          ></small
         >
-          Add New Trip
-        </button>
-      </div>
-  <div class="card">
-    <div class="card-body d-flex justify-content-around">
-      <h5 class="card-title">From</h5>
-      <h5 class="card-title">To</h5>
-    </div>
-    <div class="d-flex flex-column">
-      @for (trip of trips; track $index) {
-      <div class="card">
-        <a
-          class="btn card-body d-flex justify-content-around"
-          data-bs-toggle="modal"
-          [attr.data-bs-target]="'#alltrips' + $index"
-        >
-          <h5 class="card-title">{{ trip.from_name }}</h5>
-          <h5 class="card-title">{{ trip.to_name }}</h5>
-        </a>
-      </div>
-      <!-- modal -->
-      <div
-        class="modal fade"
-        id="{{ 'alltrips' + $index }}"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable"
-        >
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                All Trips
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="accordion" id="accordionExample">
-                @for (singleTrip of trip.details; track $index) {
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      [attr.data-bs-target]="'#collapse' + $index"
-                      aria-expanded="false"
-                      aria-controls="flush-collapseOne"
-                    >
-                      {{ singleTrip.date }} {{ singleTrip.time }}
-                    </button>
-                  </h2>
-                  <div
-                    id="{{ 'collapse' + $index }}"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div class="accordion-body">
-                        <div>
-                      bus_id :
-                      {{ singleTrip.bus_id }}
-                    </div>
-                    <div>
-                      chairs :
-                      {{ singleTrip.chairs }}
-                    </div>
-                    <div>
-                      options :
-                      <div [innerHTML]="singleTrip.options" class="text-secondary fs-4 hide"></div>
-                    </div>
-                    
-                    <div>
-                      price :
-                      {{ singleTrip.price }}
-                    </div>
-                    <div>
-                      type :
-                      {{ singleTrip.type }}
-                    </div>
-                    </div>
-                  </div>
-                </div>
-                }
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      }
+      </p>
     </div>
   </div>
+  <!-- modal -->
 
+  <div
+    class="modal fade"
+    id="modal{{ $index }}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            {{ trip.name }}
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+         
+          
+          <div
+            class="accordion accordion-flush"
+            id="accordionFlushExample{{ trip.id }}"
+          >
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#AddTrip' + trip.id"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'flush-collapse' + $index"
+                >
+                  Add New Trip
+                </button>
+              </h2>
+              <div
+                id="AddTrip{{ trip.id }}"
+                class="accordion-collapse collapse ms-5 border border-0"
+                [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
+              >
+              <form class=" container form-floating">
+                <div class="form-floating mb-2">
+                  <select
+                    class="form-select"
+                    id="destination"
+                    aria-label="Floating label select example"
+                  >
+                    @for(dest of trips ; track $index) { @if (dest.id !=
+                    trip.id) {
+                    <option value="{{ dest.id }}">{{ dest.name }}</option>
+                    }}
+                  </select>
+                  <label for="destination">Destination</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="time"
+                    placeholder="Time"
+                  />
+                  <label for="time">Time</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="price"
+                    placeholder="Price"
+                  />
+                  <label for="price">Price</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <select
+                    class="form-select"
+                    id="bus_id"
+                    aria-label="Floating label select example"
+                  >
+                    @for(bus of buses ; track $index) {
+                    <option value="{{ bus.id }}">No.{{ bus.id }}</option>
+                    }
+                  </select>
+                  <label for="bus_id">Bus ID</label>
+                </div>
+                <div class="form-floating mb-2 text-center">
+                  <button class="btn btn-outline-primary">Add</button>
+                </div>
+              </form>
+            </div>
+            </div>
+            @if (trip.allTrips.length >0) { @for (toTrip of trip.allTrips; track
+            $index){
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#flush-collapse' + $index"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'flush-collapse' + $index"
+                >
+                  to {{ toTrip.to_name }}
+                </button>
+              </h2>
+              <div
+                id="flush-collapse{{ $index }}"
+                class="accordion-collapse collapse ms-5 border border-0"
+                [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
+              >
+                <!-- child acc -->
+                <div
+                  class="accordion border border-0"
+                  id="accordionExample{{ toTrip.to }}"
+                >
+                  @for(details of toTrip.details ; track $index ){
+                  <div class="accordion-item border border-0">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#childacc' + details.id"
+                        aria-expanded="true"
+                        [attr.aria-controls]="'childacc' + details.id"
+                      >
+                        {{details.date}} {{ details.time }}
+                      </button>
+                    </h2>
+                    <div
+                      id="childacc{{ details.id }}"
+                      class="accordion-collapse collapse show"
+                      [attr.data-bs-parent]="'#accordionExample' + toTrip.to"
+                    >
+                      <div class="accordion-body">
+                        <div>
+                          bus_id :
+                          {{ details.bus_id }}
+                        </div>
+                        <div>
+                          chairs :
+                          {{ details.chairs }}
+                        </div>
+                        <div>
+                          options :
+                          <div
+                            [innerHTML]="details.options"
+                            class="text-secondary fs-4 hide"
+                          ></div>
+                        </div>
+
+                        <div>
+                          price :
+                          {{ details.price }}
+                        </div>
+                        <div>
+                          type :
+                          {{ details.type }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  }
+                </div>
+                <!-- child acc end -->
+              </div>
+            </div>
+            } } @else{ no trips yet }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end modal -->
+  }
   <!-- <div class="d-flex justify-content-around fs-1"> -->
 </div>

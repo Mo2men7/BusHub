@@ -127,6 +127,10 @@ export class DestinationsComponent {
     console.log(id);
     console.log(this.destinations);
   }
+  setInitValue()
+  {
+    this.deleteSuc = 0;
+  }
   deleteDist(id: any) {
     this.deleteSuc = 0;
     this.destinationService.deleteDestination(id).subscribe(
@@ -174,6 +178,7 @@ export class DestinationsComponent {
     this.destinationService.editDestination(formData, id).subscribe(
       (res: any) => {
         console.log(res);
+        this.ngOnInit();
       },
       (error) => {
         console.log(error);
