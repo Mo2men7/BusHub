@@ -141,6 +141,7 @@ Route::post("/forgot-password", [ForgetPasswordController::class, "forgotPasswor
 Route::post("/reset-password", [ResetPasswordController::class, "passwordReset"]);
 Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]);
 Route::post("/contactus", [ContactusController::class, "contactus"])->middleware("auth:sanctum");
+Route::get("/contactus", [ContactusController::class, "index"]);
 
 
 
