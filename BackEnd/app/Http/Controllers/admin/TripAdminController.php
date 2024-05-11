@@ -33,7 +33,7 @@ class TripAdminController extends Controller
             // dd($to_name);
             $allTrips[$key]->from_name = $from_name[0]->name;
             $allTrips[$key]->to_name = $to_name[0]->name;
-            $details = DB::table('trips')->join('buses', 'trips.bus_id', '=', 'buses.id')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.*', 'types.*'])
+            $details = DB::table('trips')->join('buses', 'trips.bus_id', '=', 'buses.id')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.id as bus_id', 'types.type','types.options'])
                 ->where('to', '=', $trip->to)
                 ->where('from', '=', $trip->from)->get()->toArray();
             // dd($destTrips);
@@ -48,10 +48,8 @@ class TripAdminController extends Controller
         foreach ($fixallDestinations as $key => $val) {
             if (isset($fixallTrips[$key])) {
                 $fixallDestinations[$key]->allTrips = array_values($fixallTrips[$key]);
-            }
-            else 
-            {
-                $fixallDestinations[$key]->allTrips =array();
+            } else {
+                $fixallDestinations[$key]->allTrips = array();
             }
         }
         // dd( $allTrips);
@@ -67,7 +65,31 @@ class TripAdminController extends Controller
      */
     public function store(Request $request)
     {
-        return Trip::create($request->all());
+        $check=DB::table('trips')->select()->
+        where('bus_id',$request->bus_id)->
+        where('date',$request->date)->
+        where('time',$request->time)->
+        where('to',$request->to)->
+        where('from',$request->from)->get()->toArray();
+        if (count($check)>0)
+        {
+            return response()->json(["error" =>"this Trip is already exists"],402);
+        }
+        $chairs = DB::table('buses')->select("chairs")->find($request->bus_id);
+        $intChairs= $chairs->chairs;
+        $result = Trip::create($request->all());
+        for ($i = 1; $i <= $intChairs; $i++) {
+            DB::table('seats')->insert([
+                [
+                    'trip_id' => $result->id,
+                    'seat_num' => $i,
+                    'reserved' => '0'
+                ],
+            ]);
+        }
+
+        // return $result->id;
+        return $result;
     }
 
     /**

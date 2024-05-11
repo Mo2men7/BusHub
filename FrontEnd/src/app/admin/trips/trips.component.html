@@ -51,8 +51,6 @@
           ></button>
         </div>
         <div class="modal-body">
-         
-          
           <div
             class="accordion accordion-flush"
             id="accordionFlushExample{{ trip.id }}"
@@ -60,14 +58,16 @@
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button
-                  class="accordion-button collapsed"
+                  class="accordion-button collapsed fw-bold fs-4"
                   type="button"
                   data-bs-toggle="collapse"
                   [attr.data-bs-target]="'#AddTrip' + trip.id"
                   aria-expanded="false"
                   [attr.aria-controls]="'flush-collapse' + $index"
+                  (click)="initForAddSuc()"
                 >
-                  Add New Trip
+                  <i class="fa-solid fa-plus fa-flip fw-bold fs-5 me-2"></i>Add
+                  New Trip
                 </button>
               </h2>
               <div
@@ -75,55 +75,169 @@
                 class="accordion-collapse collapse ms-5 border border-0"
                 [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
               >
-              <form class=" container form-floating">
-                <div class="form-floating mb-2">
-                  <select
-                    class="form-select"
-                    id="destination"
-                    aria-label="Floating label select example"
+                <form
+                  class="container form-floating"
+                  [formGroup]="addTripFrom"
+                  (ngSubmit)="addTrip(trip.id)"
+                >
+                  <!-- <input type="text" value="{{trip.id}}" name="from" id="from" hidden> -->
+                  <div class="form-floating mb-2">
+                    <select
+                      class="form-select"
+                      id="destination"
+                      aria-label="Floating label select example"
+                      formControlName="destination"
+                      [ngClass]="
+                        addTripFrom.controls['destination'].invalid
+                          ? 'is-invalid'
+                          : ''
+                      "
+                    >
+                      @for(dest of trips ; track $index) { @if (dest.id !=
+                      trip.id) {
+                      <option value="{{ dest.id }}">{{ dest.name }}</option>
+                      }}
+                    </select>
+                    <label for="destination">Destination</label>
+                  </div>
+                  @if(addTripFrom.controls['destination'].invalid ) {
+                  <div class="text-danger">
+                    @if(addTripFrom.controls['destination'].errors?.["required"])
+                    {This Field is required! }
+                  </div>
+                  }
+                  <div class="form-floating mb-2">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="date"
+                      placeholder="Date"
+                      formControlName="date"
+                      [ngClass]="
+                        addTripFrom.controls['date'].invalid ? 'is-invalid' : ''
+                      "
+                       min="{{today}}"
+                    />
+                    <label for="date">Date</label>
+                  </div>
+                  @if(addTripFrom.controls['date'].invalid ) {
+                  <div class="text-danger">
+                    @if(addTripFrom.controls['date'].errors?.["required"]) {This
+                    Field is required! }
+                  </div>
+                  }
+                  <div class="form-floating mb-2">
+                    <input
+                      type="time"
+                      class="form-control"
+                      id="time"
+                      placeholder="Time"
+                      formControlName="time"
+                      [ngClass]="
+                        addTripFrom.controls['time'].invalid ? 'is-invalid' : ''
+                      "
+                    />
+                    <label for="time">Time</label>
+                  </div>
+                  @if(addTripFrom.controls['time'].invalid ) {
+                  <div class="text-danger">
+                    @if(addTripFrom.controls['time'].errors?.["required"]) {This
+                    Field is required! }
+                  </div>
+                  }
+                  <div class="form-floating mb-2">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="price"
+                      placeholder="Price"
+                      formControlName="price"
+                      [ngClass]="
+                        addTripFrom.controls['price'].invalid
+                          ? 'is-invalid'
+                          : ''
+                      "
+                    />
+                    <label for="price">Price</label>
+                  </div>
+                  @if(addTripFrom.controls['price'].invalid ) {
+                  <div class="text-danger">
+                    @if(addTripFrom.controls['price'].errors?.["required"])
+                    {This Field is required! }
+                  </div>
+                  }
+                  <div
+                    class="d-flex align-items-baseline justify-content-between"
                   >
-                    @for(dest of trips ; track $index) { @if (dest.id !=
-                    trip.id) {
-                    <option value="{{ dest.id }}">{{ dest.name }}</option>
-                    }}
-                  </select>
-                  <label for="destination">Destination</label>
-                </div>
-                <div class="form-floating mb-2">
-                  <input
-                    type="time"
-                    class="form-control"
-                    id="time"
-                    placeholder="Time"
-                  />
-                  <label for="time">Time</label>
-                </div>
-                <div class="form-floating mb-2">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="price"
-                    placeholder="Price"
-                  />
-                  <label for="price">Price</label>
-                </div>
-                <div class="form-floating mb-2">
-                  <select
-                    class="form-select"
-                    id="bus_id"
-                    aria-label="Floating label select example"
-                  >
-                    @for(bus of buses ; track $index) {
-                    <option value="{{ bus.id }}">No.{{ bus.id }}</option>
-                    }
-                  </select>
-                  <label for="bus_id">Bus ID</label>
-                </div>
-                <div class="form-floating mb-2 text-center">
-                  <button class="btn btn-outline-primary">Add</button>
-                </div>
-              </form>
-            </div>
+                    <div class="form-floating mb-2 col-6">
+                      <select
+                        class="form-select"
+                        id="bus_id"
+                        aria-label="Floating label select example"
+                        formControlName="bus_id"
+                        [ngClass]="
+                          addTripFrom.controls['bus_id'].invalid
+                            ? 'is-invalid'
+                            : ''
+                        "
+                      >
+                        @for(bus of buses ; track $index) {
+                        <option value="{{ bus.id }}">No.{{ bus.id }}</option>
+                        }
+                      </select>
+                      <label for="bus_id">Bus ID</label>
+                    </div>
+                    <div class="col-6">
+                      @if(addTripFrom.controls['bus_id'].touched) { 
+                        @for(bus of buses ; track $index) {
+                          @if (bus.id == addTripFrom.controls['bus_id'].value)
+                          {
+                      <div
+                        [innerHTML]="
+                          bus.options
+                        "
+                        class="text-secondary fs-4 hide"
+                      ></div>
+                        }} }
+                    </div>
+                  </div>
+                  @if(addTripFrom.controls['bus_id'].invalid ) {
+                  <div class="text-danger">
+                    @if(addTripFrom.controls['bus_id'].errors?.["required"])
+                    {This Field is required! }
+                  </div>
+                  }
+                  <div class="form-floating mb-2 text-center">
+                    <button
+                      type="submit"
+                      class="btn btn-outline-primary"
+                      [disabled]="
+                        addTripFrom.controls['time'].invalid ||
+                        addTripFrom.controls['date'].invalid ||
+                        addTripFrom.controls['bus_id'].invalid ||
+                        addTripFrom.controls['destination'].invalid ||
+                        addTripFrom.controls['price'].invalid
+                          ? 'modal '
+                          : ''
+                      "
+                    >
+                      Add
+                    </button>
+                    <div>
+                      @if(onSuccessAdd==1) {
+                      <div class="text-success fs-5">
+                        Trip is Added Successfully!
+                      </div>
+                      } @if(onSuccessAdd==-1) {
+                      <div class="text-danger fs-5">
+                        This Trip is Already Exists!
+                      </div>
+
+                      }
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             @if (trip.allTrips.length >0) { @for (toTrip of trip.allTrips; track
             $index){
@@ -154,19 +268,19 @@
                   <div class="accordion-item border border-0">
                     <h2 class="accordion-header">
                       <button
-                        class="accordion-button"
+                        class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#childacc' + details.id"
                         aria-expanded="true"
                         [attr.aria-controls]="'childacc' + details.id"
                       >
-                        {{details.date}} {{ details.time }}
+                        {{ details.date }} {{ details.time }}
                       </button>
                     </h2>
                     <div
                       id="childacc{{ details.id }}"
-                      class="accordion-collapse collapse show"
+                      class="accordion-collapse collapse "
                       [attr.data-bs-parent]="'#accordionExample' + toTrip.to"
                     >
                       <div class="accordion-body">
