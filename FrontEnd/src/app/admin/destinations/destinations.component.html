@@ -65,6 +65,29 @@
                   <div class="card-text text-start" style="height: 100%;">
                     <p class="fs-7 overflow-y-auto" style=" height: 70%;">
                       {{ item.info }}
+                      <a
+                        class="mapAnchor"
+                        href="#"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#map' + $index + 1"
+                      >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                      <button
+                        class="btn btn-outline-danger"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#del' + item.id"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn add-button"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#edit' + item.id"
+                        (click)="setValueForm($index)"
+                      >
+                        Edit
+                      </button>
                     </p>
                     <div class="d-flex justify-content-around align-items-baseline" style=" height: 30%;">
                     <a
@@ -215,7 +238,8 @@
                     type="text"
                     class="form-control"
                     [ngClass]="
-                      editDistForm.controls['name'].invalid 
+                      editDistForm.controls['name'].invalid &&
+                      editDistForm.controls['name'].touched
                         ? 'is-invalid'
                         : ''
                     "
@@ -226,7 +250,8 @@
                   />
                   <label for="name">Name</label>
                 </div>
-                @if(editDistForm.controls['name'].invalid ) {
+                @if(editDistForm.controls['name'].invalid &&
+                editDistForm.controls['name'].touched) {
                 <div class="text-danger">
                   @if(editDistForm.controls['name'].errors?.["required"]) {This
                   Field is required! }
@@ -239,7 +264,8 @@
                     formControlName="info"
                     class="form-control"
                     [ngClass]="
-                      editDistForm.controls['info'].invalid 
+                      editDistForm.controls['info'].invalid &&
+                      editDistForm.controls['info'].touched
                         ? 'is-invalid'
                         : ''
                     "
@@ -250,7 +276,8 @@
                   ></textarea>
                   <label for="info">Info.</label>
                 </div>
-                @if(editDistForm.controls['info'].invalid ) {
+                @if(editDistForm.controls['info'].invalid &&
+                editDistForm.controls['info'].touched) {
                 <div class="text-danger">
                   @if(editDistForm.controls['name'].errors?.["required"]) {This
                   Field is required! }
@@ -265,14 +292,16 @@
                     id="flag"
                     name="flag"
                     [ngClass]="
-                      editDistForm.controls['flag'].invalid 
+                      editDistForm.controls['flag'].invalid &&
+                      editDistForm.controls['flag'].touched
                         ? 'is-invalid'
                         : ''
                     "
                     (change)="onFileSelectedFlagEdit($event)"
                   />
                 </div>
-                @if(editDistForm.controls['flag'].invalid ) {
+                @if(editDistForm.controls['flag'].invalid &&
+                editDistForm.controls['flag'].touched) {
                 <div class="text-danger">
                   @if(editDistForm.controls['flag'].errors?.["required"]) {This
                   Field is required! }
@@ -282,7 +311,8 @@
                   <label for="pic" class="col-2">Picture</label>
                   <input
                     [ngClass]="
-                      editDistForm.controls['pic'].invalid 
+                      editDistForm.controls['pic'].invalid &&
+                      editDistForm.controls['pic'].touched
                         ? 'is-invalid'
                         : ''
                     "
@@ -294,7 +324,8 @@
                     (change)="onFileSelectedPicEdit($event)"
                   />
                 </div>
-                @if(editDistForm.controls['pic'].invalid ) {
+                @if(editDistForm.controls['pic'].invalid &&
+                editDistForm.controls['pic'].touched) {
                 <div class="text-danger">
                   @if(editDistForm.controls['pic'].errors?.["required"]) {This
                   Field is required! }
@@ -307,7 +338,8 @@
                 <div class="form-floating mb-4 d-flex align-items-baseline">
                   <input
                     [ngClass]="
-                      editDistForm.controls['map'].invalid 
+                      editDistForm.controls['map'].invalid &&
+                      editDistForm.controls['map'].touched
                         ? 'is-invalid'
                         : ''
                     "
@@ -328,7 +360,8 @@
                     ><i class="fa-solid fa-arrow-up-right-from-square"></i
                   ></a>
                 </div>
-                @if(editDistForm.controls['map'].invalid ) {
+                @if(editDistForm.controls['map'].invalid &&
+                editDistForm.controls['map'].touched) {
                 <div class="text-danger">
                   @if(editDistForm.controls['map'].errors?.["required"]) {This
                   Field is required! }
