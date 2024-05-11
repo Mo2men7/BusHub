@@ -20,30 +20,46 @@ class TripAdminController extends Controller
         //     ->join('orders', 'users.id', '=', 'orders.user_id')
         //     ->select('users.*', 'contacts.phone', 'orders.price')
         //     ->get();
-        $allTrips = DB::table('trips')->
-        join('destinations','destinations.id','=','trips.from')->
-        select("from","to")->distinct()->get();
+        // $fixallDestinations=[];
+        $allDestinations = DB::table('destinations')->get();
+        foreach ($allDestinations as $key => $value) {
+            $fixallDestinations[$value->id] = $value;
+        }
+        $allTrips = DB::table('trips')->join('destinations', 'destinations.id', '=', 'trips.from')->select("from", "to")->distinct()->get();
         foreach ($allTrips as $key => $trip) {
-            $from_name = DB::table('destinations')->
-            select("name")->where("id","=",$trip->from)->get();
+            $from_name = DB::table('destinations')->select("name")->where("id", "=", $trip->from)->get();
             // dd($from_name);
-            $to_name = DB::table('destinations')->
-            select("name")->where("id","=",$trip->to)->get();
+            $to_name = DB::table('destinations')->select("name")->where("id", "=", $trip->to)->get();
             // dd($to_name);
-            $allTrips[$key]->from_name=$from_name[0]->name;
-            $allTrips[$key]->to_name=$to_name[0]->name;
-            $details=DB::table('trips')->join('buses','trips.bus_id','=','buses.id')->
-            join('types','buses.type_id','=','types.id')->
-            select(['trips.*','buses.*','types.*'])
-            ->where('to','=',$trip->to)
-            ->where('from','=',$trip->from)->get()->toArray();
+            $allTrips[$key]->from_name = $from_name[0]->name;
+            $allTrips[$key]->to_name = $to_name[0]->name;
+            $details = DB::table('trips')->join('buses', 'trips.bus_id', '=', 'buses.id')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.*', 'types.*'])
+                ->where('to', '=', $trip->to)
+                ->where('from', '=', $trip->from)->get()->toArray();
             // dd($destTrips);
-            $allTrips[$key]->details=($details);
+            $allTrips[$key]->details = ($details);
             // dd($allTrips);
 
         }
-       return $allTrips;
+        $fixallTrips = [];
+        foreach ($allTrips->toArray() as $key => $val) {
+            $fixallTrips[$val->from][$key] = $val;
+        }
+        foreach ($fixallDestinations as $key => $val) {
+            if (isset($fixallTrips[$key])) {
+                $fixallDestinations[$key]->allTrips = array_values($fixallTrips[$key]);
+            }
+            else 
+            {
+                $fixallDestinations[$key]->allTrips =array();
+            }
+        }
+        // dd( $allTrips);
+        // dd($fixallTrips);
+        // dd($fixallDestinations);
+        // return $allTrips;
 
+        return array_values($fixallDestinations);
     }
 
     /**
