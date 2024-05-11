@@ -26,6 +26,7 @@ import { TicketComponent } from './ticket/ticket.component';
 
 import { TripsComponent } from './admin/trips/trips.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { ContactComponent } from './admin/contact/contact.component';
 
 export const routes: Routes = [
   {
@@ -99,6 +100,10 @@ export const routes: Routes = [
       {
         path: 'admin-orders',
         component: OrdersComponent,
+      },
+      {
+        path: 'admin-contact',
+        component: ContactComponent,
       },
     ],
   },

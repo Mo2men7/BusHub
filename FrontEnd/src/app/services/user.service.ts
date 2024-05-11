@@ -140,6 +140,9 @@ setOtp(newValue:string) {
   }
 
 
+  changeProfilePhoto() {
+
+  }
 
 
 }

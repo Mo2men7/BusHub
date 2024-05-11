@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ContactusController extends Controller
 {
+    public function index(){
+        return ContactUs::all();
+    }
     public function contactus(Request $request)
     {
 
