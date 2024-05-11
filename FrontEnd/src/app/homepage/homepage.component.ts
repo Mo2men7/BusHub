@@ -6,6 +6,7 @@ import { WhyComponent } from './why/why.component';
 import { DestinationsSectionComponent } from './destinations-section/destinations-section.component';
 import { FooterComponent } from '../footer/footer.component';
 
+
 @Component({
   selector: 'app-homepage',
   standalone: true,
@@ -35,4 +36,10 @@ export class HomepageComponent {
     } else {
       this.renderer.setStyle(btn, 'display', 'none');
     }
-  }}
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+}
