@@ -89,9 +89,10 @@
                         Edit
                       </button>
                     </p>
+                    </p>
                     <div class="d-flex justify-content-around align-items-baseline" style=" height: 30%;">
                     <a
-                    
+
                       class="mapAnchor"
                       href="#"
                       data-bs-toggle="modal"
@@ -108,7 +109,7 @@
                       Delete
                     </button>
                     <button
-                    
+
 
                       class="btn add-button"
                       data-bs-toggle="modal"
@@ -132,13 +133,13 @@
           tabindex="-1"
           [attr.aria-labelledby]="$index + 1 + 'Label'"
           aria-hidden="true"
-         
+
         >
           <div class="modal-dialog modal-dialog-centered" >
             <iframe
               class="modal-content"
               [src]="item.map | safe"
-              
+
               style="
                 border: 0;
                 height: 500px;
