@@ -1,15 +1,28 @@
 <div class="container my-2 rounded p-0 mt-4">
-  @for (data of ContactUsData; track $index) {
+  @if(ContactUsData.length>0){ @for (data of ContactUsData; track $index) {
   <div class="item">
-    <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer;">
+    <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer">
       {{ data.id }}. Message from {{ data.username }}
     </div>
     <div class="text-light text-opacity-75 fw-light d-flex gap-3">
       <small>22/2/2222</small>
-      <span class="text-light text-opacity-75 fw-light">
+      <span
+        class="text-light text-opacity-75 fw-light"
+        style="cursor: pointer"
+        (click)="deleteItem(data.id)"
+        (click)="removeDeletedItemFromUI(data.id)"
+      >
         <i class="fa-solid fa-trash"></i>
       </span>
     </div>
+  </div>
+  } } @else {
+  <div class="mt-5">
+    <h3>At the main time, You have no contact us items</h3>
+    <p>
+      As soon as a user fills a "contact us" form and submit it, It will appears
+      here.
+    </p>
   </div>
   }
 </div>
