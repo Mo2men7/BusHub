@@ -145,7 +145,7 @@ Route::post("/contactus", [ContactusController::class, "contactus"])->middleware
 Route::get("/contactus", [ContactusController::class, "index"]);
 Route::get("/contactus/{id}", [ContactusController::class, "show"]);
 Route::delete("/contactus/{id}", [ContactusController::class, "destroy"]);
-Route::put("/contactus/{id}", [ContactusController::class, "update"]);
+Route::put("/contactus/{id}/update", [ContactusController::class, "update"]);
 
 
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);

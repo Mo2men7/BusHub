@@ -30,4 +30,14 @@ export class SingleContactUsComponent {
         });
     });
   }
+  marAsRead(id:any){
+    this.http.put(`http://127.0.0.1:8000/api/contactus/${id}/update`, {}).subscribe(
+      () => {
+        console.log('Item deleted successfully');
+      },
+      (error) => {
+        console.error('Error deleting item:', error);
+      }
+    );
+  }
 }

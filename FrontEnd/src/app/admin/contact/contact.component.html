@@ -1,8 +1,8 @@
 <div class="container my-2 rounded p-0 mt-4">
   @if(ContactUsData.length>0){ @for (data of ContactUsData; track $index) {
-  <div class="item">
+  <div class="item" [style]="data.updated_at? 'background-color: red;':'background-color: var(--dark);'">
     <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer">
-      {{ data.id }}. Message from {{ data.username }}
+      {{ data.id }}. {{ data.username }}: Message Title
     </div>
     <div class="text-light text-opacity-75 fw-light d-flex gap-3">
       <small>22/2/2222</small>
