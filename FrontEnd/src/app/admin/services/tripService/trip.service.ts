@@ -22,4 +22,8 @@ export class TripService {
   {
     return this.http.delete(this.url+'/api/admin/trip/'+id,this.httpOptions2);
   }
+  editTrip(updateTrip:any,id:any)
+  {
+    return this.http.post(this.url+'/api/admin/trip-update/'+id,updateTrip,this.httpOptions2);
+  }
 }
