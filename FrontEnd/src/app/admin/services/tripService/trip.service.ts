@@ -15,5 +15,11 @@ export class TripService {
   listTrips() {
     return this.http.get(this.url+'/api/admin/trips',this.httpOptions2);
   }
-
+  addTrips(trip:any) {
+    return this.http.post(this.url+'/api/admin/trips',trip,this.httpOptions2);
+  }
+  deleteTrip(id:any)
+  {
+    return this.http.delete(this.url+'/api/admin/trip/'+id,this.httpOptions2);
+  }
 }

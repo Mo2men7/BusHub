@@ -16,11 +16,11 @@ return new class extends Migration
             $table->id();
             // $table->foreignId("bus_id")->constrained();
             $table->unsignedBigInteger('bus_id');
-            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('from');
-            $table->foreign('from')->references('id')->on('destinations')->onDelete('cascade');
+            $table->foreign('from')->references('id')->on('destinations')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('to');
-            $table->foreign('to')->references('id')->on('destinations')->onDelete('cascade');
+            $table->foreign('to')->references('id')->on('destinations')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("price");
             $table->date("date");
             $table->time("time");

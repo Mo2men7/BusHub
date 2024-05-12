@@ -27,9 +27,9 @@ return new class extends Migration
             $table->date("date_of_response");
             $table->enum('status', ['Accepted', "Rejected", "Pending"])->default('Pending');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('bus_type_id')->references('id')->on('types')->onDelete('cascade');
-            $table->foreign('from')->references('id')->on('destinations')->onDelete('cascade');
-            $table->foreign('to')->references('id')->on('destinations')->onDelete('cascade');
+            $table->foreign('bus_type_id')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('from')->references('id')->on('destinations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('to')->references('id')->on('destinations')->onDelete('cascade')->onUpdate('cascade');
 
             // private_bus_form(#id,user_id, name, phone,bus_type_id,passenger_number,from,to,departure_date,return,date_of_request, date_of_response, status)
 

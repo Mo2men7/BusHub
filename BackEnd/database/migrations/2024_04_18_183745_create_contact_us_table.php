@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email', 55);
             $table->text('message');
             $table->boolean("status")->default(0);
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             // contact_us (#id, id_user ,title, message,date_of_response, date_of_request, status)
 

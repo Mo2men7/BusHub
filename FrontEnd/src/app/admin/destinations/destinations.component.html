@@ -239,8 +239,7 @@
                     type="text"
                     class="form-control"
                     [ngClass]="
-                      editDistForm.controls['name'].invalid &&
-                      editDistForm.controls['name'].touched
+                      editDistForm.controls['name'].invalid 
                         ? 'is-invalid'
                         : ''
                     "
@@ -251,8 +250,7 @@
                   />
                   <label for="name">Name</label>
                 </div>
-                @if(editDistForm.controls['name'].invalid &&
-                editDistForm.controls['name'].touched) {
+                @if(editDistForm.controls['name'].invalid ) {
                 <div class="text-danger">
                   @if(editDistForm.controls['name'].errors?.["required"]) {This
                   Field is required! }
@@ -265,8 +263,7 @@
                     formControlName="info"
                     class="form-control"
                     [ngClass]="
-                      editDistForm.controls['info'].invalid &&
-                      editDistForm.controls['info'].touched
+                      editDistForm.controls['info'].invalid 
                         ? 'is-invalid'
                         : ''
                     "
@@ -277,8 +274,7 @@
                   ></textarea>
                   <label for="info">Info.</label>
                 </div>
-                @if(editDistForm.controls['info'].invalid &&
-                editDistForm.controls['info'].touched) {
+                @if(editDistForm.controls['info'].invalid ) {
                 <div class="text-danger">
                   @if(editDistForm.controls['name'].errors?.["required"]) {This
                   Field is required! }
@@ -293,16 +289,14 @@
                     id="flag"
                     name="flag"
                     [ngClass]="
-                      editDistForm.controls['flag'].invalid &&
-                      editDistForm.controls['flag'].touched
+                      editDistForm.controls['flag'].invalid 
                         ? 'is-invalid'
                         : ''
                     "
                     (change)="onFileSelectedFlagEdit($event)"
                   />
                 </div>
-                @if(editDistForm.controls['flag'].invalid &&
-                editDistForm.controls['flag'].touched) {
+                @if(editDistForm.controls['flag'].invalid ) {
                 <div class="text-danger">
                   @if(editDistForm.controls['flag'].errors?.["required"]) {This
                   Field is required! }
@@ -312,8 +306,7 @@
                   <label for="pic" class="col-2">Picture</label>
                   <input
                     [ngClass]="
-                      editDistForm.controls['pic'].invalid &&
-                      editDistForm.controls['pic'].touched
+                      editDistForm.controls['pic'].invalid 
                         ? 'is-invalid'
                         : ''
                     "
@@ -325,8 +318,7 @@
                     (change)="onFileSelectedPicEdit($event)"
                   />
                 </div>
-                @if(editDistForm.controls['pic'].invalid &&
-                editDistForm.controls['pic'].touched) {
+                @if(editDistForm.controls['pic'].invalid ) {
                 <div class="text-danger">
                   @if(editDistForm.controls['pic'].errors?.["required"]) {This
                   Field is required! }
@@ -339,8 +331,7 @@
                 <div class="form-floating mb-4 d-flex align-items-baseline">
                   <input
                     [ngClass]="
-                      editDistForm.controls['map'].invalid &&
-                      editDistForm.controls['map'].touched
+                      editDistForm.controls['map'].invalid 
                         ? 'is-invalid'
                         : ''
                     "
@@ -361,8 +352,7 @@
                     ><i class="fa-solid fa-arrow-up-right-from-square"></i
                   ></a>
                 </div>
-                @if(editDistForm.controls['map'].invalid &&
-                editDistForm.controls['map'].touched) {
+                @if(editDistForm.controls['map'].invalid ) {
                 <div class="text-danger">
                   @if(editDistForm.controls['map'].errors?.["required"]) {This
                   Field is required! }
@@ -476,8 +466,7 @@
             />
             <label for="name">Name</label>
           </div>
-          @if(newDistForm.controls['name'].invalid &&
-          newDistForm.controls['name'].touched) {
+          @if(newDistForm.controls['name'].invalid ) {
           <div class="text-danger">
             @if(newDistForm.controls['name'].errors?.["required"]) {This Field
             is required! }
@@ -490,8 +479,7 @@
               formControlName="info"
               class="form-control"
               [ngClass]="
-                newDistForm.controls['info'].invalid &&
-                newDistForm.controls['info'].touched
+                newDistForm.controls['info'].invalid 
                   ? 'is-invalid'
                   : ''
               "
@@ -501,8 +489,7 @@
             ></textarea>
             <label for="info">Info.</label>
           </div>
-          @if(newDistForm.controls['info'].invalid &&
-          newDistForm.controls['info'].touched) {
+          @if(newDistForm.controls['info'].invalid ) {
           <div class="text-danger">
             @if(newDistForm.controls['name'].errors?.["required"]) {This Field
             is required! }
@@ -517,16 +504,14 @@
               id="flag"
               name="flag"
               [ngClass]="
-                newDistForm.controls['flag'].invalid &&
-                newDistForm.controls['flag'].touched
+                newDistForm.controls['flag'].invalid 
                   ? 'is-invalid'
                   : ''
               "
               (change)="onFileSelectedFlag($event)"
             />
           </div>
-          @if(newDistForm.controls['flag'].invalid &&
-          newDistForm.controls['flag'].touched) {
+          @if(newDistForm.controls['flag'].invalid ) {
           <div class="text-danger">
             @if(newDistForm.controls['flag'].errors?.["required"]) {This Field
             is required! }
@@ -536,8 +521,7 @@
             <label for="pic" class="col-2">Picture</label>
             <input
               [ngClass]="
-                newDistForm.controls['pic'].invalid &&
-                newDistForm.controls['pic'].touched
+                newDistForm.controls['pic'].invalid 
                   ? 'is-invalid'
                   : ''
               "
@@ -549,8 +533,7 @@
               (change)="onFileSelectedPic($event)"
             />
           </div>
-          @if(newDistForm.controls['pic'].invalid &&
-          newDistForm.controls['pic'].touched) {
+          @if(newDistForm.controls['pic'].invalid) {
           <div class="text-danger">
             @if(newDistForm.controls['pic'].errors?.["required"]) {This Field is
             required! }
@@ -563,8 +546,7 @@
           <div class="form-floating mb-4 d-flex align-items-baseline">
             <input
               [ngClass]="
-                newDistForm.controls['map'].invalid &&
-                newDistForm.controls['map'].touched
+                newDistForm.controls['map'].invalid 
                   ? 'is-invalid'
                   : ''
               "
@@ -584,8 +566,7 @@
               ><i class="fa-solid fa-arrow-up-right-from-square"></i
             ></a>
           </div>
-          @if(newDistForm.controls['map'].invalid &&
-          newDistForm.controls['map'].touched) {
+          @if(newDistForm.controls['map'].invalid ) {
           <div class="text-danger">
             @if(newDistForm.controls['map'].errors?.["required"]) {This Field is
             required! }
