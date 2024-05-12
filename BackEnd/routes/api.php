@@ -120,7 +120,7 @@ Route::get('/admin/trip/{id}', function ($id) {
 });
 
 Route::post('/admin/trips', [TripAdminController::class, 'store']);
-Route::put('/admin/trip/{id}', [TripAdminController::class, 'update']);
+Route::post('/admin/trip-update/{id}', [TripAdminController::class, 'update']);
 Route::delete('/admin/trip/{id}', [TripAdminController::class, 'destroy']);
 // !end trip
 
