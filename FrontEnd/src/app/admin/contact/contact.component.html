@@ -22,7 +22,7 @@
       {{ data.id }}. {{ data.username }}: Message Title
     </div>
     <div class="text-light text-opacity-75 fw-light d-flex gap-3">
-      <small>22/2/2222</small>
+      <small>{{data.created_at.substring(0, 10)}}</small>
       <span
         class="text-light text-opacity-75 fw-light"
         style="cursor: pointer"
