@@ -36,7 +36,7 @@ class TripAdminController extends Controller
             $details = DB::table('trips')->join('buses', 'trips.bus_id', '=', 'buses.id')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.id as bus_id','buses.chairs', 'buses.type_id','types.type','types.options'])
                 ->where('to', '=', $trip->to)
                 ->where('date','>=',date('Y-m-d'))
-                ->where('from', '=', $trip->from)->get()->toArray();
+                ->where('from', '=', $trip->from)->orderBy('date','asc')->get()->toArray();
             // dd($destTrips);
             foreach ($details as $key1 => $trip_id)
             {
@@ -112,16 +112,30 @@ class TripAdminController extends Controller
     public function update(Request $request, string $id)
     {
         if (Trip::where('id', $id)->exists()) {
+            $check=DB::table('trips')->select()->
+        where('bus_id',$request->bus_id)->
+        where('date',$request->date)->
+        where('time',$request->time)->
+        where('to',$request->to)->
+        where('id','<>',$id)->
+        where('from',$request->from)->get()->toArray();
+        if (count($check)>0)
+        {
+            return response()->json(["error" =>"this Trip is already exists"],402);
+        }
             $trip = Trip::find($id);
             $trip->bus_id = $request->bus_id;
-            $trip->from = $request->from;
-            $trip->to = $request->to;
+            // $trip->from = $request->from;
+            // $trip->to = $request->to;
             $trip->price = $request->price;
             $trip->date = $request->date;
+            $trip->time = $request->time;
+
             $trip->save();
             return response()->json([
                 "message" => "record updated successfully"
             ], 200);
+            return $request->all();
         } else {
             return response()->json(["message" => "record not found"], 404);
         }
