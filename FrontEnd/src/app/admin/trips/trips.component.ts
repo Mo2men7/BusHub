@@ -173,8 +173,10 @@ export class TripsComponent {
     console.log(id);
     this.tripService.editTrip(formData,id).subscribe(
       (res) => {
+        this.startEdit =0;
         this.onSuccessAdd = 1;
         this.ngOnInit();
+        
         console.log(res);
         // suc=1;
       },
