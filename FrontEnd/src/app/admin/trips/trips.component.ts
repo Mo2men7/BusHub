@@ -37,6 +37,8 @@ export class TripsComponent {
   addTripFrom: FormGroup;
   onSuccessAdd: any=0;
   onErrorAdd:any;
+  deleteSuc: any = 0;
+  idToDel:any;
   constructor(
     private tripService: TripService,
     private busService: BusService,
@@ -86,6 +88,7 @@ export class TripsComponent {
 
   addTrip(from: any) {
     let suc: any=0;
+    
     const formData = new FormData();
     formData.append('bus_id', this.addTripFrom.controls['bus_id'].value);
     formData.append('from', from);
@@ -112,6 +115,25 @@ export class TripsComponent {
   initForAddSuc()
   {
     this.onSuccessAdd=0;
+  }
+  setInitValueDel(id:any)
+  {
+    this.deleteSuc = 0;
+    this.idToDel=id;
+  }
+  deleteTrip() {
+    this.deleteSuc = 0;
+   console.log(this.idToDel)
+    this.tripService.deleteTrip(this.idToDel).subscribe(
+      (res: any) => {
+        this.deleteSuc = 1;
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+        this.deleteSuc = -1;
+      }
+    );
   }
 }
 

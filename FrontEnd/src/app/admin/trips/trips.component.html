@@ -207,7 +207,7 @@
                   <div class="form-floating mb-2 text-center">
                     <button
                       type="submit"
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary mb-3"
                       [disabled]="
                         addTripFrom.controls['time'].invalid ||
                         addTripFrom.controls['date'].invalid ||
@@ -220,7 +220,7 @@
                     >
                       Add
                     </button>
-                    <div>
+                    <div class="mb-3">
                       @if(onSuccessAdd==1) {
                       <div class="text-success fs-5">
                         Trip is Added Successfully!
@@ -273,7 +273,7 @@
                         [attr.aria-controls]="'childacc' + details.id"
                       >
                         <div
-                          class="d-flex justify-content-around "
+                          class="d-flex justify-content-around"
                           style="width: 100%"
                         >
                           <div class="col-3">
@@ -293,40 +293,44 @@
                       [attr.data-bs-parent]="'#accordionExample' + toTrip.to"
                     >
                       <div class="accordion-body">
-                        <div class="d-flex justify-content-evenly">
-                          <div class="col-6 text-center d-flex flex-column justify-content-evenly">
-                            <div class="d-flex justify-content-evenly">
-                              <div >
-                                Bus ID :
-                                No.{{ details.bus_id }}
-                              </div>
+                        <div class="d-flex justify-content-evenly ">
+                          <div
+                            class="col-6 text-center d-flex flex-column justify-content-evenly"
+                          >
+                            <div class="d-flex justify-content-evenly flex-wrap">
+                              <div>Bus ID : No.{{ details.bus_id }}</div>
 
                               <div>
                                 Price :
-                                {{ details.price }} LE/<i class="bi bi-person-fill"></i>
+                                {{ details.price }} LE/<i
+                                  class="bi bi-person-fill"
+                                ></i>
                               </div>
                             </div>
                             <div>
-                             
                               <div
                                 [innerHTML]="details.options"
                                 class="text-secondary fs-4 hide"
                               ></div>
+                              <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
+                                Tooltip on right
+                              </button> -->
+                              <div class="d-flex justify-content-evenly align-items-center mt-1">
+                                <button class="btn border border-0"><i class="fa-solid fa-pen text-primary fs-4"></i></button>
+                                <button class="btn border border-0"  data-bs-toggle="modal"
+                                data-bs-target="#delModal"
+                                
+                                (click) = "setInitValueDel(details.id)"><i class="fa-solid fa-xmark text-danger fs-3"></i></button>
+                              </div>
                             </div>
                           </div>
-                          <div class="vr"></div>
+                          <div class="vr border border-1 border-black"></div>
                           <div class="col-6">
-                            <div class="d-flex flex-column">
+                            <div class="d-flex align-items-baseline justify-content-evenly flex-wrap">
                               <div
-                                class="d-flex justify-content-evenly mb-3 align-items-baseline"
+                                class="d-flex flex-column justify-content-evenly  align-items-baseline"
                               >
-                                <div>Available</div>
-                                <div>Reserved</div>
-                              </div>
-                              <div
-                                class="d-flex justify-content-evenly align-items-baseline"
-                              >
-                                <!-- {{ details.chairs }} -->
+                                <div class="mb-3">Available</div>
                                 <div class="position-relative">
                                   <mat-icon
                                     style="width: 50px; height: 50px"
@@ -340,6 +344,13 @@
                                     {{ details.chairs - details.reserved }}
                                   </span>
                                 </div>
+                                
+                              </div>
+                              <div
+                                class="d-flex flex-column justify-content-evenly align-items-baseline"
+                              >
+                                <!-- {{ details.chairs }} -->
+                                <div class="mb-3" >Reserved</div>
                                 <div class="position-relative">
                                   <mat-icon
                                     style="width: 50px; height: 50px"
@@ -356,6 +367,8 @@
                               </div>
                             </div>
                           </div>
+                          
+                         
                         </div>
                         <div class="iconshape1 mt-2" style="width: 100%">
                           <div
@@ -371,15 +384,17 @@
                             {{ details.type }}
                           </div>
                         </div>
+
                       </div>
                     </div>
                   </div>
+                  
                   }
                 </div>
                 <!-- child acc end -->
               </div>
             </div>
-            } } @else{ no trips yet }
+            } }
           </div>
         </div>
         <div class="modal-footer">
@@ -392,5 +407,61 @@
   </div>
   <!-- end modal -->
   }
-  <!-- <div class="d-flex justify-content-around fs-1"> -->
+  <!-- delete modal -->
+  <div
+  class="modal fade"
+  id="delModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      @if (deleteSuc==0) {
+      <div class="modal-body">
+        If You Deleted This Trip ,It Will Delete all Data that
+        contains it including client reservations, Are You Sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteTrip()"
+        >
+          Delete
+        </button>
+      </div>
+      } @else if (deleteSuc==1) {
+      <div class="modal-body">Deleted Successfully</div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+      } @else if (deleteSuc==-1) {
+      <div class="modal-body">Can't Be Deleted</div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+      <!-- modal edit -->
+
+      }
+    </div>
+  </div>
+</div>
+<!-- end delete modal -->
 </div>
