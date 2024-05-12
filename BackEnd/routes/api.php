@@ -142,7 +142,7 @@ Route::post("/reset-password", [ResetPasswordController::class, "passwordReset"]
 Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]);
 Route::post("/contactus", [ContactusController::class, "contactus"])->middleware("auth:sanctum");
 Route::get("/contactus", [ContactusController::class, "index"]);
-
+Route::get("/contactus/{id}", [ContactusController::class, "singleContactUs"]);
 
 
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);

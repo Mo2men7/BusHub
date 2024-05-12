@@ -27,6 +27,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { TripsComponent } from './admin/trips/trips.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ContactComponent } from './admin/contact/contact.component';
+import { SingleContactUsComponent } from './admin/single-contact-us/single-contact-us.component';
 
 export const routes: Routes = [
   {
@@ -104,6 +105,10 @@ export const routes: Routes = [
       {
         path: 'admin-contact',
         component: ContactComponent,
+      },
+      {
+        path: 'single-contact-us/:id',
+        component: SingleContactUsComponent,
       },
     ],
   },

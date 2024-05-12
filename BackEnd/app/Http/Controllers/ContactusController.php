@@ -12,6 +12,9 @@ class ContactusController extends Controller
     public function index(){
         return ContactUs::all();
     }
+    public function singleContactUs($id){
+        return ContactUs::find($id);
+    }
     public function contactus(Request $request)
     {
 
