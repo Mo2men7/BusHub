@@ -1,12 +1,15 @@
-<div class="container overflow-auto my-2" style="height: 95vh; width: 80vw">
+<div class="container my-2 rounded p-0 mt-4">
   @for (data of ContactUsData; track $index) {
-    <div>
-      <h2>
-        <button (click)="navigateToSingleContact(data.id)">
-          {{data.id}} | A message from {{data.username}}
-        </button>
-      </h2>
+  <div class="item">
+    <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer;">
+      {{ data.id }}. Message from {{ data.username }}
     </div>
-}
+    <div class="text-light text-opacity-75 fw-light d-flex gap-3">
+      <small>22/2/2222</small>
+      <span class="text-light text-opacity-75 fw-light">
+        <i class="fa-solid fa-trash"></i>
+      </span>
+    </div>
   </div>
-  
+  }
+</div>

@@ -1,0 +1,11 @@
+.item {
+  padding: 5px 10px;
+  background: var(--dark);
+  transition: .3s;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.item:hover {
+  transform: scale(1.015, 1.015);
+}

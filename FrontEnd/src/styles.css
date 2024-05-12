@@ -38,6 +38,7 @@
     --primary: #0587eb;
     --secondary: #030891;
     --accent: #2203b0;
+    --dark: rgb(25, 55, 100, 0.7);
     --linearPrimarySecondary: linear-gradient(#0587eb, #030891);
     --linearPrimaryAccent: linear-gradient(#0587eb, #2203b0);
     --linearSecondaryAccent: linear-gradient(#030891, #2203b0);

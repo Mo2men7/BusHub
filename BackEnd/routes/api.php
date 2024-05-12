@@ -141,8 +141,11 @@ Route::post("/forgot-password", [ForgetPasswordController::class, "forgotPasswor
 Route::post("/reset-password", [ResetPasswordController::class, "passwordReset"]);
 Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]);
 Route::post("/contactus", [ContactusController::class, "contactus"])->middleware("auth:sanctum");
+///////////////////////////ContactUs index, show, destroy and update////////////////////////////////
 Route::get("/contactus", [ContactusController::class, "index"]);
-Route::get("/contactus/{id}", [ContactusController::class, "singleContactUs"]);
+Route::get("/contactus/{id}", [ContactusController::class, "show"]);
+Route::delete("/contactus/{id}", [ContactusController::class, "destroy"]);
+Route::put("/contactus/{id}", [ContactusController::class, "update"]);
 
 
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);

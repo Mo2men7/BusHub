@@ -19,6 +19,6 @@ export class ContactComponent {
     })
   }
   navigateToSingleContact(id:any){
-    this.router.navigate([`/single-contact-us/${id}`])
+    this.router.navigate([`admin/single-contact-us/${id}`])
   }
 }
