@@ -1,6 +1,23 @@
 <div class="container my-2 rounded p-0 mt-4">
-  @if(ContactUsData.length>0){ @for (data of ContactUsData; track $index) {
-  <div class="item" [style]="data.updated_at? 'background-color: red;':'background-color: var(--dark);'">
+  @if(ContactUsData.length>0){
+  <div class="colorInfo container d-flex gap-3 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <span class="colorSquare" style="background: var(--dark);"></span>
+      <small>Unread</small>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="colorSquare" style="background: var(--primary);"></span>
+      <small>Read</small>
+    </div>
+  </div>
+  @for (data of ContactUsData; track $index) {
+  <div
+    class="item"
+    [style.background-color]="
+      data.status > 0 ? 'var(--primary)' : 'var(--dark)'
+    "
+    (click)="marAsRead(data.id)"
+  >
     <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer">
       {{ data.id }}. {{ data.username }}: Message Title
     </div>

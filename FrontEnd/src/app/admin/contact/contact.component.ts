@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -10,14 +10,12 @@ import { RouterLink, Router } from '@angular/router';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-  constructor(private http:HttpClient, private router:Router){}
+  constructor(private http:HttpClient, private router:Router, private activatedRoute:ActivatedRoute){}
   ContactUsData:any;
   ngOnInit(){
-    this.http.get('http://127.0.0.1:8000/api/contactus').subscribe(res=>{
-      console.log(res);
+    this.http.get('http://127.0.0.1:8000/api/contactus').subscribe((res:any)=>{
       this.ContactUsData=res;
-    })
-    console.log(this.ContactUsData);
+    });
   }
   navigateToSingleContact(id:any){
     this.router.navigate([`admin/single-contact-us/${id}`])
@@ -35,5 +33,15 @@ export class ContactComponent {
   }
   removeDeletedItemFromUI(deletedItemId: any) {
     this.ContactUsData = this.ContactUsData.filter((data: { id: any; }) => data.id !== deletedItemId);
+  }
+  marAsRead(id:any){
+    this.http.put(`http://127.0.0.1:8000/api/contactus/${id}/update`, {}).subscribe(
+      () => {
+        console.log('Item has been read');
+      },
+      (error) => {
+        console.error('Error deleting item:', error);
+      }
+    );
   }
 }

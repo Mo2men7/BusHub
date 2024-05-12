@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-contact-us',
@@ -14,7 +14,8 @@ export class SingleContactUsComponent {
   id: any;
   constructor(
     private http: HttpClient,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router:Router,
   ) {}
   contactUsData: any;
   ngOnInit(): void {
@@ -30,14 +31,8 @@ export class SingleContactUsComponent {
         });
     });
   }
-  marAsRead(id:any){
-    this.http.put(`http://127.0.0.1:8000/api/contactus/${id}/update`, {}).subscribe(
-      () => {
-        console.log('Item deleted successfully');
-      },
-      (error) => {
-        console.error('Error deleting item:', error);
-      }
-    );
+  navigate(){
+    // this.router.navigate(['/admin'], { queryParams: { reload: 'fresh' } });
+    this.router.navigate(['/admin/admin-contact']);
   }
 }

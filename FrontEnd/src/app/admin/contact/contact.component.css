@@ -1,6 +1,5 @@
 .item {
-  padding: 5px 10px;
-  /* background: var(--dark); */
+  padding: 10px;
   transition: .3s;
   margin: 5px;
   display: flex;
@@ -8,4 +7,9 @@
 }
 .item:hover {
   transform: scale(1.015, 1.015);
+}
+.colorSquare{
+  display: block;
+  width: 15px;
+  height: 15px;
 }
