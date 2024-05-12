@@ -84,15 +84,15 @@ margin-top: 10px;
 
 
 
-.modal-content,
-.modal-content label ,.btn-close{
+/* .modal-content,
+.modal-content label ,.btn-close{ */
 
     /* background: linear-gradient(135deg,transparent,var(--bac),var(--background) );
         background-size: 300% 300%;
     
         animation: gradient 5s ease infinite;  */
     /* color: var(--text) !important; */
-}
+/* } */
 
 
 .modal-content {
