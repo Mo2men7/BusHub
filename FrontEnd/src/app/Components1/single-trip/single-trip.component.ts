@@ -106,13 +106,11 @@ export class SingleTripComponent {
     this.TripsshowService.listtrips().subscribe({
       next: (trips: any) => {
         this.trips = trips;
-        console.log('showtrips fn all',trips); //delete
+        console.log('showtrips fn all', trips); //delete
         this.details = this.trips.find((trip: any) => trip.id == this.tripId);
-        console.log('showtrips fn selected',this.details); //delete
+        console.log('showtrips fn selected', this.details); //delete
       },
     });
-
-
   }
   //run api tripsshow end
   //run api seats start
@@ -120,11 +118,11 @@ export class SingleTripComponent {
     this.SeatsService.listseats().subscribe({
       next: (allseats: any) => {
         this.allseats = allseats;
-        console.log('seatsshow fn all trip',allseats); //delete
+        console.log('seatsshow fn all trip', allseats); //delete
         this.seats = this.allseats.filter(
           (seat: any) => seat.trip_id == this.tripId
         );
-        console.log('seatsshow fn this trip',this.seats); //delete
+        console.log('seatsshow fn this trip', this.seats); //delete
       },
     });
   }
@@ -133,7 +131,7 @@ export class SingleTripComponent {
   reserve(seat: any) {
     const seatId = document.getElementById(seat.id);
 
-    console.log('reserve fn clicked',seat);
+    console.log('reserve fn clicked', seat);
 
     if (this.selected.some((s) => s.id === seat.id)) {
       console.log('Seat already selected');
@@ -143,8 +141,7 @@ export class SingleTripComponent {
       this.selected.push(seat);
       seatId?.classList.toggle('seat-blue');
     }
-    console.log('reserve fn array',this.selected); //delete
-
+    console.log('reserve fn array', this.selected); //delete
   }
   calculateTotalPrice() {
     this.totalPrice = this.selected.reduce(
@@ -153,10 +150,10 @@ export class SingleTripComponent {
     );
     console.log('calculateTotalPrice', this.totalPrice);
 
-//  session start
- sessionStorage.setItem('selected', JSON.stringify(this.selected));
- sessionStorage.setItem('tripDeatils', JSON.stringify(this.details));
- //  session end
+    //  session start
+    sessionStorage.setItem('selected', JSON.stringify(this.selected));
+    sessionStorage.setItem('tripDeatils', JSON.stringify(this.details));
+    //  session end
   }
 
   cancle() {
