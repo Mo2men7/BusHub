@@ -1,26 +1,45 @@
-<div class="container overflow-auto my-2" style="height: 95vh; width: 80vw">
-    <table class="table table-striped table-hover table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">User Id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Message</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (data of ContactUsData; track $index) {
-            <tr>
-                <th>{{data.id}}</th>
-                <td>{{data.id_user}}</td>
-                <td>{{data.username}}</td>
-                <td>{{data.email}}</td>
-                <td>{{data.message}}</td>
-            </tr>
-        }
-        
-      </tbody>
-    </table>
+<div class="container my-2 rounded p-0 mt-4">
+  @if(ContactUsData.length>0){
+  <div class="colorInfo container d-flex gap-3 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <span class="colorSquare" style="background: var(--dark);"></span>
+      <small>Unread</small>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="colorSquare" style="background: var(--primary);"></span>
+      <small>Read</small>
+    </div>
   </div>
-  
+  @for (data of ContactUsData; track $index) {
+  <div
+    class="item"
+    [style.background-color]="
+      data.status > 0 ? 'var(--primary)' : 'var(--dark)'
+    "
+    (click)="marAsRead(data.id)"
+  >
+    <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer">
+      {{ data.id }}. {{ data.username }}: Message Title
+    </div>
+    <div class="text-light text-opacity-75 fw-light d-flex gap-3">
+      <small>{{data.created_at.substring(0, 10)}}</small>
+      <span
+        class="text-light text-opacity-75 fw-light"
+        style="cursor: pointer"
+        (click)="deleteItem(data.id)"
+        (click)="removeDeletedItemFromUI(data.id)"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </span>
+    </div>
+  </div>
+  } } @else {
+  <div class="mt-5">
+    <h3>At the main time, You have no contact us items</h3>
+    <p>
+      As soon as a user fills a "contact us" form and submit it, It will appears
+      here.
+    </p>
+  </div>
+  }
+</div>

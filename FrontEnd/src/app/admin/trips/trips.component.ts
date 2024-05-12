@@ -4,38 +4,48 @@ import { BusService } from '../services/busService/bus.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { TimeFormatPipe } from '../../time-format.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-trips',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, TimeFormatPipe, MatIconModule],
   templateUrl: './trips.component.html',
   styleUrl: './trips.component.css',
 })
 export class TripsComponent {
   today =
-  new Date()
-    .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-    .split('/')[2] +
-  '-' +
-  new Date()
-    .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-    .split('/')[0]
-    .padStart(2, '0') +
-  '-' +
-  new Date()
-    .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-    .split('/')[1]
-    .padStart(2, '0');
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[2] +
+    '-' +
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[0]
+      .padStart(2, '0') +
+    '-' +
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[1]
+      .padStart(2, '0');
 
   trips: any;
   buses: any;
   countBuses: any;
   addTripFrom: FormGroup;
-  onSuccessAdd: any=0;
-  onErrorAdd:any;
+  editTripFrom:FormGroup;
+  onSuccessAdd: any = 0;
+  onErrorAdd: any;
+  deleteSuc: any = 0;
+  idToDel: any;
+  startEdit: any = 0;
   constructor(
     private tripService: TripService,
-    private busService: BusService
+    private busService: BusService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
   ) {
     this.addTripFrom = new FormGroup({
       destination: new FormControl('', [Validators.required]),
@@ -44,8 +54,20 @@ export class TripsComponent {
       price: new FormControl('', [Validators.required]),
       bus_id: new FormControl('', [Validators.required]),
     });
+    this.editTripFrom = new FormGroup({
+      date: new FormControl(''),
+      time: new FormControl(''),
+      price: new FormControl(''),
+      bus_id: new FormControl(''),
+    });
   }
   ngOnInit() {
+    this.matIconRegistry.addSvgIcon(
+      'seat-icon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../../assets/img/seat-icon.svg'
+      )
+    );
     // this.onSuccessAdd=0;
     this.addTripFrom = new FormGroup({
       destination: new FormControl('', [Validators.required]),
@@ -69,11 +91,12 @@ export class TripsComponent {
       },
       (error) => console.log(error)
     );
-  console.log(this.today)
+    console.log(this.today);
   }
 
   addTrip(from: any) {
-    let suc: any=0;
+    let suc: any = 0;
+
     const formData = new FormData();
     formData.append('bus_id', this.addTripFrom.controls['bus_id'].value);
     formData.append('from', from);
@@ -86,20 +109,83 @@ export class TripsComponent {
     console.log(formData);
     this.tripService.addTrips(formData).subscribe(
       (res) => {
-        this.onSuccessAdd=1;
+        this.onSuccessAdd = 1;
         this.ngOnInit();
         console.log(res);
         // suc=1;
       },
-      (error) => {console.log(error)
-      
-        this.onSuccessAdd=-1;
+      (error) => {
+        console.log(error);
+
+        this.onSuccessAdd = -1;
       }
     );
   }
-  initForAddSuc()
-  {
-    this.onSuccessAdd=0;
+  initForAddSuc() {
+    this.onSuccessAdd = 0;
+  }
+  setInitValueDel(id: any) {
+    this.deleteSuc = 0;
+    this.idToDel = id;
+  }
+  deleteTrip() {
+    this.deleteSuc = 0;
+    console.log(this.idToDel);
+    this.tripService.deleteTrip(this.idToDel).subscribe(
+      (res: any) => {
+        this.deleteSuc = 1;
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+        this.deleteSuc = -1;
+      }
+    );
+  }
+  setInitValueEdit(details: any) {
+    if (details == 0) {
+      this.startEdit = 0;
+      return;
+    }
+    this.editTripFrom = new FormGroup({
+      to: new FormControl(details.to),
+      from:new FormControl(details.from),
+      date: new FormControl(details.date, [Validators.required]),
+      time: new FormControl(details.time, [Validators.required]),
+      price: new FormControl(details.price, [Validators.required]),
+      bus_id: new FormControl(details.bus_id, [Validators.required]),
+    });
+    this.startEdit = details.id;
+    console.log(this.editTripFrom.controls['bus_id'].value);
+  }
+  editTrip(id:any) {
+    let suc: any = 0;
+
+    const formData = new FormData();
+    formData.append('bus_id', this.editTripFrom.controls['bus_id'].value);
+    formData.append('price', this.editTripFrom.controls['price'].value);
+    formData.append('to', this.editTripFrom.controls['to'].value);
+    formData.append('from', this.editTripFrom.controls['from'].value);
+    formData.append('date', this.editTripFrom.controls['date'].value);
+    formData.append('time', this.editTripFrom.controls['time'].value);
+    console.log(this.editTripFrom.controls['time'].value);
+    console.log(this.editTripFrom);
+    console.log(id);
+    this.tripService.editTrip(formData,id).subscribe(
+      (res) => {
+        this.startEdit =0;
+        this.onSuccessAdd = 1;
+        this.ngOnInit();
+        
+        console.log(res);
+        // suc=1;
+      },
+      (error) => {
+        console.log(error);
+
+        this.onSuccessAdd = -1;
+      }
+    );
   }
 }
 

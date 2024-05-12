@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ContactUs extends Model
 {
     use HasFactory;
+
+    public $fillable=[
+        'status',
+    ];
+
+    public $table = "contact_us";
 }

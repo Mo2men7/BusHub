@@ -1,0 +1,15 @@
+.item {
+  padding: 10px;
+  transition: .3s;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.item:hover {
+  transform: scale(1.015, 1.015);
+}
+.colorSquare{
+  display: block;
+  width: 15px;
+  height: 15px;
+}

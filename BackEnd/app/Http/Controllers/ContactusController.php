@@ -9,8 +9,27 @@ use Illuminate\Support\Facades\DB;
 
 class ContactusController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return ContactUs::all();
+    }
+    public function show($id)
+    {
+        return ContactUs::findOrFail($id);
+    }
+    public function destroy($id)
+    {
+        ContactUs::findOrFail($id)->delete();
+        return response()->json([
+            "message" => "Item has been successfully deleted",
+        ]);
+    }
+    public function update($id)
+    {
+        ContactUs::findOrFail($id)->update(['status' => 1]);
+        return response()->json([
+            "message" => "Item has been successfully updated"
+        ]);
     }
     public function contactus(Request $request)
     {
@@ -30,7 +49,7 @@ class ContactusController extends Controller
             'email' => $request->email,
             'message' => $request->message,
             'status' => 0, // Assuming the initial status is 0
-            // 'created_at' => now(), // You can set the created_at timestamp if needed
+            'created_at' => now(), // You can set the created_at timestamp if needed
             // 'updated_at' => now(), // You can set the updated_at timestamp if needed
         ];
 

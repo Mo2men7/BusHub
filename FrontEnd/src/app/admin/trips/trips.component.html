@@ -10,7 +10,7 @@
     <div class="card-img-overlay d-flex flex-column justify-content-between">
       <h5 class="card-title">{{ trip.name }}</h5>
 
-      <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+      <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to edititional content. This content is a little bit longer.</p> -->
       <p class="card-text">
         <small
           ><a
@@ -72,7 +72,7 @@
               </h2>
               <div
                 id="AddTrip{{ trip.id }}"
-                class="accordion-collapse collapse ms-5 border border-0"
+                class="accordion-collapse collapse mx-4 border border-0"
                 [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
               >
                 <form
@@ -116,7 +116,7 @@
                       [ngClass]="
                         addTripFrom.controls['date'].invalid ? 'is-invalid' : ''
                       "
-                       min="{{today}}"
+                      min="{{ today }}"
                     />
                     <label for="date">Date</label>
                   </div>
@@ -151,6 +151,7 @@
                       class="form-control"
                       id="price"
                       placeholder="Price"
+                      min="1"
                       formControlName="price"
                       [ngClass]="
                         addTripFrom.controls['price'].invalid
@@ -182,24 +183,35 @@
                         "
                       >
                         @for(bus of buses ; track $index) {
-                        <option value="{{ bus.id }}">No.{{ bus.id }}</option>
+                        <option value="{{ bus.id }}">No.{{ bus.id }} </option>
                         }
                       </select>
                       <label for="bus_id">Bus ID</label>
+                      
                     </div>
                     <div class="col-6">
-                      @if(addTripFrom.controls['bus_id'].touched) { 
-                        @for(bus of buses ; track $index) {
-                          @if (bus.id == addTripFrom.controls['bus_id'].value)
-                          {
+                      @for(bus of
+                      buses ; track $index) { @if (bus.id ==
+                        addTripFrom.controls['bus_id'].value) {
+                       
                       <div
-                        [innerHTML]="
-                          bus.options
-                        "
-                        class="text-secondary fs-4 hide"
-                      ></div>
-                        }} }
+                        class="text-secondary "
+                      > {{bus.type}}</div>
+                      }}
+                       
                     </div>
+                    
+                  </div>
+                  <div>
+                    @for(bus of
+                    buses ; track $index) { @if (bus.id ==
+                      addTripFrom.controls['bus_id'].value) {
+                     
+                    <div
+                      [innerHTML]="bus.options"
+                      class="text-secondary fs-4 hide"
+                    ></div>
+                    }}
                   </div>
                   @if(addTripFrom.controls['bus_id'].invalid ) {
                   <div class="text-danger">
@@ -210,7 +222,7 @@
                   <div class="form-floating mb-2 text-center">
                     <button
                       type="submit"
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-primary mb-3"
                       [disabled]="
                         addTripFrom.controls['time'].invalid ||
                         addTripFrom.controls['date'].invalid ||
@@ -223,7 +235,7 @@
                     >
                       Add
                     </button>
-                    <div>
+                    <div class="mb-3">
                       @if(onSuccessAdd==1) {
                       <div class="text-success fs-5">
                         Trip is Added Successfully!
@@ -244,6 +256,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button
+                (click)="setInitValueEdit(0)"
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
@@ -256,7 +269,7 @@
               </h2>
               <div
                 id="flush-collapse{{ $index }}"
-                class="accordion-collapse collapse ms-5 border border-0"
+                class="accordion-collapse collapse col-10 ms-auto me-auto border border-0"
                 [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
               >
                 <!-- child acc -->
@@ -268,6 +281,7 @@
                   <div class="accordion-item border border-0">
                     <h2 class="accordion-header">
                       <button
+                        (click)="setInitValueEdit(0)"
                         class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
@@ -275,48 +289,302 @@
                         aria-expanded="true"
                         [attr.aria-controls]="'childacc' + details.id"
                       >
-                        {{ details.date }} {{ details.time }}
+                        @if (startEdit!=details.id){
+                        <div
+                          class="d-flex justify-content-around"
+                          style="width: 100%"
+                        >
+                          <div class="col-3">
+                            <i class="fa-regular fa-calendar-days me-2 fs-4"></i
+                            >{{ details.date }}
+                          </div>
+                          <div class="col-3">
+                            <i class="fa-regular fa-clock me-2 fs-4"></i
+                            >{{ details.time | timeFormat }}
+                          </div>
+                        </div>
+                        } @else { Edit }
                       </button>
                     </h2>
                     <div
                       id="childacc{{ details.id }}"
-                      class="accordion-collapse collapse "
+                      class="accordion-collapse collapse"
                       [attr.data-bs-parent]="'#accordionExample' + toTrip.to"
                     >
+                      @if (startEdit!=details.id){
                       <div class="accordion-body">
-                        <div>
-                          bus_id :
-                          {{ details.bus_id }}
-                        </div>
-                        <div>
-                          chairs :
-                          {{ details.chairs }}
-                        </div>
-                        <div>
-                          options :
+                        <div class="d-flex justify-content-evenly">
                           <div
-                            [innerHTML]="details.options"
-                            class="text-secondary fs-4 hide"
-                          ></div>
-                        </div>
+                            class="col-6 text-center d-flex flex-column justify-content-evenly"
+                          >
+                            <div
+                              class="d-flex justify-content-evenly flex-wrap"
+                            >
+                              <div>Bus ID : No.{{ details.bus_id }}</div>
 
-                        <div>
-                          price :
-                          {{ details.price }}
+                              <div>
+                                Price :
+                                {{ details.price }} LE/<i
+                                  class="bi bi-person-fill"
+                                ></i>
+                              </div>
+                            </div>
+                            <div>
+                              <div
+                                [innerHTML]="details.options"
+                                class="text-secondary fs-4 hide"
+                              ></div>
+                              <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
+                                Tooltip on right
+                              </button> -->
+                              <div
+                                class="d-flex justify-content-evenly align-items-center mt-1"
+                              >
+                                <button
+                                  class="btn border border-0"
+                                  (click)="setInitValueEdit(details)"
+                                >
+                                  <i
+                                    class="fa-solid fa-pen text-primary fs-4"
+                                  ></i>
+                                </button>
+                                <button
+                                  class="btn border border-0"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#delModal"
+                                  (click)="setInitValueDel(details.id)"
+                                >
+                                  <i
+                                    class="fa-solid fa-xmark text-danger fs-3"
+                                  ></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="vr border border-1 border-black"></div>
+                          <div class="col-6">
+                            <div
+                              class="d-flex align-items-baseline justify-content-evenly flex-wrap"
+                            >
+                              <div
+                                class="d-flex flex-column justify-content-evenly align-items-baseline"
+                              >
+                                <div class="mb-3">Available</div>
+                                <div class="position-relative">
+                                  <mat-icon
+                                    style="width: 50px; height: 50px"
+                                    svgIcon="seat-icon"
+                                    class="seat-gray"
+                                  >
+                                  </mat-icon>
+                                  <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                  >
+                                    {{ details.chairs - details.reserved }}
+                                  </span>
+                                </div>
+                              </div>
+                              <div
+                                class="d-flex flex-column justify-content-evenly align-items-baseline"
+                              >
+                                <!-- {{ details.chairs }} -->
+                                <div class="mb-3">Reserved</div>
+                                <div class="position-relative">
+                                  <mat-icon
+                                    style="width: 50px; height: 50px"
+                                    svgIcon="seat-icon"
+                                    class="seat-blue"
+                                  >
+                                  </mat-icon>
+                                  <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                  >
+                                    {{ details.reserved }}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          type :
-                          {{ details.type }}
+                        <div class="iconshape1 mt-2" style="width: 100%">
+                          <div
+                            class="py-2 iconshape2"
+                            [ngClass]="{
+                              'bg-info': details.type_id == '1',
+                              'bg-danger': details.type_id == '2',
+                              'bg-primary': details.type_id == '3',
+                              'bg-secondary': details.type_id == '4',
+                              'bg-warning': details.type_id == '5'
+                            }"
+                          >
+                            {{ details.type }}
+                          </div>
                         </div>
                       </div>
+                      }@else {
+                      <form
+                        class="container form-floating"
+                        [formGroup]="editTripFrom"
+                        (ngSubmit)="editTrip(details.id)"
+                      >
+                        <!-- <input type="text" value="{{trip.id}}" name="from" id="from" hidden> -->
+
+                        <div class="form-floating mb-2">
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="date"
+                            placeholder="Date"
+                            formControlName="date"
+                            [ngClass]="
+                              editTripFrom.controls['date'].invalid
+                                ? 'is-invalid'
+                                : ''
+                            "
+                            min="{{ today }}"
+                          />
+                          <label for="date">Date</label>
+                        </div>
+                        @if(editTripFrom.controls['date'].invalid ) {
+                        <div class="text-danger">
+                          @if(editTripFrom.controls['date'].errors?.["required"])
+                          {This Field is required! }
+                        </div>
+                        }
+                        <div class="form-floating mb-2">
+                          <input
+                            type="time"
+                            class="form-control"
+                            id="time"
+                            placeholder="Time"
+                            formControlName="time"
+                            [ngClass]="
+                              editTripFrom.controls['time'].invalid
+                                ? 'is-invalid'
+                                : ''
+                            "
+                          />
+                          <label for="time">Time</label>
+                        </div>
+                        @if(editTripFrom.controls['time'].invalid ) {
+                        <div class="text-danger">
+                          @if(editTripFrom.controls['time'].errors?.["required"])
+                          {This Field is required! }
+                        </div>
+                        }
+                        <div class="form-floating mb-2">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="price"
+                            placeholder="Price"
+                            min="1"
+                            formControlName="price"
+                            [ngClass]="
+                              editTripFrom.controls['price'].invalid
+                                ? 'is-invalid'
+                                : ''
+                            "
+                          />
+                          <label for="price">Price</label>
+                        </div>
+                        @if(editTripFrom.controls['price'].invalid ) {
+                        <div class="text-danger">
+                          @if(editTripFrom.controls['price'].errors?.["required"])
+                          {This Field is required! }
+                        </div>
+                        }
+                        <div
+                    class="d-flex align-items-baseline justify-content-between"
+                  >
+                    <div class="form-floating mb-2 col-6">
+                      <select
+                        class="form-select"
+                        id="bus_id"
+                        aria-label="Floating label select example"
+                        formControlName="bus_id"
+                        [ngClass]="
+                          editTripFrom.controls['bus_id'].invalid
+                            ? 'is-invalid'
+                            : ''
+                        "
+                      >
+                        @for(bus of buses ; track $index) {
+                        <option value="{{ bus.id }}">No.{{ bus.id }} </option>
+                        }
+                      </select>
+                      <label for="bus_id">Bus ID</label>
+                      
+                    </div>
+                    <div class="col-6">
+                      @for(bus of
+                      buses ; track $index) { @if (bus.id ==
+                      editTripFrom.controls['bus_id'].value) {
+                       
+                      <div
+                        class="text-secondary "
+                      > {{bus.type}}</div>
+                      }}
+                       
+                    </div>
+                    
+                  </div>
+                  <div>
+                    @for(bus of
+                    buses ; track $index) { @if (bus.id ==
+                    editTripFrom.controls['bus_id'].value) {
+                     
+                    <div
+                      [innerHTML]="bus.options"
+                      class="text-secondary fs-4 hide"
+                    ></div>
+                    }}
+                  </div>
+                  @if(editTripFrom.controls['bus_id'].invalid ) {
+                  <div class="text-danger">
+                    @if(editTripFrom.controls['bus_id'].errors?.["required"])
+                    {This Field is required! }
+                  </div>
+                  }
+                        <div class="form-floating mb-2 text-center">
+                          <button
+                            type="submit"
+                            class="btn btn-outline-primary mb-3"
+                            [disabled]="
+                              editTripFrom.controls['time'].invalid ||
+                              editTripFrom.controls['date'].invalid ||
+                              editTripFrom.controls['bus_id'].invalid ||
+                              editTripFrom.controls['price'].invalid
+                                ? 'modal '
+                                : ''
+                            "
+                          >
+                            Edit
+                          </button>
+                          <div class="mb-3">
+                            @if(onSuccessAdd==1) {
+                            <div class="text-success fs-5">
+                              Trip is Updated Successfully!
+                            </div>
+                            } @if(onSuccessAdd==-1) {
+                            <div class="text-danger fs-5">
+                              This Trip is Already Exists!
+                            </div>
+
+                            }
+                          </div>
+                        </div>
+                      </form>
+                      }
                     </div>
                   </div>
+
                   }
                 </div>
                 <!-- child acc end -->
               </div>
             </div>
-            } } @else{ no trips yet }
+            } }
           </div>
         </div>
         <div class="modal-footer">
@@ -329,5 +597,61 @@
   </div>
   <!-- end modal -->
   }
-  <!-- <div class="d-flex justify-content-around fs-1"> -->
+  <!-- delete modal -->
+  <div
+    class="modal fade"
+    id="delModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        @if (deleteSuc==0) {
+        <div class="modal-body">
+          If You Deleted This Trip ,It Will Delete all Data that contains it
+          including client reservations, Are You Sure?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteTrip()"
+          >
+            Delete
+          </button>
+        </div>
+        } @else if (deleteSuc==1) {
+        <div class="modal-body">Deleted Successfully</div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+        } @else if (deleteSuc==-1) {
+        <div class="modal-body">Can't Be Deleted</div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+        <!-- modal edit -->
+
+        }
+      </div>
+    </div>
+  </div>
+  <!-- end delete modal -->
 </div>
