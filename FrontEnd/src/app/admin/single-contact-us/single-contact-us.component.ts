@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-single-contact-us',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './single-contact-us.component.html',
   styleUrl: './single-contact-us.component.css',
 })
