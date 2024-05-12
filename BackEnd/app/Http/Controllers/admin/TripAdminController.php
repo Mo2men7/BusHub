@@ -25,7 +25,7 @@ class TripAdminController extends Controller
         foreach ($allDestinations as $key => $value) {
             $fixallDestinations[$value->id] = $value;
         }
-        $allTrips = DB::table('trips')->join('destinations', 'destinations.id', '=', 'trips.from')->select("from", "to")->distinct()->get();
+        $allTrips = DB::table('trips')->join('destinations', 'destinations.id', '=', 'trips.from')->select("from", "to")->where('date','>=',date('Y-m-d'))->distinct()->get();
         foreach ($allTrips as $key => $trip) {
             $from_name = DB::table('destinations')->select("name")->where("id", "=", $trip->from)->get();
             // dd($from_name);
@@ -35,6 +35,7 @@ class TripAdminController extends Controller
             $allTrips[$key]->to_name = $to_name[0]->name;
             $details = DB::table('trips')->join('buses', 'trips.bus_id', '=', 'buses.id')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.id as bus_id','buses.chairs', 'buses.type_id','types.type','types.options'])
                 ->where('to', '=', $trip->to)
+                ->where('date','>=',date('Y-m-d'))
                 ->where('from', '=', $trip->from)->get()->toArray();
             // dd($destTrips);
             foreach ($details as $key1 => $trip_id)

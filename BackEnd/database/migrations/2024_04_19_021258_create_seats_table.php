@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trip_id')->constrained();
+            $table->foreignId('trip_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             // $table->foreignId('bus_id')->constrained();
             // $table->foreignId('user_id')->nullable()->constrained();
             $table->integer('seat_num');
