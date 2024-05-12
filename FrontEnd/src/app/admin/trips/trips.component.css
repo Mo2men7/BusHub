@@ -131,3 +131,28 @@ margin-top: 10px;
 {
     background-color:var(--primary)
 }
+
+
+.iconshape1 {
+    text-align: center;
+    font-weight: 700;
+    color: white;
+  }
+  
+  /* type iner div */
+  .iconshape2 {
+    border-radius: 10px 0 10px 0;
+  }
+
+
+  .seat-red {
+    color: red;
+  }
+  
+  .seat-gray {
+    color: gray;
+  }
+  
+.seat-blue {
+    color: blue;
+  }

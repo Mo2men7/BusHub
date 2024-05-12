@@ -4,10 +4,14 @@ import { BusService } from '../services/busService/bus.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { TimeFormatPipe } from '../../time-format.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-trips',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass,TimeFormatPipe,MatIconModule],
   templateUrl: './trips.component.html',
   styleUrl: './trips.component.css',
 })
@@ -35,7 +39,9 @@ export class TripsComponent {
   onErrorAdd:any;
   constructor(
     private tripService: TripService,
-    private busService: BusService
+    private busService: BusService,
+    private matIconRegistry:MatIconRegistry,
+    private domSanitizer: DomSanitizer,
   ) {
     this.addTripFrom = new FormGroup({
       destination: new FormControl('', [Validators.required]),
@@ -46,6 +52,12 @@ export class TripsComponent {
     });
   }
   ngOnInit() {
+    this.matIconRegistry.addSvgIcon(
+      'seat-icon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../../assets/img/seat-icon.svg'
+      )
+    );
     // this.onSuccessAdd=0;
     this.addTripFrom = new FormGroup({
       destination: new FormControl('', [Validators.required]),

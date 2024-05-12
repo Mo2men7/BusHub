@@ -116,7 +116,7 @@
                       [ngClass]="
                         addTripFrom.controls['date'].invalid ? 'is-invalid' : ''
                       "
-                       min="{{today}}"
+                      min="{{ today }}"
                     />
                     <label for="date">Date</label>
                   </div>
@@ -188,17 +188,14 @@
                       <label for="bus_id">Bus ID</label>
                     </div>
                     <div class="col-6">
-                      @if(addTripFrom.controls['bus_id'].touched) { 
-                        @for(bus of buses ; track $index) {
-                          @if (bus.id == addTripFrom.controls['bus_id'].value)
-                          {
+                      @if(addTripFrom.controls['bus_id'].touched) { @for(bus of
+                      buses ; track $index) { @if (bus.id ==
+                      addTripFrom.controls['bus_id'].value) {
                       <div
-                        [innerHTML]="
-                          bus.options
-                        "
+                        [innerHTML]="bus.options"
                         class="text-secondary fs-4 hide"
                       ></div>
-                        }} }
+                      }} }
                     </div>
                   </div>
                   @if(addTripFrom.controls['bus_id'].invalid ) {
@@ -256,7 +253,7 @@
               </h2>
               <div
                 id="flush-collapse{{ $index }}"
-                class="accordion-collapse collapse ms-5 border border-0"
+                class="accordion-collapse collapse col-10 ms-auto me-auto border border-0"
                 [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
               >
                 <!-- child acc -->
@@ -275,38 +272,104 @@
                         aria-expanded="true"
                         [attr.aria-controls]="'childacc' + details.id"
                       >
-                        {{ details.date }} {{ details.time }}
+                        <div
+                          class="d-flex justify-content-around "
+                          style="width: 100%"
+                        >
+                          <div class="col-3">
+                            <i class="fa-regular fa-calendar-days me-2 fs-4"></i
+                            >{{ details.date }}
+                          </div>
+                          <div class="col-3">
+                            <i class="fa-regular fa-clock me-2 fs-4"></i
+                            >{{ details.time | timeFormat }}
+                          </div>
+                        </div>
                       </button>
                     </h2>
                     <div
                       id="childacc{{ details.id }}"
-                      class="accordion-collapse collapse "
+                      class="accordion-collapse collapse"
                       [attr.data-bs-parent]="'#accordionExample' + toTrip.to"
                     >
                       <div class="accordion-body">
-                        <div>
-                          bus_id :
-                          {{ details.bus_id }}
-                        </div>
-                        <div>
-                          chairs :
-                          {{ details.chairs }}
-                        </div>
-                        <div>
-                          options :
-                          <div
-                            [innerHTML]="details.options"
-                            class="text-secondary fs-4 hide"
-                          ></div>
-                        </div>
+                        <div class="d-flex justify-content-evenly">
+                          <div class="col-6 text-center d-flex flex-column justify-content-evenly">
+                            <div class="d-flex justify-content-evenly">
+                              <div >
+                                Bus ID :
+                                No.{{ details.bus_id }}
+                              </div>
 
-                        <div>
-                          price :
-                          {{ details.price }}
+                              <div>
+                                Price :
+                                {{ details.price }} LE/<i class="bi bi-person-fill"></i>
+                              </div>
+                            </div>
+                            <div>
+                             
+                              <div
+                                [innerHTML]="details.options"
+                                class="text-secondary fs-4 hide"
+                              ></div>
+                            </div>
+                          </div>
+                          <div class="vr"></div>
+                          <div class="col-6">
+                            <div class="d-flex flex-column">
+                              <div
+                                class="d-flex justify-content-evenly mb-3 align-items-baseline"
+                              >
+                                <div>Available</div>
+                                <div>Reserved</div>
+                              </div>
+                              <div
+                                class="d-flex justify-content-evenly align-items-baseline"
+                              >
+                                <!-- {{ details.chairs }} -->
+                                <div class="position-relative">
+                                  <mat-icon
+                                    style="width: 50px; height: 50px"
+                                    svgIcon="seat-icon"
+                                    class="seat-gray"
+                                  >
+                                  </mat-icon>
+                                  <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                  >
+                                    {{ details.chairs - details.reserved }}
+                                  </span>
+                                </div>
+                                <div class="position-relative">
+                                  <mat-icon
+                                    style="width: 50px; height: 50px"
+                                    svgIcon="seat-icon"
+                                    class="seat-blue"
+                                  >
+                                  </mat-icon>
+                                  <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                  >
+                                    {{ details.reserved }}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          type :
-                          {{ details.type }}
+                        <div class="iconshape1 mt-2" style="width: 100%">
+                          <div
+                            class="py-2 iconshape2"
+                            [ngClass]="{
+                              'bg-info': details.type_id == '1',
+                              'bg-danger': details.type_id == '2',
+                              'bg-primary': details.type_id == '3',
+                              'bg-secondary': details.type_id == '4',
+                              'bg-warning': details.type_id == '5'
+                            }"
+                          >
+                            {{ details.type }}
+                          </div>
                         </div>
                       </div>
                     </div>
