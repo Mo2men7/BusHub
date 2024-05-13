@@ -25,7 +25,7 @@ export class PrivateBusPageComponent {
     private http: HttpClient,
     private TypeService: TypeService,
     private cookie: CookieService,
-    private router:Router
+    private router: Router
   ) {}
   ngOnInit() {
     this.destinationService
@@ -43,10 +43,15 @@ export class PrivateBusPageComponent {
     departure_date: '',
     return: '',
   };
-  submitPrivateBusForm(privateBusForm:any) {
+  submitCheck: boolean = false;
+  submitPrivateBusForm(privateBusForm: any) {
     let token = this.cookie.get('token');
+    this.submitCheck = true;
     if (token) {
-      let httpOptions = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      let httpOptions = new HttpHeaders().set(
+        'Authorization',
+        'Bearer ' + token
+      );
       this.http
         .post('http://127.0.0.1:8000/api/private-bus', this.formData, {
           headers: httpOptions,
@@ -62,11 +67,13 @@ export class PrivateBusPageComponent {
             this.formData.passenger_number = '';
             this.formData.departure_date = '';
             this.formData.return = '';
+            this.submitCheck = false;
+
             Swal.fire({
               icon: 'success',
               title: 'Your request has been submit successfully',
             });
-            Object.keys(privateBusForm.controls).forEach(controlName => {
+            Object.keys(privateBusForm.controls).forEach((controlName) => {
               // Mark each control as untouched
               privateBusForm.controls[controlName].markAsUntouched();
             });
@@ -76,39 +83,36 @@ export class PrivateBusPageComponent {
           }
         );
     } else {
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: "btn btn-success",
-          cancelButton: "btn btn-danger"
-        },
-        buttonsStyling: false
-      });
-      swalWithBootstrapButtons.fire({
-        title: "Are you sure?",
-        text: "You won't be able to book, you must sign up !",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "sign up",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(["/signin"]);
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire({
-            title: "Cancelled",
-            // text: "We are here to assist you anytime  :)",
-            icon: "error"
-          });
-        }
-    });
-      // Object.keys(privateBusForm.controls).forEach(controlName => {
-      //   // Mark each control as untouched
-      //   privateBusForm.controls[controlName].markAsUntouched();
+      this.router.navigate(['/signin']);
+      //   const swalWithBootstrapButtons = Swal.mixin({
+      //     customClass: {
+      //       confirmButton: "btn btn-success",
+      //       cancelButton: "btn btn-danger"
+      //     },
+      //     buttonsStyling: false
+      //   });
+      //   swalWithBootstrapButtons.fire({
+      //     title: "Are you sure?",
+      //     text: "You won't be able to book, you must sign up !",
+      //     icon: "warning",
+      //     showCancelButton: true,
+      //     confirmButtonText: "sign up",
+      //     cancelButtonText: "No, cancel!",
+      //     reverseButtons: true
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       this.router.navigate(["/signin"]);
+      //     } else if (
+      //       /* Read more about handling dismissals below */
+      //       result.dismiss === Swal.DismissReason.cancel
+      //     ) {
+      //       swalWithBootstrapButtons.fire({
+      //         title: "Cancelled",
+      //         // text: "We are here to assist you anytime  :)",
+      //         icon: "error"
+      //       });
+      //     }
       // });
+    }
   }
-}
 }

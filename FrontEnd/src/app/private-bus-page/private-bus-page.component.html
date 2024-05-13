@@ -25,7 +25,9 @@
               />
               <label for="floatingInputGrid">Name</label>
             </div>
-            @if (name.invalid && name.touched) {<span class="text-danger">This field is required</span>}
+            @if (name.invalid && name.touched || submitCheck && name.invalid) {
+              <span class="text-danger">This field is required</span>
+            }
           </div>
           <div class="col-md">
             <div class="form-floating">
@@ -42,7 +44,7 @@
               />
               <label for="floatingInputGrid">Phone Number</label>
             </div>
-            @if (phone.invalid && phone.touched) {
+            @if (phone.invalid && phone.touched || submitCheck && phone.invalid) {
               @if(phone.errors?.['required']){
                 <span class="text-danger">This field is required</span>
               }
@@ -73,7 +75,7 @@
               </select>
               <label for="floatingInputGrid">Origin</label>
             </div>
-            @if (from.invalid && from.touched) {
+            @if (from.invalid && from.touched || submitCheck && from.invalid) {
               <span class="text-danger">This field is required</span>
             }
           </div>
@@ -97,7 +99,7 @@
               </select>
               <label for="floatingSelectGrid">Destinaiton</label>
             </div>
-            @if (to.invalid && to.touched) {
+            @if (to.invalid && to.touched || submitCheck && to.invalid) {
               <span class="text-danger">This field is required</span>
             }
           </div>
@@ -121,7 +123,7 @@
               </select>
               <label for="floatingInputGrid">Bus Type</label>
             </div>
-            @if (bus_type_id.invalid && bus_type_id.touched) {
+            @if (bus_type_id.invalid && bus_type_id.touched || submitCheck && bus_type_id.invalid) {
               <span class="text-danger">This field is required</span>
             }
           </div>
@@ -141,7 +143,7 @@
               />
               <label for="floatingSelectGrid">Passengers</label>
             </div>
-            @if (passenger_number.invalid && passenger_number.touched) {
+            @if (passenger_number.invalid && passenger_number.touched || submitCheck && passenger_number.invalid) {
               @if(passenger_number.errors?.['required']){
                 <span class="text-danger">This field is required</span>
               }
@@ -185,7 +187,7 @@
               </select>
               <label for="floatingInputGrid">Return</label>
             </div>
-            @if (return.invalid && return.touched) {
+            @if (return.invalid && return.touched || submitCheck && return.invalid) {
               <span class="text-danger">This field is required</span>
             }
           </div>
@@ -194,13 +196,12 @@
           <button
             type="submit"
             class="py-1 bh-btn-primary w-25 rounded-pill px-4"
-            [disabled]="privateBusForm.invalid"
           >
             Submit
           </button>
-          @if (privateBusForm.invalid) {
+          <!-- @if (privateBusForm.invalid) {
             <span class="text-danger w-25">All field are required</span>
-          }
+          } -->
         </div>
       </form>
     </div>
