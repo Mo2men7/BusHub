@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { TripsshowService } from '../../services1/tripsshow.service';
 import { CommonModule, NgClass } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+//service
+import { TripsshowService } from '../../services1/tripsshow.service';
+import { DestinationService } from '../../services/destination.service';
+
+//component
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { FooterComponent } from '../../footer/footer.component';
+// import { SearchComponent } from '../../homepage/search/search.component';
+//pipe
 import { CustomDatePipe } from '../../custom-date.pipe';
 import { TimeFormatPipe } from '../../time-format.pipe';
+//route
 import { ActivatedRoute } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-tripsshow',
@@ -19,6 +27,7 @@ import Swal from 'sweetalert2';
     RouterLink,
     NavbarComponent,
     FooterComponent,
+    // SearchComponent,
     CustomDatePipe,
     TimeFormatPipe,
     MatProgressSpinnerModule,
@@ -29,12 +38,18 @@ import Swal from 'sweetalert2';
 export class TripsshowComponent {
   constructor(
     private TripsshowService: TripsshowService,
+    private DestinationService: DestinationService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+  //variables
   trips: any;
   formData: any = {};
+  destination: any;
+  urlfrom:any;
+  urlto:any;
   ngOnInit(): void {
+    this.urlparams()
     //git api tripsshow
     this.showtrips();
     //send data to url "book-trip"
@@ -54,51 +69,67 @@ export class TripsshowComponent {
       },
     });
   }
-  // filterTrips() {
-  //   this.trips = this.trips.filter(
-  //     (trip: any) =>
-  //       trip.from == this.formData.from &&
-  //       trip.to == this.formData.to &&
-  //       trip.date == this.formData.travelDate
-  //   );
-  //   console.log(this.trips); //delete
-  // }
+  
+//   urlparams() {
+//     this.DestinationService.getDestinations().subscribe({
+//       next: (destination: any) => {
+//         this.destination = destination;
+//         console.log(destination); //delete
+//         // this.trips = this.trips.filter(
+// // this.urlfrom=this.destination.filter()=>destination.id==this.formData.from;
+// // this.urlfrom = this.destination.find(dest => dest.id === this.formData.from);
+//       },
+//     });
+//   }
+
+urlparams() {
+  this.DestinationService.getDestinations().subscribe({
+    next: (destination: any) => {
+      this.destination = destination;
+      console.log(destination); //delete
+      
+      // Filter destinations to find the one with the ID matching formData.from
+      this.urlfrom = this.destination.find((dest: any) => dest.id == this.formData.from);
+      this.urlto = this.destination.find((dest: any) => dest.id == this.formData.to);
+      console.log('from url',this.urlfrom); // For debugging
+      console.log('to url',this.urlto); // For debugging
+    },
+  });
+}
+
 
   //get current time
-   getCurrentTime(): string {
+  getCurrentTime(): string {
     const date = new Date();
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const seconds = date.getSeconds().toString().padStart(2, '0');
     return `${hours}:${minutes}:${seconds}`;
-}
+  }
 
-//get current date
- getCurrentDate(): string {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based, so add 1
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+  //get current date
+  getCurrentDate(): string {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based, so add 1
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
-
-//filter trip of days and destinations selected
+  //filter trip of days and destinations selected
   filterTrips() {
     const currentTime = this.getCurrentTime();
-    const currentDate =this. getCurrentDate();
+    const currentDate = this.getCurrentDate();
     this.trips = this.trips.filter(
       (trip: any) =>
         trip.from == this.formData.from &&
         trip.to == this.formData.to &&
-        trip.date == this.formData.travelDate
-        &&(this.formData.travelDate != currentDate || trip.time >= currentTime)
+        trip.date == this.formData.travelDate &&
+        (this.formData.travelDate != currentDate || trip.time >= currentTime)
     );
     console.log(this.trips); //delete
   }
 
-
-  
   booknow(trip: any) {
     //convert trip time to seconds start
     const triptime = trip.time;
@@ -138,7 +169,7 @@ export class TripsshowComponent {
     //     showConfirmButton: false,
     //     timer: 2000,
     //   });
-    // } else 
+    // } else
     if (trip.date == formattedDate && trip_time - current_time <= 3600) {
       // console.log('2nd if');
       Swal.fire({
@@ -149,7 +180,6 @@ export class TripsshowComponent {
       });
     } else {
       this.router.navigate(['/book-trip', trip.id, trip.type_id]);
-
     }
   }
 }
