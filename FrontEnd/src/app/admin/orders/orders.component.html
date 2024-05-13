@@ -1,5 +1,5 @@
-<div class="container overflow-auto my-2" style="height: 95vh; width: 80vw">
-  <table class="table table-striped table-hover table-bordered">
+<div class="m-auto overflow-auto my-4" style="height: 95vh; width: 90%">
+  <table class="">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -28,7 +28,7 @@
         <td>{{ PBR.passenger_number }}</td>
         <td>{{ PBR.departure_date }}</td>
         <td>@if(PBR.return==1){Yes}@else {No}</td>
-        <td class="opt-field">
+        <td class="">
           @if(PBR.status=="Pending"){
           <button (click)="onRequestAccept(PBR.id)" class="opt-btn check">
             <i class="fa fa-check"></i>

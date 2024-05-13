@@ -1,24 +1,54 @@
-.opt-field{
-    /* background-color: black; */
+table {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-collapse: collapse;
 }
-.opt-btn{
-    border: none;
-    outline: none;
-    transition: .3s;
-    border-radius: 5px;
-    background: transparent;
+
+td,
+th {
+  /* padding: 15px; */
+  border: none;
+  border-bottom: 1px solid var(--text);
+  background-color: var(--dark);
 }
-.check{
-    color: lightgreen;
+
+tr:nth-child(even) {
+  background-color: var(--text);
 }
-.check:hover{
-    background-color: lightgreen;
-    color: black;
+
+tr:hover {
+  background-color: var(--text);
 }
-.cancel{
-    color: lightcoral;
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: var(--dark);
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
 }
-.cancel:hover{
-    background-color: lightcoral;
-    color: white;
+
+.opt-btn {
+  border: none;
+  outline: none;
+  transition: 0.3s;
+  border-radius: 5px;
+  background: transparent;
+}
+.check {
+  color: lightgreen;
+}
+.check:hover {
+  background-color: lightgreen;
+  color: black;
+}
+.cancel {
+  color: lightcoral;
+}
+.cancel:hover {
+  background-color: lightcoral;
+  color: white;
 }
