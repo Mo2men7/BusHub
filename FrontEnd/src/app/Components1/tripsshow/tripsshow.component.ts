@@ -54,16 +54,51 @@ export class TripsshowComponent {
       },
     });
   }
+  // filterTrips() {
+  //   this.trips = this.trips.filter(
+  //     (trip: any) =>
+  //       trip.from == this.formData.from &&
+  //       trip.to == this.formData.to &&
+  //       trip.date == this.formData.travelDate
+  //   );
+  //   console.log(this.trips); //delete
+  // }
+
+  //get current time
+   getCurrentTime(): string {
+    const date = new Date();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+}
+
+//get current date
+ getCurrentDate(): string {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based, so add 1
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+
+//filter trip of days and destinations selected
   filterTrips() {
+    const currentTime = this.getCurrentTime();
+    const currentDate =this. getCurrentDate();
     this.trips = this.trips.filter(
       (trip: any) =>
         trip.from == this.formData.from &&
         trip.to == this.formData.to &&
         trip.date == this.formData.travelDate
+        &&(this.formData.travelDate != currentDate || trip.time >= currentTime)
     );
     console.log(this.trips); //delete
   }
 
+
+  
   booknow(trip: any) {
     //convert trip time to seconds start
     const triptime = trip.time;
@@ -95,21 +130,22 @@ export class TripsshowComponent {
     console.log('date', formattedDate);
     //current date end
 
-    if (trip.date == formattedDate && trip_time < current_time) {
-      // console.log('1st if');
-      Swal.fire({
-        icon: 'error',
-        title: `The bus has already left.`,
-        showConfirmButton: false,
-        timer: 2000,
-      });
-    } else if (trip.date == formattedDate && trip_time - current_time <= 7200) {
+    // if (trip.date == formattedDate && trip_time < current_time) {
+    //   // console.log('1st if');
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: `The bus has already left.`,
+    //     showConfirmButton: false,
+    //     timer: 2000,
+    //   });
+    // } else 
+    if (trip.date == formattedDate && trip_time - current_time <= 3600) {
       // console.log('2nd if');
       Swal.fire({
         icon: 'warning',
-        title: `You can't reserve in this trip as the bus  will take off in less than two hours.`,
-        showConfirmButton: false,
-        timer: 2000,
+        title: `You can't reserve in this trip as the bus  will take off in less than one hour.`,
+        showConfirmButton: true,
+        // timer: 2000,
       });
     } else {
       this.router.navigate(['/book-trip', trip.id, trip.type_id]);
