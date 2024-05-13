@@ -1,31 +1,31 @@
-@media only screen and (max-width: 700px) {
-  .details-container {
-    width: 100% !important;
-    margin-top: 0px !important;
-  }
-  .details-container1 {
-    padding-top: 0px;
-  }
-  .seats_3 {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .seats-1 ,.seats-11{
-    width: 100% !important;
-padding-left: 10px;
-padding-right: 10px;
-margin-bottom: 20px!important;
-  }
-  .btn-edit{
-
-    padding-left: 0px!important;
-  }
-  .cancle_btn{
-    margin-top: -188px !important;
-    margin-bottom: 125px;
-  }
+.firstblur {
+  position: absolute;
+  width: 20vw;
+  height: 20vw;
+  min-width: 250px;
+  top: 60px;
+  left: 5vw;
+  border: 764px;
+  background: rgb(35, 78, 141);
+  opacity: .3;
+  filter: blur(75px);
+  /* z-index: 1; */
 }
-.cancle_btn{
+.secondblur {
+  position: absolute;
+  width: 20vw;
+  height: 20vw;
+  min-width: 250px;
+  top: 60px;
+  right: 5vw;
+  border: 764px;
+  background: rgb(35, 78, 141);
+  opacity: .3;
+  filter: blur(75px);
+  /* z-index: -1; */
+}
+
+.cancle_btn {
   margin-top: -150px;
   text-align: center;
 }
@@ -48,23 +48,30 @@ i {
 .bus-edit {
   width: 10rem;
 }
+/* img size */
 .mat-icon {
-  height: 50px !important;
-  width: 50px !important;
+  height: 35px !important;
+  width: 35px !important;
   overflow: visible;
 }
 .details-container {
-  border-radius: 10px;
-  border-style: solid;
-  width: 700px;
-  background: var(--linearPrimaryAccent);
-  margin-top: 30px;
+  /* border-radius: 10px; */
+  /* border-style: solid; */
+  width: 100%;
+  /* background: var(--linearPrimaryAccent); */
+  background: var(--background);
+  padding: 10px 0;
+  /* margin-top: 30px; */
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 }
 
 .text-bg1 {
   background: var(--secondary);
+  font-size: 20px;
+  margin-left: 5px!important;
+  margin-right: 5px!important;
 }
 .size {
   height: 25px !important;
@@ -75,6 +82,7 @@ i {
 a {
   text-decoration: none !important;
   color: gray;
+
 }
 
 .not-clickable {
@@ -83,6 +91,7 @@ a {
 
 .seat-blue {
   color: blue;
+  
 }
 .seat-red {
   color: red;
@@ -90,6 +99,7 @@ a {
 
 .seat-gray {
   color: gray;
+
 }
 .seats-1 {
   width: 500px;
@@ -102,69 +112,114 @@ a {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.seats-11{
-  width: 350px;
+.seats-11 {
+  width: 250px;
   border-style: solid;
+  border-width: 10px;
   border-radius: 20px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-
+  background: white;
+}
+.seat_num{
+  color: var( --background);
+  font-weight: 500;
 }
 /* seats css end*/
 .img-size {
   width: 20px;
 }
-.second-container {
-  width: 100%;
-}
+
 .font-edit {
   font-size: 20px;
   font-weight: bolder;
 }
 /* 3 seats */
+.seat2Of3,.seat3Of3{
+margin-top: 30px;
+margin-left: 30px;
+}
+.seat1Of3{
+  margin-top: 150px;
+  margin-left: 30px;
+}
 .seats_3 {
-  padding-left: 200px;
-  padding-right: 200px;
+
   padding-top: 20px;
   padding-bottom: 30px;
 }
 .container1 {
-  margin-top: 20px;
+
+  z-index: 1;
 }
 
-.img_location{
-margin: 0;
+.img_location {
+  margin: 0;
   padding: 0;
 }
 
-.btn-edit{
-margin-left: 45%;
-margin-right: 50%;
-/* padding: auto; */
-  /* padding-left: 270px; */
+.btn-edit {
+
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  margin-bottom: 10px;
 }
 
-
-.spinner_edit{
+.spinner_edit {
   height: 300px;
   width: 200px;
-   text-align: center;
-    padding-top: 100px;
-    /* margin-bottom: 100px; */
+  text-align: center;
+  padding-top: 100px;
 
 }
 
 
+@media only screen and (max-width: 1150px) {
+  .slider_edit{
+    padding-top: 60px;
+  }
+  .seat2Of3,.seat3Of3,.seat1Of3{
+
+    margin-left: 0px;
+    }
+    .cancle_btn{
+      margin-top: 0px;
+    }
+}
+
+@media only screen and (max-width:960px) {
+
+.hide{
+  display: none;
+}
+.slider_edit{
+display: none;
+}
+}
 
 
 
+@media only screen and (max-width: 576px) {
+  .seats_3 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    
+    padding-left: 31%;
+}
+.seat2Of3,.seat3Of3,.seat1Of3{
+  margin-top: 0px;
+  margin-bottom: 5px;
 
+}
+.hide1{
+  display: none;
+}
 
-
-
-
-
+}
