@@ -81,6 +81,7 @@ class Trip1Controller extends Controller
         ->join('buses','buses.id','=','trips.bus_id')
         ->join('types','types.id','=','buses.type_id')
         ->select('trips.*', 'from_dest.name as from_location', 'to_dest.name as to_location','buses.chairs','types.type','types.id as type_id' ,'types.options',)
+        ->orderBy('time', 'asc')
         ->get();
     
         return response()->json($trips);
