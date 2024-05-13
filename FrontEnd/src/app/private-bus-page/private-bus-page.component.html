@@ -168,8 +168,10 @@
               />
               <label for="floatingInputGrid">Date</label>
             </div>
-            <!-- @if (date.) {} -->
-          </div>
+            @if (date.invalid && date.touched || submitCheck && date.invalid){
+              <span class="text-danger">This field is required</span>
+            }
+            </div>
           <div class="col-md">
             <div class="form-floating">
               <select
