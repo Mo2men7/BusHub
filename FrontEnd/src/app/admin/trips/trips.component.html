@@ -72,7 +72,7 @@
               </h2>
               <div
                 id="AddTrip{{ trip.id }}"
-                class="accordion-collapse collapse ms-5 border border-0"
+                class="accordion-collapse collapse mx-4 border border-0"
                 [attr.data-bs-parent]="'#accordionFlushExample' + trip.id"
               >
                 <form
@@ -167,7 +167,58 @@
                     {This Field is required! }
                   </div>
                   }
-                 
+                  <div
+                    class="d-flex align-items-baseline justify-content-between"
+                  >
+                    <div class="form-floating mb-2 col-6">
+                      <select
+                        class="form-select"
+                        id="bus_id"
+                        aria-label="Floating label select example"
+                        formControlName="bus_id"
+                        [ngClass]="
+                          addTripFrom.controls['bus_id'].invalid
+                            ? 'is-invalid'
+                            : ''
+                        "
+                      >
+                        @for(bus of buses ; track $index) {
+                        <option value="{{ bus.id }}">No.{{ bus.id }} </option>
+                        }
+                      </select>
+                      <label for="bus_id">Bus ID</label>
+                      
+                    </div>
+                    <div class="col-6">
+                      @for(bus of
+                      buses ; track $index) { @if (bus.id ==
+                        addTripFrom.controls['bus_id'].value) {
+                       
+                      <div
+                        class="text-secondary "
+                      > {{bus.type}}</div>
+                      }}
+                       
+                    </div>
+                    
+                  </div>
+                  <div>
+                    @for(bus of
+                    buses ; track $index) { @if (bus.id ==
+                      addTripFrom.controls['bus_id'].value) {
+                     
+                    <div
+                      [innerHTML]="bus.options"
+                      class="text-secondary fs-4 hide"
+                    ></div>
+                    }}
+                  </div>
+                  @if(addTripFrom.controls['bus_id'].invalid ) {
+                  <div class="text-danger">
+                    @if(addTripFrom.controls['bus_id'].errors?.["required"])
+                    {This Field is required! }
+                  </div>
+                  }
                   <div class="form-floating mb-2 text-center">
                     <button
                       type="submit"
@@ -459,21 +510,35 @@
                         "
                       >
                         @for(bus of buses ; track $index) {
-                        <option value="{{ bus.id }}">No.{{ bus.id }}</option>
+                        <option value="{{ bus.id }}">No.{{ bus.id }} </option>
                         }
                       </select>
                       <label for="bus_id">Bus ID</label>
+                      
                     </div>
                     <div class="col-6">
-                      @if(editTripFrom.controls['bus_id'].touched) { @for(bus of
+                      @for(bus of
                       buses ; track $index) { @if (bus.id ==
                       editTripFrom.controls['bus_id'].value) {
+                       
                       <div
-                        [innerHTML]="bus.options"
-                        class="text-secondary fs-4 hide"
-                      ></div>
-                      }} }
+                        class="text-secondary "
+                      > {{bus.type}}</div>
+                      }}
+                       
                     </div>
+                    
+                  </div>
+                  <div>
+                    @for(bus of
+                    buses ; track $index) { @if (bus.id ==
+                    editTripFrom.controls['bus_id'].value) {
+                     
+                    <div
+                      [innerHTML]="bus.options"
+                      class="text-secondary fs-4 hide"
+                    ></div>
+                    }}
                   </div>
                   @if(editTripFrom.controls['bus_id'].invalid ) {
                   <div class="text-danger">
