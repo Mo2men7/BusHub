@@ -20,7 +20,6 @@ export class SearchComponent {
     private router: Router
   ) {}
   //locked previous days variable
-  // today = new Date().toISOString().split('T')[0];
   today =
     new Date()
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
@@ -57,7 +56,7 @@ export class SearchComponent {
       .subscribe((res: any) => (this.destinations = res));
     //locked previous days
     console.log(this.today); //delete
-    console.log(this.newDate);
+    console.log(this.newDate);//delete
 
     document.getElementsByName('travelDate')[0].setAttribute('min', this.today);
     document.getElementsByName('travelDate')[0].setAttribute('max', this.newDate);

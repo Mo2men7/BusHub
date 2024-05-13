@@ -32,6 +32,9 @@ export class PrivateBusPageComponent {
       .getDestinations()
       .subscribe((res: any) => (this.destinations = res));
     this.TypeService.getBusTypes().subscribe((res) => (this.busTypes = res));
+     //locked previous days
+    document.getElementsByName('departure_date')[0].setAttribute('min', this.today);
+    document.getElementsByName('departure_date')[0].setAttribute('max', this.newDate);
   }
   formData = {
     name: '',
@@ -115,4 +118,38 @@ export class PrivateBusPageComponent {
       // });
     }
   }
+  //locked previous days variable
+  today =
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[2] +
+    '-' +
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[0]
+      .padStart(2, '0') +
+    '-' +
+    new Date()
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[1]
+      .padStart(2, '0');
+
+  // maxDate =
+  initialDateInMillis = new Date().getTime();
+  sevenDaysInMillis = 6 * 24 * 60 * 60 * 1000;
+  maxDate = this.initialDateInMillis + this.sevenDaysInMillis;
+  newDate =
+    new Date(this.maxDate)
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[2] +`-0`+
+    new Date(this.maxDate)
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[0] +`-`+
+    new Date(this.maxDate)
+      .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
+      .split('/')[1];
+
+
+
+
 }
