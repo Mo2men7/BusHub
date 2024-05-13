@@ -10,11 +10,12 @@ class Seat extends Model
     use HasFactory;
 
     use HasFactory;
-    protected $fillable=[
+   protected $fillable=[
         'trip_id',
         'bus_id',
         'user_id',
-        'seat_num'
+        'seat_num',
+        'reserved'
     ];
     protected $table ='seats';
 }

@@ -7,9 +7,9 @@
                 @for(destination of destinations; track $index){
                     <div class="col">
                         <div class="card h-100">
-                            <img src="{{destination.flag}}" class="card-img-top" alt="{{destination.name}}">
+                            <img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.pic}}" class="card-img-top" alt="{{destination.name}}">
                             <div class="card-body">
-                                <h5 class="card-title">{{destination.name}}</h5>
+                                <h5 class="card-title">{{destination.name}} <img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.flag}}" style="width: 40px;"></h5>
                                 <p class="card-text text-white-50">{{destination.info}}</p>
                             </div>
                         </div>
@@ -17,7 +17,7 @@
                 }
             }
             @else{
-                <h2 class="text-black-50 mx-auto mt-5 pt-5 mb-5 pb-5">Loading...</h2>
+                <h2 class="text-white-50 mx-auto mt-5 pt-5 mb-5 pb-5">Loading...</h2>
             }
             </div>
     </div>
