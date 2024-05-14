@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ElementRef, Renderer2 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TripsService } from '../services/trips.service';
 import { NgModel } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,12 +12,32 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-edituserdetails',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink],
+  imports: [RouterOutlet, CommonModule,FormsModule,ReactiveFormsModule,RouterLinkActive,RouterLink],
   templateUrl: './edituserdetails.component.html',
   styleUrl: './edituserdetails.component.css'
 })
 export class EdituserdetailsComponent {
-  constructor(private userservice:UserService ,private activatedRoute:ActivatedRoute,private router: Router,private cookie:CookieService) { }
+
+  editForm: FormGroup;
+  userDetails:any = {
+    phone: ``,
+    email: "",
+    username: "",
+    city:"",
+   };
+  constructor(private fb:FormBuilder, private userservice: UserService, private activatedRoute: ActivatedRoute, private router: Router, private cookie: CookieService) {
+
+    this.editForm = this.fb.group({
+        email: [""],
+        username: [""],
+        pic: [""],
+        city: [""],
+        phone:[""],
+
+
+    })
+  }
+
   userId: any;
   userData: any;
   username: any;
@@ -26,12 +46,7 @@ export class EdituserdetailsComponent {
   city: any;
   token = this.cookie.get("token");
 
-  userDetails:any = {
-    phone: ``,
-    email: "",
-    username: "",
-    city:"",
-   };
+
   ngOnInit(): void {
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
@@ -46,24 +61,56 @@ export class EdituserdetailsComponent {
         this.phone = this.userData.phone
         this.city=this.userData.city
 
+
+
         this.userDetails = {
           phone: `${this.phone}`,
           email: `${this.email}`,
           username: `${this.username}`,
           city: `${this.city}`,
 
-         };
+        };
+        this.editForm.patchValue({
+          email: this.userDetails.email,
+          username: this.userDetails.username,
+          city: this.userDetails.city,
+          phone:this.userDetails.phone
+      });
+
       }
     )
 
 
   }
 
+  onFileSelectedPic(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    if (file) {
+      // Create a FormData object
+      // const formData = new FormData();
+      // formData.append('pic', file);
+      // console.log(formData);
+
+      // Set the FormData object as the value of the form control
+        this.editForm.patchValue({
+          pic: file
+        });
+    }
+  }
   incomeData: any;
   edit() {
-    const formDataJson: any = JSON.stringify(this.userDetails);
+    const formData = new FormData();
+    formData.append('pic', this.editForm.controls['pic'].value);
+    formData.append('email', this.editForm.controls['email'].value);
+    formData.append('phone', this.editForm.controls['phone'].value);
+    formData.append('city', this.editForm.controls['city'].value);
+    formData.append('username', this.editForm.controls['username'].value);
+
+
+    const formDataJson: any = JSON.stringify(formData);
     console.log(this.userDetails);
-    this.userservice.editUserDetails( this.userDetails,this.token).subscribe(
+    this.userservice.editUserDetails(formData,this.token).subscribe(
       (res?) =>{
         console.log(res );
 

@@ -54,6 +54,7 @@ this.token=this.cookie.get("token");
     })
 
   }
+  submitCheck: boolean = false;
   passwordMatchValidator(control: AbstractControl) {
     return control.get('password')?.value === control.get('password_confirmation')?.value? null : { 'mismatch': true };
   }
@@ -162,6 +163,7 @@ this.token=this.cookie.get("token");
   onSubmit() {
     console.log(this.registerForm.value)
     // console.log(this.formData)
+    this.submitCheck = true;
 
     // Call the sendData method of DataService to send the form data
     const formDataJson: any = JSON.stringify(this.registerForm.value);
@@ -172,6 +174,7 @@ this.token=this.cookie.get("token");
     .subscribe(
       response => {
         this.loginResponse = response;
+        this.submitCheck =false;
 
         console.log('Data sent successfully:', response);
 
@@ -205,11 +208,16 @@ this.token=this.cookie.get("token");
 
   };
 
-
+  passwordValid: boolean = true;
+  dataValid :boolean= true;
   onLogin() {
+    this.submitCheck = true;
+   this.passwordValid = true;
+    this.dataValid = true;
     const formDataJson: any = JSON.stringify(this.loginData);
     this.userservice.login(this.loginForm.value).subscribe(
       (response:any) => {
+        this.submitCheck = false;
 
         this.loginResponse = response;
         console.log(this.loginForm.value);
@@ -227,7 +235,14 @@ this.token=this.cookie.get("token");
         };
       },
       error => {
-        console.error('Error sending data:', error.message);
+        console.error('Error sending data:', error);
+
+        if (error.status == 401) {
+         this.passwordValid=false
+        }
+        if (error.status == 422) {
+          this.dataValid = false;
+         }
       }
     );
 

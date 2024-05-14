@@ -136,7 +136,7 @@ Route::get("/trip", [UserController::class, "previous"])->middleware("auth:sanct
 Route::get("/nexttrips", [UserController::class, "next"])->middleware("auth:sanctum");
 
 
-Route::put("/edit", [UserController::class, "update"])->middleware("auth:sanctum");
+Route::post("/edit", [UserController::class, "update"])->middleware("auth:sanctum");
 Route::post("/forgot-password", [ForgetPasswordController::class, "forgotPassword"]);
 Route::post("/reset-password", [ResetPasswordController::class, "passwordReset"]);
 Route::post("/verify-reset-code", [ResetPasswordController::class, "verifycode"]);
@@ -146,6 +146,8 @@ Route::get("/contactus", [ContactusController::class, "index"]);
 Route::get("/contactus/{id}", [ContactusController::class, "show"]);
 Route::delete("/contactus/{id}", [ContactusController::class, "destroy"]);
 Route::put("/contactus/{id}/update", [ContactusController::class, "update"]);
+
+Route::post("/uploadimage", [UserController::class, "imageUploadPost"])->middleware("auth:sanctum");
 
 
 // Route::get("auth/google/callback", [GoogleController::class, "googlecallback"]);

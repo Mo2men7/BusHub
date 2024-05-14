@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -181,20 +181,90 @@ class UserController extends Controller
     }
 
 
+    // public function update(Request $request)
+    // {
+    //     $id = Auth::id();
+
+    //     $imageName = $request->file("pic")->hashName();
+    //     $destinationPath = config('app.picDestinationPath') . "/pic/" . $imageName;
+
+    //     Storage::disk("local")->put($destinationPath, file_get_contents($request->file('pic')));
+
+
+
+    //     $user = User::where('id', $id)->update([
+    //         'username' => $request->username,
+    //         'email' => $request->email,
+    //         'phone' => $request->phone,
+    //         'city' => $request->city,
+    //         'profile_photo_path' => $destinationPath
+
+    //     ]);
+    //     $user = User::find($id);
+    //     return $user;
+    // }
+
+
     public function update(Request $request)
     {
         $id = Auth::id();
 
-        $user = User::where('id', $id)->update([
-            'username' => $request->username,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'city' => $request->city
-        ]);
+        // Check if a file was uploaded
+        if ($request->hasFile("pic")) {
+            $imageName = $request->file("pic")->hashName();
+            $destinationPath = config('app.picDestinationPath') . "/pic/" . $imageName;
+
+            // Store the uploaded file
+            Storage::disk("local")->put($destinationPath, file_get_contents($request->file('pic')));
+
+            // Update user record with the new profile photo path
+            $user = User::where('id', $id)->update([
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'city' => $request->city,
+                'profile_photo_path' => $destinationPath
+            ]);
+        } else {
+            // If no file was uploaded, update user record without changing the profile photo path
+            $user = User::where('id', $id)->update([
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'city' => $request->city,
+            ]);
+        }
+
+        // Retrieve and return the updated user record
         $user = User::find($id);
         return $user;
     }
 
+
+
+
+    public function imageUploadPost(Request $request)
+    {
+
+        if ($request->pic == null) {
+            return response()->json("{'error':'please provide an image'}", $request);
+        }
+        try {
+            $imageName = $request->file("pic")->hashName();
+            $destinationPath = config('app.picDestinationPath') . "/pic/" . $imageName;
+
+            Storage::disk("local")->put($destinationPath, file_get_contents($request->file('pic')));
+            $id = Auth::id();
+
+            $user = User::where('id', $id)->update([
+
+                'profile_photo_path' => $destinationPath
+            ]);
+            return response()->json($id);
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
+    }
 
 
 

@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contactus',
@@ -35,15 +36,23 @@ export class ContactusComponent {
     username: "",
     email: "",
     message: "",
+    title:""
 
   }
+  submitCheck: boolean = false;
+
   onsubmit(contactusForm: any) {
+
+    this.submitCheck = true;
 
     if (this.token) {
     this.userservice.contactus(this.contactForm, this.token).subscribe(
       res => {
         console.log(res);
+        this.submitCheck = false;
+
         this.contactForm = {
+          title:"",
           username: "",
           email: "",
           message: "",
@@ -56,6 +65,13 @@ export class ContactusComponent {
           contactusForm.controls[controlName].markAsUntouched();
         });
 
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your message has been received",
+          showConfirmButton: false,
+          timer: 1500
+        });
 
       }
     );

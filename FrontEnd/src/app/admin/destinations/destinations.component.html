@@ -17,7 +17,6 @@
         <button
           type="button"
           class="btn add-button"
-
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
@@ -58,45 +57,44 @@
                   }}"
                   class="card-img"
                   alt="..."
-                  style="height: 250px;width: 100%;"
+                  style="height: 250px; width: 100%"
                 />
                 <div class="card-img-overlay cardBackground">
                   <!-- <h5 class="card-title">Card title</h5> -->
-                  <div class="card-text text-start" style="height: 100%;">
-                    <p class="fs-7 overflow-y-auto" style=" height: 70%;">
+                  <div class="card-text text-start" style="height: 100%">
+                    <p class="fs-7 overflow-y-auto" style="height: 70%">
                       {{ item.info }}
-                      
                     </p>
                     <!-- </p> -->
-                    <div class="d-flex justify-content-around align-items-baseline" style=" height: 30%;">
-                    <a
-
-                      class="mapAnchor"
-                      href="#"
-                      data-bs-toggle="modal"
-                      [attr.data-bs-target]="'#map' + $index + 1"
+                    <div
+                      class="d-flex justify-content-around align-items-baseline"
+                      style="height: 30%"
                     >
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <button
-                    (click) = "setInitValue()"
-                      class="btn btn-outline-danger"
-                      data-bs-toggle="modal"
-                      [attr.data-bs-target]="'#del' + item.id"
-                    >
-                      Delete
-                    </button>
-                    <button
-
-
-                      class="btn add-button"
-                      data-bs-toggle="modal"
-                      [attr.data-bs-target]="'#edit' + item.id"
-                      (click)="setValueForm($index)"
-                    >
-                      Edit
-                    </button>
-                  </div>
+                      <a
+                        class="mapAnchor"
+                        href="#"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#map' + $index + 1"
+                      >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                      <button
+                        (click)="setInitValue()"
+                        class="btn btn-outline-danger"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#del' + item.id"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn add-button"
+                        data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#edit' + item.id"
+                        (click)="setValueForm($index)"
+                      >
+                        Edit
+                      </button>
+                    </div>
                   </div>
 
                   <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
@@ -111,13 +109,11 @@
           tabindex="-1"
           [attr.aria-labelledby]="$index + 1 + 'Label'"
           aria-hidden="true"
-
         >
-          <div class="modal-dialog modal-dialog-centered" >
+          <div class="modal-dialog modal-dialog-centered">
             <iframe
               class="modal-content"
               [src]="item.map | safe"
-
               style="
                 border: 0;
                 height: 500px;
@@ -467,9 +463,7 @@
               formControlName="info"
               class="form-control"
               [ngClass]="
-                newDistForm.controls['info'].invalid 
-                  ? 'is-invalid'
-                  : ''
+                newDistForm.controls['info'].invalid ? 'is-invalid' : ''
               "
               id="info"
               placeholder="Info."
@@ -492,9 +486,7 @@
               id="flag"
               name="flag"
               [ngClass]="
-                newDistForm.controls['flag'].invalid 
-                  ? 'is-invalid'
-                  : ''
+                newDistForm.controls['flag'].invalid ? 'is-invalid' : ''
               "
               (change)="onFileSelectedFlag($event)"
             />
@@ -509,9 +501,7 @@
             <label for="pic" class="col-2">Picture</label>
             <input
               [ngClass]="
-                newDistForm.controls['pic'].invalid 
-                  ? 'is-invalid'
-                  : ''
+                newDistForm.controls['pic'].invalid ? 'is-invalid' : ''
               "
               formControlName="pic"
               type="file"
@@ -534,9 +524,7 @@
           <div class="form-floating mb-4 d-flex align-items-baseline">
             <input
               [ngClass]="
-                newDistForm.controls['map'].invalid 
-                  ? 'is-invalid'
-                  : ''
+                newDistForm.controls['map'].invalid ? 'is-invalid' : ''
               "
               formControlName="map"
               type="text"

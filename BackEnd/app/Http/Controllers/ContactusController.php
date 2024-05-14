@@ -36,6 +36,7 @@ class ContactusController extends Controller
 
         $request->validate(
             [
+                "title" => "required|string",
                 "username" => "required|string",
                 'email' => 'required|email',
                 'message' => 'required|string',
@@ -44,7 +45,9 @@ class ContactusController extends Controller
         $userId = Auth::id();
 
         $data = [
+
             "id_user" => $userId,
+            "title" => $request->title,
             'username' => $request->username, // Assuming the user ID you want to associate with the contact
             'email' => $request->email,
             'message' => $request->message,

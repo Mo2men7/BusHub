@@ -1,11 +1,11 @@
 <!-- Button trigger modal -->
 <button
   type="button"
-  class="btn btn-primary"
+  class="btn editbtn"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
 >
-  Edit Details
+  <i class="fa-regular fa-pen-to-square"></i>
 </button>
 
 <!-- Modal -->
@@ -29,17 +29,30 @@
           aria-label="Close"
         ></button>
       </div>
-      <form (ngSubmit)="edit()">
+
+      <!-- <form [formGroup]="form" (ngSubmit)="addphoto()">
+        <label for="pic" class="col-2">Picture</label>
+        <input
+          type="file"
+          name="pic"
+          [(ngModel)]="userDetails.pic"
+          class="form-control"
+          id="pic"
+          (change)="onFileSelectedPic($event)"
+        />
+        <button type="submit">add photo</button>
+      </form> -->
+
+      <form [formGroup]="editForm" (ngSubmit)="edit()">
         <div class="modal-body">
           <div class="edit-account">
             <h3>Edit Detail</h3>
 
             <div class="form-floating mb-3">
               <input
-                [(ngModel)]="userDetails.username"
                 type="text"
-                name="username"
                 id="username"
+                formControlName="username"
                 class="form-control"
                 placeholder="Name"
               />
@@ -48,11 +61,11 @@
 
             <div class="form-floating mb-3">
               <input
-                [(ngModel)]="userDetails.phone"
                 type="text"
                 name="phone"
                 id="phone"
                 class="form-control"
+                formControlName="phone"
                 placeholder="Phone"
               />
               <label for="phone">Phone</label>
@@ -60,9 +73,9 @@
 
             <div class="form-floating mb-3">
               <input
-                [(ngModel)]="userDetails.email"
                 name="email"
                 type="email"
+                formControlName="email"
                 placeholder="Email"
                 id="email"
                 class="form-control"
@@ -71,14 +84,25 @@
             </div>
             <div class="form-floating mb-3">
               <input
-                [(ngModel)]="userDetails.city"
-                name="city"
                 type="text"
+                formControlName="city"
+                name="city"
                 placeholder="city"
                 id="city"
                 class="form-control"
               />
               <label for="city">City</label>
+            </div>
+            <div>
+              <label for="pic" class="col-2">Picture</label>
+              <input
+                type="file"
+                class="form-control"
+                formControlName="pic"
+                name="pic"
+                id="pic"
+                (change)="onFileSelectedPic($event)"
+              />
             </div>
 
             <!-- <div class="input-field">

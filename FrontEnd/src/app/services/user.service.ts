@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   httpOptions={
     headers :new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
 
     })
   };
@@ -58,16 +58,16 @@ export class UserService {
     // let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
 
 
-  //  const httpOptions={
-  //     headers :new HttpHeaders({
-  //       // 'Content-Type': 'application/json',
-  //       "Authorization": "Bearer " + token
-  //     })
-    //   };
-    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+    const httpOptions={
+      headers :new HttpHeaders({
+        'Accept': 'application/json',
+        "Authorization": "Bearer " + token
+      })
+      };
+    // let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
 
 
-    return this.http.put("http://127.0.0.1:8000/api/edit",userData,{headers:httpOptions}  );
+    return this.http.post("http://127.0.0.1:8000/api/edit",userData,httpOptions  );
   }
 
   forgetPassword( emailToResetPass: any) {
@@ -140,7 +140,15 @@ setOtp(newValue:string) {
   }
 
 
-  changeProfilePhoto() {
+  changeProfilePhoto(formData: any, token: any) {
+      const httpOptions={
+      headers :new HttpHeaders({
+        'Accept': 'application/json',
+        "Authorization": "Bearer " + token
+      })
+      };
+
+    return this.http.post("http://127.0.0.1:8000/api/uploadimage",formData,httpOptions);
 
   }
 

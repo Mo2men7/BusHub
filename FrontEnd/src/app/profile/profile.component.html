@@ -34,24 +34,36 @@
   <div class="account-container">
     <div class="AccSideBar">
       <div class="userimage">
+        @if (userData?.profile_photo_path) {
+
+        <img
+          src="{{
+            'http://127.0.0.1:8000/api/admin/images' +
+              userData.profile_photo_path
+          }}"
+          alt="user avatar"
+          class="avatar"
+          height="100"
+          width="100"
+        />}@else {
         <img
           src="../../assets/images/person.png"
           alt="user avatar"
           class="avatar"
           height="100"
           width="100"
-        />
-
-        <!-- <div class="input-group mb-4 d-flex align-items-baseline">
+        />}
+        <!-- <form [formGroup]="form" (ngSubmit)="addphoto()">
           <label for="pic" class="col-2">Picture</label>
           <input
             type="file"
             class="form-control"
             id="pic"
-            name="pic"
-            (change)="onFileSelectedPicEdit($event)"
+            formControlName="pic"
+            (change)="onFileSelectedPic($event)"
           />
-        </div> -->
+          <button type="submit">add photo</button>
+        </form> -->
         <p>{{ userData?.username }}</p>
       </div>
       <div class="user-data">

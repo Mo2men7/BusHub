@@ -57,6 +57,7 @@
               <label for="username">User Name</label>
             </div>
             @if (registerForm.controls["username"].touched &&
+            registerForm.controls["username"].invalid || submitCheck &&
             registerForm.controls["username"].invalid) {
             <div class="form-text text-danger error">
               @if (registerForm.controls["username"].errors?.["required"]) {
@@ -79,6 +80,7 @@
               <label for="email">Email address</label>
             </div>
             @if (registerForm.controls["email"].touched &&
+            registerForm.controls["email"].invalid || submitCheck &&
             registerForm.controls["email"].invalid) {
             <div class="form-text text-danger error">
               @if (registerForm.controls["email"].errors?.["required"]) {
@@ -102,6 +104,7 @@
               <label for="password">Password</label>
             </div>
             @if (registerForm.controls["password"].touched &&
+            registerForm.controls["password"].invalid || submitCheck &&
             registerForm.controls["password"].invalid) {
             <div class="form-text text-danger error">
               @if (registerForm.controls["password"].errors?.["required"]) {
@@ -124,8 +127,9 @@
               <label for="password_confirmation">Password Confirmation</label>
             </div>
             @if(
-            registerForm.errors?.['mismatch']&&registerForm.controls["password_confirmation"].touched)
-            {
+            registerForm.errors?.['mismatch']&&registerForm.controls["password_confirmation"].touched
+            || submitCheck &&
+            registerForm.controls["password_confirmation"].invalid) {
             <div class="form-text text-danger error">
               <small>Password Confirmation is not match</small>
             </div>
@@ -147,6 +151,7 @@
                   <label for="gender">Gender</label>
                 </div>
                 @if (registerForm.controls["gender"].touched &&
+                registerForm.controls["gender"].invalid|| submitCheck &&
                 registerForm.controls["gender"].invalid) {
                 <div class="form-text text-danger error">
                   @if (registerForm.controls["gender"].errors?.["required"]) {
@@ -169,6 +174,7 @@
                   <label for="birth_date">Birth Of Date</label>
                 </div>
                 @if (registerForm.controls["birth_date"].touched &&
+                registerForm.controls["birth_date"].invalid|| submitCheck &&
                 registerForm.controls["birth_date"].invalid) {
                 <div class="form-text text-danger error">
                   @if (registerForm.controls["birth_date"].errors?.["required"])
@@ -195,6 +201,7 @@
               <label for="city">City</label>
             </div>
             @if (registerForm.controls["city"].touched &&
+            registerForm.controls["city"].invalid|| submitCheck &&
             registerForm.controls["city"].invalid) {
             <div class="form-text text-danger error">
               @if (registerForm.controls["city"].errors?.["required"]) {
@@ -216,6 +223,7 @@
               <label for="phone">Phone</label>
             </div>
             @if (registerForm.controls["phone"].touched &&
+            registerForm.controls["phone"].invalid|| submitCheck &&
             registerForm.controls["phone"].invalid) {
             <div class="form-text text-danger error">
               @if (registerForm.controls["phone"].errors?.["required"]) {
@@ -229,12 +237,17 @@
               type="submit"
               name="register"
               class="py-2 bh-btn rounded-pill signup"
-              [disabled]="registerForm.invalid"
             >
               Sign Up
             </button>
           </div>
-          <button class="alternativeBtn border-0 bg-transparent text-primary" id="signUp" (click)="togglePanel(false)">Already have an account ? Login</button>
+          <button
+            class="alternativeBtn border-0 bg-transparent text-primary"
+            id="signUp"
+            (click)="togglePanel(false)"
+          >
+            Already have an account ? Login
+          </button>
         </form>
       </div>
 
@@ -256,10 +269,11 @@
               <label for="loginemail">Email</label>
             </div>
             @if (loginForm.controls["email"].touched &&
+            loginForm.controls["email"].invalid || submitCheck &&
             loginForm.controls["email"].invalid) {
             <div class="form-text text-danger error">
               @if (loginForm.controls["email"].errors?.["required"]) {
-              <small>this field is required</small>
+              <small>email is required</small>
               } @if (loginForm.controls["email"].errors?.["email"]) {
               <small>this field is email</small>
               }
@@ -279,6 +293,7 @@
               <label for="loginpassword">Password</label>
             </div>
             @if (loginForm.controls["password"].touched &&
+            loginForm.controls["password"].invalid|| submitCheck &&
             loginForm.controls["password"].invalid) {
             <div class="form-text text-danger error">
               @if (loginForm.controls["password"].errors?.["required"]) {
@@ -287,37 +302,57 @@
               <small>Password must be at least 8 digits</small>
               }
             </div>
+            } @if(!passwordValid){
+            <div class="form-text text-danger error">
+              <small>Password isn't right</small>
+            </div>
+            } @if(!dataValid&&
+            loginForm.controls["email"].valid&&loginForm.controls["password"].valid){
+            <div class="form-text text-danger error">
+              <small>verify from your data</small>
+            </div>
             }
 
             <!-- Sign In Button -->
-            <div >
-              <button class="signin py-2 bh-btn rounded-pill w-100" type="submit">Sign In</button>
+            <div>
+              <button
+                class="signin py-2 bh-btn rounded-pill w-100"
+                type="submit"
+              >
+                Sign In
+              </button>
             </div>
           </div>
-          
+
           <div>
-          <b
-            style="
-              display: flex;
-              gap: 5px;
-              text-align: center;
-              font-weight: 300;
-              padding-left: 0 20px;
-              margin-left: 10px;
-              border-right: 1px solid rgb(2, 2, 46);
-              border-radius: 4px;
-            "
-          >
-            <asl-google-signin-button
-              type="icon"
-              id="google"
-              style="display: inline"
-              size="medium"
-            ></asl-google-signin-button
-          ></b>
-        </div>
+            <b
+              style="
+                display: flex;
+                gap: 5px;
+                text-align: center;
+                font-weight: 300;
+                padding-left: 0 20px;
+                margin-left: 10px;
+                border-right: 1px solid rgb(2, 2, 46);
+                border-radius: 4px;
+              "
+            >
+              <asl-google-signin-button
+                type="icon"
+                id="google"
+                style="display: inline"
+                size="medium"
+              ></asl-google-signin-button
+            ></b>
+          </div>
           <a routerLink="/forgetpass">Forget password ?</a>
-          <button class="alternativeBtn border-0 bg-transparent text-primary" id="signUp" (click)="togglePanel(true)">New To BusHub ? Sign Up</button>
+          <button
+            class="alternativeBtn border-0 bg-transparent text-primary"
+            id="signUp"
+            (click)="togglePanel(true)"
+          >
+            New To BusHub ? Sign Up
+          </button>
         </form>
       </div>
 
@@ -330,7 +365,11 @@
             <p>
               To keep connected with us, please login with your personal info
             </p>
-            <button class="py-2 bh-btn rounded-pill" id="signIn" (click)="togglePanel(false)">
+            <button
+              class="py-2 bh-btn rounded-pill"
+              id="signIn"
+              (click)="togglePanel(false)"
+            >
               Sign In
             </button>
           </div>
@@ -339,7 +378,11 @@
           <div class="overlay-panel overlay-right">
             <h1>Welcome Back!</h1>
             <p>Enter your personal details and start your journey with us</p>
-            <button class="py-2 bh-btn rounded-pill" id="signUp" (click)="togglePanel(true)">
+            <button
+              class="py-2 bh-btn rounded-pill"
+              id="signUp"
+              (click)="togglePanel(true)"
+            >
               Sign Up
             </button>
           </div>

@@ -57,12 +57,35 @@
               #username="ngModel"
             />
           </div>
-          @if(username.touched&&username.invalid){
+          @if(username.touched&&username.invalid|| submitCheck &&
+          username.invalid){
           <div class="form-text text-danger">
             @if(username.errors?.["required"]){
             <small>Name is required</small>
             } @if(username.errors?.["minlength"]){
             <small>Name must be at least 4 digits</small>
+            }
+          </div>
+
+          }
+
+          <div class="input-box">
+            <input
+              type="text"
+              name="title"
+              [(ngModel)]="contactForm.title"
+              placeholder="Enter your title"
+              required
+              minlength="5"
+              #title="ngModel"
+            />
+          </div>
+          @if(title.touched&&title.invalid || submitCheck && title.invalid){
+          <div class="form-text text-danger">
+            @if(title.errors?.["required"]){
+            <small>Title is required</small>
+            } @if(title.errors?.["minlength"]){
+            <small>Title must be at least 5 digits</small>
             }
           </div>
 
@@ -78,7 +101,7 @@
               #email="ngModel"
             />
           </div>
-          @if(email.touched&&email.invalid){
+          @if(email.touched&&email.invalid|| submitCheck && email.invalid){
           <div class="form-text text-danger">
             @if(email.errors?.["required"]){
             <small>Email is required</small>
@@ -94,21 +117,24 @@
               cols="30"
               placeholder="Enter your message"
               rows="10"
+              minlength="10"
               required
               #message="ngModel"
             ></textarea>
           </div>
-          @if(message.touched&&message.invalid){
+          @if(message.touched&&message.invalid|| submitCheck &&
+          message.invalid){
           <div class="form-text text-danger">
             @if(message.errors?.["required"]){
             <small>Mesaage is required</small>
+            } @if(message.errors?.["minlength"]){
+            <small>Mesaage must be at least 10 digits</small>
             }
           </div>
 
           }
           <div class="button">
             <button
-              [disabled]="contactusForm.invalid"
               type="submit"
               class="py-1 bh-btn rounded-pill px-4 border border-primary"
               value="Contact Us"
