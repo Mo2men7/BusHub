@@ -10,26 +10,25 @@ body {
     background: var(--ba);
 }
 
-* {
-    color: var(--text)
-}
 
-.add-button
-    {
-    
+
+.add-button {
+
     transition: 0.5s;
     /* background: linear-gradient(135deg, transparent,var(--background));
     background-size: 200% 200%; */
     text-shadow: 0 0 5px var(--text);
     box-shadow: inset 0px 0px 2px 0px var(--primary);
+    color: var(--text)
+        /* box-shadow: 0 0 5px var(--text); */
 
-    /* box-shadow: 0 0 5px var(--text); */
-    
 }
-.add-button:hover
-{
-    background-color:var(--primary)
+
+.add-button:hover {
+    background-color: var(--primary);
+    color: var(--text) !important;
 }
+
 .fadeout {
     /* width:200px; */
     /* height: 200px; */
@@ -91,39 +90,23 @@ body {
 .accordion-button {
     color: var(--text) !important;
 }
+
 /*
 #accordionFlushExample {
      width: 50% !important; 
 
 }
 */
-.modal-content,
-.modal-content label ,.btn-close{
+.modal-content {
 
     /* background: linear-gradient(135deg,transparent,var(--bac),var(--background) );
         background-size: 300% 300%;
     
         animation: gradient 5s ease infinite;  */
-    color: var(--text) !important;
+    color: var(--background) !important;
 }
 
 
-.modal-content {
-    background-color: var(--background);
-}
-
-.modal-content input,
-.modal-content label,
-.modal-content textarea,.modal-content input:focus,.modal-content label:after {
-    background-color: transparent !important;
-}
-.modal-content input,.modal-content input:focus,textarea,textarea:focus
-{
-    border:none;
-    border-bottom: solid 1px;
-    box-shadow: none;
-    border-radius: 0px;
-}
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -137,36 +120,44 @@ body {
         background-position: 0% 50%;
     }
 }
-.mapAnchor{
-    display : none;
+
+.mapAnchor {
+    display: none;
 }
-.card-img-overlay
-{
+
+.card-img-overlay {
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 @media only screen and (max-width: 900px) {
-    
-    
+
+
     #iframeDiv {
-      /* background-color: lightblue; */
-      display: none;
+        /* background-color: lightblue; */
+        display: none;
     }
-    #accordionFlushExample
-    {
-        width:100% !important;
-        height:100% !important;
-        overflow:visible !important;
+
+    #accordionFlushExample {
+        width: 100% !important;
+        height: 100% !important;
+        overflow: visible !important;
     }
-    div{
-        overflow:visible !important;
-        
+
+    div {
+        overflow: visible !important;
+
     }
+
     .card-text p {
-        overflow-y: auto !important; 
-        height:70% !important;
+        overflow-y: auto !important;
+        height: 70% !important;
     }
-  
-    .mapAnchor{
-        display : block;
+
+    .mapAnchor {
+        display: block;
     }
-  }
+}
+
+.modal .add-button {
+    color: var(--primary)
+}

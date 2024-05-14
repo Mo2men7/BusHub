@@ -63,26 +63,26 @@
         </li>
       </ul>
       @if (token) {
-      <div class="d-flex gap-4 align-items-center">
-        <div class="dropstart">
+      <div class="d-flex gap-1 align-items-center">
+        <div class="dropdown">
           <button
             class="bg-transparent border-0 dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            (click)="markAllNotificationsAsRead(userData.id)"
           >
             <i class="fa-solid fa-bell text-light">
-              @if (notifications?.length>0) {
-              <small
-                class="position-absolute translate-middle badge rounded-pill bg-danger"
-                style="font-size: 10px"
-              >
+              @if (notifications?.length>0 && !notifiationsOpened) {
+                <small
+                  class="position-absolute translate-middle bg-danger notificationBtn"
+                >
                 {{ notifications?.length > 10 ? "10+" : notifications?.length }}
-              </small>
-              }
+                </small>
+                }
             </i>
           </button>
-          <ul class="dropdown-menu pt-0">
+          <ul class="dropdown-menu dropdown-menu-lg-end">
             <li>
               <div
                 class="dropdown-item py-3 rounded-top d-flex justify-content-between align-items-center"
@@ -120,11 +120,32 @@
             }
           </ul>
         </div>
-        <a
-          routerLink="/profile"
-          class="text-decoration-none text-light text-uppercase"
-          >{{ userData?.username }}</a
-        >
+        <div class="dropdown">
+          <img
+            [src]="
+              userData.profile_photo_path
+                ? 'http://127.0.0.1:8000/api/admin/images' +
+                  userData.profile_photo_path
+                : '../../assets/images/person.png'
+            "
+            alt="user avatar"
+            style="width: 35px"
+            class="rounded-circle dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          />
+          <ul
+            class="dropdown-menu dropdown-menu-lg-end"
+          >
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li>
+              <button class="dropdown-item text-danger" (click)="logout()">
+                Logout <i class="fa-solid fa-circle-right ms-2"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
       }@else {
       <button routerLink="/signin" class="py-1 bh-btn rounded-pill px-4">

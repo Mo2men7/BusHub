@@ -30,7 +30,7 @@ text-align: center;
 
 .bg-1{
   background-color: var(--background);
-  background-color: black;
+  /* background-color: black; */
 }
 /* hover effect */
 .btnhover {

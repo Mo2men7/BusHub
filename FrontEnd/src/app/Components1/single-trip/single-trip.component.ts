@@ -31,6 +31,7 @@ import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import Swal from 'sweetalert2'; //sweet alert
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-single-trip',
@@ -42,6 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     NavbarComponent,
     FooterComponent,
     MatStepperModule,
+    LoaderComponent,
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,6 +53,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     TimeFormatPipe,
     PaymentComponent,
     MatProgressSpinnerModule,
+
   ],
   templateUrl: './single-trip.component.html',
   styleUrl: './single-trip.component.css',

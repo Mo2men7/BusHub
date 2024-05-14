@@ -24,6 +24,8 @@ export class DestinationsComponent {
   file!: File;
   deleteSuc: any = 0;
   editSuc: any = 0;
+  submit:any=0;
+  closeModDel:any=0;
   constructor(
     private destinationService: DestinationService,
     private cookie: CookieService,
@@ -36,6 +38,7 @@ export class DestinationsComponent {
       flag: new FormControl('', [Validators.required]),
       pic: new FormControl('', [Validators.required]),
       map: new FormControl('', [Validators.required]),
+      submitnewDest:new FormControl('')
     });
     this.editDistForm = new FormGroup({
       name: new FormControl(),
@@ -47,11 +50,13 @@ export class DestinationsComponent {
   }
   token: any = this.cookie.get('token');
   ngOnInit() {
+    this.closeModDel=0;
     this.destinationService.listDestinations(this.token).subscribe(
       (res: any) => (this.destinations = res),
       (error) => console.log(error)
     );
     console.log(this.newDistForm.controls['name'].errors);
+    this.submit=0;
   }
   onFileSelectedFlag(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
@@ -88,6 +93,13 @@ export class DestinationsComponent {
  
   }
   sendDestination() {
+    this.submit=1;
+    if (this.newDistForm.controls['name'].invalid ||
+    this.newDistForm.controls['info'].invalid ||
+    this.newDistForm.controls['pic'].invalid ||
+    this.newDistForm.controls['flag'].invalid ||
+    this.newDistForm.controls['map'].invalid )
+    return;
     const formData = new FormData();
     formData.append('pic', this.newDistForm.controls['pic'].value);
     formData.append('info', this.newDistForm.controls['info'].value);
@@ -136,13 +148,13 @@ export class DestinationsComponent {
     this.destinationService.deleteDestination(id).subscribe(
       (res: any) => {
         this.deleteSuc = 1;
-        this.ngOnInit();
       },
       (error) => {
         console.log(error);
         this.deleteSuc = -1;
       }
     );
+
   }
   setValueForm(id: any) {
     this.editDistForm = new FormGroup({
@@ -185,5 +197,10 @@ export class DestinationsComponent {
         this.editSuc = -1;
       }
     );
+  }
+  setcloseModDel()
+  {
+      this.ngOnInit();
+
   }
 }

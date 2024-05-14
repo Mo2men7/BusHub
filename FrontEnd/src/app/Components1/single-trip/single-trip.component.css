@@ -9,7 +9,7 @@
   background: rgb(35, 78, 141);
   opacity: .3;
   filter: blur(75px);
-  /* z-index: 1; */
+  /* z-index: -1; */
 }
 .secondblur {
   position: absolute;
@@ -55,6 +55,10 @@ i {
   overflow: visible;
 }
 .details-container {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  /* ////////////////////////////// */
   /* border-radius: 10px; */
   /* border-style: solid; */
   width: 100%;
@@ -153,10 +157,15 @@ margin-left: 30px;
   padding-top: 20px;
   padding-bottom: 30px;
 }
-.container1 {
+/* .container1 { */
+  /* z-index: 1;
+  position: relative;
+  overflow: hidden; */
 
-  z-index: 1;
-}
+
+
+  /* z-index: 1; */
+/* } */
 
 .img_location {
   margin: 0;
