@@ -5,10 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoaderComponent } from '../loader/loader.component';
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [SafePipe,MatProgressSpinnerModule],
+  imports: [SafePipe,MatProgressSpinnerModule,LoaderComponent],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css',
 })

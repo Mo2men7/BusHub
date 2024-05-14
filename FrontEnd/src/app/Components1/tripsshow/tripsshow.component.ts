@@ -17,6 +17,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import Swal from 'sweetalert2';
 import { CookieService } from 'ngx-cookie-service';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-tripsshow',
@@ -27,6 +28,7 @@ import { CookieService } from 'ngx-cookie-service';
     RouterLink,
     NavbarComponent,
     FooterComponent,
+    LoaderComponent,
     // SearchComponent,
     CustomDatePipe,
     TimeFormatPipe,

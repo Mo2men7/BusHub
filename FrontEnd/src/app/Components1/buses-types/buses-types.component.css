@@ -1,7 +1,8 @@
-/* {
-    background: var(--background);
+/* *{
+    background: var(--background)!important;
 } */
 
+.background-edit{background: var(--text); padding: 0 15px; border-radius: 20px;}
 
 /* navbar effect*/
     .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
