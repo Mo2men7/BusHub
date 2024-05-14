@@ -22,7 +22,7 @@
       <i class="bi bi-dash-lg " style="margin-right: -6px"></i>
       <i class="bi bi-dash-lg" style="margin-right: -6px"></i>
       <i class="bi bi-dash-lg hide1"></i>
-      <i class="bi bi-bus-front hide1" style="font-size: 30px"></i>
+      <i class="bi bi-bus-front fs-1 hide1" style="font-size: 30px"></i>
       <i class="bi bi-dash-lg hide" style="margin-right: -6px"></i>
       <i class="bi bi-dash-lg hide" style="margin-right: -6px"></i>
       <i class="bi bi-dash-lg hide" style="margin-right: -6px"></i>
@@ -80,7 +80,7 @@
           </div>
           <!-- ======================================================================= -->
           <div class="col-lg-4 col-md-4 col-sm-4  container-fluid">
-            @if (typeId=='1' || typeId=='2') {
+            @if (typeId=='1' || typeId=='2'|| typeId=='3') {
             <div class="row seats-11 text-center">
               @for(seat of seats ;track $index ){ @if(($index+1)% 4== 1 ){
               <div class="col-2 img_location">
