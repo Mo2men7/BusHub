@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactUs;
+use Notification;
+use App\Notifications\ContactUsToAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,6 +61,11 @@ class ContactusController extends Controller
 
         // Insert the new row into the contact_us table
         DB::table('contact_us')->insert($data);
+        /////////////// Start notification storing ///////////////
+        $user = \App\Models\User::where('role', 'admin')->first(); //to send to user with role admin
+        $ContactUs = ContactUs::latest()->first();
+        Notification::send($user, new ContactUsToAdmin($ContactUs));
+        /////////////// End notification storing ///////////////
         return $data;
     }
 }

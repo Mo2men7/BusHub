@@ -58,7 +58,6 @@ export class NavbarComponent {
           this.cookie.delete("token");
           // this.router.navigate(["/"])
           window.location.reload();
-          // this.ngOnInit();
         })
       }
     });
