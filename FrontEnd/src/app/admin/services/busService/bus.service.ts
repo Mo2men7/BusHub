@@ -12,14 +12,14 @@ export class BusService {
   
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Accept':'application/json'
     }),
   };
-  // addDestinations(dest: any) {
-  //   return this.http.post(
-  //     this.url + '/api/destinations',
-  //     dest,
-  //     this.httpOptions
-  //   );
-  // }
+  addBus(bus: any) {
+    return this.http.post(
+      this.url + '/api/admin/buses',
+      bus,
+      this.httpOptions
+    );
+  }
 }

@@ -10,9 +10,7 @@ body {
     background: var(--ba);
 }
 
-* {
-    color: var(--text)
-}
+
 
 .add-button
     {
@@ -22,6 +20,7 @@ body {
     background-size: 200% 200%; */
     text-shadow: 0 0 5px var(--text);
     box-shadow: inset 0px 0px 2px 0px var(--primary);
+    color:var(--text)
 
     /* box-shadow: 0 0 5px var(--text); */
     
@@ -97,33 +96,16 @@ body {
 
 }
 */
-.modal-content,
-.modal-content label ,.btn-close{
+.modal-content{
 
     /* background: linear-gradient(135deg,transparent,var(--bac),var(--background) );
         background-size: 300% 300%;
     
         animation: gradient 5s ease infinite;  */
-    color: var(--text) !important;
+    color: var(--background) !important;
 }
 
 
-.modal-content {
-    background-color: var(--background);
-}
-
-.modal-content input,
-.modal-content label,
-.modal-content textarea,.modal-content input:focus,.modal-content label:after {
-    background-color: transparent !important;
-}
-.modal-content input,.modal-content input:focus,textarea,textarea:focus
-{
-    border:none;
-    border-bottom: solid 1px;
-    box-shadow: none;
-    border-radius: 0px;
-}
 @keyframes gradient {
     0% {
         background-position: 0% 50%;

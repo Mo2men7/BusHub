@@ -70,19 +70,19 @@
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            (click)="markAllNotificationsAsRead(userData?.id)"
+            (click)="markAllNotificationsAsRead(userData.id)"
           >
             <i class="fa-solid fa-bell text-light">
-              @if (notifications.length>0 && !notifiationsOpened) {
+              @if (notifications?.length>0 && !notifiationsOpened) {
                 <small
                   class="position-absolute translate-middle bg-danger notificationBtn"
                 >
-                {{ notifications.length > 10 ? "10+" : notifications.length }}
+                {{ notifications?.length > 10 ? "10+" : notifications?.length }}
                 </small>
                 }
             </i>
           </button>
-          <ul class="dropdown-menu pt-0">
+          <ul class="dropdown-menu dropdown-menu-lg-end">
             <li>
               <div
                 class="dropdown-item py-3 rounded-top d-flex justify-content-between align-items-center"
@@ -136,7 +136,7 @@
             aria-expanded="false"
           />
           <ul
-            class="dropdown-menu"
+            class="dropdown-menu dropdown-menu-lg-end"
           >
             <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
             <li>

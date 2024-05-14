@@ -62,7 +62,7 @@
   
   .dropdown-menu{
     background-color: rgb(25 55 100 / 90%);
-    left: -150px;
+    /* left: -150px; */
     opacity: 1;
   }
   @media screen and (max-width: 992px) {

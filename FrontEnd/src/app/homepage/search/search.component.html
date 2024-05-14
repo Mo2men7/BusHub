@@ -4,7 +4,6 @@
       <div class="col field">
         <div class="form-floating">
           <select class="form-select" id="floatingSelectGrid" name="origin" [(ngModel)]="formData.origin" required>
-            <!-- <option selected disabled>Select your origin</option> -->
             @for(destination of destinations; track $index){
             <option value="{{ destination.id }}">
               {{ destination.name }}
@@ -17,7 +16,6 @@
       <div class="col field">
         <div class="form-floating">
           <select class="form-select" id="floatingSelectGrid" name="destination" [(ngModel)]="formData.destination" required>
-            <option selected disabled>Select your destination</option>
             @for(destination of destinations; track $index){
             <option value="{{ destination.id }}">
               {{ destination.name }}
