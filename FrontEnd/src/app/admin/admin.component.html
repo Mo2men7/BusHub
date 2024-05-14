@@ -14,10 +14,10 @@
     <div class="sticky-top">
       <div
         id="navbarAdmin"
-        class="d-flex justify-content-between align-items-baseline pt-3"
+        class="d-flex justify-content-end align-items-baseline pt-3"
         style="height: 70px"
       >
-        <div
+        <!-- <div
           style="height: 90%"
           class="col-6 d-flex justify-content-center align-items-baseline bg-transparent"
         >
@@ -29,20 +29,21 @@
             aria-label="Search"
           />
           <button class="btn" type="submit">Search</button>
-        </div>
-        <div
+        </div> -->
+        <!-- <div
           style="height: 90%"
           class="d-flex align-items-baseline bg-transparent"
-        >
-          <div class="dropdown">
+        > -->
+          <div class="dropdown bg-transparent" >
             <button
-              class=""
+            style="border:none"
+              class="bg-transparent"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               (click)="markAllNotificationsAsRead()"
             >
-              <i class="fa-regular fa-bell me-3 fs-5">
+              <i class="fa-regular bg-transparent fa-bell me-3 fs-5">
                 @if (notifications.length>0) {
                 <small
                   class="position-absolute translate-middle badge rounded-pill bg-danger"
@@ -98,13 +99,13 @@
             </ul>
           </div>
 
-          <button class="btn ms-2 me-4">
+          <button class="btn add-button ms-4 me-5 ">
             Log out
             <i
               class="fa-solid fa-arrow-right-from-bracket bg-transparent ms-2"
             ></i>
           </button>
-        </div>
+        <!-- </div> -->
       </div>
       <!-- <div id="separator" class=""></div> -->
     </div>
