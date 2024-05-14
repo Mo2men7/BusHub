@@ -1,12 +1,19 @@
 @if(loading) {
-<div
+<!-- <div
   id="spinnerInAdmin"
   class="d-flex justify-content-center align-content-center"
 >
   <div class="spinner-border text-light" style="margin-top: 20%" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
+</div> -->
+<div
+  id="spinnerInAdmin"
+  class="d-flex justify-content-center align-content-center " style="height: 100vh;"
+>
+  <div class="loader" style="margin-top: 20%"></div>
 </div>
+
 } @else {
 <div class="d-flex overflow-y-auto" style="height: 100vh; width: 100vw">
   <app-sidebar></app-sidebar>
@@ -34,71 +41,70 @@
           style="height: 90%"
           class="d-flex align-items-baseline bg-transparent"
         > -->
-          <div class="dropdown bg-transparent" >
-            <button
-            style="border:none"
-              class="bg-transparent"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              (click)="markAllNotificationsAsRead()"
-            >
-              <i class="fa-solid fa-bell me-3 fs-5">
-                @if (notifications.length>0 && !notifiationsOpened) {
-                <small
-                  class="position-absolute translate-middle bg-danger notificationBtn"
-                >
+        <div class="dropdown bg-transparent">
+          <button
+            style="border: none"
+            class="bg-transparent"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            (click)="markAllNotificationsAsRead()"
+          >
+            <i class="fa-solid fa-bell me-3 fs-5">
+              @if (notifications.length>0 && !notifiationsOpened) {
+              <small
+                class="position-absolute translate-middle bg-danger notificationBtn"
+              >
                 {{ notifications.length > 10 ? "10+" : notifications.length }}
-                </small>
-                }
-              </i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-lg-end">
-              <li>
-                <div
-                  class="dropdown-item py-3 rounded-top d-flex justify-content-between align-items-center"
-                  style="background-color: var(--primary)"
-                >
-                  <span style="background: transparent">
-                    <span style="background: transparent" class="fw-bold"
-                      >Admin Notifications</span
-                    ><br />
-                    <small style="background: transparent" class="text-white-50"
-                      >{{ notifications?.length }} unread
-                      notificationsspan</small
-                    >
-                  </span>
-                </div>
-              </li>
-              @if(notifications.length){ @for (notification of notifications;
-              track $index) {
-              <li style="cursor: pointer" routerLink="/admin/admin-orders">
-                <div class="dropdown-item">
-                  {{ getNotificationTitle(notification.data) }}
-                  {{ getNotificationUserName(notification.data) }}
-                  <br />
-                  <span
-                    class="text-white-50"
-                    style="background-color: transparent"
-                    >{{ notification.created_at.substring(0, 10) }}
-                    {{ notification.created_at.substring(11, 18) }}</span
-                  >
-                </div>
-              </li>
-              } } @else {
-              <p style="padding: 5px 15px; color: rgba(255, 255, 255, 0.5)">
-                There is no new notifications
-              </p>
+              </small>
               }
-            </ul>
-          </div>
-
-          <button class="btn add-button ms-4 me-5 " (click)="logout()">
-            Log out
-            <i
-              class="fa-solid fa-arrow-right-from-bracket bg-transparent ms-2"
-            ></i>
+            </i>
           </button>
+          <ul class="dropdown-menu dropdown-menu-lg-end">
+            <li>
+              <div
+                class="dropdown-item py-3 rounded-top d-flex justify-content-between align-items-center"
+                style="background-color: var(--primary)"
+              >
+                <span style="background: transparent">
+                  <span style="background: transparent" class="fw-bold"
+                    >Admin Notifications</span
+                  ><br />
+                  <small style="background: transparent" class="text-white-50"
+                    >{{ notifications?.length }} unread notificationsspan</small
+                  >
+                </span>
+              </div>
+            </li>
+            @if(notifications.length){ @for (notification of notifications;
+            track $index) {
+            <li style="cursor: pointer" routerLink="/admin/admin-orders">
+              <div class="dropdown-item">
+                {{ getNotificationTitle(notification.data) }}
+                {{ getNotificationUserName(notification.data) }}
+                <br />
+                <span
+                  class="text-white-50"
+                  style="background-color: transparent"
+                  >{{ notification.created_at.substring(0, 10) }}
+                  {{ notification.created_at.substring(11, 18) }}</span
+                >
+              </div>
+            </li>
+            } } @else {
+            <p style="padding: 5px 15px; color: rgba(255, 255, 255, 0.5)">
+              There is no new notifications
+            </p>
+            }
+          </ul>
+        </div>
+
+        <button class="btn add-button ms-4 me-5" (click)="logout()">
+          Log out
+          <i
+            class="fa-solid fa-arrow-right-from-bracket bg-transparent ms-2"
+          ></i>
+        </button>
         <!-- </div> -->
       </div>
       <!-- <div id="separator" class=""></div> -->
