@@ -1,3 +1,4 @@
+@if (destinations) {
 <app-navbar></app-navbar>
 <div class="destinations">
     <div class="container py-5">
@@ -23,3 +24,7 @@
     </div>
 </div>
 <app-footer></app-footer>
+}
+@else {
+    <app-loader></app-loader>
+}

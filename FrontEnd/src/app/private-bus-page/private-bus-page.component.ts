@@ -8,11 +8,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-private-bus-page',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, FormsModule],
+  imports: [NavbarComponent, FooterComponent, FormsModule, LoaderComponent],
   templateUrl: './private-bus-page.component.html',
   styleUrl: './private-bus-page.component.css',
 })
