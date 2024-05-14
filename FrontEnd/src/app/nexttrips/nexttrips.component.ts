@@ -4,11 +4,13 @@ import { UserService } from '../services/user.service';
 import { TripsService } from '../services/trips.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MatTabsModule } from '@angular/material/tabs';
+import { Router, RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-nexttrips',
   standalone: true,
-  imports: [MatTabsModule],
+  imports: [MatTabsModule,RouterLink,],
   templateUrl: './nexttrips.component.html',
   styleUrl: './nexttrips.component.css'
 })

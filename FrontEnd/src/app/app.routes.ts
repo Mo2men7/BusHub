@@ -28,6 +28,7 @@ import { TripsComponent } from './admin/trips/trips.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ContactComponent } from './admin/contact/contact.component';
 import { SingleContactUsComponent } from './admin/single-contact-us/single-contact-us.component';
+import { UserticketComponent } from './userticket/userticket.component';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,12 @@ export const routes: Routes = [
     path: "forgetpass",
     component: ForgetpassComponent,
     title:"ForgetPassword"
+  }
+  ,
+  {
+    path: "userticket/:id",
+    component: UserticketComponent,
+    title:"User Ticket"
   }
 
 ,{

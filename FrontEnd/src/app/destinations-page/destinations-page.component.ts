@@ -3,11 +3,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { DestinationService } from '../services/destination.service';
 import { CookieService } from 'ngx-cookie-service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-destinations-page',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent],
+  imports: [NavbarComponent, FooterComponent, LoaderComponent],
   templateUrl: './destinations-page.component.html',
   styleUrl: './destinations-page.component.css'
 })

@@ -1,0 +1,127 @@
+@if(trips){
+<!-- navbar start -->
+
+<app-navbar></app-navbar>
+
+<!-- navbar end -->
+
+<!-- <p>{{userDetails?.username}}</p>
+  <p>seat number:{{select.seat_num}}</p>
+  <p>{{tripDeatils.from_location}}</p> -->
+
+@for (item of trips; track $index) {
+<div class="big_container row">
+  <div class="left col-8">
+    <div class="header1_container">
+      <div class="d-flex align-items-center cont-serial">
+        <span class="BUS-text">Bus</span> <span class="HUB-text">Hub.</span>
+        <span class="serial"> W1.xxxxxxx-A</span>
+      </div>
+    </div>
+    <div class="left-container">
+      <div class="passenger ps-2">
+        <div class="title-text">NAME OF PASSENGAER</div>
+        <div class="text-uppercase content-text">
+          {{ ticketDetails.username }}
+        </div>
+      </div>
+      <div class="info ps-2">
+        <div class="title-text">INFORMATION</div>
+        <div class="text-uppercase content-text">{{ item?.type }} class</div>
+      </div>
+
+      <!-- <hr class="hr1"> -->
+      <div class="from-to ps-2">
+        <div class="from">
+          <div class="title-text">FROM:</div>
+          <div class="text-uppercase content-text">
+            {{ item["from_location"] }}
+          </div>
+        </div>
+        <div class="to">
+          <div class="title-text">TO:</div>
+          <div class="text-uppercase content-text">
+            {{ item.to_location }}
+          </div>
+        </div>
+      </div>
+      <div class="seat-side ps-2">
+        <div>
+          <div class="title-text">BUS</div>
+          <div class="content-text">{{ item.bus_id }}</div>
+        </div>
+        <div>
+          <div class="title-text">SEAT</div>
+          <div class="content-text">{{ item.seat_num }}</div>
+        </div>
+      </div>
+      <div class="qr-code ps-2">
+        <img class="img-fluid" src="../../assets/img/qr-code.png" alt="" />
+      </div>
+      <!-- <hr class="hr2"> -->
+      <div class="l-date ps-2">
+        <div class="title-text-s">DATE:</div>
+        <div class="text-uppercase content-text-s">
+          {{ item?.date | customDate }}
+        </div>
+      </div>
+      <div class="l-depature ps-2">
+        <div class="title-text-s">DEPARTURE:</div>
+        <div class="text-uppercase content-text-s">
+          {{ item?.time | timeFormat }}
+        </div>
+      </div>
+
+      <div class="l-price ps-2">
+        <div class="title-text-s">PRICE:</div>
+        <div class="content-text-s">{{ item?.price }} LE</div>
+      </div>
+    </div>
+  </div>
+  <!-- ====================================================== -->
+  <div class="right col-4">
+    <div class="header2_container">
+      <div>
+        <span class="BUS-text">Bus</span> <span class="HUB-text">Hub.</span>
+      </div>
+    </div>
+    <div class="right-container">
+      <div class="passenger-r ps-2">
+        <div class="title-text">NAME OF PASSENGAER</div>
+        <div class="text-uppercase content-text">
+          {{ ticketDetails?.username }}
+        </div>
+      </div>
+      <div class="from-r ps-2">
+        <div class="title-text">FROM:</div>
+        <div class="text-uppercase content-text">
+          {{ item?.from_location }}
+        </div>
+      </div>
+      <div class="to-r ps-2">
+        <div class="title-text">TO:</div>
+        <div class="text-uppercase content-text">
+          {{ item?.to_location }}
+        </div>
+      </div>
+
+      <div class="bus-r ps-2">
+        <div class="title-text-s">BUS</div>
+        <div class="content-text-s">{{ item?.bus_id }}</div>
+      </div>
+      <div class="seat-r ps-2">
+        <div class="title-text-s">SEAT</div>
+        <div class="content-text-s">{{ item?.seat_num }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+<!-- footer start -->
+<app-footer></app-footer>
+<!-- footer end -->
+
+}@else{
+<app-loader></app-loader>
+
+}

@@ -1,4 +1,5 @@
-<app-navbar></app-navbar>
+@if (destinations && busTypes) {
+  <app-navbar></app-navbar>
 <div class="privatebusForm">
   <div class="container py-4">
     <div class="text-center">
@@ -211,3 +212,8 @@
   <div class="firstblur"></div>
 </div>
 <app-footer></app-footer>
+
+}
+@else {
+  <app-loader></app-loader>
+}

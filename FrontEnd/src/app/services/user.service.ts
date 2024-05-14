@@ -15,8 +15,8 @@ export class UserService {
   private isFirstDataSent = false;
 
   constructor(private http: HttpClient) { }
-  httpOptions={
-    headers :new HttpHeaders({
+  httpOptions = {
+    headers: new HttpHeaders({
       'Accept': 'application/json'
 
     })
@@ -26,13 +26,13 @@ export class UserService {
   sendData(formDataJson: any) {
     // console.log(formDataJson);
     // Replace 'http://your-api-url' with your actual API URL
-    return this.http.post('http://127.0.0.1:8000/api/register',formDataJson);
+    return this.http.post('http://127.0.0.1:8000/api/register', formDataJson);
   }
 
   login(formDataJson: any) {
     // console.log(formDataJson);
     // Replace 'http://your-api-url' with your actual API URL
-    return this.http.post('http://127.0.0.1:8000/api/login',formDataJson,this.httpOptions);
+    return this.http.post('http://127.0.0.1:8000/api/login', formDataJson, this.httpOptions);
   }
 
   private dataSubject = new BehaviorSubject<object>({});
@@ -46,114 +46,120 @@ export class UserService {
   //   return this.dataSubject.asObservable();
   // }
 
-  userProfile(token:any) {
-    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+  userProfile(token: any) {
+    let httpOptions = new HttpHeaders().set("Authorization", "Bearer " + token);
 
-    return this.http.get('http://127.0.0.1:8000/api/profile', {headers: httpOptions });
+    return this.http.get('http://127.0.0.1:8000/api/profile', { headers: httpOptions });
 
   }
 
-  editUserDetails( userData: any,token:any) {
+  editUserDetails(userData: any, token: any) {
 
     // let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
 
 
-    const httpOptions={
-      headers :new HttpHeaders({
+    const httpOptions = {
+      headers: new HttpHeaders({
         'Accept': 'application/json',
         "Authorization": "Bearer " + token
       })
-      };
+    };
     // let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
 
 
-    return this.http.post("http://127.0.0.1:8000/api/edit",userData,httpOptions  );
+    return this.http.post("http://127.0.0.1:8000/api/edit", userData, httpOptions);
   }
 
-  forgetPassword( emailToResetPass: any) {
+  forgetPassword(emailToResetPass: any) {
 
-    return this.http.post("http://127.0.0.1:8000/api/forgot-password",emailToResetPass );
+    return this.http.post("http://127.0.0.1:8000/api/forgot-password", emailToResetPass);
   }
 
 
   private email = new BehaviorSubject<any>("")
-  private otp=new BehaviorSubject<any>("")
+  private otp = new BehaviorSubject<any>("")
 
 
-    getEmail(){
-      return this.email.asObservable();
-    }
+  getEmail() {
+    return this.email.asObservable();
+  }
 
-  setEmail(newValue:string) {
+  setEmail(newValue: string) {
     this.email.next(newValue);
   }
-  getOtp(){
+  getOtp() {
     return this.otp.asObservable();
   }
 
-setOtp(newValue:string) {
-  this.otp.next(newValue);
-}
-
-
-
-  verifycode( emailToResetPass: any) {
-
-    return this.http.post("http://127.0.0.1:8000/api/verify-reset-code",emailToResetPass );
-  }
-
-
-  resetPassword( dataToResetPass: any) {
-
-    return this.http.post("http://127.0.0.1:8000/api/reset-password",dataToResetPass );
+  setOtp(newValue: string) {
+    this.otp.next(newValue);
   }
 
 
 
-  signByGoogle(userData:any) {
+  verifycode(emailToResetPass: any) {
+
+    return this.http.post("http://127.0.0.1:8000/api/verify-reset-code", emailToResetPass);
+  }
+
+
+  resetPassword(dataToResetPass: any) {
+
+    return this.http.post("http://127.0.0.1:8000/api/reset-password", dataToResetPass);
+  }
+
+
+
+  signByGoogle(userData: any) {
 
     // return this.http.post("http://127.0.0.1:8000/api/auth-google", userData);
 
-    return this.http.post("http://127.0.0.1:8000/api/sign-google",userData );
+    return this.http.post("http://127.0.0.1:8000/api/sign-google", userData);
 
 
   }
 
-  contactus(details:any,token:any) {
+  contactus(details: any, token: any) {
 
-    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+    let httpOptions = new HttpHeaders().set("Authorization", "Bearer " + token);
 
-    return this.http.post("http://127.0.0.1:8000/api/contactus",details ,{headers:httpOptions});
+    return this.http.post("http://127.0.0.1:8000/api/contactus", details, { headers: httpOptions });
 
 
   }
 
 
 
- logout(token:any) {
+  logout(token: any) {
 
-    let  httpOptions =new HttpHeaders().set("Authorization","Bearer "+token);
+    let httpOptions = new HttpHeaders().set("Authorization", "Bearer " + token);
 
-    return this.http.get("http://127.0.0.1:8000/api/logout",{headers:httpOptions});
+    return this.http.get("http://127.0.0.1:8000/api/logout", { headers: httpOptions });
 
 
   }
 
 
   changeProfilePhoto(formData: any, token: any) {
-      const httpOptions={
-      headers :new HttpHeaders({
+    const httpOptions = {
+      headers: new HttpHeaders({
         'Accept': 'application/json',
         "Authorization": "Bearer " + token
       })
-      };
+    };
 
-    return this.http.post("http://127.0.0.1:8000/api/uploadimage",formData,httpOptions);
+    return this.http.post("http://127.0.0.1:8000/api/uploadimage", formData, httpOptions);
+
+  }
+
+  showTicket(trip_id: any, token: any) {
+
+    let httpOptions = new HttpHeaders().set("Authorization", "Bearer " + token);
+
+    return this.http.get(`http://127.0.0.1:8000/api/userticket/${trip_id}`, { headers: httpOptions });
 
   }
 
 
+
 }
-
-
-

@@ -1,0 +1,338 @@
+/* //spiner */
+.spinner_edit {
+  height: 300px;
+  width: 200px;
+  text-align: center;
+  padding-top: 100px;
+  /* margin-bottom: 100px; */
+}
+/* text */
+.title-text {
+  font-weight: bolder;
+  font-size: 15px;
+}
+.content-text {
+  font-weight: 300;
+  font-size: 20px;
+}
+.title-text-s {
+  font-weight: 700;
+  font-size: 12px;
+}
+.content-text-s {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+/* text end */
+hr {
+  padding: 0%;
+  margin: 0%;
+}
+.big_container {
+  /* background-color: gray; */
+  width: 70%;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  /* background-color: gray; */
+  margin: 50px auto;
+  width: 700px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
+.header1_container,
+.header2_container {
+  height: 60px;
+  background-color: var(--background);
+  font-size: 40px;
+}
+.header1_container {
+  border-top-left-radius: 50px;
+  padding-left: 40px;
+}
+.header2_container {
+  padding-left: 20px;
+  margin-left: 0%;
+}
+/* .right-container {
+  border-bottom-right-radius: 50px;
+  border-left-style: dashed;
+  border-left-color: white;
+}
+.header2_container,
+.right-container {
+  border-left-style: dashed;
+  border-left-color: white;
+} */
+.BUS-text {
+  color: var(--text);
+}
+.HUB-text {
+  color: var(--primary);
+}
+.serial {
+  color: var(--text);
+  border-style: solid;
+  border-color: aliceblue;
+  font-weight: 200;
+  margin-left: 120px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* padding-bottom: 2px; */
+  font-size: 20px;
+}
+.left-container,
+.right-container {
+  background: var(--primary);
+}
+
+/* ============================================ */
+/* .big_container { */
+/* display: grid; */
+/* grid-template-areas:
+    "header1 header1 header2"
+    "info info ." */
+/* grid-template-areas:
+    "left left right"
+    "passenger info ."
+ } */
+.left-container {
+  display: grid;
+  grid-template-areas:
+    "passenger passenger info "
+    "hr1 hr1 hr1"
+    "from1 from1 seat1 "
+    "hr2 hr2 hr2 "
+    " l-date l-departure l-price";
+}
+.left-container {
+  background: var(--primary);
+  height: 250px;
+  padding: 15px 15px;
+}
+.right-container {
+  border-bottom-right-radius: 50px;
+  background: var(--primary);
+  height: 250px;
+  padding: 15px 15px;
+}
+.qr-code {
+  background: white;
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+}
+.left {
+  padding: 0%;
+}
+.right {
+  padding: 0%;
+  border-left-style: dashed;
+  /* border-left-color: white; */
+  border-left-width: 3px;
+}
+.l-date {
+  border-top-style: solid;
+  border-top-width: 2px;
+}
+.l-depature {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-left-style: solid;
+  border-left-width: 2px;
+}
+.l-price {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-left-style: solid;
+  border-left-width: 2px;
+}
+.bus-r {
+  border-top-style: solid;
+  border-top-width: 2px;
+}
+.seat-r {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-left-style: solid;
+  border-left-width: 2px;
+}
+
+/* ============================================ */
+/* left grid */
+.left-container {
+  display: grid;
+  grid-template-areas:
+    "passenger passenger info "
+    /* "hr1 hr1 hr1" */
+    "from1 seat1 qr"
+    /* "hr2 hr2 hr2" */
+    "l-date l-depature l-price";
+}
+
+.info {
+  grid-area: info;
+}
+.passenger {
+  grid-area: passenger;
+}
+.from-to {
+  grid-area: from1;
+}
+.seat-side {
+  grid-area: seat1;
+}
+.hr1 {
+  grid-area: hr1;
+}
+.hr2 {
+  grid-area: hr2;
+}
+.l-date {
+  grid-area: l-date;
+}
+.l-departure {
+  grid-area: l-departure;
+}
+
+.l-price {
+  grid-area: l-price;
+}
+
+.qr-code {
+  grid-area: qr;
+}
+.l-date {
+  grid-area: l-date;
+}
+.l-depature {
+  grid-area: l-depature;
+}
+.l-price {
+  grid-area: l-price;
+}
+/* ============================================= */
+/* right grid */
+.right-container {
+  display: grid;
+  grid-template-areas:
+    "passenger-r  passenger-r"
+    "from-r from-r"
+    "to-r to-r"
+    "bus-r seat-r";
+}
+.passenger-r {
+  grid-area: passenger-r;
+}
+.from-r {
+  grid-area: from-r;
+}
+.to-r {
+  grid-area: to-r;
+}
+.bus-r {
+  grid-area: bus-r;
+}
+.seat-r {
+  grid-area: seat-r;
+}
+
+/* ============================================== */
+@media only screen and (max-width: 900px) {
+  .big_container {
+    width: 630px;
+  }
+  .serial {
+    margin-left: 40px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .big_container {
+    width: 550px;
+    margin: 30px auto;
+  }
+  .serial {
+    margin-left: 20px;
+  }
+  /* text */
+  .title-text {
+    font-weight: bolder;
+    font-size: 12px;
+  }
+  .content-text {
+    font-weight: 300;
+    font-size: 17px;
+  }
+  .title-text-s {
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .content-text-s {
+    font-weight: 300;
+    font-size: 15px;
+  }
+
+  /* text end */
+
+  .header1_container,
+  .header2_container {
+    height: 50px;
+    font-size: 30px;
+  }
+  .left-container,
+  .right-container {
+    padding: 5px 5px;
+    height: 220px;
+  }
+  .qr-code {
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+  }
+}
+@media only screen and (max-width: 570px) {
+  .big_container {
+    width: 350px;
+    margin: 20px auto;
+  }
+  /* text */
+  .title-text {
+    font-weight: bolder;
+    font-size: 10px;
+  }
+  .content-text {
+    font-weight: 300;
+    font-size: 12px;
+  }
+  .title-text-s {
+    font-weight: 700;
+    font-size: 8px;
+  }
+  .content-text-s {
+    font-weight: 300;
+    font-size: 10px;
+  }
+  .header1_container,
+  .header2_container {
+    height: 40px;
+    font-size: 20px;
+    padding-top: 3px;
+  }
+  .serial {
+    margin-left: 5px;
+    font-size: 12px;
+  }
+  /* .cont-serial{
+margin-top: 2px;
+   } */
+  .qr-code {
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+  }
+  .left-container,
+  .right-container {
+    padding: 5px 5px;
+    height: 180px;
+  }
+}

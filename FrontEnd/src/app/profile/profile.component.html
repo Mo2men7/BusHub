@@ -14,14 +14,8 @@
 
   <body> -->
 @if(loading) {
-<div
-  id="spinnerInAdmin"
-  class="d-flex justify-content-center align-content-center"
->
-  <div class="spinner-border text-light" style="margin-top: 20%" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
+<app-loader></app-loader>
+
 } @else {
 
 <div id="root">
@@ -100,8 +94,11 @@
       <mat-tab label="Future Trips">
         <app-nexttrips></app-nexttrips>
       </mat-tab>
-      <mat-tab label="previousTripsTrips">
+      <mat-tab label="Previous Trips">
         <app-previoustrips></app-previoustrips>
+      </mat-tab>
+      <mat-tab label="Private Bus">
+        <!-- <app-orders></app-orders> -->
       </mat-tab>
     </mat-tab-group>
   </div>
