@@ -27,3 +27,18 @@
   {
 color:var(--background)    
   }
+
+  nav button{
+    color:var(--text);
+  }
+  form button,#btnToAdd{
+    transition: 0.5s;
+    opacity: 0.8;
+    background-color: var(--primary);
+  }
+  form button:hover,#btnToAdd:hover{
+    opacity: 1.0;
+    /* background-color: var(--primary); */
+  }
+
+ 

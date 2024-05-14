@@ -440,7 +440,7 @@
               class="form-control"
               [ngClass]="
                 newDistForm.controls['name'].invalid &&
-                newDistForm.controls['name'].touched
+                newDistForm.controls['name'].touched && newDistForm.controls['submitnewDest'].touched
                   ? 'is-invalid'
                   : ''
               "
@@ -452,9 +452,9 @@
           </div>
           @if(newDistForm.controls['name'].invalid ) {
           <div class="text-danger">
-            @if(newDistForm.controls['name'].errors?.["required"]) {This Field
+            @if(newDistForm.controls['name'].errors?.["required"] && newDistForm.controls['submitnewDest'].touched) {This Field
             is required! }
-            @if(newDistForm.controls['name'].errors?.["minlength"]) {This Field
+            @if(newDistForm.controls['name'].errors?.["minlength"] && newDistForm.controls['submitnewDest'].touched) {This Field
             is Minmum length is 4 }
           </div>
           }
@@ -471,7 +471,7 @@
             ></textarea>
             <label for="info">Info.</label>
           </div>
-          @if(newDistForm.controls['info'].invalid ) {
+          @if(newDistForm.controls['info'].invalid) {
           <div class="text-danger">
             @if(newDistForm.controls['name'].errors?.["required"]) {This Field
             is required! }
@@ -557,18 +557,25 @@
 
           <button
             id="submitter"
-            type="submit"
+            name="submitnewDest"
+            formControlName="submitnewDest"
+
+            [type]="newDistForm.controls['name'].invalid ||
+            newDistForm.controls['info'].invalid ||
+            newDistForm.controls['pic'].invalid ||
+            newDistForm.controls['flag'].invalid ||
+            newDistForm.controls['map'].invalid
+              ? ''
+              : 'submit'"
             class="btn add-button"
-            data-bs-dismiss="modal"
-            [disabled]="
-              newDistForm.controls['name'].invalid ||
-              newDistForm.controls['info'].invalid ||
-              newDistForm.controls['pic'].invalid ||
-              newDistForm.controls['flag'].invalid ||
-              newDistForm.controls['map'].invalid
-                ? 'modal '
-                : ''
-            "
+            [attr.data-bs-dismiss]="newDistForm.controls['name'].invalid ||
+            newDistForm.controls['info'].invalid ||
+            newDistForm.controls['pic'].invalid ||
+            newDistForm.controls['flag'].invalid ||
+            newDistForm.controls['map'].invalid
+              ? ''
+              : 'modal'"
+            
           >
             Add
           </button>

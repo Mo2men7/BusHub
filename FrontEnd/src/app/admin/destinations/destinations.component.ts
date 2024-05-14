@@ -36,6 +36,7 @@ export class DestinationsComponent {
       flag: new FormControl('', [Validators.required]),
       pic: new FormControl('', [Validators.required]),
       map: new FormControl('', [Validators.required]),
+      submitnewDest:new FormControl('')
     });
     this.editDistForm = new FormGroup({
       name: new FormControl(),
