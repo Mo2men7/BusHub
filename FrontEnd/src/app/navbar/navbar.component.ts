@@ -56,7 +56,9 @@ export class NavbarComponent {
         this.userservice.logout(this.token).subscribe(res => {
           console.log(res);
           this.cookie.delete("token");
-          this.router.navigate(["/"])
+          // this.router.navigate(["/"])
+          window.location.reload();
+          // this.ngOnInit();
         })
       }
     });
