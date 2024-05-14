@@ -12,6 +12,8 @@ import { Token } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import { UserService } from '../services/user.service';
+
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -33,11 +35,13 @@ export class AdminComponent {
     private destinationService: DestinationService,
     private cookie: CookieService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private userservice:UserService
   ) {}
 
   token: any = this.cookie.get('token');
   notifications: any;
+  userData: any;
 
   ngOnInit() {
     this.destinationService.listDestinations(this.token).subscribe(
@@ -56,6 +60,13 @@ export class AdminComponent {
         console.log(res);
         this.notifications = res;
       });
+      if (this.token) {
+        this.userservice.userProfile(this.token).subscribe(
+          res => {
+            this.userData = res;
+          }
+        )
+      }
   }
   getNotificationTitle(dataString: string): string {
     const dataObject = JSON.parse(dataString);
@@ -73,7 +84,7 @@ export class AdminComponent {
     if (!this.notifiationsOpened) {
       this.notifiationsOpened = !this.notifiationsOpened;
       this.http
-        .put(`http://127.0.0.1:8000/api/notifications/mark-all-read/2`, {})
+        .put(`http://127.0.0.1:8000/api/notifications/mark-all-read/${this.userData.id}`, {})
         .subscribe(
           () => {
             console.log('All notifications marked as read');
