@@ -32,9 +32,6 @@
 #navbarAdmin input {
   border: none;
 
-  box-shadow: 0 0 5px var(--text);
-
-  border-radius: 15px;
 }
 
 
