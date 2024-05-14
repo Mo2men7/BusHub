@@ -71,25 +71,23 @@ export class AdminComponent {
   notifiationsOpened: boolean = false;
   markAllNotificationsAsRead() {
     if (!this.notifiationsOpened) {
+      this.notifiationsOpened = !this.notifiationsOpened;
       this.http
         .put('http://127.0.0.1:8000/api/notifications/mark-all-read', {})
         .subscribe(
           () => {
-            // Handle success
             console.log('All notifications marked as read');
           },
           (error) => {
-            // Handle error
             console.error('Error marking notifications as read:', error);
           }
         );
     }
     this.http
-      .get('http://127.0.0.1:8000/api/adminNotifications')
+      .get('http://127.0.0.1:8000/api/userNotifications')
       .subscribe((res: any) => {
         console.log(res);
         this.notifications = res;
       });
-    this.notifiationsOpened = !this.notifiationsOpened;
   }
 }

@@ -63,7 +63,7 @@
         </li>
       </ul>
       @if (token) {
-      <div class="d-flex gap-4 align-items-center">
+      <div class="d-flex gap-1 align-items-center">
         <div class="dropdown">
           <button
             class="bg-transparent border-0 dropdown-toggle"
@@ -136,13 +136,12 @@
             aria-expanded="false"
           />
           <ul
-            class="dropdown-menu m-auto"
-            style="background-color: var(--dark)"
+            class="dropdown-menu"
           >
             <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
             <li>
               <button class="dropdown-item text-danger" (click)="logout()">
-                Logout <i class="fa-solid fa-arrow-right-from-bracket ms-2"></i>
+                Logout <i class="fa-solid fa-circle-right ms-2"></i>
               </button>
             </li>
           </ul>
