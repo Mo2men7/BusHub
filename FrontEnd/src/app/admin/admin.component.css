@@ -57,11 +57,11 @@ button{
 }
 #navbarAdmin{
     border-bottom: 0;
-    box-shadow: 0 0 0.1rem 0 var(--primary);
+    /* box-shadow: 0 0 0.1rem 0 var(--primary); */
     /* background-color:var(--secondary); */
-    background: linear-gradient(180deg,transparent,transparent, var(--primary));
-    background-size: 400% 400%;
-    animation: gradient 5s ease infinite;
+    /* background: linear-gradient(180deg,transparent,transparent, var(--primary)); */
+    /* background-size: 400% 400%; */
+    /* animation: gradient 5s ease infinite; */
 }
 
 @keyframes gradient {
