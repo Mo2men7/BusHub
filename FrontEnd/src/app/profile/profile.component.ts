@@ -101,34 +101,4 @@ export class ProfileComponent {
   //   )
   // }
 
-  logout() {
-
-
-
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You want to log out !",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Log Out"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.userservice.logout(this.token).subscribe(res => {
-          console.log(res);
-          this.cookie.delete("token");
-          this.router.navigate(["/"])
-        })
-
-
-
-      }
-    });
-
-
-  }
-
-
-
 }

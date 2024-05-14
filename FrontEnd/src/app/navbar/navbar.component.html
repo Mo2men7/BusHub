@@ -64,7 +64,7 @@
       </ul>
       @if (token) {
       <div class="d-flex gap-4 align-items-center">
-        <div class="dropstart">
+        <div class="dropdown">
           <button
             class="bg-transparent border-0 dropdown-toggle"
             type="button"
@@ -120,11 +120,33 @@
             }
           </ul>
         </div>
-        <a
-          routerLink="/profile"
-          class="text-decoration-none text-light text-uppercase"
-          >{{ userData?.username }}</a
-        >
+        <div class="dropdown">
+          <img
+            [src]="
+              userData.profile_photo_path
+                ? 'http://127.0.0.1:8000/api/admin/images' +
+                  userData.profile_photo_path
+                : '../../assets/images/person.png'
+            "
+            alt="user avatar"
+            style="width: 35px"
+            class="rounded-circle dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          />
+          <ul
+            class="dropdown-menu m-auto"
+            style="background-color: var(--dark)"
+          >
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li>
+              <button class="dropdown-item text-danger" (click)="logout()">
+                Logout <i class="fa-solid fa-arrow-right-from-bracket ms-2"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
       }@else {
       <button routerLink="/signin" class="py-1 bh-btn rounded-pill px-4">

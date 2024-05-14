@@ -60,3 +60,19 @@
     opacity:.7;
   }
   
+  .dropdown-menu{
+    left: -160px;
+  }
+  @media screen and (max-width: 992px) {
+    .dropdown-menu{
+      left: 0;
+    }
+  }
+
+  .dropdown-item{
+    color: var(--text);
+    transition: .3s;
+  }
+  .dropdown-item:hover{
+    color: var(--dark);
+  }

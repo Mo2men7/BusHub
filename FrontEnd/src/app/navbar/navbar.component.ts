@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +16,8 @@ export class NavbarComponent {
   constructor(
     private userservice: UserService,
     private cookie: CookieService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router:Router,
   ) {}
   userData: any;
   notifications: any;
@@ -40,5 +41,26 @@ export class NavbarComponent {
   getNotificationTitle(dataString: string): string {
     const dataObject = JSON.parse(dataString);
     return dataObject.title || 'No title available';
+  }
+  logout() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to log out !",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log Out"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userservice.logout(this.token).subscribe(res => {
+          console.log(res);
+          this.cookie.delete("token");
+          this.router.navigate(["/"])
+        })
+      }
+    });
+
+
   }
 }
