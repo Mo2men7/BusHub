@@ -19,7 +19,7 @@
     (click)="marAsRead(data.id)"
   >
     <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer">
-      {{ data.id }}. {{ data.username }}: Message Title
+      {{ data.id }}. {{ data.username }} : {{data.title}}
     </div>
     <div class="text-light text-opacity-75 fw-light d-flex gap-3">
       <small>{{data.created_at.substring(0, 10)}}</small>
