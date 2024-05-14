@@ -16,10 +16,15 @@ class BusAdminController extends Controller
         // ->join('countries', 'countries.country_id', '=', 'leagues.country_id')
         // ->where('countries.country_name', $country)
         // ->get();
-        $allBuses = DB::table('buses')->select()->get();
+        $chairs = DB::table('buses')->select('chairs')->distinct()->get();
+
         // dd($allBuses);
+        foreach ($chairs as $k => $val) {
+            $allBuses = DB::table('buses')->select()->where('chairs',$val->chairs)->get();
+
         foreach ($allBuses as $key => $value) {
             $types = DB::table('types')->select()->where('id', $value->type_id)->get();
+            $trips = DB::table('trips')->select()->where('date', '>=', date('Y-m-d'))->where('bus_id', $value->id)->orderBy('date', 'asc')->get();
             // $options= DB::table('options')->find($types->option_id, ['*']);
             // $options = [];
             // foreach ($types as  $type) {
@@ -27,14 +32,25 @@ class BusAdminController extends Controller
             // $allBuses[$key]->options= 
             // }
             // // dd($options);
+            
             $allBuses[$key]->type = $types[0]->type;
             $allBuses[$key]->options =$types[0]->options;
+            $allBuses[$key]->trips =$trips;
             
-            
-        }
+            }
+            $types = DB::table('types')->select()->get();
+            foreach ($types as $keytype => $type) {
+                $no_type=DB::table('buses')->select()->where('type_id', $type->id)->where('chairs', $val->chairs)->get();
+                $chairs[$k]->{"$type->id"}=count($no_type->toArray());
+            }
+
+        $chairs[$k]->allBuses=$allBuses;
+
+    }
+
         // dd($allBuses);
         // exit();
-        return $allBuses;
+        return $chairs;
     }
 
     /**
