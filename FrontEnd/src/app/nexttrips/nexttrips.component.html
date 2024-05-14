@@ -29,6 +29,7 @@
       <th scope="col">Trip Date</th>
       <th scope="col">Bus Type</th>
       <th scope="col">Price</th>
+      <th scope="col">Ticket</th>
     </tr>
   </thead>
   <tbody>
@@ -41,6 +42,14 @@
       <td>{{ trip?.trip_date }}</td>
       <td>{{ trip?.bus_type }}</td>
       <td>{{ trip?.trip_price }}</td>
+      <td>
+        <button
+          class="py-1 bh-btn rounded-pill"
+          [routerLink]="['/userticket', trip.trip_id]"
+        >
+          Show
+        </button>
+      </td>
     </tr>
 
     }

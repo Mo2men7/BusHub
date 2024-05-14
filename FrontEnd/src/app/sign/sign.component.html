@@ -140,14 +140,19 @@
             <div class="d-flex gap-1">
               <div class="gender flex-1 w-50 m-0">
                 <div class="form-floating mb-3 m-0">
-                  <input
-                    type="text"
-                    placeholder="Gender"
-                    id="gender"
-                    class="form-control"
+                  <select
+                    ngModel
+                    name="gender"
                     formControlName="gender"
+                    placeholder="Gender"
+                    class="form-select form-control"
+                    id="floatingSelectGrid"
                     required
-                  />
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+
                   <label for="gender">Gender</label>
                 </div>
                 @if (registerForm.controls["gender"].touched &&
@@ -243,7 +248,7 @@
           </div>
           <button
             class="alternativeBtn border-0 bg-transparent text-primary"
-            id="signUp"
+            id="signIn"
             (click)="togglePanel(false)"
           >
             Already have an account ? Login
