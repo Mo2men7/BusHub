@@ -129,6 +129,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get("/userticket/{id}", [UserController::class, "tripsjoin"])->middleware("auth:sanctum");
 
 Route::post("/sign-google", [GoogleController::class, "signin"]);
 Route::post("/register", [UserController::class, "register"]);
@@ -146,6 +147,7 @@ Route::get("/contactus", [ContactusController::class, "index"]);
 Route::get("/contactus/{id}", [ContactusController::class, "show"]);
 Route::delete("/contactus/{id}", [ContactusController::class, "destroy"]);
 Route::put("/contactus/{id}/update", [ContactusController::class, "update"]);
+
 
 Route::post("/uploadimage", [UserController::class, "imageUploadPost"])->middleware("auth:sanctum");
 
