@@ -30,7 +30,7 @@ export class TripsComponent {
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
       .split('/')[1]
       .padStart(2, '0');
-
+submit:any=0;
   trips: any;
   buses: any;
   countBuses: any;
@@ -61,7 +61,9 @@ export class TripsComponent {
       bus_id: new FormControl(''),
     });
   }
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.submit=0;
     this.matIconRegistry.addSvgIcon(
       'seat-icon',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -96,7 +98,13 @@ export class TripsComponent {
 
   addTrip(from: any) {
     let suc: any = 0;
-
+    this.submit=1;
+    if (this.addTripFrom.controls['time'].invalid ||
+    this.addTripFrom.controls['date'].invalid ||
+    this.addTripFrom.controls['bus_id'].invalid ||
+    this.addTripFrom.controls['destination'].invalid ||
+    this.addTripFrom.controls['price'].invalid)
+    return;
     const formData = new FormData();
     formData.append('bus_id', this.addTripFrom.controls['bus_id'].value);
     formData.append('from', from);

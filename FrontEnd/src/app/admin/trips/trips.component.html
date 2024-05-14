@@ -88,7 +88,7 @@
                       aria-label="Floating label select example"
                       formControlName="destination"
                       [ngClass]="
-                        addTripFrom.controls['destination'].invalid
+                        addTripFrom.controls['destination'].invalid &&(addTripFrom.controls['destination'].touched||submit)
                           ? 'is-invalid'
                           : ''
                       "
@@ -100,7 +100,7 @@
                     </select>
                     <label for="destination">Destination</label>
                   </div>
-                  @if(addTripFrom.controls['destination'].invalid ) {
+                  @if(addTripFrom.controls['destination'].invalid &&(addTripFrom.controls['destination'].touched||submit)) {
                   <div class="text-danger">
                     @if(addTripFrom.controls['destination'].errors?.["required"])
                     {This Field is required! }
@@ -114,13 +114,13 @@
                       placeholder="Date"
                       formControlName="date"
                       [ngClass]="
-                        addTripFrom.controls['date'].invalid ? 'is-invalid' : ''
+                        addTripFrom.controls['date'].invalid &&(addTripFrom.controls['date'].touched||submit)? 'is-invalid' : ''
                       "
                       min="{{ today }}"
                     />
                     <label for="date">Date</label>
                   </div>
-                  @if(addTripFrom.controls['date'].invalid ) {
+                  @if(addTripFrom.controls['date'].invalid &&(addTripFrom.controls['date'].touched||submit)) {
                   <div class="text-danger">
                     @if(addTripFrom.controls['date'].errors?.["required"]) {This
                     Field is required! }
@@ -134,12 +134,12 @@
                       placeholder="Time"
                       formControlName="time"
                       [ngClass]="
-                        addTripFrom.controls['time'].invalid ? 'is-invalid' : ''
+                        addTripFrom.controls['time'].invalid &&(addTripFrom.controls['time'].touched||submit)? 'is-invalid' : ''
                       "
                     />
                     <label for="time">Time</label>
                   </div>
-                  @if(addTripFrom.controls['time'].invalid ) {
+                  @if(addTripFrom.controls['time'].invalid &&(addTripFrom.controls['time'].touched||submit)) {
                   <div class="text-danger">
                     @if(addTripFrom.controls['time'].errors?.["required"]) {This
                     Field is required! }
@@ -154,14 +154,14 @@
                       min="1"
                       formControlName="price"
                       [ngClass]="
-                        addTripFrom.controls['price'].invalid
+                        addTripFrom.controls['price'].invalid &&(addTripFrom.controls['price'].touched||submit)
                           ? 'is-invalid'
                           : ''
                       "
                     />
                     <label for="price">Price</label>
                   </div>
-                  @if(addTripFrom.controls['price'].invalid ) {
+                  @if(addTripFrom.controls['price'].invalid  &&(addTripFrom.controls['price'].touched||submit)) {
                   <div class="text-danger">
                     @if(addTripFrom.controls['price'].errors?.["required"])
                     {This Field is required! }
@@ -177,7 +177,7 @@
                         aria-label="Floating label select example"
                         formControlName="bus_id"
                         [ngClass]="
-                          addTripFrom.controls['bus_id'].invalid
+                          addTripFrom.controls['bus_id'].invalid &&(addTripFrom.controls['bus_id'].touched||submit)
                             ? 'is-invalid'
                             : ''
                         "
@@ -213,7 +213,7 @@
                     ></div>
                     }}
                   </div>
-                  @if(addTripFrom.controls['bus_id'].invalid ) {
+                  @if(addTripFrom.controls['bus_id'].invalid &&(addTripFrom.controls['bus_id'].touched||submit)) {
                   <div class="text-danger">
                     @if(addTripFrom.controls['bus_id'].errors?.["required"])
                     {This Field is required! }
@@ -223,15 +223,7 @@
                     <button
                       type="submit"
                       class="btn btn-outline-primary mb-3"
-                      [disabled]="
-                        addTripFrom.controls['time'].invalid ||
-                        addTripFrom.controls['date'].invalid ||
-                        addTripFrom.controls['bus_id'].invalid ||
-                        addTripFrom.controls['destination'].invalid ||
-                        addTripFrom.controls['price'].invalid
-                          ? 'modal '
-                          : ''
-                      "
+                      
                     >
                       Add
                     </button>
