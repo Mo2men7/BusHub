@@ -83,6 +83,17 @@ input {
   border-radius: 10px;
 }
 
+select {
+
+  background-color: #e6e8ef;
+  border: none;
+/* width: 100px; */
+
+
+  outline: none;
+  border-radius: 10px;
+}
+
 /* input:focus{
   border: none;
   border-bottom: 2px solid rgb(21, 21, 170)  ;

@@ -60,6 +60,23 @@
             </div>
 
             <div class="form-floating mb-3">
+              <select
+                ngModel
+                name="gender"
+                formControlName="gender"
+                placeholder="Gender"
+                class="form-control"
+                id="floatingSelectGrid"
+                required
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+
+              <label for="gender">Gender</label>
+            </div>
+
+            <div class="form-floating mb-3">
               <input
                 type="text"
                 name="phone"

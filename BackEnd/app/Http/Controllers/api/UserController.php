@@ -224,6 +224,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'city' => $request->city,
+                'gender' => $request->gender,
                 'profile_photo_path' => $destinationPath
             ]);
         } else {
@@ -232,6 +233,8 @@ class UserController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'gender' => $request->gender,
+
                 'city' => $request->city,
             ]);
         }
