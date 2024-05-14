@@ -22,26 +22,30 @@
     />
   </head>
   <body>
-    <form (ngSubmit)="verifyCode()" method="post">
-      <div class="form-content text-center">
-        <h1 class="text-center">Enter Your Recieved code</h1>
+    <div class="root">
+      <div class="cont">
+        <form (ngSubmit)="verifyCode()" method="post">
+          <div class="form-content text-center">
+            <h1 class="text-center">Enter Your Recieved code</h1>
 
-        <!-- Email -->
-        <input
-          maxlength="6"
-          type="text"
-          [(ngModel)]="codeToResetPass.otp"
-          name="otp"
-        />
+            <!-- Email -->
+            <input
+              maxlength="6"
+              type="text"
+              [(ngModel)]="codeToResetPass.otp"
+              name="otp"
+            />
 
-        <!-- Password -->
+            <!-- Password -->
 
-        <!-- Sign In Button -->
+            <!-- Sign In Button -->
 
-        <button type="submit" class="btn btn-primary text-center mx-auto">
-          Verify Code
-        </button>
+            <button type="submit" class="py-2 bh-btn rounded-pill signup">
+              Verify Code
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </body>
 </html>

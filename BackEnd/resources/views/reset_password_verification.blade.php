@@ -49,7 +49,7 @@
 
     <p class="subject">{{ $subject }}</p>
     <div style=" margin:15px auto; padding:10px; width:60%">
-        <p>{{ $message }}</p>
+        <p style="text-align: center">{{ $message }}</p>
         <p style="color: rgb(22, 22, 74);font-size:30px;font-weight:600; text-align:center">Code: {{ $otp }}</p>
     </div>
     <p>Thanks</p>

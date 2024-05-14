@@ -10,7 +10,8 @@ import { CookieService } from 'ngx-cookie-service';
   standalone: true,
   imports: [RouterOutlet, CommonModule,FormsModule,RouterLinkActive,RouterLink],
   templateUrl: './codetoresetpass.component.html',
-  styleUrl: './codetoresetpass.component.css'
+  styleUrl: './codetoresetpass.component.css',
+
 })
 export class CodetoresetpassComponent {
 
