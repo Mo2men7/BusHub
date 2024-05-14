@@ -60,7 +60,27 @@ export class NavbarComponent {
         })
       }
     });
-
-
+  }
+  notifiationsOpened: boolean = false;
+  markAllNotificationsAsRead(id:any) {
+    if (!this.notifiationsOpened) {
+      this.notifiationsOpened = !this.notifiationsOpened;
+      this.http
+        .put(`http://127.0.0.1:8000/api/notifications/mark-all-read/${id}`, {})
+        .subscribe(
+          () => {
+            console.log('All notifications marked as read');
+          },
+          (error) => {
+            console.error('Error marking notifications as read:', error);
+          }
+        );
+    }
+    this.http
+      .get('http://127.0.0.1:8000/api/userNotifications')
+      .subscribe((res: any) => {
+        console.log(res);
+        this.notifications = res;
+      });
   }
 }

@@ -70,16 +70,16 @@
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            (click)="markAllNotificationsAsRead(userData?.id)"
           >
             <i class="fa-solid fa-bell text-light">
-              @if (notifications?.length>0) {
-              <small
-                class="position-absolute translate-middle badge rounded-pill bg-danger"
-                style="font-size: 10px"
-              >
-                {{ notifications?.length > 10 ? "10+" : notifications?.length }}
-              </small>
-              }
+              @if (notifications.length>0 && !notifiationsOpened) {
+                <small
+                  class="position-absolute translate-middle bg-danger notificationBtn"
+                >
+                {{ notifications.length > 10 ? "10+" : notifications.length }}
+                </small>
+                }
             </i>
           </button>
           <ul class="dropdown-menu pt-0">
