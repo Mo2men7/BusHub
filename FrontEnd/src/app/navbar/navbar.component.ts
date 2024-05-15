@@ -26,6 +26,7 @@ export class NavbarComponent {
     if (this.token) {
       this.userservice.userProfile(this.token).subscribe(
         res => {
+          console.log("userData: ", res);
           this.userData = res;
         }
       )

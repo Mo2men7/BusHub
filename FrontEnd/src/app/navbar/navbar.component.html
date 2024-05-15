@@ -136,7 +136,11 @@
             aria-expanded="false"
           />
           <ul class="dropdown-menu dropdown-menu-lg-end">
-            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            @if (userData.role=="admin") {
+              <li><a class="dropdown-item" routerLink="/admin">Admin Dashboard</a></li>
+            }@else {
+              <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            }
             <li>
               <button class="dropdown-item text-danger" (click)="logout()">
                 Logout <i class="fa-solid fa-circle-right ms-2"></i>
