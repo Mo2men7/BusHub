@@ -22,7 +22,7 @@ import { LoaderComponent } from '../loader/loader.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [LoaderComponent,RouterOutlet,ReactiveFormsModule,OrdersComponent, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
+  imports: [LoaderComponent, ProfilePrivateBusComponent,RouterOutlet,ReactiveFormsModule,OrdersComponent, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
