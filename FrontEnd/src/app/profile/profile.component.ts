@@ -19,6 +19,7 @@ import { ProfilePrivateBusComponent } from '../profile-private-bus/profile-priva
 import { OrdersComponent } from '../admin/orders/orders.component';
 import { LoaderComponent } from '../loader/loader.component';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,

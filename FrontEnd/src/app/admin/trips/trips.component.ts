@@ -85,10 +85,10 @@ submit:any=0;
       },
       (error) => console.log(error)
     );
-    this.busService.listBuses().subscribe(
+    this.busService.listBusesForTrips().subscribe(
       (res: any) => {
         this.buses = res;
-        // console.log(res.length);
+        console.log(res);
         this.countBuses = res.length;
       },
       (error) => console.log(error)

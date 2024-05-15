@@ -10,6 +10,10 @@ export class BusService {
     return this.http.get(this.url + '/api/admin/buses');
   }
   
+  listBusesForTrips() {
+    return this.http.get(this.url + '/api/admin/buses-trips');
+  }
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Accept':'application/json'
