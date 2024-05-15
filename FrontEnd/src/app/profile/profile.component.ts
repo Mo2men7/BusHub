@@ -15,12 +15,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import Swal from 'sweetalert2';
 import { pipe } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { OrdersComponent } from '../admin/orders/orders.component';
+import { ProfilePrivateBusComponent } from '../profile-private-bus/profile-private-bus.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterOutlet,ReactiveFormsModule,OrdersComponent, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
+  imports: [RouterOutlet,ReactiveFormsModule,ProfilePrivateBusComponent, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

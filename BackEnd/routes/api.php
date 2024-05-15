@@ -172,6 +172,7 @@ Route::delete('/destination/{id}', [DestinationController::class, 'destroy']);
 Route::post('/destinations', [DestinationController::class, 'store']);
 ///////////////////////////PrivateBus Form Page and Admin Table////////////////////////////////
 Route::get("/private-bus-requests", [PrivateBusFromController::class, 'index']);
+Route::get("/private-bus-requests/{id}", [PrivateBusFromController::class, 'indexUser']);
 Route::post('/private-bus', [PrivateBusFromController::class, 'store'])->middleware("auth:sanctum");
 Route::get('private-bus-requests/{id}', [PrivateBusFromController::class, 'show']);
 Route::put('private-bus-requests/{id}', [PrivateBusFromController::class, 'update']);

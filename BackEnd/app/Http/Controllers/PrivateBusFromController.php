@@ -26,6 +26,16 @@ class PrivateBusFromController extends Controller
             ->get();
     }
 
+    public function indexUser($id){
+        return DB::table('private_bus_froms')
+            ->join('users', 'private_bus_froms.user_id', '=', $id)
+            ->join('destinations as fromDestinations', 'private_bus_froms.from', '=', 'fromDestinations.id')
+            ->join('destinations as toDestinations', 'private_bus_froms.to', '=', 'toDestinations.id')
+            ->join('types', 'private_bus_froms.bus_type_id', '=', 'types.id')
+            ->select('private_bus_froms.*', 'users.username', 'fromDestinations.name as originName', 'toDestinations.name as destinationName', 'types.type as typeName')
+            ->get();
+    }
+
     public function store(Request $request)
     {
         $privateBus = new PrivateBusFrom();
