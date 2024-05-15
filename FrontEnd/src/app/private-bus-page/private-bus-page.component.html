@@ -163,8 +163,11 @@
                 type="date"
                 [(ngModel)]="formData.departure_date"
                 name="departure_date"
+              
                 class="form-control"
                 id="floatingInputGrid"
+                [min]="today"
+                [max]="newDate"
                 required
               />
               <label for="floatingInputGrid">Date</label>
