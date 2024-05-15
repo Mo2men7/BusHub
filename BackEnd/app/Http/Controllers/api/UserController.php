@@ -124,62 +124,62 @@ class UserController extends Controller
     }
 
 
-    function previous()
-    {
-        $userId = Auth::id();
+    // function previous()
+    // {
+    //     $userId = Auth::id();
 
-        $currentDate = Carbon::now()->toDateString();
+    //     $currentDate = Carbon::now()->toDateString();
 
-        $trips = DB::table('tickets')
-            ->select(
-                'users.username as username',
-                'dest_from.name as from_destination',
-                'dest_to.name as to_destination',
-                'trips.date as trip_date',
-                'trips.price as trip_price',
-                'types.type as bus_type'
-            )
-            ->join('users', 'tickets.user_id', '=', 'users.id')
-            ->join('trips', 'tickets.trip_id', '=', 'trips.id')
-            ->join('buses', 'trips.bus_id', '=', 'buses.id')
-            ->join('types', 'buses.type_id', '=', 'types.id')
-            ->join('destinations as dest_from', 'trips.from', '=', 'dest_from.id')
-            ->join('destinations as dest_to', 'trips.to', '=', 'dest_to.id')
-            ->where('tickets.user_id', $userId)
-            ->whereDate('trips.date', '<', $currentDate)
-            // ->where('tickets.trip_id', $tripId)
-            ->get();
+    //     $trips = DB::table('tickets')
+    //         ->select(
+    //             'users.username as username',
+    //             'dest_from.name as from_destination',
+    //             'dest_to.name as to_destination',
+    //             'trips.date as trip_date',
+    //             'trips.price as trip_price',
+    //             'types.type as bus_type'
+    //         )
+    //         ->join('users', 'tickets.user_id', '=', 'users.id')
+    //         ->join('trips', 'tickets.trip_id', '=', 'trips.id')
+    //         ->join('buses', 'trips.bus_id', '=', 'buses.id')
+    //         ->join('types', 'buses.type_id', '=', 'types.id')
+    //         ->join('destinations as dest_from', 'trips.from', '=', 'dest_from.id')
+    //         ->join('destinations as dest_to', 'trips.to', '=', 'dest_to.id')
+    //         ->where('tickets.user_id', $userId)
+    //         ->whereDate('trips.date', '<', $currentDate)
+    //         // ->where('tickets.trip_id', $tripId)
+    //         ->get();
 
-        return $trips;
-    }
-    function next()
-    {
-        $userId = Auth::id();
+    //     return $trips;
+    // }
+    // function next()
+    // {
+    //     $userId = Auth::id();
 
-        $currentDate = Carbon::now()->toDateString();
+    //     $currentDate = Carbon::now()->toDateString();
 
 
-        $trips = DB::table('tickets')
-            ->select(
-                'trips.id as trip_id', // Include the id column from the trips table
-                'users.username as username',
-                'dest_from.name as from_destination',
-                'dest_to.name as to_destination',
-                'trips.date as trip_date',
-                'trips.price as trip_price',
-                'types.type as bus_type'
-            )
-            ->join('users', 'tickets.user_id', '=', 'users.id')
-            ->join('trips', 'tickets.trip_id', '=', 'trips.id')
-            ->join('buses', 'trips.bus_id', '=', 'buses.id')
-            ->join('types', 'buses.type_id', '=', 'types.id')
-            ->join('destinations as dest_from', 'trips.from', '=', 'dest_from.id')
-            ->join('destinations as dest_to', 'trips.to', '=', 'dest_to.id')
-            ->where('tickets.user_id', $userId)
-            ->whereDate('trips.date', '>', $currentDate)
-            ->get();
-        return $trips;
-    }
+    //     $trips = DB::table('tickets')
+    //         ->select(
+    //             'trips.id as trip_id', // Include the id column from the trips table
+    //             'users.username as username',
+    //             'dest_from.name as from_destination',
+    //             'dest_to.name as to_destination',
+    //             'trips.date as trip_date',
+    //             'trips.price as trip_price',
+    //             'types.type as bus_type'
+    //         )
+    //         ->join('users', 'tickets.user_id', '=', 'users.id')
+    //         ->join('trips', 'tickets.trip_id', '=', 'trips.id')
+    //         ->join('buses', 'trips.bus_id', '=', 'buses.id')
+    //         ->join('types', 'buses.type_id', '=', 'types.id')
+    //         ->join('destinations as dest_from', 'trips.from', '=', 'dest_from.id')
+    //         ->join('destinations as dest_to', 'trips.to', '=', 'dest_to.id')
+    //         ->where('tickets.user_id', $userId)
+    //         ->whereDate('trips.date', '>', $currentDate)
+    //         ->get();
+    //     return $trips;
+    // }
 
 
     // public function update(Request $request)
@@ -234,7 +234,6 @@ class UserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'gender' => $request->gender,
-
                 'city' => $request->city,
             ]);
         }
@@ -335,27 +334,6 @@ class UserController extends Controller
         $today = Carbon::today();
         $user_name = Auth::user()->username;
 
-        // $trips = Trip1::join('destinations as from_dest', 'from_dest.id', '=', 'trips.from')
-        //     ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to')
-        //     ->join('buses', 'buses.id', '=', 'trips.bus_id')
-        //     ->join('types', 'types.id', '=', 'buses.type_id')
-        //     ->join('seats', 'seats.trip_id', '=', 'trips.id')
-        //     ->select(
-        //         'trips.*',
-        //         'from_dest.name as from_location',
-        //         'to_dest.name as to_location',
-        //         'buses.chairs',
-        //         'types.type',
-        //         'types.id as type_id',
-        //         'types.options',
-        //         'seats.seat_num',
-        //         'seats.reserved'
-        //     )
-        //     ->orderBy('time', 'asc')
-        //     ->where('seats.reserved', $user_id)
-        //     ->get();
-
-        // return response()->json($trips);
         $trips = Trip1::join('destinations as from_dest', 'from_dest.id', '=', 'trips.from')
             ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to')
             ->join('buses', 'buses.id', '=', 'trips.bus_id')
@@ -383,5 +361,84 @@ class UserController extends Controller
             'trips' => $trips,
             'username' => $user_name
         ]);
+    }
+
+
+    public function next()
+    {
+        // Carbon::setTimezone('Africa/Cairo');
+
+        $user_id = Auth::id();
+        $today = Carbon::today();
+        $user_name = Auth::user()->username;
+        $now = Carbon::now()->toTimeString();; // Get the current time
+        // $now->tz('Africa/Cairo');
+
+        $trips = Trip1::join('destinations as from_dest', 'from_dest.id', '=', 'trips.from')
+            ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to')
+            ->join('buses', 'buses.id', '=', 'trips.bus_id')
+            ->join('types', 'types.id', '=', 'buses.type_id')
+            ->join('seats', 'seats.trip_id', '=', 'trips.id')
+            ->select(
+                'trips.*',
+                'from_dest.name as from_location',
+                'to_dest.name as to_location',
+                'buses.chairs',
+                'types.type',
+                'types.id as type_id',
+                'types.options',
+                'seats.seat_num',
+                'seats.reserved'
+            )
+            ->orderBy('time', 'asc')
+            ->where('seats.reserved', $user_id)
+            ->where('trips.time', '>', $now)
+            ->whereDate('trips.date', '>=', $today)
+
+
+            ->get();
+
+        return response()->json([
+            'trips' => $trips,
+            'username' => $user_name
+        ]);
+    }
+
+    public function previous()
+    {
+
+
+
+        $user_id = Auth::id();
+        $today = Carbon::today();
+        $user_name = Auth::user()->username;
+        $now = Carbon::now()->toTimeString();; // Get the current time
+
+
+        $trips = Trip1::join('destinations as from_dest', 'from_dest.id', '=', 'trips.from')
+            ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to')
+            ->join('buses', 'buses.id', '=', 'trips.bus_id')
+            ->join('types', 'types.id', '=', 'buses.type_id')
+            ->join('seats', 'seats.trip_id', '=', 'trips.id')
+            ->select(
+                'trips.*',
+                'from_dest.name as from_location',
+                'to_dest.name as to_location',
+                'buses.chairs',
+                'types.type',
+                'types.id as type_id',
+                'types.options',
+                'seats.seat_num',
+                'seats.reserved'
+            )
+            ->orderBy('time', 'asc')
+            ->where('seats.reserved', $user_id)
+            ->whereTime('trips.time', '<', $now)
+            ->whereDate('trips.date', '<=', $today)
+
+
+            ->get();
+
+        return response()->json($trips);
     }
 }

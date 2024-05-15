@@ -1,0 +1,39 @@
+.card {
+    background-color: var(--dark);
+    color: var(--text);
+    width: 40%;
+    transition: transform .5s;
+}
+.card:hover {
+    
+    transform: scale(1.2);
+    animation-name:marg;
+    animation-duration: 0.5s;
+
+}
+#allCards
+{
+    width:60%;
+}
+#allCanv
+{
+    width:40%;
+
+}
+@media only screen and (max-width: 900px) {
+    #allCards {
+        width: 100%;
+    }
+    .card {
+        background-color: var(--dark);
+        color: var(--text);
+        width: 100%;
+    }
+    #allCanv
+    {
+
+        width: 100%;
+    }
+
+
+}

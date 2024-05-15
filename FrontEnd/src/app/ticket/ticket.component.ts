@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import Swal from 'sweetalert2/src/sweetalert2.js'
+import { LoaderComponent } from '../loader/loader.component';
 @Component({
   selector: 'app-ticket',
   standalone: true,
@@ -19,7 +20,7 @@ import Swal from 'sweetalert2/src/sweetalert2.js'
     TimeFormatPipe,
     MatProgressSpinnerModule,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,LoaderComponent,
   ],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css',

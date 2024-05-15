@@ -174,24 +174,7 @@ this.token=this.cookie.get("token");
 
     // console.log(formDataJson);
 
-    this.userservice.sendData(this.registerForm.value).pipe(
-      catchError((error: HttpErrorResponse) => {
-
-        if (error.status === 422) {
-          // Handle specific error message or perform any action
-          console.error('The email has already been taken.');
-          this.emailexist = true;
-
-        } else {
-          this.emailexist = false;
-
-          // Handle other types of errors
-          console.error('An error occurred:', error.error.message || error.statusText);
-        }
-        // Return an observable with a user-friendly error message
-        return throwError('Something bad happened; please try again later.');
-      })
-    )
+    this.userservice.sendData(this.registerForm.value)
     .subscribe(
       response => {
         this.loginResponse = response;
@@ -216,7 +199,13 @@ this.token=this.cookie.get("token");
       }
       ,
       error => {
-        console.error('Error sending data:', error);
+        if (error.status === 422&&error.error.errors["email"]) {
+          // Handle specific error message or perform any action
+          console.error('The email has already been taken.');
+          this.emailexist = true;
+
+        }
+        console.error('Error sending data:', error.error.errors);
       }
     )
 

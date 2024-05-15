@@ -34,12 +34,13 @@
     @for (trip of previousTrips ; track $index) {
 
     <tr class="table-primary">
+      <td>{{ trip?.from_location }}</td>
+      <td>{{ trip?.to_location }}</td>
+      <td>{{ trip?.date }}</td>
+      <!-- <td>{{ trip?.time }}</td> -->
       <!-- <th scope="row">{{ trip?.username }}</th> -->
-      <td>{{ trip?.from_destination }}</td>
-      <td>{{ trip?.to_destination }}</td>
-      <td>{{ trip?.trip_date }}</td>
-      <td>{{ trip?.bus_type }}</td>
-      <td>{{ trip?.trip_price }}</td>
+      <td>{{ trip?.type }}</td>
+      <td>{{ trip?.price }}</td>
     </tr>
 
     }
