@@ -1,0 +1,59 @@
+<div class="m-auto overflow-auto my-4" style="height: 95vh; width: 90%; color: var(--text);">
+    {{PBRequests.id}}
+  @if (PBRequests.length>0){
+  <table class="">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Origin</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Bus Type</th>
+        <th scope="col">Passengers</th>
+        <th scope="col">Travel Date</th>
+        <th scope="col">Return</th>
+        <th scope="col">Acceptance</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(PBR of PBRequests; track $index){
+      <tr>
+        <th scope="row">{{ PBR.id }}</th>
+        <td>{{ PBR.user_id }}</td>
+        <td>{{ PBR.name }}</td>
+        <td>{{ PBR.phone }}</td>
+        <td>{{ PBR.originName }}</td>
+        <td>{{ PBR.destinationName }}</td>
+        <td>{{ PBR.typeName }}</td>
+        <td>{{ PBR.passenger_number }}</td>
+        <td>{{ PBR.departure_date }}</td>
+        <td>@if(PBR.return==1){Yes}@else {No}</td>
+        <td class="">
+          @if (PBR.status=="Accepted") {
+          <div
+            class="px-2 py-1 rounded-pill bg-success-subtle text-success-emphasis"
+            style="font-size: 13px"
+          >
+            Accepted
+          </div>
+          } @else if (PBR.status=="Rejected") {
+          <div
+            class="px-2 py-1 rounded-pill bg-danger-subtle text-danger-emphasis"
+            style="font-size: 13px"
+          >
+            Declined
+          </div>
+          }
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  } @else {
+  <div class="mt-4" style="color: var(--text);">
+    <p>At the main time, You have no Private Bus requests</p>
+  </div>
+  }
+</div>

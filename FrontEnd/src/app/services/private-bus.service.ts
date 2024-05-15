@@ -9,4 +9,7 @@ export class PrivateBusService {
   getPrivateBusRequests(){
     return this.http.get("http://127.0.0.1:8000/api/private-bus-requests")
   }
+  getPrivateBusRequestsFromUser(id:any){
+    return this.http.get(`http://127.0.0.1:8000/api/private-bus-requests/${id}`)
+  }
 }
