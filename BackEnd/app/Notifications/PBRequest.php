@@ -37,7 +37,7 @@ class PBRequest extends Notification
      public function toDatabase($notifiable){
         return[
             'id' => $this->PrivateBusFrom->id,
-            'title' => 'A new PBR has been added by ',
+            'title' => 'A new PriavteBus Request has been added by ',
             'user' => Auth::user()->username,
         ];
      }

@@ -80,8 +80,8 @@
             track $index) {
             <li style="cursor: pointer" routerLink="/admin/admin-orders">
               <div class="dropdown-item">
-                {{ getNotificationTitle(notification.data) }}
-                {{ getNotificationUserName(notification.data) }}
+                {{ getNotificationTitle(notification?.data) }}
+                {{ getNotificationUserName(notification?.data) }}
                 <br />
                 <span
                   class="text-white-50"

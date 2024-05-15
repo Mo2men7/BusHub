@@ -44,7 +44,8 @@ class ContactUsToAdmin extends Notification
     {
         return[
             'id' => $this->ContactUs->id,
-            'title' => 'We have a new Contact Us request',
+            'title' => 'We have a new Contact Us request by',
+            'user' => Auth::user()->username,
         ];
     }
 }

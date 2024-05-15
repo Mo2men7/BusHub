@@ -45,7 +45,7 @@ class PBAccept extends Notification
     {
         return [
             'id' => $this->PrivateBusFrom->id,
-            'title' => 'Your request has been accepted by admin',
+            'title' => 'Congratulations! We accepted your request to book a private bus.',
         ];
     }
 }
