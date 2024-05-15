@@ -77,6 +77,7 @@ Route::post('/seats', [Seat1Controller::class, 'store']);
 
 // !Bus
 
+Route::get('/admin/buses-trips', [BusAdminController::class, 'getForTrips']);
 Route::get('/admin/buses', [BusAdminController::class, 'index']);
 Route::get('/admin/bus/{id}', function ($id) {
     return new BusAdminResource(Bus::findOrFail($id));

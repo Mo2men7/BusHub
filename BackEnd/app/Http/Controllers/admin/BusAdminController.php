@@ -53,6 +53,33 @@ class BusAdminController extends Controller
         return $chairs;
     }
 
+    public function getForTrips()
+    {
+        //     DB::table('leagues')
+        // ->select('league_name')
+        // ->join('countries', 'countries.country_id', '=', 'leagues.country_id')
+        // ->where('countries.country_name', $country)
+        // ->get();
+        $allBuses = DB::table('buses')->select()->get();
+        // dd($allBuses);
+        foreach ($allBuses as $key => $value) {
+            $types = DB::table('types')->select()->where('id', $value->type_id)->get();
+            // $options= DB::table('options')->find($types->option_id, ['*']);
+            // $options = [];
+            // foreach ($types as  $type) {
+            //     // dd($type);
+            // $allBuses[$key]->options= 
+            // }
+            // // dd($options);
+            $allBuses[$key]->type = $types[0]->type;
+            $allBuses[$key]->options =$types[0]->options;
+            
+            
+        }
+        // dd($allBuses);
+        // exit();
+        return $allBuses;
+    }
     /**
      * Store a newly created resource in storage.
      */
