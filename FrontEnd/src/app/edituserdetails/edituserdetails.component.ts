@@ -32,7 +32,8 @@ export class EdituserdetailsComponent {
         username: [""],
         pic: [""],
         city: [""],
-        phone:[""],
+      phone: [""],
+        gender:[""],
 
 
     })
@@ -44,6 +45,7 @@ export class EdituserdetailsComponent {
   email: any;
   phone: any;
   city: any;
+  gender:any
   token = this.cookie.get("token");
 
 
@@ -74,7 +76,8 @@ export class EdituserdetailsComponent {
           email: this.userDetails.email,
           username: this.userDetails.username,
           city: this.userDetails.city,
-          phone:this.userDetails.phone
+          phone: this.userDetails.phone,
+          gender:this.userDetails.gender
       });
 
       }
@@ -103,6 +106,8 @@ export class EdituserdetailsComponent {
     const formData = new FormData();
     formData.append('pic', this.editForm.controls['pic'].value);
     formData.append('email', this.editForm.controls['email'].value);
+    formData.append('gender', this.editForm.controls['gender'].value);
+
     formData.append('phone', this.editForm.controls['phone'].value);
     formData.append('city', this.editForm.controls['city'].value);
     formData.append('username', this.editForm.controls['username'].value);
