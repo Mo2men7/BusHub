@@ -366,11 +366,13 @@ class UserController extends Controller
 
     public function next()
     {
+        // Carbon::setTimezone('Africa/Cairo');
+
         $user_id = Auth::id();
         $today = Carbon::today();
         $user_name = Auth::user()->username;
-        $now = Carbon::now(); // Get the current time
-
+        $now = Carbon::now()->toTimeString();; // Get the current time
+        // $now->tz('Africa/Cairo');
 
         $trips = Trip1::join('destinations as from_dest', 'from_dest.id', '=', 'trips.from')
             ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to')
@@ -390,8 +392,8 @@ class UserController extends Controller
             )
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
+            ->where('trips.time', '>', $now)
             ->whereDate('trips.date', '>=', $today)
-            ->whereTime('trips.time', '>=', $now)
 
 
             ->get();
@@ -404,10 +406,14 @@ class UserController extends Controller
 
     public function previous()
     {
+
+
+
         $user_id = Auth::id();
         $today = Carbon::today();
         $user_name = Auth::user()->username;
-        $now = Carbon::now(); // Get the current time
+        $now = Carbon::now()->toTimeString();; // Get the current time
+
 
         $trips = Trip1::join('destinations as from_dest', 'from_dest.id', '=', 'trips.from')
             ->join('destinations as to_dest', 'to_dest.id', '=', 'trips.to')
@@ -427,8 +433,8 @@ class UserController extends Controller
             )
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
-            ->whereDate('trips.date', '<', $today)
             ->whereTime('trips.time', '<', $now)
+            ->whereDate('trips.date', '<=', $today)
 
 
             ->get();
