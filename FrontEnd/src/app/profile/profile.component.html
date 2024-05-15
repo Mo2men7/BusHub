@@ -14,14 +14,8 @@
 
   <body> -->
 @if(loading) {
-<div
-  id="spinnerInAdmin"
-  class="d-flex justify-content-center align-content-center"
->
-  <div class="spinner-border text-light" style="margin-top: 20%" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
+<app-loader></app-loader>
+
 } @else {
 
 <div id="root">

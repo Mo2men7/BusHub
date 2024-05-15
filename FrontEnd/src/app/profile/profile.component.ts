@@ -16,11 +16,13 @@ import Swal from 'sweetalert2';
 import { pipe } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfilePrivateBusComponent } from '../profile-private-bus/profile-private-bus.component';
+import { OrdersComponent } from '../admin/orders/orders.component';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterOutlet,ReactiveFormsModule,ProfilePrivateBusComponent, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
+  imports: [LoaderComponent,RouterOutlet,ReactiveFormsModule,OrdersComponent, CommonModule,FormsModule,RouterLinkActive,RouterLink,EdituserdetailsComponent,PrevioustripsComponent,NexttripsComponent,NavbarComponent,FooterComponent,MatTabsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

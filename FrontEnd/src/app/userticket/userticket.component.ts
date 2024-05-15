@@ -7,11 +7,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-userticket',
   standalone: true,
-  imports: [NavbarComponent,FooterComponent, CustomDatePipe,
+  imports: [NavbarComponent,FooterComponent, CustomDatePipe,LoaderComponent,
     TimeFormatPipe,
     MatProgressSpinnerModule],
   templateUrl: './userticket.component.html',
