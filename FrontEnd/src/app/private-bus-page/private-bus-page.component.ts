@@ -127,13 +127,13 @@ export class PrivateBusPageComponent {
   today =
     new Date()
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-      .split('/')[0] +
+      .split('/')[2] +
     '-' +
     new Date()
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-      .split('/')[2]
+      .split('/')[0]
       .padStart(2, '0') +
-    '-0' +
+    '-' +
     new Date()
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
       .split('/')[1]
@@ -146,13 +146,15 @@ export class PrivateBusPageComponent {
   newDate =
     new Date(this.maxDate)
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-      .split('/')[0] +
-    `-0` +
+      .split('/')[2] +`-0`+
     new Date(this.maxDate)
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
-      .split('/')[2] +
-    `-` +
+      .split('/')[0] +`-`+
     new Date(this.maxDate)
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
       .split('/')[1];
+
+
+
+
 }
