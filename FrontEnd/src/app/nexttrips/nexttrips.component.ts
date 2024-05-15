@@ -22,6 +22,7 @@ export class NexttripsComponent {
   nextTrips: any;
   token = this.cookie.get("token");
   isarray: any;
+  result: any;
   ngOnInit(): void {
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
@@ -36,7 +37,8 @@ export class NexttripsComponent {
 
     this.nexttrips.userNextTrips(this.token).subscribe(
       res => {
-        this.nextTrips = res;
+        this.result = res;
+        this.nextTrips=this.result.trips
         console.log(this.nextTrips);
         this.loading=false
         // this.isarray = this.isArrayEmpty(this.nextTrips);

@@ -27,8 +27,8 @@
       <th scope="col">Travel From</th>
       <th scope="col">Arriving To</th>
       <th scope="col">Trip Date</th>
-      <th scope="col">Bus Type</th>
-      <th scope="col">Price</th>
+      <th scope="col">Trip time</th>
+      <th scope="col">Seat Number</th>
       <th scope="col">Ticket</th>
     </tr>
   </thead>
@@ -37,15 +37,15 @@
 
     <tr class="table-primary">
       <!-- <th scope="row">{{ trip?.username }}</th> -->
-      <td>{{ trip?.from_destination }}</td>
-      <td>{{ trip?.to_destination }}</td>
-      <td>{{ trip?.trip_date }}</td>
-      <td>{{ trip?.bus_type }}</td>
-      <td>{{ trip?.trip_price }}</td>
+      <td>{{ trip?.from_location }}</td>
+      <td>{{ trip?.to_location }}</td>
+      <td>{{ trip?.date }}</td>
+      <td>{{ trip?.time }}</td>
+      <td>{{ trip?.seat_num }}</td>
       <td>
         <button
           class="py-1 bh-btn rounded-pill"
-          [routerLink]="['/userticket', trip.trip_id]"
+          [routerLink]="['/userticket', trip.id]"
         >
           Show
         </button>
