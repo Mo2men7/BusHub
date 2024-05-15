@@ -17,6 +17,7 @@ import { pipe } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrdersComponent } from '../admin/orders/orders.component';
 import { LoaderComponent } from '../loader/loader.component';
+import { ProfilePrivateBusComponent } from '../profile-private-bus/profile-private-bus.component';
 
 @Component({
   selector: 'app-profile',
