@@ -61,7 +61,6 @@
 
             <div class="form-floating mb-3">
               <select
-                ngModel
                 name="gender"
                 formControlName="gender"
                 placeholder="Gender"
@@ -69,8 +68,14 @@
                 id="floatingSelectGrid"
                 required
               >
-                <option value="male">Male</option>
+                @if(userDetails?.gender=="Male"){
+                <option value="male" selected>Male</option>
                 <option value="female">Female</option>
+                } @if(userDetails?.gender=="Female"){
+                <option value="male">Male</option>
+
+                <option value="female" selected>Female</option>
+                }
               </select>
 
               <label for="gender">Gender</label>

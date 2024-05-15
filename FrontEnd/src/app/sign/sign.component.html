@@ -76,6 +76,7 @@
                 class="form-control"
                 formControlName="email"
                 required
+                (click)="changeEmailExist()"
               />
               <label for="email">Email address</label>
             </div>
@@ -88,6 +89,10 @@
               } @if (registerForm.controls["email"].errors?.["email"]) {
               <small>field must be email</small>
               }
+            </div>
+            } @if(emailexist&&registerForm.controls["email"].valid) {
+            <div class="form-text text-danger error">
+              <small>email has already taken</small>
             </div>
             }
 

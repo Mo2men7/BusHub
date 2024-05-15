@@ -23,7 +23,8 @@ export class EdituserdetailsComponent {
     phone: ``,
     email: "",
     username: "",
-    city:"",
+    city: "",
+    gender:""
    };
   constructor(private fb:FormBuilder, private userservice: UserService, private activatedRoute: ActivatedRoute, private router: Router, private cookie: CookieService) {
 
@@ -70,6 +71,7 @@ export class EdituserdetailsComponent {
           email: `${this.email}`,
           username: `${this.username}`,
           city: `${this.city}`,
+          gender:`${this.userData.gender}`,
 
         };
         this.editForm.patchValue({
