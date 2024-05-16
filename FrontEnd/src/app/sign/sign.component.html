@@ -44,7 +44,7 @@
           <div class="form-content">
             <!-- Organization Name and Email -->
 
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="text"
                 name="username"
@@ -68,7 +68,7 @@
             </div>
             }
 
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="email"
                 placeholder="Email"
@@ -97,7 +97,7 @@
             }
 
             <!-- Password -->
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="password"
                 placeholder="Password"
@@ -120,7 +120,7 @@
             </div>
             }
 
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="password"
                 placeholder="Password Confirmation"
@@ -142,60 +142,63 @@
 
             <!-- registerForm.errors?.mismatch && (registerForm.controls['password'].dirty || registerForm.controls['confirmPassword'].dirty -->
             <!-- Gender-->
-            <div class="gender flex-1 w-50 m-0">
-              <div class="form-floating mb-1 m-0">
-                <select
-                  ngModel
-                  name="gender"
-                  formControlName="gender"
-                  placeholder="Gender"
-                  class="form-select form-control"
-                  id="floatingSelectGrid"
-                  required
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
+            <div class="d-flex gap-1">
+              <div class="gender flex-1 w-50 m-0">
+                <div class="form-floating mb-3 m-0">
+                  <select
+                    ngModel
+                    name="gender"
+                    formControlName="gender"
+                    placeholder="Gender"
+                    class="form-select form-control"
+                    id="floatingSelectGrid"
+                    required
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
 
-                <label for="gender">Gender</label>
-              </div>
-              @if (registerForm.controls["gender"].touched &&
-              registerForm.controls["gender"].invalid|| submitCheck &&
-              registerForm.controls["gender"].invalid) {
-              <div class="form-text text-danger error">
-                @if (registerForm.controls["gender"].errors?.["required"]) {
-                <small>Gender is required</small>
+                  <label for="gender">Gender</label>
+                </div>
+                @if (registerForm.controls["gender"].touched &&
+                registerForm.controls["gender"].invalid|| submitCheck &&
+                registerForm.controls["gender"].invalid) {
+                <div class="form-text text-danger error">
+                  @if (registerForm.controls["gender"].errors?.["required"]) {
+                  <small>Gender is required</small>
+                  }
+                </div>
                 }
               </div>
-              }
-            </div>
-            <div class="date flex-1 w-50 m-0">
-              <div class="form-floating mb-1 m-0">
-                <input
-                  type="date"
-                  name="birth_date"
-                  placeholder="Birth Of Date"
-                  id="birth_date"
-                  class="form-control"
-                  required
-                  formControlName="birth_date"
-                />
-                <label for="birth_date">Birth Of Date</label>
-              </div>
-              @if (registerForm.controls["birth_date"].touched &&
-              registerForm.controls["birth_date"].invalid|| submitCheck &&
-              registerForm.controls["birth_date"].invalid) {
-              <div class="form-text text-danger error">
-                @if (registerForm.controls["birth_date"].errors?.["required"]) {
-                <small>Birth Of Date is required</small>
+              <div class="date flex-1 w-50 m-0">
+                <div class="form-floating mb-3 m-0">
+                  <input
+                    type="date"
+                    name="birth_date"
+                    placeholder="Birth Of Date"
+                    id="birth_date"
+                    class="form-control"
+                    required
+                    formControlName="birth_date"
+                  />
+                  <label for="birth_date">Birth Of Date</label>
+                </div>
+                @if (registerForm.controls["birth_date"].touched &&
+                registerForm.controls["birth_date"].invalid|| submitCheck &&
+                registerForm.controls["birth_date"].invalid) {
+                <div class="form-text text-danger error">
+                  @if (registerForm.controls["birth_date"].errors?.["required"])
+                  {
+                  <small>Birth Of Date is required</small>
+                  }
+                </div>
                 }
               </div>
-              }
             </div>
             <!--Birth Of Date -->
 
             <!-- Location -->
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="text"
                 name="city"
@@ -217,7 +220,7 @@
             </div>
             }
 
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="text"
                 name="phone"
@@ -263,7 +266,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()" method="post">
           <div class="form-content">
             <!-- Email -->
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="email"
                 placeholder="Type your email"
@@ -288,7 +291,7 @@
             }
 
             <!-- Password -->
-            <div class="form-floating mb-1">
+            <div class="form-floating mb-3">
               <input
                 type="password"
                 placeholder="Type your password"
