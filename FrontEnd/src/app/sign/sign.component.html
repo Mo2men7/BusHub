@@ -44,7 +44,7 @@
           <div class="form-content">
             <!-- Organization Name and Email -->
 
-            <div class="form-floating mb-3">
+            <div class="mb-3">
               <input
                 type="text"
                 name="username"
@@ -54,7 +54,6 @@
                 required
                 formControlName="username"
               />
-              <label for="username">User Name</label>
             </div>
             @if (registerForm.controls["username"].touched &&
             registerForm.controls["username"].invalid || submitCheck &&
@@ -68,7 +67,7 @@
             </div>
             }
 
-            <div class="form-floating mb-3">
+            <div class="mb-3">
               <input
                 type="email"
                 placeholder="Email"
@@ -78,7 +77,6 @@
                 required
                 (click)="changeEmailExist()"
               />
-              <label for="email">Email address</label>
             </div>
             @if (registerForm.controls["email"].touched &&
             registerForm.controls["email"].invalid || submitCheck &&
@@ -97,7 +95,7 @@
             }
 
             <!-- Password -->
-            <div class="form-floating mb-3">
+            <div class="mb-3">
               <input
                 type="password"
                 placeholder="Password"
@@ -106,7 +104,6 @@
                 formControlName="password"
                 required
               />
-              <label for="password">Password</label>
             </div>
             @if (registerForm.controls["password"].touched &&
             registerForm.controls["password"].invalid || submitCheck &&
@@ -120,7 +117,7 @@
             </div>
             }
 
-            <div class="form-floating mb-3">
+            <div class="mb-3">
               <input
                 type="password"
                 placeholder="Password Confirmation"
@@ -129,7 +126,6 @@
                 formControlName="password_confirmation"
                 required
               />
-              <label for="password_confirmation">Password Confirmation</label>
             </div>
             @if(
             registerForm.errors?.['mismatch']&&registerForm.controls["password_confirmation"].touched
@@ -142,63 +138,54 @@
 
             <!-- registerForm.errors?.mismatch && (registerForm.controls['password'].dirty || registerForm.controls['confirmPassword'].dirty -->
             <!-- Gender-->
-            <div class="d-flex gap-1">
-              <div class="gender flex-1 w-50 m-0">
-                <div class="form-floating mb-3 m-0">
-                  <select
-                    ngModel
-                    name="gender"
-                    formControlName="gender"
-                    placeholder="Gender"
-                    class="form-select form-control"
-                    id="floatingSelectGrid"
-                    required
-                  >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-
-                  <label for="gender">Gender</label>
-                </div>
-                @if (registerForm.controls["gender"].touched &&
-                registerForm.controls["gender"].invalid|| submitCheck &&
-                registerForm.controls["gender"].invalid) {
-                <div class="form-text text-danger error">
-                  @if (registerForm.controls["gender"].errors?.["required"]) {
-                  <small>Gender is required</small>
-                  }
-                </div>
-                }
-              </div>
-              <div class="date flex-1 w-50 m-0">
-                <div class="form-floating mb-3 m-0">
-                  <input
-                    type="date"
-                    name="birth_date"
-                    placeholder="Birth Of Date"
-                    id="birth_date"
-                    class="form-control"
-                    required
-                    formControlName="birth_date"
-                  />
-                  <label for="birth_date">Birth Of Date</label>
-                </div>
-                @if (registerForm.controls["birth_date"].touched &&
-                registerForm.controls["birth_date"].invalid|| submitCheck &&
-                registerForm.controls["birth_date"].invalid) {
-                <div class="form-text text-danger error">
-                  @if (registerForm.controls["birth_date"].errors?.["required"])
-                  {
-                  <small>Birth Of Date is required</small>
-                  }
-                </div>
-                }
-              </div>
+            <div class="form-floating mb-3">
+              <select
+                ngModel
+                name="gender"
+                formControlName="gender"
+                placeholder="Gender"
+                class="form-select form-control"
+                id="gender"
+                required
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <label for="loginemail">gender</label>
             </div>
+            @if (registerForm.controls["gender"].touched &&
+            registerForm.controls["gender"].invalid|| submitCheck &&
+            registerForm.controls["gender"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["gender"].errors?.["required"]) {
+              <small>Gender is required</small>
+              }
+            </div>
+            }
+            <div class="mb-3">
+              <input
+                type="date"
+                name="birth_date"
+                placeholder="Birth Of Date"
+                id="birth_date"
+                class="form-control"
+                required
+                formControlName="birth_date"
+              />
+            </div>
+            @if (registerForm.controls["birth_date"].touched &&
+            registerForm.controls["birth_date"].invalid|| submitCheck &&
+            registerForm.controls["birth_date"].invalid) {
+            <div class="form-text text-danger error">
+              @if (registerForm.controls["birth_date"].errors?.["required"]) {
+              <small>Birth Of Date is required</small>
+              }
+            </div>
+            }
             <!--Birth Of Date -->
 
             <!-- Location -->
-            <div class="form-floating mb-3">
+            <div class="mb-3">
               <input
                 type="text"
                 name="city"
@@ -208,7 +195,6 @@
                 formControlName="city"
                 required
               />
-              <label for="city">City</label>
             </div>
             @if (registerForm.controls["city"].touched &&
             registerForm.controls["city"].invalid|| submitCheck &&
@@ -220,7 +206,7 @@
             </div>
             }
 
-            <div class="form-floating mb-3">
+            <div class="mb-3">
               <input
                 type="text"
                 name="phone"
@@ -230,7 +216,6 @@
                 formControlName="phone"
                 required
               />
-              <label for="phone">Phone</label>
             </div>
             @if (registerForm.controls["phone"].touched &&
             registerForm.controls["phone"].invalid|| submitCheck &&
@@ -275,6 +260,7 @@
                 class="form-control"
                 formControlName="email"
                 required
+                (click)="changeDataValid()"
               />
               <label for="loginemail">Email</label>
             </div>
@@ -299,6 +285,7 @@
                 class="form-control"
                 formControlName="password"
                 required
+                (click)="changeDataValid()"
               />
               <label for="loginpassword">Password</label>
             </div>
@@ -312,24 +299,15 @@
               <small>Password must be at least 8 digits</small>
               }
             </div>
+            } @if(dataValid&&loginForm.valid ){
+            <div class="form-text text-danger error">
+              <small>Incorrect email or password. Please try again</small>
+            </div>
             }
-            <!-- @if(!passwordValid){
-            <div class="form-text text-danger error">
-              <small>Password isn't right</small>
-            </div>
-            } @if(!dataValid&&
-            loginForm.controls["email"].valid&&loginForm.controls["password"].valid){
-            <div class="form-text text-danger error">
-              <small>verify from your data</small>
-            </div>
-            } -->
 
             <!-- Sign In Button -->
             <div>
-              <button
-                class="signin py-2 bh-btn rounded-pill w-100"
-                type="submit"
-              >
+              <button class="signin py-2 bh-btn rounded-pill" type="submit">
                 Sign In
               </button>
             </div>

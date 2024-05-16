@@ -219,7 +219,10 @@ this.token=this.cookie.get("token");
   };
 
   passwordValid: boolean = true;
-  dataValid :boolean= false;
+  dataValid: boolean = false;
+  changeDataValid() {
+    this.dataValid=false
+  }
   onLogin() {
     // this.submitCheck = true;
    this.passwordValid = true;
@@ -227,7 +230,6 @@ this.token=this.cookie.get("token");
     const formDataJson: any = JSON.stringify(this.loginData);
     this.userservice.login(this.loginForm.value).subscribe(
       (response:any) => {
-        // this.submitCheck = false;
 
         this.loginResponse = response;
         console.log(this.loginForm.value);
