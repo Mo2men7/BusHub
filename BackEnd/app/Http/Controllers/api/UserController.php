@@ -392,9 +392,7 @@ class UserController extends Controller
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
             ->where('trips.date', '>=', date('Y-m-d'))
-            ->where('trips.time', '>', date("H:i:s"))
-
-
+            ->whereTime('trips.time', '>', date("H:i:s"))
             ->get();
 
         return response()->json($trips);
@@ -408,8 +406,6 @@ class UserController extends Controller
     {
 
         date_default_timezone_set('Africa/Cairo');
-
-
         $user_id = Auth::id();
         $today = Carbon::today();
         $user_name = Auth::user()->username;
@@ -435,9 +431,7 @@ class UserController extends Controller
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
             ->where('trips.date', '<=', date('Y-m-d'))
-            ->where('trips.time', '<', date("H:i:s"))
-
-
+            // ->whereTime('trips.time', '<', date("H:i:s"))
             ->get();
 
         return response()->json($trips);
