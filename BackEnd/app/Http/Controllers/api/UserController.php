@@ -362,11 +362,10 @@ class UserController extends Controller
             'username' => $user_name
         ]);
     }
-
-
     public function next()
     {
         // Carbon::setTimezone('Africa/Cairo');
+        date_default_timezone_set('Africa/Cairo');
 
         $user_id = Auth::id();
         $today = Carbon::today();
@@ -392,21 +391,23 @@ class UserController extends Controller
             )
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
-            ->where('trips.time', '>', $now)
-            ->whereDate('trips.date', '>=', $today)
+            ->where('trips.date', '>=', date('Y-m-d'))
+            ->where('trips.time', '>', date("H:i:s"))
 
 
             ->get();
 
-        return response()->json([
-            'trips' => $trips,
-            'username' => $user_name
-        ]);
+        return response()->json($trips);
+        // return response()->json([
+        //     'trips' => date("H:i:s"),
+        //     'username' => date('Y-m-d')
+        // ]);
     }
 
     public function previous()
     {
 
+        date_default_timezone_set('Africa/Cairo');
 
 
         $user_id = Auth::id();
@@ -433,8 +434,8 @@ class UserController extends Controller
             )
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
-            ->whereTime('trips.time', '<', $now)
-            ->whereDate('trips.date', '<=', $today)
+            ->where('trips.date', '<=', date('Y-m-d'))
+            ->where('trips.time', '<', date("H:i:s"))
 
 
             ->get();

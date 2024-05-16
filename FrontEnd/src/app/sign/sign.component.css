@@ -106,7 +106,7 @@ a {
   margin: 15px 0;
 }
 
-/* 
+/*
 button {
   border-radius: 20px;
   border: 1px solid  linear-gradient(162deg, rgba(33,37,41,1) 0%, rgba(66,70,73,1) 100%);
@@ -118,7 +118,7 @@ button {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
-} 
+}
 button.ghost {
   margin: 0;
   background-color: transparent;
@@ -362,4 +362,13 @@ input:focus{
   margin: 0 5px;
   height: 40px;
   width: 40px;
+}
+
+form-floating{
+
+  height: 10px;
+}
+
+form-control{
+height: 10px;
 }

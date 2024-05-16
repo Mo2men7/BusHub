@@ -219,15 +219,15 @@ this.token=this.cookie.get("token");
   };
 
   passwordValid: boolean = true;
-  dataValid :boolean= true;
+  dataValid :boolean= false;
   onLogin() {
-    this.submitCheck = true;
+    // this.submitCheck = true;
    this.passwordValid = true;
-    this.dataValid = true;
+    this.dataValid = false;
     const formDataJson: any = JSON.stringify(this.loginData);
     this.userservice.login(this.loginForm.value).subscribe(
       (response:any) => {
-        this.submitCheck = false;
+        // this.submitCheck = false;
 
         this.loginResponse = response;
         console.log(this.loginForm.value);
@@ -246,12 +246,12 @@ this.token=this.cookie.get("token");
       },
       error => {
         console.error('Error sending data:', error);
-
+        this.dataValid = true;
         if (error.status == 401) {
          this.passwordValid=false
         }
         if (error.status == 422) {
-          this.dataValid = false;
+          this.dataValid = true;
          }
       }
     );
