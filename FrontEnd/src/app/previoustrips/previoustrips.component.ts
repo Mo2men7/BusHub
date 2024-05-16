@@ -39,7 +39,7 @@ export class PrevioustripsComponent {
       res => {
         this.loading = false;
         this.previousTrips = res;
-        console.log(this.previousTrips);
+        // console.log(this.previousTrips);
 
       }, error => {
         this.loading = true;

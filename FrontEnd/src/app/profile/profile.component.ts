@@ -56,7 +56,7 @@ export class ProfileComponent {
     this.token = this.cookie.get("token");
 
     // this.userId = this.activatedRoute.snapshot.params["id"];
-    console.log(this.token)
+    // console.log(this.token)
 
     this.userservice.userProfile(this.token).subscribe(
       res => {

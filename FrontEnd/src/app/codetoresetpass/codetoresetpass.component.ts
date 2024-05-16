@@ -27,12 +27,12 @@ export class CodetoresetpassComponent {
      this.userservice.getEmail().subscribe(
       res=>this.codeToResetPass.email=res
     );
-    console.log(this.codeToResetPass);
+    // console.log(this.codeToResetPass);
     this.userservice.setOtp(this.codeToResetPass.otp);
     this.userservice.verifycode(this.codeToResetPass).subscribe(
       res => {
 
-        console.log('Data sent successfully:', res);
+        // console.log('Data sent successfully:', res);
 
         this.router.navigate(['resetpassword']);
 

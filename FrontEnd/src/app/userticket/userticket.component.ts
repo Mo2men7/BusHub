@@ -23,7 +23,7 @@ export class UserticketComponent {
   constructor(private cookie: CookieService, private userservice: UserService,private router:Router,private route: ActivatedRoute
   ) {
 
-    console.log(this.token)
+    // console.log(this.token)
 
   }
 
@@ -37,8 +37,8 @@ export class UserticketComponent {
     this.userservice.showTicket(trip_id,this.token).subscribe(
       res => {
 
-        console.log(this.token)
-        console.log(res);
+        // console.log(this.token)
+        // console.log(res);
         this.ticketDetails = res;
         this.trips = this.ticketDetails?.trips;
 

@@ -20,7 +20,7 @@ export class DestinationsPageComponent {
 
     this.destinationService.getDestinations().subscribe(
       (res)=>{this.destinations=res;
-        console.log(res);
+        // console.log(res);
       }
     )
   }

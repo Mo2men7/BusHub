@@ -92,15 +92,15 @@ export class SingleTripComponent {
   ngOnInit(): void {
     this.tripId = this.activatedRoute.snapshot.params['id']; //from url
     this.typeId = this.activatedRoute.snapshot.params['typeid']; //from url
-    console.log(this.tripId); //delete
-    console.log(this.typeId); //delete
+    // console.log(this.tripId); //delete
+    // console.log(this.typeId); //delete
     this.showtrips(); //run api tripsshow
     this.seatsshow(); //run api seats
     // user service start
     const token = this.cookie.get('token');
     this.UserService.userProfile(token).subscribe((res) => {
       this.userDetails = res;
-      console.log('user1 details', this.userDetails);
+      // console.log('user1 details', this.userDetails);
     });
     // user service end
   }
@@ -109,9 +109,9 @@ export class SingleTripComponent {
     this.TripsshowService.listtrips().subscribe({
       next: (trips: any) => {
         this.trips = trips;
-        console.log('showtrips fn all', trips); //delete
+        // console.log('showtrips fn all', trips); //delete
         this.details = this.trips.find((trip: any) => trip.id == this.tripId);
-        console.log('showtrips fn selected', this.details); //delete
+        // console.log('showtrips fn selected', this.details); //delete
       },
     });
   }
@@ -121,11 +121,11 @@ export class SingleTripComponent {
     this.SeatsService.listseats().subscribe({
       next: (allseats: any) => {
         this.allseats = allseats;
-        console.log('seatsshow fn all trip', allseats); //delete
+        // console.log('seatsshow fn all trip', allseats); //delete
         this.seats = this.allseats.filter(
           (seat: any) => seat.trip_id == this.tripId
         );
-        console.log('seatsshow fn this trip', this.seats); //delete
+        // console.log('seatsshow fn this trip', this.seats); //delete
       },
     });
   }
@@ -134,24 +134,24 @@ export class SingleTripComponent {
   reserve(seat: any) {
     const seatId = document.getElementById(seat.id);
 
-    console.log('reserve fn clicked', seat);
+    // console.log('reserve fn clicked', seat);
 
     if (this.selected.some((s) => s.id === seat.id)) {
-      console.log('Seat already selected');
+      // console.log('Seat already selected');
       this.selected = this.selected.filter((s) => s.id !== seat.id);
       seatId?.classList.toggle('seat-blue');
     } else {
       this.selected.push(seat);
       seatId?.classList.toggle('seat-blue');
     }
-    console.log('reserve fn array', this.selected); //delete
+    // console.log('reserve fn array', this.selected); //delete
   }
   calculateTotalPrice() {
     this.totalPrice = this.selected.reduce(
       (total) => total + this.details?.price,
       0
     );
-    console.log('calculateTotalPrice', this.totalPrice);
+    // console.log('calculateTotalPrice', this.totalPrice);
 
     //  session start
     sessionStorage.setItem('selected', JSON.stringify(this.selected));

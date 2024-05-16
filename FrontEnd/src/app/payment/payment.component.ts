@@ -69,8 +69,8 @@ export class PaymentComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.totalPrice);
-    console.log(this.request3.amount_cents);
+    // console.log(this.totalPrice);
+    // console.log(this.request3.amount_cents);
 
     this.paymentService.getToken(this.request1).subscribe(
       (res1: any) => {
@@ -85,13 +85,13 @@ export class PaymentComponent {
             this.UserService.userProfile(token).subscribe((res) => {
               this.userDetails = res;
               this.request3.email = this.userDetails.email; //email
-              console.log('user details', this.userDetails.email);
+              // console.log('user details', this.userDetails.email);
               this.paymentService.getAcceptance(this.request3).subscribe(
                 (res3: any) => {
                   this.iframe =
                     'https://accept.paymob.com/api/acceptance/iframes/841613?payment_token=' +
                     res3.token;
-                  console.log(this.iframe);
+                  // console.log(this.iframe);
                 },
                 (error) => console.log(error)
               );

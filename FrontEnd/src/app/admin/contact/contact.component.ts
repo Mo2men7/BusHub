@@ -15,6 +15,7 @@ export class ContactComponent {
   ngOnInit(){
     this.http.get('http://127.0.0.1:8000/api/contactus').subscribe((res:any)=>{
       this.ContactUsData=res;
+      // console.log(res)
     });
   }
   navigateToSingleContact(id:any){
@@ -23,7 +24,7 @@ export class ContactComponent {
   deleteItem(id: any) {
     this.http.delete(`http://127.0.0.1:8000/api/contactus/${id}`).subscribe(
       () => {
-        console.log('Item deleted successfully');
+        // console.log('Item deleted successfully');
         this.removeDeletedItemFromUI(id);
       },
       (error) => {
@@ -32,12 +33,12 @@ export class ContactComponent {
     );
   }
   removeDeletedItemFromUI(deletedItemId: any) {
-    this.ContactUsData = this.ContactUsData.filter((data: { id: any; }) => data.id !== deletedItemId);
+    this.ContactUsData = this.ContactUsData?.filter((data: { id: any; }) => data.id !== deletedItemId);
   }
   marAsRead(id:any){
     this.http.put(`http://127.0.0.1:8000/api/contactus/${id}/update`, {}).subscribe(
       () => {
-        console.log('Item has been read');
+        // console.log('Item has been read');
       },
       (error) => {
         console.error('Error deleting item:', error);

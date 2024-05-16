@@ -46,7 +46,7 @@ export class AdminComponent {
   ngOnInit() {
     this.destinationService.listDestinations(this.token).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.loading = false;
       },
       (error) => {
@@ -57,7 +57,7 @@ export class AdminComponent {
     this.http
       .get('http://127.0.0.1:8000/api/adminNotifications')
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.notifications = res;
       });
       if (this.token) {
@@ -87,7 +87,7 @@ export class AdminComponent {
         .put(`http://127.0.0.1:8000/api/notifications/mark-all-read/${this.userData.id}`, {})
         .subscribe(
           () => {
-            console.log('All notifications marked as read');
+            // console.log('All notifications marked as read');
           },
           (error) => {
             console.error('Error marking notifications as read:', error);
@@ -97,7 +97,7 @@ export class AdminComponent {
     this.http
       .get('http://127.0.0.1:8000/api/adminNotifications')
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.notifications = res;
       });
   }
@@ -113,7 +113,7 @@ export class AdminComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.userservice.logout(this.token).subscribe(res => {
-          console.log(res);
+          // console.log(res);
           this.cookie.delete("token");
           this.router.navigate(["/"])
         })

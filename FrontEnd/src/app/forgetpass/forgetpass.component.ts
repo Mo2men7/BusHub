@@ -25,7 +25,7 @@ export class ForgetpassComponent {
     this.userservice.forgetPassword(this.emailToResetPass).subscribe(
       response => {
 
-        console.log('Data sent successfully:', response);
+        // console.log('Data sent successfully:', response);
 
         this.userservice.setEmail(this.emailToResetPass.email);
         this.router.navigate(['codetoresetpass']);

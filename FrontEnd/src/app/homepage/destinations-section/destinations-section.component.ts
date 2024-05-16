@@ -14,7 +14,7 @@ export class DestinationsSectionComponent {
   constructor (   private cookie:CookieService, private destinationService:DestinationService){}
   ngOnInit() {
     let token = this.cookie.get("token");
-    console.log(token);
+    // console.log(token);
 
     this.destinationService.getDestinations().subscribe((res:any)=>this.destinations=res);
   }

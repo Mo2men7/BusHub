@@ -62,13 +62,13 @@ export class TripsshowComponent {
     this.formData.to = this.activatedRoute.snapshot.params['to'];
     this.formData.travelDate =
       this.activatedRoute.snapshot.params['travelDate'];
-    console.log(this.formData.from, this.formData.to, this.formData.travelDate); //delete
+    // console.log(this.formData.from, this.formData.to, this.formData.travelDate); //delete
   }
   showtrips() {
     this.TripsshowService.listtrips().subscribe({
       next: (trips: any) => {
         this.trips = trips;
-        console.log(trips); //delete
+        // console.log(trips); //delete
         this.filterTrips();
       },
     });
@@ -90,7 +90,7 @@ export class TripsshowComponent {
     this.DestinationService.getDestinations().subscribe({
       next: (destination: any) => {
         this.destination = destination;
-        console.log(destination); //delete
+        // console.log(destination); //delete
 
         // Filter destinations to find the one with the ID matching formData.from
         this.urlfrom = this.destination.find(
@@ -99,8 +99,8 @@ export class TripsshowComponent {
         this.urlto = this.destination.find(
           (dest: any) => dest.id == this.formData.to
         );
-        console.log('from url', this.urlfrom); // For debugging
-        console.log('to url', this.urlto); // For debugging
+        // console.log('from url', this.urlfrom); // For debugging
+        // console.log('to url', this.urlto); // For debugging
       },
     });
   }
@@ -134,7 +134,7 @@ export class TripsshowComponent {
         trip.date == this.formData.travelDate &&
         (this.formData.travelDate != currentDate || trip.time >= currentTime)
     );
-    console.log(this.trips); //delete
+    // console.log(this.trips); //delete
   }
 
   booknow(trip: any) {
@@ -146,7 +146,7 @@ export class TripsshowComponent {
       const minutes2 = timeComponents2[1];
       const seconds2 = timeComponents2[2];
       const trip_time = hours2 * 3600 + minutes2 * 60 + seconds2;
-      console.log('trip_time', trip_time);
+      // console.log('trip_time', trip_time);
       //convert trip time to seconds end
       //convert current time to seconds start
       const date = new Date();
@@ -159,14 +159,14 @@ export class TripsshowComponent {
       const minutes1 = timeComponents[1];
       const seconds1 = timeComponents[2];
       const current_time = hours1 * 3600 + minutes1 * 60 + seconds1;
-      console.log('current_time', current_time);
+      // console.log('current_time', current_time);
       //convert current time to seconds end
       //current date start
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
       const day = String(date.getDate()).padStart(2, '0');
       const formattedDate = `${year}-${month}-${day}`;
-      console.log('date', formattedDate);
+      // console.log('date', formattedDate);
       //current date end
 
       //

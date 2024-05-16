@@ -26,7 +26,7 @@ export class NavbarComponent {
     if (this.token) {
       this.userservice.userProfile(this.token).subscribe(
         res => {
-          console.log("userData: ", res);
+          // console.log("userData: ", res);
           this.userData = res;
         }
       )
@@ -35,7 +35,7 @@ export class NavbarComponent {
     this.http
       .get(`http://127.0.0.1:8000/api/userNotifications`, {headers:httpOptions})
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.notifications = res;
       });
   }
@@ -55,7 +55,7 @@ export class NavbarComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.userservice.logout(this.token).subscribe(res => {
-          console.log(res);
+          // console.log(res);
           this.cookie.delete("token");
           // this.router.navigate(["/"])
           window.location.reload();
@@ -71,7 +71,7 @@ export class NavbarComponent {
         .put(`http://127.0.0.1:8000/api/notifications/mark-all-read/${id}`, {})
         .subscribe(
           () => {
-            console.log('All notifications marked as read');
+            // console.log('All notifications marked as read');
           },
           (error) => {
             console.error('Error marking notifications as read:', error);
@@ -81,7 +81,7 @@ export class NavbarComponent {
     this.http
       .get('http://127.0.0.1:8000/api/userNotifications')
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.notifications = res;
       });
   }

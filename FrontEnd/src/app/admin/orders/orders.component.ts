@@ -18,17 +18,17 @@ export class OrdersComponent {
   PBRequests: any;
   ngOnInit() {
     this.PrivateBusService.getPrivateBusRequests().subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.PBRequests = res;
     });
   }
 
   onRequestAccept(id: any) {
-    console.log(id);
+    // console.log(id);
     this.http
       .put(`http://127.0.0.1:8000/api/private-bus-requests/${id}/accept`, {})
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         // const index = this.PBRequests.findIndex(
         //   (request: any) => request.id === id
         // );
@@ -43,7 +43,7 @@ export class OrdersComponent {
     this.http
       .put(`http://127.0.0.1:8000/api/private-bus-requests/${id}/decline`, {})
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.PBRequests[id - 1].status = 'Rejected';
       });
   }

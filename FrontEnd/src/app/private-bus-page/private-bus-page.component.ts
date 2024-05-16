@@ -34,8 +34,8 @@ export class PrivateBusPageComponent {
       .subscribe((res: any) => (this.destinations = res));
     this.TypeService.getBusTypes().subscribe((res) => (this.busTypes = res));
      //locked previous days
-     console.log('2dat',this.today);
-     console.log('ccc',this.newDate);
+    //  console.log('2dat',this.today);
+    //  console.log('ccc',this.newDate);
     // document.getElementsByName('departure_date')[0].setAttribute('min', this.today);
     // document.getElementsByName('departure_date')[0].setAttribute('max', this.newDate);
 
@@ -66,7 +66,7 @@ export class PrivateBusPageComponent {
         })
         .subscribe(
           (res) => {
-            console.log('Done');
+            // console.log('Done');
             this.formData.name = '';
             this.formData.phone = '';
             this.formData.from = '';

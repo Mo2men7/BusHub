@@ -116,10 +116,10 @@ export class EdituserdetailsComponent {
 
 
     const formDataJson: any = JSON.stringify(formData);
-    console.log(this.userDetails);
+    // console.log(this.userDetails);
     this.userservice.editUserDetails(formData,this.token).subscribe(
       (res?) =>{
-        console.log(res );
+        // console.log(res );
 
       this.incomeData = res;
     // const userid = this.incomeData["user"].id;

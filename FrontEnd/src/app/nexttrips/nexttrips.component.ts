@@ -38,7 +38,7 @@ export class NexttripsComponent {
     this.nexttrips.userNextTrips(this.token).subscribe(
       res => {
         this.nextTrips = res;
-        console.log(this.nextTrips);
+        // console.log(this.nextTrips);
         this.loading=false
         // this.isarray = this.isArrayEmpty(this.nextTrips);
         // console.log(this.isarray)

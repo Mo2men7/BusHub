@@ -33,8 +33,8 @@ export class DestinationService {
   editDestination(updateDes:any,id:any)
   {
     
-    console.log("serve")
-    console.log(updateDes.get("name"))
+    // console.log("serve")
+    // console.log(updateDes.get("name"))
     return this.http.post(this.url+'/api/admin/destination-update/'+id,updateDes,this.httpOptions);
   }
 

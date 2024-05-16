@@ -27,7 +27,7 @@ export class ResetnewpasswordComponent {
     this.userservice.getEmail().subscribe(
      res=>this.dataToResetPass.email=res
    );
-    console.log(this.dataToResetPass);
+    // console.log(this.dataToResetPass);
 
     this.userservice.getOtp().subscribe(
       res=>this.dataToResetPass.otp=res
@@ -35,7 +35,7 @@ export class ResetnewpasswordComponent {
    this.userservice.resetPassword(this.dataToResetPass).subscribe(
      res => {
 
-       console.log('Data sent successfully:', res);
+      //  console.log('Data sent successfully:', res);
 
        this.router.navigate(['/signin']);
 

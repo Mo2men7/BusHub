@@ -89,7 +89,7 @@ this.token=this.cookie.get("token");
       response => {
         this.loginResponse = response;
 
-        console.log('Data sent successfully:', response);
+        // console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
         this.router.navigate(['/']);
@@ -165,7 +165,7 @@ this.token=this.cookie.get("token");
     this.emailexist=false
   }
   onSubmit() {
-    console.log(this.registerForm.value)
+    // console.log(this.registerForm.value)
     // console.log(this.formData)
     this.submitCheck = true;
 
@@ -180,7 +180,7 @@ this.token=this.cookie.get("token");
         this.loginResponse = response;
         this.submitCheck =false;
 
-        console.log('Data sent successfully:', response);
+        // console.log('Data sent successfully:', response);
 
         this.cookie.set("token", this.loginResponse["token"]);
         this.router.navigate(['/']);
@@ -232,9 +232,9 @@ this.token=this.cookie.get("token");
       (response:any) => {
 
         this.loginResponse = response;
-        console.log(this.loginForm.value);
+        // console.log(this.loginForm.value);
         this.cookie.set("token", this.loginResponse["token"]);
-        console.log(response.user.role)
+        // console.log(response.user.role)
         if (response.user.role=="user")
         this.router.navigate(['/']);
       else if (response.user.role=="admin")

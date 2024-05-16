@@ -64,30 +64,30 @@ export class TicketComponent {
       this.lastResult.source_data_type = params.get('source_data_type');
       this.lastResult.source_data_sub_type = params.get('source_data_sub_type');
     });
-    console.log(this.lastResult);
+    // console.log(this.lastResult);
     //paymob start
     // user service start
     const token = this.cookie.get('token');
     this.UserService.userProfile(token).subscribe((res) => {
       this.userDetails = res;
       this.userId = this.userDetails?.id;
-      console.log('user details', this.userDetails);
-      console.log('user id2', this.userId); //delete
+      // console.log('user details', this.userDetails);
+      // console.log('user id2', this.userId); //delete
       this.updateSeat(this.userId, this.selected);//update seat function
     });
     // user service end
     //session start
     const storedDataString1 = sessionStorage.getItem('selected');
     if (storedDataString1 !== null) {
-      console.log('selected json', storedDataString1); //delete
+      // console.l/og('selected json', storedDataString1); //delete
       this.selected = JSON.parse(storedDataString1);
-      console.log('selected parse', this.selected); //delete
+      // console.log('selected parse', this.selected); //delete
     }
     const storedDataString2 = sessionStorage.getItem('tripDeatils');
-    console.log('tripdetails json', storedDataString2); //delete
+    // console.log('tripdetails json', storedDataString2); //delete
     if (storedDataString2 !== null) {
       this.tripDeatils = JSON.parse(storedDataString2);
-      console.log('tripdetails parse', this.tripDeatils); //delete
+      // console.log('tripdetails parse', this.tripDeatils); //delete
     }
     //session end
     // console.log('user id1', this.selected.id);
@@ -109,15 +109,15 @@ Swal.fire({
     this.SeatsService.listseats().subscribe({
       next: (allseats: any) => {
         this.allseats = allseats;
-        console.log('seatsshow fn all trip', allseats); //delete
+        // console.log('seatsshow fn all trip', allseats); //delete
       },
     });
   }
   //run api tripsshow end
 
   updateSeat(userId: any, selectedSeats: any[]): void {
-    console.log('uu', userId);
-    console.log('uu', selectedSeats);
+    // console.log('uu', userId);
+    // console.log('uu', selectedSeats);
     this.SeatsService.update(userId, selectedSeats).subscribe({
       next: (response) => {
         console.log('Update successful:', response);

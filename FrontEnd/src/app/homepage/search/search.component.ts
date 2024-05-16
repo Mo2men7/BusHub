@@ -55,8 +55,8 @@ export class SearchComponent {
       .getDestinations()
       .subscribe((res: any) => (this.destinations = res));
     //locked previous days
-    console.log(this.today); //delete
-    console.log(this.newDate);//delete
+    // console.log(this.today); //delete
+    // console.log(this.newDate);//delete
 
     document.getElementsByName('travelDate')[0].setAttribute('min', this.today);
     document.getElementsByName('travelDate')[0].setAttribute('max', this.newDate);

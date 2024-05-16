@@ -26,6 +26,6 @@ export class SidebarComponent {
       {
         showSmall[i].classList.toggle('hideIcons');
       }
-    console.log();
+    // console.log();
   }
 }

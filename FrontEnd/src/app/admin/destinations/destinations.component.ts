@@ -55,12 +55,12 @@ export class DestinationsComponent {
       (res: any) => (this.destinations = res),
       (error) => console.log(error)
     );
-    console.log(this.newDistForm.controls['name'].errors);
+    // console.log(this.newDistForm.controls['name'].errors);
     this.submit=0;
   }
   onFileSelectedFlag(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
-    console.log('flag' + file);
+    // console.log('flag' + file);
     this.newDistForm.patchValue({
       flag: file,
     });
@@ -68,7 +68,7 @@ export class DestinationsComponent {
   }
   onFileSelectedPic(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
-    console.log(file);
+    // console.log(file);
 
     this.newDistForm.patchValue({
       pic: file,
@@ -77,7 +77,7 @@ export class DestinationsComponent {
   }
   onFileSelectedFlagEdit(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
-    console.log('flag' + file);
+    // console.log('flag' + file);
     this.editDistForm.patchValue({
       flag: file,
     });
@@ -85,7 +85,7 @@ export class DestinationsComponent {
   }
   onFileSelectedPicEdit(event: Event) {
     const file = (event.target as HTMLInputElement)?.files?.[0];
-    console.log(file);
+    // console.log(file);
 
     this.editDistForm.patchValue({
       pic: file,
@@ -106,8 +106,8 @@ export class DestinationsComponent {
     formData.append('flag', this.newDistForm.controls['flag'].value);
     formData.append('map', this.newDistForm.controls['map'].value);
     formData.append('name', this.newDistForm.controls['name'].value);
-    console.log(this.newDistForm.controls['name'].value);
-    console.log(this.newDistForm);
+    // console.log(this.newDistForm.controls['name'].value);
+    // console.log(this.newDistForm);
     this.destinationService.addDestinations(formData).subscribe(
       (res) => this.ngOnInit(),
       (error) => console.log(error)
@@ -118,7 +118,7 @@ export class DestinationsComponent {
   showMap(id: any) {
     const map = this.destinations[id].map;
     const icon = document.getElementById('lord');
-    console.log(icon);
+    // console.log(icon);
 
     icon!.style.display = 'none';
     const getFrame =
@@ -136,8 +136,8 @@ export class DestinationsComponent {
     }, 500);
 
     // getFrame.classList.add('fade-in');
-    console.log(id);
-    console.log(this.destinations);
+    // console.log(id);
+    // console.log(this.destinations);
   }
   setInitValue()
   {
@@ -150,7 +150,7 @@ export class DestinationsComponent {
         this.deleteSuc = 1;
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         this.deleteSuc = -1;
       }
     );
@@ -189,7 +189,7 @@ export class DestinationsComponent {
     this.editSuc = 0;
     this.destinationService.editDestination(formData, id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       (error) => {

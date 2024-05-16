@@ -19,7 +19,7 @@ export class SeatsService {
   update(userId: any,selectedSeats: any[]): Observable<any> {
     const updateRequests = selectedSeats.map(seat => {
       const id = seat.id; 
-      console.log('service id',id);
+      // console.log('service id',id);
       
       return this.http.put(`${this.url}/api/seat/${id}`, { 
         reserved: userId ,

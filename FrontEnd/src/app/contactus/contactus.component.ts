@@ -48,7 +48,7 @@ export class ContactusComponent {
     if (this.token) {
     this.userservice.contactus(this.contactForm, this.token).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.submitCheck = false;
 
         this.contactForm = {
@@ -58,7 +58,7 @@ export class ContactusComponent {
           message: "",
 
         }
-        console.log(contactusForm);
+        // console.log(contactusForm);
 
         Object.keys(contactusForm.controls).forEach((controlName) => {
           // Mark each control as untouched

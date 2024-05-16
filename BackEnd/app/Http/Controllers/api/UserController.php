@@ -393,7 +393,7 @@ class UserController extends Controller
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
             ->where('trips.date', '>=', date('Y-m-d'))
-            ->where('trips.time', '>', date("H:i:s"))
+            // ->where('trips.time', '>', date("H:i:s"))
 
 
             ->get();
@@ -433,8 +433,8 @@ class UserController extends Controller
             )
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
-            ->where('trips.date', '<=', date('Y-m-d'))
-            ->where('trips.time', '<', date("H:i:s"))
+            ->where('trips.date', '<', date('Y-m-d'))
+            // ->where('trips.time', '<', date("H:i:s"))
             ->get();
 
         return response()->json($trips);

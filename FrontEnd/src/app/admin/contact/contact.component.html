@@ -1,5 +1,5 @@
 <div class="container my-2 rounded p-0 mt-4">
-  @if(ContactUsData.length>0){
+  @if(ContactUsData?.length>0){
   <div class="colorInfo container d-flex gap-3 mb-3">
     <div class="d-flex align-items-center gap-2">
       <span class="colorSquare" style="background: var(--dark);"></span>
@@ -14,20 +14,20 @@
   <div
     class="item"
     [style.background-color]="
-      data.status > 0 ? 'var(--primary)' : 'var(--dark)'
+      data?.status > 0 ? 'var(--primary)' : 'var(--dark)'
     "
-    (click)="marAsRead(data.id)"
+    (click)="marAsRead(data?.id)"
   >
-    <div (click)="navigateToSingleContact(data.id)" style="cursor: pointer">
-      {{ data.id }}. {{ data.username }} : {{data.title}}
+    <div (click)="navigateToSingleContact(data?.id)" style="cursor: pointer">
+      {{ data?.id }}. {{ data?.username }} : {{data?.title}}
     </div>
     <div class="text-light text-opacity-75 fw-light d-flex gap-3">
-      <small>{{data.created_at.substring(0, 10)}}</small>
+      <small>{{data?.created_at.substring(0, 10)}}</small>
       <span
         class="text-light text-opacity-75 fw-light"
         style="cursor: pointer"
-        (click)="deleteItem(data.id)"
-        (click)="removeDeletedItemFromUI(data.id)"
+        (click)="deleteItem(data?.id)"
+        (click)="removeDeletedItemFromUI(data?.id)"
       >
         <i class="fa-solid fa-trash"></i>
       </span>

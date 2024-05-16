@@ -80,7 +80,7 @@ submit:any=0;
     });
     this.tripService.listTrips().subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.trips = res;
       },
       (error) => console.log(error)
@@ -88,12 +88,12 @@ submit:any=0;
     this.busService.listBusesForTrips().subscribe(
       (res: any) => {
         this.buses = res;
-        console.log(res);
+        // console.log(res);
         this.countBuses = res.length;
       },
       (error) => console.log(error)
     );
-    console.log(this.today);
+    // console.log(this.today);
   }
 
   addTrip(from: any) {
@@ -112,14 +112,14 @@ submit:any=0;
     formData.append('price', this.addTripFrom.controls['price'].value);
     formData.append('date', this.addTripFrom.controls['date'].value);
     formData.append('time', this.addTripFrom.controls['time'].value);
-    console.log(this.addTripFrom.controls['time'].value);
-    console.log(this.addTripFrom);
-    console.log(formData);
+    // console.log(this.addTripFrom.controls['time'].value);
+    // console.log(this.addTripFrom);
+    // console.log(formData);
     this.tripService.addTrips(formData).subscribe(
       (res) => {
         this.onSuccessAdd = 1;
         this.ngOnInit();
-        console.log(res);
+        // console.log(res);
         // suc=1;
       },
       (error) => {
@@ -138,7 +138,7 @@ submit:any=0;
   }
   deleteTrip() {
     this.deleteSuc = 0;
-    console.log(this.idToDel);
+    // console.log(this.idToDel);
     this.tripService.deleteTrip(this.idToDel).subscribe(
       (res: any) => {
         this.deleteSuc = 1;
@@ -164,7 +164,7 @@ submit:any=0;
       bus_id: new FormControl(details.bus_id, [Validators.required]),
     });
     this.startEdit = details.id;
-    console.log(this.editTripFrom.controls['bus_id'].value);
+    // console.log(this.editTripFrom.controls['bus_id'].value);
   }
   editTrip(id:any) {
     let suc: any = 0;
@@ -176,16 +176,16 @@ submit:any=0;
     formData.append('from', this.editTripFrom.controls['from'].value);
     formData.append('date', this.editTripFrom.controls['date'].value);
     formData.append('time', this.editTripFrom.controls['time'].value);
-    console.log(this.editTripFrom.controls['time'].value);
-    console.log(this.editTripFrom);
-    console.log(id);
+    // console.log(this.editTripFrom.controls['time'].value);
+    // console.log(this.editTripFrom);
+    // console.log(id);
     this.tripService.editTrip(formData,id).subscribe(
       (res) => {
         this.startEdit =0;
         this.onSuccessAdd = 1;
         this.ngOnInit();
         
-        console.log(res);
+        // console.log(res);
         // suc=1;
       },
       (error) => {

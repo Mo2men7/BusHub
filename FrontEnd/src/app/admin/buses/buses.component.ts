@@ -30,7 +30,7 @@ export class BusesComponent {
     this.busService.listBuses().subscribe(
       (res: any) => {
         this.buses = res;
-        console.log(res);
+        // console.log(res);
         this.countBuses = res.length;
       },
       (error) => console.log(error)
@@ -57,10 +57,10 @@ export class BusesComponent {
     const formData = new FormData();
     formData.append('chairs', this.newBusForm.controls['chairs'].value);
     formData.append('type_id', this.chosenType);
-    console.log(this.newBusForm.controls['chairs'].value)
+    // console.log(this.newBusForm.controls['chairs'].value)
     this.busService.addBus(formData).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.ngOnInit();
       },
       (error) => console.log(error)

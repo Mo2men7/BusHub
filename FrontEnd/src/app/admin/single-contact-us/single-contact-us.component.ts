@@ -21,13 +21,13 @@ export class SingleContactUsComponent {
   ngOnInit(): void {
     this.activateRoute.params.subscribe((params) => {
       const id = params['id'];
-      console.log(id);
+      // console.log(id);
       this.http
         .get(`http://127.0.0.1:8000/api/contactus/${id}`)
          .subscribe((res) => {
           this.contactUsData = res;
-          console.log(res);
-          console.log(this.contactUsData);
+          // console.log(res);
+          // console.log(this.contactUsData);
         });
     });
   }

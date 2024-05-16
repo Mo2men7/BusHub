@@ -23,7 +23,7 @@ export class ProfilePrivateBusComponent {
   userData: any;
   ngOnInit() {
     this.PrivateBusService.getPrivateBusRequests().subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.PBRequests = res;
     });
     this.userservice.userProfile(this.token).subscribe(
