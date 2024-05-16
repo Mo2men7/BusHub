@@ -330,6 +330,7 @@ class UserController extends Controller
 
     public function tripsjoin($trip_id)
     {
+
         $user_id = Auth::id();
         $today = Carbon::today();
         $user_name = Auth::user()->username;
@@ -392,7 +393,9 @@ class UserController extends Controller
             ->orderBy('time', 'asc')
             ->where('seats.reserved', $user_id)
             ->where('trips.date', '>=', date('Y-m-d'))
-            ->whereTime('trips.time', '>', date("H:i:s"))
+            ->where('trips.time', '>', date("H:i:s"))
+
+
             ->get();
 
         return response()->json($trips);
