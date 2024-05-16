@@ -34,7 +34,7 @@ class TripAdminController extends Controller
             // dd($to_name);
             $allTrips[$key]->from_name = $from_name[0]->name;
             $allTrips[$key]->to_name = $to_name[0]->name;
-            $details = DB::table('trips')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.id as bus_id', 'buses.chairs', 'buses.type_id', 'types.type', 'types.options'])
+            $details = DB::table('trips')->join('buses', 'trips.bus_id', '=', 'buses.id')->join('types', 'buses.type_id', '=', 'types.id')->select(['trips.*', 'buses.id as bus_id', 'buses.chairs', 'buses.type_id', 'types.type', 'types.options']) 
                 ->where('to', '=', $trip->to)
                 ->where('date', '>=', date('Y-m-d'))
                 ->where('from', '=', $trip->from)->orderBy('date', 'asc')->get()->toArray();
