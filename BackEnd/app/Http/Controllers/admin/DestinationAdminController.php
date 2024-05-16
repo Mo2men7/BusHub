@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\admin\Destination;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -102,5 +103,29 @@ class DestinationAdminController extends Controller
         } else {
             return response()->json(["message" => "record not found"], 404);
         }
+    }
+    public function countUsers()
+    {
+        $users=DB::table("users")->select()->where('role','user')->get();
+        return count($users->toArray()); 
+
+    }
+    public function countPrivate()
+    {
+        $PB=DB::table("private_bus_froms")->select()->get();
+        return count($PB->toArray()); 
+
+    }
+   
+    public function countTrips()
+    {
+        $trips=DB::table("trips")->select()->get();
+        return count($trips->toArray()); 
+
+    }
+    public function countEarning()
+    {
+        $Earning=DB::table("seats")->join("trips","trips.id","=","seats.trip_id")->select('price')->where('reserved',"<>","0")->sum("price");
+        return $Earning;
     }
 }

@@ -206,3 +206,11 @@ use App\Http\Controllers\NotificationController;
 Route::get('/adminNotifications', [NotificationController::class, 'adminNotifications']);
 Route::get('/userNotifications', [NotificationController::class, 'userNotifications'])->middleware("auth:sanctum");
 Route::put('/notifications/mark-all-read/{id}', [NotificationController::class, 'markAllAsRead']);
+
+
+
+
+Route::get('/admin/countusers', [DestinationAdminController::class, 'countUsers']);
+Route::get('/admin/countprivatebus', [DestinationAdminController::class, 'countPrivate']);
+Route::get('/admin/counttrips', [DestinationAdminController::class, 'countTrips']);
+Route::get('/admin/countearning', [DestinationAdminController::class, 'countEarning']);

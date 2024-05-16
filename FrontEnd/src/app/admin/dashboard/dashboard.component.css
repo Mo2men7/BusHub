@@ -6,8 +6,8 @@
 }
 .card:hover {
     
-    transform: scale(1.2);
-    animation-name:marg;
+    transform: scale(1.1);
+    /* animation-name:marg; */
     animation-duration: 0.5s;
 
 }

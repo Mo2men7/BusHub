@@ -37,4 +37,21 @@ export class DestinationService {
     console.log(updateDes.get("name"))
     return this.http.post(this.url+'/api/admin/destination-update/'+id,updateDes,this.httpOptions);
   }
+
+  countUsers()
+  {
+    return this.http.get(this.url+'/api/admin/countusers',this.httpOptions);
+  }
+  countPrivatebus()
+  {
+    return this.http.get(this.url+'/api/admin/countprivatebus',this.httpOptions);
+  }
+  countTrips()
+  {
+    return this.http.get(this.url+'/api/admin/counttrips',this.httpOptions);
+  }
+  countEarning()
+  {
+    return this.http.get(this.url+'/api/admin/countearning',this.httpOptions);
+  }
 }
