@@ -7,52 +7,54 @@
               "trip_price": 90,
               "bus_type": "vip"
              -->
-
-@if(loading) {
-<div
-  id="spinnerInAdmin"
-  class="d-flex justify-content-center align-content-center"
->
-  <div class="spinner-border text-light" style="margin-top: 20%" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div style="min-height: 30vh" class="py-5">
+  @if(loading) {
+  <div
+    id="spinnerInAdmin"
+    class="d-flex justify-content-center align-content-center"
+  >
+    <div
+      class="spinner-border text-light"
+      style="margin-top: 20%"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
-</div>
-}@else { @if ((previousTrips?.length)!=0) {
+  }@else { @if ((previousTrips?.length)!=0) {
 
-<table class="table">
-  <thead>
-    <tr>
-      <!-- <th scope="col">Name</th> -->
-      <th scope="col">Travel From</th>
-      <th scope="col">Arriving To</th>
-      <th scope="col">Trip Date</th>
-      <th scope="col">Trip Time</th>
-      <th scope="col">Bus Type</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (trip of previousTrips ; track $index) {
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th scope="col">Name</th> -->
+        <th scope="col">Travel From</th>
+        <th scope="col">Arriving To</th>
+        <th scope="col">Trip Date</th>
+        <th scope="col">Trip Time</th>
+        <th scope="col">Bus Type</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (trip of previousTrips ; track $index) {
 
-    <tr class="table-primary">
-      <td>{{ trip?.from_location }}</td>
-      <td>{{ trip?.to_location }}</td>
-      <td>{{ trip?.date }}</td>
-      <td>{{ trip?.time }}</td>
-      <!-- <th scope="row">{{ trip?.username }}</th> -->
-      <td>{{ trip?.type }}</td>
-      <td>{{ trip?.price }}</td>
-    </tr>
+      <tr class="table-primary">
+        <td>{{ trip?.from_location }}</td>
+        <td>{{ trip?.to_location }}</td>
+        <td>{{ trip?.date }}</td>
+        <td>{{ trip?.time }}</td>
+        <!-- <th scope="row">{{ trip?.username }}</th> -->
+        <td>{{ trip?.type }}</td>
+        <td>{{ trip?.price }}</td>
+      </tr>
 
-    }
-  </tbody>
-</table>
-} @else{
-  <div class="mt-4 text-light">
+      }
+    </tbody>
+  </table>
+  } @else{
+  <div class="text-light">
     <h3>At the main time, You have no Previous Trips</h3>
-    <p>
-      As soon as you have a previous trip, It will appear
-      here.
-    </p>
+    <p>As soon as you have a previous trip, It will appear here.</p>
   </div>
-} }
+  } }
+</div>

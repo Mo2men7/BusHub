@@ -1,4 +1,4 @@
-<div class="m-auto overflow-auto my-4 text-light" style="height: 95vh; width: 90%">
+<div style="min-height: 30vh;" class="py-5 text-light">
   @if (PBRequests.length>0){
     <table class="table">
       <thead>
@@ -29,21 +29,21 @@
           <td class="">
             @if(PBR.status=="Pending"){
               <div
-              class="px-2 py-1 rounded-pill bg-secondary-subtle text-dark-emphasis"
+              class="px-2 py-1 rounded-pill bg-secondary-subtle text-dark-emphasis text-center"
               style="font-size: 13px"
             >
             Pending
             </div>
             } @else if (PBR.status=="Accepted") {
             <div
-              class="px-2 py-1 rounded-pill bg-success-subtle text-success-emphasis"
+              class="px-2 py-1 rounded-pill bg-success-subtle text-success-emphasis text-center"
               style="font-size: 13px"
             >
               Accepted
             </div>
             } @else if (PBR.status=="Rejected") {
             <div
-              class="px-2 py-1 rounded-pill bg-danger-subtle text-danger-emphasis"
+              class="px-2 py-1 rounded-pill bg-danger-subtle text-danger-emphasis text-center"
               style="font-size: 13px"
             >
               Declined
@@ -57,7 +57,7 @@
     </table>
   }
   @else {
-    <div class="mt-4">
+    <div>
       <h3>At the main time, You have no Private Bus requests</h3>
       <p>
         As soon as you fill a "PrivateBus Service" form and submit it, It will appear

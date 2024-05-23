@@ -78,7 +78,7 @@
             </li>
             @if(notifications.length){ @for (notification of notifications;
             track $index) {
-            <li style="cursor: pointer" routerLink="/admin/admin-orders">
+            <li style="cursor: pointer" [routerLink]="notification.type === 'App\Notifications\PBRequest' ? '/admin/admin-orders' : '/admin/admin-contact'">
               <div class="dropdown-item">
                 {{ getNotificationTitle(notification?.data) }}
                 {{ getNotificationUserName(notification?.data) }}

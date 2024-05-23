@@ -34,7 +34,7 @@ export const routes: Routes = [
   {
     path: 'signin',
     component: SignComponent,
-    title:"signin"
+    title:"Signin & Signup"
   },
   {
     path: "codetoresetpass",
@@ -44,12 +44,12 @@ export const routes: Routes = [
   {
     path: "resetpassword",
     component:ResetnewpasswordComponent,
-    title:"CodeToresetpass"
+    title:"Reset Password"
   },
   {
     path: "forgetpass",
     component: ForgetpassComponent,
-    title:"ForgetPassword"
+    title:"Forget Password"
   }
   ,
   {
@@ -88,34 +88,42 @@ export const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+        title : 'Admin Dashboard'
       },
       {
         path: 'admin-destinations',
         component: DestinationsComponent,
+        title : 'Admin Dashboard - Destinations'
       },
       {
         path: 'admin-buses',
         component: BusesComponent,
+        title : 'Admin Dashboard - Buses'
       },
       {
         path: 'admin-trips',
         component: TripsComponent,
+        title : 'Admin Dashboard - Trips'
       },
       {
         path: 'admin-trips',
         component: TripsComponent,
+        title : 'Admin Dashboard - Trips'
       },
       {
         path: 'admin-orders',
         component: OrdersComponent,
+        title : 'Admin Dashboard - Orders'
       },
       {
         path: 'admin-contact',
         component: ContactComponent,
+        title : 'Admin Dashboard - Contact Us'
       },
       {
         path: 'single-contact-us/:id',
         component: SingleContactUsComponent,
+        title : 'Admin Dashboard - Contact Us'
       },
     ],
   },
@@ -127,28 +135,28 @@ export const routes: Routes = [
   {
     path: 'privatebus',
     component: PrivateBusPageComponent,
-    title: 'PrivateBus',
+    title: 'Private Bus Service',
   },
   {
     path: 'trips',
     component: TripsshowComponent,
-    title: 'trips',
+    title: 'Trips',
   },
   {
     path: 'trips/:from/:to/:travelDate',
     component: TripsshowComponent,
-    title: 'trips',
+    title: 'Trips',
   },
   {
     path: 'book-trip/:id/:typeid',
     component: SingleTripComponent,
-    title: 'book trip',
+    title: 'Book Trip',
   },
 
   {
     path: 'buses-types',
     component: BusesTypesComponent,
-    title: 'buses',
+    title: 'Buses',
   },
   {
     path: 'destinations',
@@ -164,13 +172,13 @@ export const routes: Routes = [
   ,
   {
     path:"ticket",
-    component: TicketComponent
-
+    component: TicketComponent,
+    title : 'Reservation Ticket'
   },
   {
     path: "contactus",
     component: ContactusComponent,
-    title:"contact"
+    title:"Contact Us"
   },
   {
     path: '**',

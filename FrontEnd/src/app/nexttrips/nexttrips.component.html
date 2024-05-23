@@ -8,59 +8,61 @@
               "bus_type": "vip"
 
             -->
-
-@if(loading) {
-<div
-  id="spinnerInAdmin"
-  class="d-flex justify-content-center align-content-center"
->
-  <div class="spinner-border text-light" style="margin-top: 20%" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div style="min-height: 30vh" class="py-5">
+  @if(loading) {
+  <div
+    id="spinnerInAdmin"
+    class="d-flex justify-content-center align-content-center"
+  >
+    <div
+      class="spinner-border text-light"
+      style="margin-top: 20%"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
+  }@else{ @if ((nextTrips?.length)!=0) {
+
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th scope="col">Name</th> -->
+        <th scope="col">Travel From</th>
+        <th scope="col">Arriving To</th>
+        <th scope="col">Trip Date</th>
+        <th scope="col">Trip time</th>
+        <th scope="col">Seat Number</th>
+        <th scope="col">Ticket</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (trip of nextTrips ; track $index) {
+
+      <tr class="table-primary">
+        <!-- <th scope="row">{{ trip?.username }}</th> -->
+        <td>{{ trip?.from_location }}</td>
+        <td>{{ trip?.to_location }}</td>
+        <td>{{ trip?.date }}</td>
+        <td>{{ trip?.time }}</td>
+        <td>{{ trip?.seat_num }}</td>
+        <td>
+          <button
+            class="py-1 bh-btn rounded-pill"
+            [routerLink]="['/userticket', trip.id]"
+          >
+            Show
+          </button>
+        </td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+  }@else {
+  <div class="my-4 text-light">
+    <h3>At the main time, You have no Future Trips</h3>
+    <p>As soon as you have a future trip, It will appear here.</p>
+  </div>
+  } }
 </div>
-}@else{ @if ((nextTrips?.length)!=0) {
-
-<table class="table">
-  <thead>
-    <tr>
-      <!-- <th scope="col">Name</th> -->
-      <th scope="col">Travel From</th>
-      <th scope="col">Arriving To</th>
-      <th scope="col">Trip Date</th>
-      <th scope="col">Trip time</th>
-      <th scope="col">Seat Number</th>
-      <th scope="col">Ticket</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (trip of nextTrips ; track $index) {
-
-    <tr class="table-primary">
-      <!-- <th scope="row">{{ trip?.username }}</th> -->
-      <td>{{ trip?.from_location }}</td>
-      <td>{{ trip?.to_location }}</td>
-      <td>{{ trip?.date }}</td>
-      <td>{{ trip?.time }}</td>
-      <td>{{ trip?.seat_num }}</td>
-      <td>
-        <button
-          class="py-1 bh-btn rounded-pill"
-          [routerLink]="['/userticket', trip.id]"
-        >
-          Show
-        </button>
-      </td>
-    </tr>
-
-    }
-  </tbody>
-</table>
-}@else {
-  <div class="mt-4 text-light">
-    <h3>At the main time, You have no Previous Trips</h3>
-    <p>
-      As soon as you have a previous trip, It will appear
-      here.
-    </p>
-  </div>
-} }
