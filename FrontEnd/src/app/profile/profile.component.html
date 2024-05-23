@@ -25,9 +25,9 @@
               <h5>My Account</h5>
               <h3>My Account Details</h3>
             </div> -->
-  <div class="account-container">
-    <div class="AccSideBar">
-      <div class="userimage">
+  <div class="account-container container">
+    <div class="AccSideBar row my-5">
+      <div class="userimage col-md-2">
         @if (userData?.profile_photo_path) {
 
         <img
@@ -36,14 +36,14 @@
               userData.profile_photo_path
           }}"
           alt="user avatar"
-          class="avatar"
+          class="avatar rounded"
           height="100"
           width="100"
         />}@else {
         <img
           src="../../assets/images/person.png"
           alt="user avatar"
-          class="avatar"
+          class="avatar rounded"
           height="100"
           width="100"
         />}
@@ -60,7 +60,7 @@
         </form> -->
         <p>{{ userData?.username }}</p>
       </div>
-      <div class="user-data">
+      <div class="user-data col-md-10">
         <!-- <p class="label">Full Name:</p> -->
         <div class="box">
           <div class="email">

@@ -30,14 +30,14 @@ box-sizing: border-box;
   margin-bottom: 10px;
   margin-top: 10px;
   padding-top: 20px;
-  width: 60%;
+  width: 95%;
   /* border-bottom: 1px solid rgb(160, 148, 148) ;
   border-right: 1px solid rgb(160, 148, 148) ;
   border-left:1px solid rgb(160, 148, 148) ; */
   color: white;
-  box-shadow: 0 7px 28px rgba(179, 165, 165, 0.355),
-  0 10px 10px rgba(62, 70, 70, 0.2);
-  border-radius: 4px;
+  /* box-shadow: 0 7px 28px rgba(179, 165, 165, 0.355), */
+  /* 0 10px 10px rgba(62, 70, 70, 0.2); */
+  /* border-radius: 4px; */
 
 
 }
@@ -57,7 +57,7 @@ box-sizing: border-box;
 
 }
 .userimage{
-margin: 0 auto;
+/* margin: 0 auto; */
 text-align: center;
 }
 
