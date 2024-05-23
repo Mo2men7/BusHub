@@ -1,14 +1,16 @@
-@if (destinations && destination.pic) {
+@if (destinations) {
 <app-navbar></app-navbar>
 <div class="destinations">
     <div class="container py-5">
         <h1 class="text-center mb-5">Our Destinations</h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @if(destinations){
+            <!-- @if(destinations){ -->
                 @for(destination of destinations; track $index){
                     <div class="col">
                         <div class="card h-100">
-                            <img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.pic}}" class="card-img-top" alt="{{destination.name}}">
+                            <!-- @if(!isLoading) -->
+                            @if(1){<img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.pic}}" class="card-img-top" alt="{{destination.name}}" (load)="onImageLoad()" (error)="onImageError()">}
+                            @else{<div class="skeleton"></div>}
                             <div class="card-body">
                                 <h5 class="card-title">{{destination.name}} <img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.flag}}" style="width: 40px;"></h5>
                                 <p class="card-text text-white-50">{{destination.info}}</p>
@@ -16,10 +18,10 @@
                         </div>
                     </div>
                 }
-            }
-            @else{
-                <h2 class="text-white-50 mx-auto mt-5 pt-5 mb-5 pb-5">Loading...</h2>
-            }
+            <!-- } -->
+            <!-- @else{ -->
+                <!-- <h2 class="text-white-50 mx-auto mt-5 pt-5 mb-5 pb-5">Loading...</h2> -->
+            <!-- } -->
             </div>
     </div>
 </div>

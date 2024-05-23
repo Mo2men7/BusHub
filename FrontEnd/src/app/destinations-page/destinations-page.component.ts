@@ -20,8 +20,20 @@ export class DestinationsPageComponent {
 
     this.destinationService.getDestinations().subscribe(
       (res)=>{this.destinations=res;
-        // console.log(res);
       }
     )
+  }
+
+  isLoading = true;
+  onImageLoad() {
+    console.log("Image Loaded");
+    this.isLoading = false;
+    console.log(this.isLoading);
+  }
+
+  onImageError() {
+    // Handle error case, for now, we can keep the skeleton visible
+    console.error('Image failed to load');
+    this.isLoading = true; // You can change this logic based on your needs
   }
 }
