@@ -8,7 +8,7 @@
                     <ul style="list-style: none;">
                         @for (destination of destinations; track $index){
                             @if($index < 8){
-                                <li class="fs-5 my-2">{{destination.name}} <img src="{{destination.flag}}" style="width: 25px;"></li>
+                                <li class="fs-5 my-2">{{destination.name}} <img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.flag}}" style="width: 25px;"></li>
                             }
                         }
                     </ul>

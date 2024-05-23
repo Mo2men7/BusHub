@@ -1,5 +1,5 @@
 <div style="min-height: 30vh;" class="py-5 text-light">
-  @if (PBRequests.length>0){
+  @if (PBRequests.length>0 && PBRequests.user_id==userData?.id){
     <table class="table">
       <thead>
         <tr class="table-primary">
