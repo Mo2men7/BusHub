@@ -9,8 +9,8 @@
                     <div class="col">
                         <div class="card h-100">
                             <!-- @if(!isLoading) -->
-                            @if(1){<img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.pic}}" class="card-img-top" alt="{{destination.name}}" (load)="onImageLoad()" (error)="onImageError()">}
-                            @else{<div class="skeleton"></div>}
+                            <img id="img{{$index}}" src="{{'http://127.0.0.1:8000/api/admin/images' + destination.pic}}" class="card-img-top" alt="{{destination.name}}" (load)="onImageLoad($index)" (error)="onImageError($index)" hidden>
+                            <div id="skeleton{{$index}}" class="skeleton"></div>
                             <div class="card-body">
                                 <h5 class="card-title">{{destination.name}} <img src="{{'http://127.0.0.1:8000/api/admin/images' + destination.flag}}" style="width: 40px;"></h5>
                                 <p class="card-text text-white-50">{{destination.info}}</p>

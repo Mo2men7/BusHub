@@ -1,6 +1,13 @@
-<div class="container mt-4 d-flex justify-content-between flex-wrap" style="width: 100%; height: 80vh">
-  <div id="allCards" class="d-flex flex-wrap" >
-    <div class="card mb-3 ms-3 me-3" style=" height: 200px">
+<div
+  class="container mt-4 d-flex justify-content-between flex-wrap"
+  style="width: 100%; height: 80vh"
+>
+@if (!countUsers || !countPrivatebus || !countTrips || !countEarning){
+
+} @else {
+<!-- {{chartit()}} -->
+  <div id="allCards" class="d-flex flex-wrap">
+    <div class="card mb-3 ms-3 me-3" style="height: 200px">
       <div class="card-body">
         <div
           class="d-flex justify-content-between align-items-baseline mx-4 my-3"
@@ -17,14 +24,14 @@
           </div>
         </div>
         <div class="card-text mx-4">
-          <div class="fs-5 mb-2">{{countUsers}}</div>
+          <div class="fs-5 mb-2">{{ countUsers }}</div>
           <!-- <div class="text-nowrap">
             <span class="text-success">5.25%</span> Since last week
           </div> -->
         </div>
       </div>
     </div>
-    <div class="card mb-3 ms-3 me-3" style=" height: 200px">
+    <div class="card mb-3 ms-3 me-3" style="height: 200px">
       <div class="card-body">
         <div
           class="d-flex justify-content-between align-items-baseline mx-4 my-3"
@@ -41,14 +48,14 @@
           </div>
         </div>
         <div class="card-text mx-4">
-          <div class="fs-5 mb-2">{{countPrivatebus}}</div>
+          <div class="fs-5 mb-2">{{ countPrivatebus }}</div>
           <!-- <div class="text-nowrap">
             <span class="text-danger">-3.65%</span> Since last week
           </div> -->
         </div>
       </div>
     </div>
-    <div class="card mb-3 ms-3 me-3" style=" height: 200px">
+    <div class="card mb-3 ms-3 me-3" style="height: 200px">
       <div class="card-body">
         <div
           class="d-flex justify-content-between align-items-baseline mx-4 my-3"
@@ -65,14 +72,14 @@
           </div>
         </div>
         <div class="card-text mx-4">
-          <div class="fs-5 mb-2">{{countTrips}}</div>
+          <div class="fs-5 mb-2">{{ countTrips }}</div>
           <!-- <div class="text-nowrap">
             <span class="text-danger">-2.25%</span> Since last week
           </div> -->
         </div>
       </div>
     </div>
-    <div class="card mb-3 ms-3 me-3" style=" height: 200px">
+    <div class="card mb-3 ms-3 me-3" style="height: 200px">
       <div class="card-body">
         <div
           class="d-flex justify-content-between align-items-baseline mx-4 my-3"
@@ -89,7 +96,7 @@
           </div>
         </div>
         <div class="card-text mx-4">
-          <div class="fs-5 mb-2">${{countEarning}}</div>
+          <div class="fs-5 mb-2">${{ countEarning }}</div>
           <!-- <div class="text-nowrap">
             <span class="text-success">6.65% </span> Since last week
           </div> -->
@@ -97,13 +104,24 @@
       </div>
     </div>
   </div>
-<div id="allCanv" class="d-flex flex-wrap" >
-  <canvas class="card mb-3 ms-3 me-3" style=" height: 450px;width: 100%;" id="acquisitions"></canvas>
+}
+<div id="allCanv" class="d-flex flex-wrap">
+  <canvas
+    [hidden]="
+      !countUsers || !countPrivatebus || !countTrips || !countEarning
+        ? true
+        : false
+    "
+    class="card mb-3 ms-3 me-3"
+    style="height: 450px; width: 100%"
+    id="acquisitions"
+  ></canvas>
   <!-- <canvas style="width: 50%" id="acquisitions1"></canvas>
-  <canvas style="width: 50%" id="acquisitions2"></canvas>
-  <canvas style="width: 50%" id="acquisitions3"></canvas>
-  <canvas style="width: 50%" id="acquisitions4"></canvas>
-  <canvas style="width: 50%" id="acquisitions5"></canvas>
-  <canvas style="width: 50%" id="acquisitions6"></canvas> -->
+    <canvas style="width: 50%" id="acquisitions2"></canvas>
+    <canvas style="width: 50%" id="acquisitions3"></canvas>
+    <canvas style="width: 50%" id="acquisitions4"></canvas>
+    <canvas style="width: 50%" id="acquisitions5"></canvas>
+    <canvas style="width: 50%" id="acquisitions6"></canvas> -->
 </div>
+
 </div>

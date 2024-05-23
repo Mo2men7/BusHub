@@ -9,10 +9,11 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { LoaderComponent } from '../../loader/loader.component';
 @Component({
   selector: 'app-destinations',
   standalone: true,
-  imports: [SafePipe, ReactiveFormsModule, NgClass],
+  imports: [LoaderComponent,SafePipe, ReactiveFormsModule, NgClass],
   templateUrl: './destinations.component.html',
   styleUrl: './destinations.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

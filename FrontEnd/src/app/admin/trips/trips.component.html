@@ -1,3 +1,6 @@
+@if(!trips || !buses)
+{}
+@else {
 <div class="container d-flex flex-wrap mt-5 ps-5" style="height: 80%">
   @for(trip of trips ; track $index) {
   <div class="card text-bg-dark" style="height: 200px; width: 200px">
@@ -647,3 +650,4 @@
   </div>
   <!-- end delete modal -->
 </div>
+}

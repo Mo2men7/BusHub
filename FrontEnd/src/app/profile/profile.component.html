@@ -25,12 +25,13 @@
               <h5>My Account</h5>
               <h3>My Account Details</h3>
             </div> -->
-  <div class="edit">
+  <!-- <div class="edit">
     <app-edituserdetails></app-edituserdetails>
-  </div>
+  </div> -->
   <!-- ////////////////////////////////////////////// -->
   <div class="container">
     <mat-tab-group>
+      
       <mat-tab label="Profile">
         <div class="account-container container">
           <div class="AccSideBar row my-5">
@@ -92,7 +93,14 @@
             </div>
           </div>
           <div class="edit">
-            <app-edituserdetails></app-edituserdetails>
+            <button
+  type="button"
+  class="btn editbtn"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+>
+  <i class="fa-regular fa-pen-to-square"></i>
+</button>
           </div>
         </div>
       </mat-tab>
@@ -167,3 +175,4 @@
   <app-footer></app-footer>
 </div>
 }
+<app-edituserdetails></app-edituserdetails>

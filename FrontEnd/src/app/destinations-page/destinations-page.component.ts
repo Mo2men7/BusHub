@@ -10,30 +10,33 @@ import { LoaderComponent } from '../loader/loader.component';
   standalone: true,
   imports: [NavbarComponent, FooterComponent, LoaderComponent],
   templateUrl: './destinations-page.component.html',
-  styleUrl: './destinations-page.component.css'
+  styleUrl: './destinations-page.component.css',
 })
 export class DestinationsPageComponent {
-  constructor(private destinationService:DestinationService){}
-  destinations:any;
+
+  constructor(private destinationService: DestinationService) {}
+  destinations: any;
   ngOnInit() {
+    this.destinationService.getDestinations().subscribe((res) => {
+      this.destinations = res;
+      console.log(this.destinations);
 
 
-    this.destinationService.getDestinations().subscribe(
-      (res)=>{this.destinations=res;
-      }
-    )
+    });
   }
 
-  isLoading = true;
-  onImageLoad() {
-    console.log("Image Loaded");
-    this.isLoading = false;
-    console.log(this.isLoading);
+  onImageLoad(index:any) {
+    console.log('Image Loaded');
+    // console.log(index);
+    const skeleton=document.getElementById("skeleton"+index)
+    skeleton?.remove();
+    const img=document.getElementById("img"+index)
+    img!.hidden=false ;
   }
 
-  onImageError() {
+  onImageError(index:any) {
     // Handle error case, for now, we can keep the skeleton visible
     console.error('Image failed to load');
-    this.isLoading = true; // You can change this logic based on your needs
+    // this.isLoading[index] = true; // You can change this logic based on your needs
   }
 }

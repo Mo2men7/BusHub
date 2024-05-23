@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
-
+import { LoaderComponent } from '../../loader/loader.component';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,LoaderComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })

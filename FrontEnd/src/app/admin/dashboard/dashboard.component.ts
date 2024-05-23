@@ -8,6 +8,7 @@ import Chart from 'chart.js/auto';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DestinationService } from '../services/destinationService/destination.service';
+import { LoaderComponent } from '../../loader/loader.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -16,6 +17,7 @@ import { DestinationService } from '../services/destinationService/destination.s
     DestinationsComponent,
     SidebarComponent,
     RouterOutlet,
+    LoaderComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -47,9 +49,10 @@ export class DashboardComponent {
       (res) => (this.countEarning = res),
       (error) => console.log(error)
     );
-    this.chartit();
+    this.chartit()
   }
   chartit() {
+  console.log("loaded")
     let htmlRef = this.elementRef.nativeElement.querySelector(`#acquisitions`);
 
     const data = {

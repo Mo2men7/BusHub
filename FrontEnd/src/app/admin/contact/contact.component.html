@@ -1,3 +1,7 @@
+@if (!ContactUsData)
+{
+}
+@else {
 <div class="container my-2 rounded p-0 mt-4">
   @if(ContactUsData?.length>0){
   <div class="colorInfo container d-flex gap-3 mb-3">
@@ -43,3 +47,4 @@
   </div>
   }
 </div>
+}

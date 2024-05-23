@@ -4,10 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimeFormatPipe } from '../../time-format.pipe';
 import { NgClass } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoaderComponent } from '../../loader/loader.component';
 @Component({
   selector: 'app-buses',
   standalone: true,
-  imports: [FormsModule, TimeFormatPipe, ReactiveFormsModule, NgClass],
+  imports: [LoaderComponent,FormsModule, TimeFormatPipe, ReactiveFormsModule, NgClass],
   templateUrl: './buses.component.html',
   styleUrl: './buses.component.css',
 })
@@ -16,7 +17,7 @@ export class BusesComponent {
   newBusForm: FormGroup;
   newBus: any;
   countBuses: any;
-  chosenType: any = 1;
+  chosenType: any = 5;
   count: any = 0;
   typeName: any = 'VIP';
 
