@@ -5,7 +5,8 @@ import { SearchComponent } from './search/search.component';
 import { WhyComponent } from './why/why.component';
 import { DestinationsSectionComponent } from './destinations-section/destinations-section.component';
 import { FooterComponent } from '../footer/footer.component';
-
+import { DestinationService } from '../services/destination.service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-homepage',
@@ -17,13 +18,21 @@ import { FooterComponent } from '../footer/footer.component';
     WhyComponent,
     DestinationsSectionComponent,
     FooterComponent,
+    LoaderComponent,
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css',
 })
 export class HomepageComponent {
-  constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2, private destinationService : DestinationService) { }
 
+  destinations:any;
+  ngOnInit(){
+    this.destinationService
+      .getDestinations()
+      .subscribe((res: any) => (this.destinations = res));
+  }
+  
   // Listen for the scroll event
   @HostListener('window:scroll', [])
   onWindowScroll() {

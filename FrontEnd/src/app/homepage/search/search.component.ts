@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { DestinationService } from '../../services/destination.service';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -13,13 +12,13 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './search.component.css',
 })
 export class SearchComponent {
-  destinations: any;
+  // destinations: any;
 
   constructor(
-    private destinationService: DestinationService,
     private router: Router
   ) {}
   //locked previous days variable
+  @Input() destinations:any;
   today =
     new Date()
       .toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })
@@ -51,13 +50,6 @@ export class SearchComponent {
       .split('/')[1];
 
   ngOnInit() {
-    this.destinationService
-      .getDestinations()
-      .subscribe((res: any) => (this.destinations = res));
-    //locked previous days
-    // console.log(this.today); //delete
-    // console.log(this.newDate);//delete
-
     document.getElementsByName('travelDate')[0].setAttribute('min', this.today);
     document.getElementsByName('travelDate')[0].setAttribute('max', this.newDate);
   }

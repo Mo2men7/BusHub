@@ -1,6 +1,11 @@
+@if (destinations) {
 <app-navbar></app-navbar>
-<app-hero></app-hero>
+<app-hero [destinations]="destinations"></app-hero>
 <app-why></app-why>
 <app-destinations-section></app-destinations-section>
 <app-footer></app-footer>
 <button id="btn" (click)="scrollToTop()">up</button>
+}
+@else {
+    <app-loader></app-loader>
+}

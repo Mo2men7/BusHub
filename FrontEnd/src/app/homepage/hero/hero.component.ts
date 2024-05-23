@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchComponent } from '../search/search.component';
 
 @Component({
@@ -21,4 +21,5 @@ export class HeroComponent {
   //   this.formattedDate = `20${year}-${month}-${day}`;
   //   console.log(this.formattedDate);
   // }
+  @Input() destinations:any;
 }
